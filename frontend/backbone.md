@@ -21,7 +21,7 @@
     var SiteRouter = Backbone.Router.extend({
         initialize: function(options) {
             this.route('normalRoute:id', 'normalRoute');
-            this.route('*nothingMatched', 'pageNotFoundRoute');
+            this.route('*nothingMatched', 'pageNotFoundRoute'); //define it at the bottom of route list
         },
         pageNotFoundRoute: function(failedRoute) {
             alert(failedRoute + ' did not match any routes');
