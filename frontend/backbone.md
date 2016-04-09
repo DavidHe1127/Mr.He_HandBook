@@ -32,5 +32,15 @@
 
 | Models   | Views           | Routers  |
 | -------- |:---------------:| --------:|
-| defaults, url, urlRoot | attributes, className, events, id   | routes    |
-
+| defaults, url, urlRoot | attributes, className, events, id | routes |
+```
+var variableTagView = Backbone.View.extend({
+    tagName: function() {
+        if(this.collection) {
+            return 'select';
+        } else {
+            return 'input';   
+        }
+    }
+})
+```
