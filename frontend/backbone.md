@@ -60,7 +60,7 @@ var User = Backbone.Model.extend({
       id: null,
       orders: []
     },
-    load: function() {
+    initialize: function() {
       this.orders = [];
     }
 });
