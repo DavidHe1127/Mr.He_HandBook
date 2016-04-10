@@ -1,6 +1,7 @@
 # Tips and Practices
 
 * `var myel = this.el` - plain html element
+
   `var myel = this.$el` - jQuery object of this element providing show, hide methods etc. Use this way to access element since 
   it keeps a reference to element. No need to traverse DOM to find element every time you need it. Performance Benefits
 * Use `Backbone.history.start({pushState: true})` to tell Backbone to begin routing
