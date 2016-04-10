@@ -75,5 +75,5 @@ var Model = Backbone.Model.extend({
     }
 });
 ```
-* Backbone Model/Collection methods like get, set, toJSON() can be chained - `model.set('id', 1).get('id').toJSON()`
+* Backbone Model/Collection methods like get, set, toJSON() can be chained - `Javascript model.set('id', 1).get('id').toJSON()`
 
