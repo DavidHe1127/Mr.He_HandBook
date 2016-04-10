@@ -1,4 +1,4 @@
-# Tips and Dev notes
+# Tips and Practices
 
 * Use `Backbone.history.start({pushState: true})` to tell Backbone to begin routing
 * Set `trigger` to fire bound logic to the route.
