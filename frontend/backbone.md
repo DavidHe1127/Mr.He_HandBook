@@ -49,12 +49,12 @@ var variableTagView = Backbone.View.extend({
 * Try not to use `{patch: true}` which will in turn send `PATCH` request that our server generally do not handle
 * Client issues either a `PUT` (valid model id) or `POST` (no model id) request when trying to save via `model.save()`. However, attrs need to have a valid `id` in order for client to trigger a `PUT` when trying to save via `model.save(attrs, {});`
 * Call `fetch` on `Collection` will trigger `add` event for each model unless call it with `{reset: true}`
-```
+```Javascript
 users.fetch({reset: true});
 ```
 * Call `router.navigate('xxx/xxx/view')` does nothing if you are already on that `PATH`
 * `model.get('attr')` and `model.attr` are holding different values - NOT shared reference, so change one will not affect the other
-```
+```Javascript
 var User = Backbone.Model.extend({
     defaults: {
       id: null,
@@ -66,7 +66,7 @@ var User = Backbone.Model.extend({
 });
 ```
 * Make model defaults a function which returns object as below. Call `new Model().defaults` or `new Model().defaults()` to get default values
-```
+```Javascript
 var Model = Backbone.Model.extend({
     defaults: function() {
         return {
