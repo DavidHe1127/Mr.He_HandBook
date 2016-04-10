@@ -82,4 +82,13 @@ var Model = Backbone.Model.extend({
 });
 ```
 * Backbone Model/Collection methods like get, set, toJSON() can be chained - `model.set('id', 1).get('id').toJSON()`
-
+* Use `listenTo` NOT `on` for listening to changes
+* `el` is whole `<div>` including contents, template is `<ul>`, `tagName` is `<div></div>`  
+```
+<div>
+  <ul>
+    <li>xxx</li>
+    <li>xxx</li>
+  </ul>
+</div>
+```
