@@ -97,3 +97,4 @@ var Model = Backbone.Model.extend({
   </ul>
 </div>
 ```
+* To trigger `success` event on `model.destroy()`, server needs to respond with a valid `json`
