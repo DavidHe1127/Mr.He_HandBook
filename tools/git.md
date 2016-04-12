@@ -1,6 +1,8 @@
 ## Table of Contents
 
-[Create Branch](#createbranch)
+* Branch
+
+..* [Create Branch](#createbranch)
 
 #createbranch
 Create a new branch based on `yyy` and push it to remote 
