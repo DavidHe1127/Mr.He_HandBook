@@ -1,6 +1,6 @@
 ## Table of Contents
 
-[Create Branch](#CreateBranch)
+[Create Branch](#newbranch)
 
 
 
@@ -44,8 +44,7 @@ git cherry-pick <COMMIT_HASH>
 
 
 
-#CreateBranch
-***
+#newbranch
 Create a new branch based on `yyy` and push it to remote 
 ```
 git co -b xxx yyy
