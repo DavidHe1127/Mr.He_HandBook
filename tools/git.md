@@ -6,6 +6,7 @@
 * Changes
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
+  * [Cherry-pick Commit](#cherry-pick)
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -29,10 +30,11 @@ If others already have your bad commit. See below
 (them) git fetch
 (them) git reset --hard origin/branch
 ```
-* Cherry pick a commit. Pick it from other branches and insert it into current branch
-```
-git cherry-pick <COMMIT_HASH>
-```
 #reset-commit
 Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
 ```git reset --hard HEAD^^```
+#cherry-pick
+Cherry pick a commit. Pick it from other branches and insert it into current branch
+```
+git cherry-pick <COMMIT_HASH>
+```
