@@ -18,3 +18,7 @@ git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
 
 ```
+* Cherry pick a commit. Pick it from other branches and insert it into current branch
+```
+git cherry-pick <COMMIT_HASH>
+```
