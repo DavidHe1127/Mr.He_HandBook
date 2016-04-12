@@ -11,3 +11,10 @@ If others already have your bad commit. See below
 (them) git fetch
 (them) git reset --hard origin/branch
 ```
+* Rename a branch
+```
+git br -m <NEW_NAME>
+git push origin -u <NEW_NAME>
+git push origin :<OLD_NAME> // delete old remote branch
+
+```
