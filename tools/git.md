@@ -3,7 +3,9 @@
 * Branch
   * [Create Branch](#create-branch)
   * [Rename Branch](#rename-branch)
-
+* Changes
+  * [Remove Commit from origin](#rm-commit)
+  * [Reset Commit](#reset-commit)
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
 ```
@@ -16,9 +18,8 @@ git br -m <NEW_NAME>
 git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
 ```
-* Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
-```git reset --hard HEAD^^```
-* Remove an already-pushed commit. Need to make sure no one else pulls out your bad changes or bad commit will come back
+#rm-commit
+Remove an already-pushed commit. Need to make sure no one else pulls out your bad changes or bad commit will come back
 next time others push their code.
 `git reset --hard <LAST_GOOD_COMMIT>`
 `git push --force`
@@ -31,3 +32,6 @@ If others already have your bad commit. See below
 ```
 git cherry-pick <COMMIT_HASH>
 ```
+#reset-commit
+Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
+```git reset --hard HEAD^^```
