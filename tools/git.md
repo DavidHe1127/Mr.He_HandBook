@@ -1,8 +1,8 @@
 ## Table of Contents
 
-[Create Branch](#CreateBranch)
+[Create Branch](#createbranch)
 
-#CreateBranch
+#createbranch
 Create a new branch based on `yyy` and push it to remote 
 ```
 git co -b xxx yyy
