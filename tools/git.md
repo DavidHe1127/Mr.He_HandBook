@@ -4,7 +4,7 @@
   * [Create Branch](#create-branch)
   * [Rename Branch](#rename-branch)
 * Changes
-  * [Remove Commit from origin](#rm-commit)
+  * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
 
 #create-branch
@@ -19,7 +19,7 @@ git br -m <NEW_NAME>
 git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
 ```
-#rm-commit
+#remove-commit
 Remove an already-pushed commit. Need to make sure no one else pulls out your bad changes or bad commit will come back
 next time others push their code.
 `git reset --hard <LAST_GOOD_COMMIT>`
