@@ -2,13 +2,7 @@
 
 [Create Branch](#Create Branch)
 
-#####Create Branch
-***
-Create a new branch based on `yyy` and push it to remote 
-```
-git co -b xxx yyy
-git push -u origin xxx // u - set up-stream channel
-```
+
 
 * Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
 ```git reset --hard HEAD^^```
@@ -50,3 +44,10 @@ git cherry-pick <COMMIT_HASH>
 
 
 
+#####Create Branch
+***
+Create a new branch based on `yyy` and push it to remote 
+```
+git co -b xxx yyy
+git push -u origin xxx // u - set up-stream channel
+```
