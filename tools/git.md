@@ -2,12 +2,19 @@
 
 * Branch
   * [Create Branch](#create-branch)
+  * [Rename Branch](#rename-branch)
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
 ```
 git co -b xxx yyy
 git push -u origin xxx // u - set up-stream channel
+```
+#rename-branch
+```
+git br -m <NEW_NAME>
+git push origin -u <NEW_NAME>
+git push origin :<OLD_NAME> // delete old remote branch
 ```
 * Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
 ```git reset --hard HEAD^^```
@@ -19,13 +26,6 @@ If others already have your bad commit. See below
 ```
 (them) git fetch
 (them) git reset --hard origin/branch
-```
-* Rename a branch
-```
-git br -m <NEW_NAME>
-git push origin -u <NEW_NAME>
-git push origin :<OLD_NAME> // delete old remote branch
-
 ```
 * Cherry pick a commit. Pick it from other branches and insert it into current branch
 ```
