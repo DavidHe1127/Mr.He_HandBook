@@ -13,13 +13,13 @@
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
-```
+```Javascript
 git co -b xxx yyy
 git push -u origin xxx // u - set up-stream channel
 ```
 
 #rename-branch
-```
+```Javascript
 git br -m <OLD_NAME> <NEW_NAME>
 git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
@@ -27,7 +27,7 @@ git push origin :<OLD_NAME> // delete old remote branch
 
 #check-branch
 List all branches on remote. Pass optional `BRANCH` to see if that specific branch is there
-```
+```Javascript
 git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
 ```
 
@@ -37,7 +37,7 @@ next time others push their code.
 `git reset --hard <LAST_GOOD_COMMIT>`
 `git push --force`
 If others already have your bad commit. See below
-```
+```Javascript
 (them) git fetch
 (them) git reset --hard origin/branch
 ```
@@ -48,7 +48,7 @@ Reset to the last two commits (yet to be pushed to remote). `--hard` discard cha
 
 #cherry-pick
 Cherry pick a commit. Pick it from other branches and insert it into current branch
-```
+```Javascript
 git cherry-pick <COMMIT_HASH>
 ```
 
