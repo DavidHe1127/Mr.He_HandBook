@@ -9,6 +9,7 @@
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
   * [Cherry-pick Commit](#cherry-pick)
+  * [Stash Changes](#stash-change) 
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -49,4 +50,15 @@ Reset to the last two commits (yet to be pushed to remote). `--hard` discard cha
 Cherry pick a commit. Pick it from other branches and insert it into current branch
 ```
 git cherry-pick <COMMIT_HASH>
+```
+
+#stash-change
+`git apply [stash@{0}]` does not remove stashed change(s) from list. Use `git pop [stash@{0}]` will remove it right after applying changes
+```
+git stash
+git stash list //list all stashed changes
+git apply [stash@{0}] //apply all stashed changes or apply change with index 0
+git drop stash@{0} //drop change with index 0
+git pop [stash@{0}] //apply all changes and remove them afterwards
+git stash clear //remove all stashed changes
 ```
