@@ -54,7 +54,7 @@ git cherry-pick <COMMIT_HASH>
 
 #stash-change
 `git apply [stash@{0}]` does not remove stashed change(s) from list. Use `git pop [stash@{0}]` will remove it right after applying changes
-```
+```Javascript
 git stash
 git stash list //list all stashed changes
 git apply [stash@{0}] //apply all stashed changes or apply change with index 0
