@@ -19,7 +19,7 @@ git push -u origin xxx // u - set up-stream channel
 
 #rename-branch
 ```
-git br -m <NEW_NAME>
+git br -m <OLD_NAME> <NEW_NAME>
 git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
 ```
