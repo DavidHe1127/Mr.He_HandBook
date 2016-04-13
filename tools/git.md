@@ -4,6 +4,7 @@
 * Branch
   * [Create Branch](#create-branch)
   * [Rename Branch](#rename-branch)
+  * [Check Branch presence](#check-branch)
 * Changes
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
@@ -21,6 +22,12 @@ git push -u origin xxx // u - set up-stream channel
 git br -m <NEW_NAME>
 git push origin -u <NEW_NAME>
 git push origin :<OLD_NAME> // delete old remote branch
+```
+
+#check-branch
+List all branches on remote. Pass optional `BRANCH` to see if that specific branch is there
+```
+git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
 ```
 
 #remove-commit
