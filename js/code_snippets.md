@@ -4,6 +4,7 @@
   * [Self-Defining Function](#self-defining-func)
   * [Function arguments Length](#func-arg-len)
   * [Function local static value](#func-static-value)
+  * [Function name](#func-name)
 * String
   * [Count new lines in string](#count-str-line-break)
 * Number
@@ -50,6 +51,18 @@ function count() {
    } 
    return count.i++;
 }
+```
+
+#func-name
+```javascript
+function A() {}
+
+var B = function(callback) {
+    console.log(callback.name); //name - internal property of function. Only available in 
+                          //function declaration form	     
+};
+
+B(A); //'A'
 ```
 
 #count-str-line-break
