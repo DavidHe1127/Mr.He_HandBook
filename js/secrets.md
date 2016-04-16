@@ -35,3 +35,9 @@ console.log([1] == [1]) //false
 ```javascript
 isNaN(parseInt("")); //true
 ```
+
+* Use toFixed to round number to N decimal place
+```javascript
+var num =2.443242342;
+num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
+```
