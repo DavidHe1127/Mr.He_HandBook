@@ -100,5 +100,5 @@ function getWordCnt() {
 
 #convert-values-to-boolean
 ```javascript
-['', 0, 'a', 'b'].filter(Boolean) => returns ['a', 'b']
+['', 0, 'a', 'b'].filter(Boolean)  // ['a', 'b']
 ```
