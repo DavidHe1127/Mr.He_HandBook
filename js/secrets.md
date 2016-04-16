@@ -18,5 +18,6 @@ When you create an object like `var o = { a: false, b: "something", ... }` then 
 
 * Use `'g'` will make Regex stateful - it remembers the last index of the match and will continue the search starting with that index
 ```javascript
-['defabc', 'abc'] reg = /abc/g // will only match 'defabc' but not 'abc' since lastIndex is 4 solution is set reg.lastIndex = 0 after each match
+['defabc', 'abc'] reg = /abc/g // will only match 'defabc' but not 'abc' since lastIndex is 4 
+                               //solution is set reg.lastIndex = 0 after each match
 ```
