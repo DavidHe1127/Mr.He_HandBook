@@ -1,14 +1,13 @@
 #Secrets
 
-
-* There is a prototype property that every JavaScript function has (it is empty by default), and you attach properties and methods on this prototype property when you want to implement inheritance. 
+* Every JS func has a prototype property - an empty object by default. You attach properties and methods on this prototype property in order to implement inheritance. 
 
 * If an object is created with an object literal (var newObj = {}), it inherits properties from Object.prototype and we say its prototype object (or prototype attribute) is Object.prototype.
 If an object is created from a constructor function such as new Object (), new Fruit () or new Array () or new Anything (), it inherits from that constructor (Object (), Fruit (), Array (), or Anything ()). For example, with a function such as Fruit (), each time we create a new instance of Fruit (var aFruit = new Fruit ()), the new instance’s prototype is assigned the prototype from the Fruit constructor, which is Fruit.prototype.
 
 * var obj = {};  
-obj.prototype //undefined, why is that? there is an internal property called [[proto]] which is not accessible to programmer. That property points to object prototype. However, most engines make this property accessible as __proto__ 
-When you create an object like var o = { a: false, b: "something", ... } then o.__proto__ is Object.prototype
+obj.prototype //undefined, why is that? there is an internal property called [[proto]] which is not accessible to programmer. That property points to object prototype. However, most engines make this property accessible as `__proto__` 
+When you create an object like `var o = { a: false, b: "something", ... }` then `o.__proto__` is Object.prototype
 
 * The critical feature of constructor invocation (when use new) is that the prototype property of the constructor is used as the prototype of the new object
 
