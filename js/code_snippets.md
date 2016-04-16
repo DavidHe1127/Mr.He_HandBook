@@ -12,6 +12,8 @@
   * [Truncate array](#truncate-array)
   * [Transform array into object](#transform-arr-into-obj)
   * [Convert values to boolean](#convert-values-to-boolean)
+* Object
+  * [Ideal object](#ideal-obj)
 
 #self-defining-func
 ```javascript
@@ -101,4 +103,10 @@ function getWordCnt() {
 #convert-values-to-boolean
 ```javascript
 ['', 0, 'a', 'b'].filter(Boolean)  // ['a', 'b']
+```
+
+#ideal-obj 
+```javascript
+var map = Object.create(null); // map is ideal for hash maps because the absence of a [[Prototype]] removes the risk of name                                    // conflicts. Object is completely void of any methods or properties. It is purely for key-value store 
+  map + ‘’; //TypeError : Cannot convert object to primitive value
 ```
