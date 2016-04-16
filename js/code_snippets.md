@@ -5,16 +5,22 @@
   * [Function arguments Length](#func-arg-len)
   * [Function local static value](#func-static-value)
   * [Function name](#func-name)
+  * [Convert arguments to array](#args-to-arr)
 * String
   * [Count new lines in string](#count-str-line-break)
+  * [Create specified number of string](#create-string)
 * Number
   * [Generate random number](#gen-random-num)
+  * [Round down to integer](#round-down-integer)
+  * [Convert number to binary](#convert-to-binary)
 * Array
   * [Truncate array](#truncate-array)
   * [Transform array into object](#transform-arr-into-obj)
   * [Convert values to boolean](#convert-values-to-boolean)
 * Object
   * [Ideal object](#ideal-obj)
+* Boolean
+  * [String to boolean](#str-to-bool)
 
 #self-defining-func
 ```javascript
@@ -65,6 +71,11 @@ var B = function(callback) {
 B(A); //'A'
 ```
 
+#args-to-arr
+```javascript
+var argArray = Array.prototype.slice.call(arguments);
+```
+
 #count-str-line-break
 ```javascript
 var a = 0;
@@ -75,10 +86,25 @@ for (var y = 0, len = str.length; y < len; y++) {
 }
 ```
 
+#create-string
+```javascript
+new Array(256).join('-');  // create 255 dashes
+```
+
 #gen-random-num
 ```javascript
 var rnd = Math.floor(Math.random() * n);  // between 0~N
 var rnd = Math.random(); //between 0~1
+```
+
+#round-down-integer
+```javascript
+11.887 | 0 === 11; 
+```
+
+#convert-to-binary
+```javascript
+4.toString(2); // convert 4 to 100
 ```
 
 #truncate-array
@@ -124,4 +150,10 @@ var map = Object.create(null); // map is ideal for hash maps because the absence
                              // removes the risk of name conflicts. Object is completely void of any methods or properties 
                              // It is purely for key-value store 
   map + ‘’; //TypeError : Cannot convert object to primitive value
+```
+
+#str-to-bool
+```javascript
+'1' == 'true'
+'false' == 'false'
 ```
