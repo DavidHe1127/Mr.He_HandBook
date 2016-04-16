@@ -25,3 +25,8 @@ arr.forEach((ele) => ele.test(reg)); // solution is set reg.lastIndex = 0 after 
 
 * `Array.concat()` returns a shallow copy of array object
 
+* Primitive type are compared by value while Reference type are compared by reference and value
+```javascript
+console.log(3 == 3) //true
+console.log([1] == [1]) //false
+```
