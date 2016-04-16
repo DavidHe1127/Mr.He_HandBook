@@ -22,3 +22,6 @@ var arr = ['defabc', 'abc']
 var reg = /abc/g // will only match 'defabc' but not 'abc' since lastIndex is 4 
 arr.forEach((ele) => ele.test(reg)); // solution is set reg.lastIndex = 0 after each match
 ```
+
+* `Array.concat()` returns a shallow copy of array object
+
