@@ -30,3 +30,8 @@ arr.forEach((ele) => ele.test(reg)); // solution is set reg.lastIndex = 0 after 
 console.log(3 == 3) //true
 console.log([1] == [1]) //false
 ```
+
+* `isNaN()` converts empty string into zero. As a result, `isNaN("  ")` or `isNaN("")` returns **false**. Use `parseInt` will fix this problem as `parseInt` will fail to convert empty string into number
+```javascript
+isNaN(parseInt("")); //true
+```
