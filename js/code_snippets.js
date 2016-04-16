@@ -1,3 +1,8 @@
+#Js Code Snippets
+
+
+
+
 * Self-Defining Function
 var scareMe = function() {
      alert('Boo!');
