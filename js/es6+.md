@@ -8,6 +8,7 @@
   * [Includes](#string-include)
   * [Repeat](#string-repeat)
   * [Interpolation](#string-interpolation)
+
 #find-findindex
 * `Array.find` find the first matched element or `undefined` if no match.
 * `Array.findIndex` return index of first matched elemnt or `-1` if no match.
