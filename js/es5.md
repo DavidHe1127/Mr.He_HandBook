@@ -34,7 +34,7 @@ sneaker.discount += 20; //80, not 90
 **Object.defineProperties**
 ```javascript
 var obj = {};
-Object.defineProperites(obj, {
+Object.defineProperties(obj, {
   'price': {
     value: 10,
     writable: true, // property value can be changed
