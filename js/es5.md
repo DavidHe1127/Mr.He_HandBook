@@ -7,9 +7,9 @@
   * [Create specified number of string](#create-string)
 
 #create-obj-define-property
-`Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
-`configurable, writable, enumerable` default to `false`.
-Use either combinations `writable/value`, `get/set` on a property
+ * `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
+ * `configurable, writable, enumerable` default to `false`.
+ * Use either combinations `writable/value`, `get/set` on a property.
 
 **Object.defineProperties**
 ```javascript
