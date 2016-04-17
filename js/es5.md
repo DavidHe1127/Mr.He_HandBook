@@ -1,4 +1,4 @@
-##JS code & snippets
+##ES5 uncommon APIs
 
 * Object
   * [Create objects with defineProperties](#create-obj-define-property)
@@ -8,6 +8,8 @@
 
 #create-obj-define-property
 `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
+`configurable, writable, enumerable` default to `false`.
+Use either combinations `writable/value`, `get/set` on a property
 
 **Object.defineProperties**
 ```javascript
@@ -39,15 +41,20 @@ Object.defineProperties(obj, {
     value: 10,
     writable: true, // property value can be changed
     configurable: false, // property cannot be deleted
-    enumerable: true // property shows up during enumeration of the properties like for(key in obj)
+    enumerable: true // property shows up during enumeration of the properties like 
   },
   'code': {
-    set: function(val) {
-      this.code = val;
+     get: function() {
+       return 'BD001';
     },
-    get: function() {
-      return this.code;
-    }
+    enumerable: true
+  },
+  'color': {
+     get: function() {
+       return 'red';
+     }  
   }
 });
+console.log(obj); // { price: 10, code: [Getter] } color property not show up since it is not enumerable
+obj.code = 10; // throws an error since no setter defined
 ```
