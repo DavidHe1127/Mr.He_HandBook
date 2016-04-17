@@ -3,8 +3,7 @@
 * Object
   * [Create objects with defineProperties](#create-obj-define-property)
 * String
-  * [Count new lines in string](#count-str-line-break)
-  * [Create specified number of string](#create-string)
+  * [String replacement](#string-replacement)
 
 #create-obj-define-property
  * `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
@@ -57,4 +56,13 @@ Object.defineProperties(obj, {
 });
 console.log(obj); // { price: 10, code: [Getter] } color property not show up since it is not enumerable
 obj.code = 10; // throws an error since no setter defined
+```
+
+#string-replacement
+```javascript
+function replacer(match, p1, p2, p3, offset, string){
+  // p1 is nondigits, p2 digits, and p3 non-alphanumerics
+  console.log([p1, p2, p3].join('-')); // abc-12345-#$*%:
+};
+var newString = "abc12345#$*%".replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
 ```
