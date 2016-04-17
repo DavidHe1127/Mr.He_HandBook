@@ -42,7 +42,12 @@ Object.defineProperites(obj, {
     enumerable: true // property shows up during enumeration of the properties like for(key in obj)
   },
   'code': {
-    value: 'xxx'
+    set: function(val) {
+      this.code = val;
+    },
+    get: function() {
+      return this.code;
+    }
   }
 });
 ```
