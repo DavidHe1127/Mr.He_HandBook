@@ -19,8 +19,6 @@
   * [Convert values to boolean](#convert-values-to-boolean)
 * Object
   * [Ideal object](#ideal-obj)
-* Boolean
-  * [String to boolean](#str-to-bool)
 
 #self-defining-func
 ```javascript
@@ -150,10 +148,4 @@ var map = Object.create(null); // map is ideal for hash maps because the absence
                              // removes the risk of name conflicts. Object is completely void of any methods or properties 
                              // It is purely for key-value store 
   map + ‘’; //TypeError : Cannot convert object to primitive value
-```
-
-#str-to-bool
-```javascript
-'1' == 'true'
-'false' == 'false'
 ```
