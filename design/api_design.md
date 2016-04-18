@@ -4,6 +4,11 @@
 * [Command and Query Separation](#cqs)
 * [Consistency](#consistency)
 * [Handling Arguments](#handle-arguments)
+  * [Named Arguments](#named-arguments)
+* [Extensibility](#extensibility)
+  * [Callback](#callback)
+  * [Event](#event)
+  * [Hooks](#hooks)
 
 #method-chaining
 It creates fluently readable code and thus is easier to understand.
@@ -89,5 +94,72 @@ jQuery('input').val(() => {
   return jQuery(this).data('default');
 });
 ```
+
+#named-arguments
+Consider sample below which is utterly a nightmare.
+```javascript
+event.initMouseEvent("click", true, true, window,
+123, 101, 202, 101, 202,
+true, false, false, false,
+1, null);
+```
+Point is - `No matter how good your docs is, do what you can so 
+people don't have to look things up`
+
+#extensibility
+Focus on the primary user cases, only do the things most of your
+API users will need. Everything else should be left up to them.
+
+#callback
+```javascript
+var readFile = (path, name, done) => {
+  var res = fHandle.read(path, name);
+
+  if(res) {
+    done(res);
+  }
+};
+```
+
+#event
+```javascript
+var widget = () => {
+  
+  var show = () => {
+    $('.dialog').show();
+    $.trigger('dialog' + ':' + 'show');  
+  };
+
+  return {
+    show: show
+  };
+};
+
+$(document.body).on('dialog:show', () => {
+   // do something 
+});
+```
+
+#hooks
+```javascript
+// define a custom css hook
+jQuery.cssHooks.custombox = {
+  get: function(elem, computed, extra) {
+    return $.css(elem, 'borderRadius') == "50%" ? "circle" : "box";
+  },
+  set: function(elem, value) {
+    elem.style.borderRadius = value == "circle" ? "50%" : "0";
+  }
+};
+// have .css() use that hook
+$("#some-selector").css("custombox", "circle");
+```
+
+
+
+
+
+
+
 
 
