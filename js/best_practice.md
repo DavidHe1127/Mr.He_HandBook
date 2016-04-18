@@ -1,7 +1,34 @@
 #Best Practice
 
-* Using single var pattern when defining several variables
-```var a = 1, b = 2, c = 3;```
+* Defind multiple variables
+```javascript
+//bad
+var a = 1, b = 2, c = 3;
+
+//ok not the best
+var a = 1;
+var b = 2;
+var c = 3;
+
+//best
+const a = 1;
+const b = 2;
+const c = 3;
+```
+
+* String type casting
+```javascript
+var reviewScore = 9;
+
+// bad
+const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
+
+// bad
+const totalScore = this.reviewScore.toString(); // isn't guaranteed to return a string
+
+// good
+const totalScore = String(this.reviewScore);
+```
 
 * When enumerating an object you need to filter the prototype methods 
 ```javascript
