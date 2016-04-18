@@ -73,7 +73,7 @@ jQuery("#some-selector").css({
 });
 ```
 
-```html
+```javascript
 <input type="text" value="" data-default="foo">
 <input type="text" value="" data-default="bar">
 <input type="text" value="" data-default="baz">
