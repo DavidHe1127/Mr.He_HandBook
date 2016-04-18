@@ -1,4 +1,4 @@
-##ES6 uncommon APIs
+##ES6 common APIs
 
 * Array
   * [Find and findIndex](#find-findindex)
