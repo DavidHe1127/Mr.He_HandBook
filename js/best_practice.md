@@ -16,18 +16,24 @@ const b = 2;
 const c = 3;
 ```
 
-* String type casting
+* Type casting
 ```javascript
 var reviewScore = 9;
 
 // bad
 const totalScore = this.reviewScore + ''; // invokes this.reviewScore.valueOf()
-
 // bad
 const totalScore = this.reviewScore.toString(); // isn't guaranteed to return a string
-
 // good
 const totalScore = String(this.reviewScore);
+
+const age = 0;
+// bad
+const hasAge = new Boolean(age);
+// good
+const hasAge = Boolean(age);
+// best
+const hasAge = !!age;
 ```
 
 * When enumerating an object you need to filter the prototype methods 
