@@ -67,6 +67,12 @@ var B = function(callback) {
 };
 
 B(A); //'A'
+
+var object = {
+  someMethod: function object_someMethod() {}
+};
+
+console.log(object.someMethod.name); // logs "object_someMethod"
 ```
 
 #args-to-arr
