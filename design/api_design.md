@@ -9,6 +9,8 @@
   * [Callback](#callback)
   * [Event](#event)
   * [Hooks](#hooks)
+* [Validations](#validations)
+* [Summary](#summary)
 
 #method-chaining
 It creates fluently readable code and thus is easier to understand.
@@ -142,18 +144,51 @@ $(document.body).on('dialog:show', () => {
 
 #hooks
 ```javascript
-// define a custom css hook
-jQuery.cssHooks.custombox = {
-  get: function(elem, computed, extra) {
-    return $.css(elem, 'borderRadius') == "50%" ? "circle" : "box";
-  },
-  set: function(elem, value) {
-    elem.style.borderRadius = value == "circle" ? "50%" : "0";
+DateInterval.nameHooks = {
+  "yesterday": function () {
+    var d = new Date();
+    d.setTime(d.getTime() - 86400000);
+    d.setHours(0);
+    d.setMinutes(0);
+    d.setSeconds(0);
+    return d;
   }
 };
-// have .css() use that hook
-$("#some-selector").css("custombox", "circle");
+
+DateInterval.prototype.start = function (date) {
+  if (date === undefined) {
+    return new Date(this.startDate.getTime());
+  }
+  if (typeof date === "string" && DateInterval.nameHooks[date]) {}
+  date = DateInterval.nameHooks[date]();
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+  this.startDate.setTime(date.getTime());
+  return this;
+};
+var di = new DateInterval();
+di.start("yesterday");
 ```
+
+#validations
+Make validation of input a top-level citizen even if it is ugly. Make our program robust means not accepting rubbish and
+telling developers about it.
+```javascript
+var count = (num) => {
+ if (typeof num === 'string') {
+  return new Error('expect number as input');
+ }
+};
+```
+
+#summary
+* An API is a contract between you (the provider) and the user (the consumer). Don’t just change things between versions.
+* You should invest as much time into the question - How will people use my software? as you have put into How does my software work internally?
+* With a couple of simple tricks you can greatly reduce the developer's efforts (in terms of lines of code).
+* Handle invalid input as early as possible — throw Errors.
+* Good APIs are flexible, better APIs don’t let you make mistakes.
+
 
 
 
