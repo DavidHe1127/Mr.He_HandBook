@@ -1,7 +1,8 @@
 ##Sample
 * Use `-d "{"version": "1.0.0.1"}"` to send plain json data
 * `-v` - verbose mode
+* `-o` - output response to a file
 
 ```javascript
-curl -v -X POST -H 'Authorization: Bearer xxxxxxx' -H 'Content-Type: application/json' http://localhost:2202/api/platforms/xxxxxx/firmware -d '@firmware.json'
+curl -v -X POST -H 'Authorization: Bearer xxxxxxx' -H 'Content-Type: application/json' http://localhost:2202/api/platforms/xxxxxx/firmware -d '@firmware.json' -o 'output.md'
 ```
