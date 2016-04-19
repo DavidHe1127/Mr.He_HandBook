@@ -66,7 +66,3 @@ function replacer(match, p1, p2, p3, offset, string){
 };
 var newString = "abc12345#$*%".replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
 ```
-```javascript
-curl -v -X GET -H 'Authorization: Bearer <user-token>' https://cloud.zentri.com/api/actions
-```
-
