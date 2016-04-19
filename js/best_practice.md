@@ -1,5 +1,7 @@
 #Best Practice
 
+* Use `let` and `const` in place of `var` since they are both block-scoped variables.
+
 * Defind multiple variables
 ```javascript
 //bad
