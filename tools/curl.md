@@ -10,7 +10,7 @@ curl -v -X POST -H 'Authorization: Bearer xxxxxxx' -H 'Content-Type: application
 * Upload files
 `-u` authentication
 ``` javascript
-curl -u <FTP_USER>:<FTP_PSD> -T myfile.txt ftp://ftp.testserver.com
-curl -u <FTP_USER>:<FTP_PSD> -T "{file1,file2}" ftp://ftp.testserver.com
+curl -u <FTP_USER>:<FTP_PSD> -T myfile.txt ftp://10.5.6.119:2221/folder
+curl -u <FTP_USER>:<FTP_PSD> -T "{file1,file2}" ftp://10.5.6.119:2221/folder
 ```
 
