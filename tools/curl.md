@@ -8,6 +8,7 @@
 curl -v -X POST -H 'Authorization: Bearer xxxxxxx' -H 'Content-Type: application/json' http://localhost:2202/api/platforms/xxxxxx/firmware -d '@firmware.json' -o 'output.md'
 ```
 * Upload files
+`-u` authentication
 ``` javascript
 curl -u <FTP_USER>:<FTP_PSD> -T myfile.txt ftp://ftp.testserver.com
 curl -u <FTP_USER>:<FTP_PSD> -T "{file1,file2}" ftp://ftp.testserver.com
