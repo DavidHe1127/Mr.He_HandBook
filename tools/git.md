@@ -9,6 +9,7 @@
   * [Reset Commit](#reset-commit)
   * [Cherry-pick Commit](#cherry-pick)
   * [Stash Changes](#stash-change) 
+  * [Unstage Changed files](#unstage)
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -60,4 +61,9 @@ git apply [stash@{0}] //apply all stashed changes or apply change with index 0
 git drop stash@{0} //drop change with index 0
 git pop [stash@{0}] //apply all changes and remove them afterwards
 git stash clear //remove all stashed changes
+```
+
+#unstage
+```javascript 
+git reset <FILE_PATH>
 ```
