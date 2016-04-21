@@ -4,7 +4,7 @@
   * [stdout file content](#stdout-file-content)
 
 #stdout-file-content
-Use `less` rather than `cat` to output large file content since the former allows **pgup/dn** to scroll contents
+Use `less` rather than `cat` to output large file content since the former allows to scroll **up/down** contents
 ```shell
 less file1.txt
 ```
