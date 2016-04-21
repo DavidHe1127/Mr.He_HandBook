@@ -5,6 +5,6 @@
 
 #stdout-file-content
 Use `less` rather than `cat` to output large file content since the former allows to scroll **up/down** contents
-```perl
+```Shell
 less file1.txt
 ```
