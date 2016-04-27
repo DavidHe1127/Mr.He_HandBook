@@ -6,6 +6,7 @@
   * [String replacement](#string-replacement)
 * Array
   * [Array reverse](#array-reverse)
+  * [Array sort](#array-sort)
 
 #create-obj-define-property
  * `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
@@ -76,3 +77,100 @@ var result = myArray.reverse();
 console.log(myArray) // ['three', 'two', 'one']
 console.log(result) // ['three', 'two', 'one']
 ```
+
+#array-sort
+Basic usage
+```javascript
+var fruit = ['cherries', 'apples', 'bananas'];
+fruit.sort(); // ['apples', 'bananas', 'cherries']
+
+var scores = [1, 10, 2, 21]; 
+scores.sort(); // [1, 10, 2, 21]
+// Watch out that 10 comes before 2,
+// because '10' comes before '2' in Unicode code point order.
+
+var things = ['word', 'Word', '1 Word', '2 Words'];
+things.sort(); // ['1 Word', '2 Words', 'Word', 'word']
+// In Unicode, numbers come before upper case letters,
+// which come before lower case letters.
+```
+`sort` also takes a **compare** as a function with two arguments.
+```javascript
+['a', 'b'].sort((a, b) => {
+  if (a < b) {
+    return -1; // sort a to a lower index than b
+  }
+  if (a > b) {
+    return 1; // sort b to a lower index than a
+  }
+  return 0; // leave a and b unchanged order
+});
+```
+To compare numbers instead of strings, use
+```javascript
+var numbers = [4, 2, 5, 1, 3];
+var res = numbers.sort(function(a, b) {
+  return a - b; // ascending order, b -a descending order
+});
+
+console.log(numbers, res); // both are [1, 2, 3, 4, 5]
+```
+`sort` based on a already-sorted array breaks the former order!!! - **NOT PRESERVE IT**. Use either `lodash` or `underscore`
+`sortBy` instead.
+``` javascript
+var items = [{
+  name: 'Edward',
+  value: 21
+}, {
+  name: 'Sharpe',
+  value: 37
+}, {
+  name: 'And',
+  value: 45
+}, {
+  name: 'The',
+  value: -12
+}, {
+  name: 'Zeros',
+  value: 37
+}];
+items.sort(function(a, b) {
+  if (a.value > b.value) {
+    return 1;
+  }
+  if (a.value < b.value) {
+    return -1;
+  }
+  
+  return 0;
+}).sort(function(a, b) {
+  if (a.name > b.name) {
+    return 1;
+  }
+  if (a.name < b.name) {
+    return -1;
+  }
+  
+  return 0;
+});
+
+// first sort yields: 
+ [{ name: 'The', value: -12 },
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'Zeros', value: 37 },
+  { name: 'And', value: 45 }]
+
+// second sort yields:
+ [{ name: 'And', value: 45 },
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'The', value: -12 },
+  { name: 'Zeros', value: 37 }]
+```
+
+
+
+
+
+
