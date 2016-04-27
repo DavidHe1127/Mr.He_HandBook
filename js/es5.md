@@ -4,6 +4,8 @@
   * [Create objects with defineProperties](#create-obj-define-property)
 * String
   * [String replacement](#string-replacement)
+* Array
+  * [Array reverse](#array-reverse)
 
 #create-obj-define-property
  * `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
@@ -65,4 +67,12 @@ function replacer(match, p1, p2, p3, offset, string){
   console.log([p1, p2, p3].join('-')); // abc-12345-#$*%:
 };
 var newString = "abc12345#$*%".replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+```
+
+#array-reverse
+```javascript
+var myArray = ['one', 'two', 'three'];
+var result = myArray.reverse(); 
+console.log(myArray) // ['three', 'two', 'one']
+console.log(result) // ['three', 'two', 'one']
 ```
