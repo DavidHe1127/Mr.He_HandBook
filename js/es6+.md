@@ -8,6 +8,8 @@
   * [Includes](#string-include)
   * [Repeat](#string-repeat)
   * [Interpolation](#string-interpolation)
+* Miscellaneous
+  * [Fat arrow](#fat-arrow)
 
 #find-findindex
 * `Array.find` find the first matched element or `undefined` if no match.
@@ -78,5 +80,19 @@ var o = {
 
 console.log(`${o.x + o.y}`); // 6
 console.log(`${() => {}()}`); // undefined
+```
+
+#fat-arrow
+* One line of statement does not require `{}`
+* Single argument does not require `()`
+```javascript
+[1, 2].find(x => x > 0);
+
+var s = [1, 2].find((x, index) => {
+  if (index > 3) {
+    return true;
+  }
+  return false;
+});
 ```
 
