@@ -83,8 +83,8 @@ console.log(`${() => {}()}`); // undefined
 ```
 
 #fat-arrow
-* One line of statement does not require `{}`
-* Single argument does not require `()`
+* One line of statement can omit `{}`
+* Single argument does can omit `()`
 ```javascript
 [1, 2].find(x => x > 0);
 
