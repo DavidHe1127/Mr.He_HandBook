@@ -4,6 +4,8 @@
   * [Find and findIndex](#find-findindex)
   * [From](#array-from)
   * [Includes](#array-include)
+* Object
+  * [Assign](#assign)
 * String
   * [Includes](#string-include)
   * [Repeat](#string-repeat)
@@ -44,6 +46,27 @@ any negative value is given.
 [1, 2, 3].includes(3, 3);  // false
 [1, 2, 3].includes(3, -1); // true
 [1, 2, NaN].includes(NaN); // true
+```
+
+#assign
+Copy the values of all enumerable own properties from one or more source objects to a target object. It returns a new object rather than a reference (shallow copy).
+```javascript
+let s1 = {
+  put: () => {},
+  get: () => {},
+  val: 12
+};
+
+let s2 = {
+  del: () => {},
+  val: 14
+};
+
+var res = Object.assign({}, s1, s2);
+
+res.del = [];
+
+// {put: [Function], get: [Function], val: 14, del: []}
 ```
 
 #string-include
