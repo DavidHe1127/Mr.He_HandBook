@@ -117,8 +117,7 @@ var res = numbers.sort(function(a, b) {
 
 console.log(numbers, res); // both are [1, 2, 3, 4, 5]
 ```
-`sort` based on a already-sorted array breaks the former order!!! - **NOT PRESERVE IT**. Use either `lodash` or `underscore`
-`sortBy` instead.
+Avoid using built-in `sort` in favor of `sortBy` featured by `underscore` or `lodash`.
 ``` javascript
 var items = [{
   name: 'Edward',
@@ -136,39 +135,28 @@ var items = [{
   name: 'Zeros',
   value: 37
 }];
-items.sort(function(a, b) {
-  if (a.value > b.value) {
-    return 1;
-  }
-  if (a.value < b.value) {
-    return -1;
-  }
-  
-  return 0;
-}).sort(function(a, b) {
-  if (a.name > b.name) {
-    return 1;
-  }
-  if (a.name < b.name) {
-    return -1;
-  }
-  
-  return 0;
-});
 
-// first sort yields: 
- [{ name: 'The', value: -12 },
-  { name: 'Edward', value: 21 },
-  { name: 'Sharpe', value: 37 },
-  { name: 'Zeros', value: 37 },
-  { name: 'And', value: 45 }]
+_.sortBy('name');
 
-// second sort yields:
+/* sort by name
  [{ name: 'And', value: 45 },
   { name: 'Edward', value: 21 },
   { name: 'Sharpe', value: 37 },
   { name: 'The', value: -12 },
   { name: 'Zeros', value: 37 }]
+*/
+
+_.sortBy('value');
+
+/*
+[{ name: 'The', value: -12 },
+  { name: 'Edward', value: 21 },
+  { name: 'Sharpe', value: 37 },
+  { name: 'Zeros', value: 37 },
+  { name: 'And', value: 45 }]
+*/
+
+_.sortBy([1, -12, 0, 15]); // [-12, 0, 1, 15]
 ```
 
 #utc-iso-local-time
