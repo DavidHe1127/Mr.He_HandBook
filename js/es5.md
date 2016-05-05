@@ -7,6 +7,8 @@
 * Array
   * [Array reverse](#array-reverse)
   * [Array sort](#array-sort)
+* Date
+  * [UTC, ISO and local time](#utc-iso-local-time)
 
 #create-obj-define-property
  * `Object.defineProperty` or `Object.defindProperties` can take either `value` or `get/set func`, but not both.
@@ -168,6 +170,22 @@ items.sort(function(a, b) {
   { name: 'The', value: -12 },
   { name: 'Zeros', value: 37 }]
 ```
+
+#utc-iso-local-time
+Code below is running in Sydney AEST +10:00
+```javascript
+let date = new Date();
+
+date.getHours(); // 20
+date.getUTCHours(); // 10
+
+let today = new Date('05 October 2011 14:48 UTC');
+today.toISOString(); // 2011-10-05T14:48:00.000Z
+
+// timezone is always zero UTC offset denoted by 'Z'
+```
+
+
 
 
 
