@@ -112,7 +112,7 @@ To compare numbers instead of strings, use
 ```javascript
 var numbers = [4, 2, 5, 1, 3];
 var res = numbers.sort(function(a, b) {
-  return a - b; // ascending order, b -a descending order
+  return a - b; // ascending order, b - a descending order
 });
 
 console.log(numbers, res); // both are [1, 2, 3, 4, 5]
