@@ -28,7 +28,6 @@ arr.forEach((ele) => ele.test(reg)); // solution is set reg.lastIndex = 0 after 
 let arr1 = [1,2];
 var res2 = arr1.concat();
 res2.push(5);
-
 // res2 [1,2,5] arr1 [1,2]
 ```
 
