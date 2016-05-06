@@ -47,3 +47,36 @@ isNaN(parseInt("")); //true
 var num = 2.443242342;
 num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
 ```
+
+* Pass by Reference & Pass by Value
+The function only knows the value not the argument's **location**.
+`Objects` **references** are values - that is why `Objects` behave like they are passed by reference.
+```javascript
+let a = {
+  a: 1,
+  c: []
+};
+
+let b = 1;
+
+const d = (a) => {
+  a = 4;
+};
+
+d(b); // a: 1, b: {a:1, c:[]}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

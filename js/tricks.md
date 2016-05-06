@@ -17,6 +17,7 @@
   * [Truncate array](#truncate-array)
   * [Transform array into object](#transform-arr-into-obj)
   * [Convert values to boolean](#convert-values-to-boolean)
+  * [Get last elements](#get-last-element)
 * Object
   * [Ideal object](#ideal-obj)
 
@@ -146,6 +147,12 @@ function getWordCnt() {
 #convert-values-to-boolean
 ```javascript
 ['', 0, 'a', 'b'].filter(Boolean)  // ['a', 'b']
+```
+
+#get-last-element
+```javascript
+[1,2,3,4,5].slice(-2); // [4, 5]
+[1,2,3].slice(-1); // [3]
 ```
 
 #ideal-obj 
