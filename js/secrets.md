@@ -23,7 +23,14 @@ var reg = /abc/g // will only match 'defabc' but not 'abc' since lastIndex is 4
 arr.forEach((ele) => ele.test(reg)); // solution is set reg.lastIndex = 0 after each match
 ```
 
-* `Array.concat()` Concatenating array(s)/value(s) will leave the originals untouched. Furthermore, any operation on the new array will have no effect on the original arrays, and vice versa.
+* Use `Array.prototype.concat()` will leave the originals untouched. Furthermore, any operation on the new array will have no effect on the original arrays, and vice versa.
+```javascript
+let arr1 = [1,2];
+var res2 = arr1.concat();
+res2.push(5);
+
+// res2 [1,2,5] arr1 [1,2]
+```
 
 * Primitive type are compared by value while Reference type are compared by reference and value
 ```javascript
