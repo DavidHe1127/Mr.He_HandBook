@@ -4,6 +4,7 @@
   * [Create objects with defineProperties](#create-obj-define-property)
 * String
   * [String replacement](#string-replacement)
+  * [String truncation](#string-truncation)
 * Array
   * [Array reverse](#array-reverse)
   * [Array sort](#array-sort)
@@ -70,6 +71,27 @@ function replacer(match, p1, p2, p3, offset, string){
   console.log([p1, p2, p3].join('-')); // abc-12345-#$*%:
 };
 var newString = "abc12345#$*%".replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+```
+
+#string-truncation
+Both `substring` and `substr` takes start index as the 1st arg. And they both extract characters from start index till string end if 2nd arg is omitted.
+
+Difference is 2nd arg.
+
+* `substring` takes end index, when it is specified, `substring` will truncate given string up to but not including
+the end index character. 
+* `substr` takes character count.
+
+```javascript
+let word = 'david';
+
+word.substring(1); // 'avid'
+word.substring(1, 1); // ''
+word.substring(1, 2); // 'a'
+
+word.substr(1); // 'avid'
+word.substr(1, 1); // 'a'
+word.substr(1, 2); // 'av'
 ```
 
 #array-reverse
