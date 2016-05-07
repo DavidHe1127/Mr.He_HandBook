@@ -75,7 +75,7 @@ var newString = "abc12345#$*%".replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
 
 #string-truncation
 Both `substring` and `substr` takes start index as the 1st arg. And they both extract characters from start index till string end if 2nd arg is omitted.
-Difference
+Difference:
 * `substring` takes end index, when it is specified, `substring` will truncate given string up to but not including
 the end index character. 
 * `substr` takes character count.
