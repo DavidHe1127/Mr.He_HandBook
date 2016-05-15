@@ -11,7 +11,7 @@
 
 `relative`
 * In the document flow
-* Relative to its previous element
+* Position relatively to its previous element
 
 See `css.html` for more examples. 
 
