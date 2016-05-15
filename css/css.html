@@ -1,0 +1,58 @@
+CTYPE html>
+<html>
+  <style type="text/css">
+  /*  html {
+  border: 3px dashed green;
+  }
+  body {
+  border: 3px dashed purple;
+  }*/
+  #grand-parent {
+    border: 1px solid black;
+    height: 100px;
+    top: 100px;
+    width: 200px;
+    position: absolute;
+  }
+  #parent {
+    border: 3px solid maroon;
+    height: 150px;
+    width: 800px;
+    left: 0;
+    top: 110px;
+    position: absolute;
+  /*position: relative;*/
+  }
+  #first {
+    width: 200px;
+    height: 100px;
+    border: 1px solid red;
+    position: relative;
+    top: 20px;
+    left: 5px;
+    margin: 10px;
+    float: left
+  }
+  #second{
+    width: 200px;
+    height: 100px;
+    border: 1px solid red;
+    position: relative;
+    top: 20px;
+    left: 45px;
+    margin: 10px;
+    float: left
+  }
+  </style>
+  <body>
+    <div id="grand-parent">
+      grand parent
+      <div id="parent">
+        parent
+        <div id="first">first</div>
+        <div id="second">second</div>
+      </div>
+    </div>
+  </body>
+</html>
+
