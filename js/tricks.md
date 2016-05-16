@@ -1,4 +1,4 @@
-##JS code & snippets
+##JS Tricks
 
 * Function
   * [Self-Defining Function](#self-defining-func)
@@ -9,6 +9,7 @@
 * String
   * [Count new lines in string](#count-str-line-break)
   * [Create specified number of string](#create-string)
+  * [Get last n characters](#get-last-character)
 * Number
   * [Generate random number](#gen-random-num)
   * [Round down to integer](#round-down-integer)
@@ -94,6 +95,11 @@ for (var y = 0, len = str.length; y < len; y++) {
 #create-string
 ```javascript
 new Array(256).join('-');  // create 255 dashes
+```
+
+#get-last-character
+```javascript
+'12345'.sbustr(-3); // 345
 ```
 
 #gen-random-num
