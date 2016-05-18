@@ -14,6 +14,7 @@
   * [Generate random number](#gen-random-num)
   * [Round down to integer](#round-down-integer)
   * [Convert number to binary](#convert-to-binary)
+  * [Differentiate between integer and float](#integer-or-float)
 * Array
   * [Truncate array](#truncate-array)
   * [Transform array into object](#transform-arr-into-obj)
@@ -116,6 +117,12 @@ var rnd = Math.random(); //between 0~1
 #convert-to-binary
 ```javascript
 4.toString(2); // convert 4 to 100
+```
+
+#integer-or-float
+```javascript
+12 % 1 === 0; // true
+1.2 % 1 === 0; // false
 ```
 
 #truncate-array
