@@ -32,18 +32,19 @@ res2.push(5);
 // res2 [1,2,5] arr1 [1,2]
 ```
 
-* Primitive type are compared by value while Reference type are compared by reference and value
+* Primitive type are compared by value while Reference type are compared by reference and value.
 ```javascript
 console.log(3 == 3) //true
 console.log([1] == [1]) //false
 ```
 
-* `isNaN()` converts empty string into zero. As a result, `isNaN("  ")` or `isNaN("")` returns **false**. Use `parseInt` will fix this problem as `parseInt` will fail to convert empty string into number
+* `isNaN()` and `Number()` both convert **falsy values excluding undefined** into zero such as `'', ' ', null, '0'`. As a result, `isNaN(' ')` or `isNaN('')` returns **false**. Use `parseInt` will fix this problem as `parseInt` will fail to convert empty string into number.
 ```javascript
-isNaN(parseInt("")); //true
+isNaN(null); // false
+isNaN(parseInt("")); // true
 ```
 
-* Use toFixed to round number to N decimal place
+* Use toFixed to round number to N decimal place.
 ```javascript
 var num = 2.443242342;
 num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
