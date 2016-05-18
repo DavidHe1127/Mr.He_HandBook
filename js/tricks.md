@@ -105,7 +105,7 @@ new Array(256).join('-');  // create 255 dashes
 
 #gen-random-num
 ```javascript
-var rnd = Math.floor(Math.random() * n);  // between 0~N
+var rnd = Math.floor(Math.random() * n);  // between 0 ~ N -1
 var rnd = Math.random(); //between 0~1
 ```
 
