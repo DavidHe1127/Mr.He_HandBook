@@ -38,7 +38,7 @@ console.log(3 == 3) //true
 console.log([1] == [1]) //false
 ```
 
-* `isNaN()` and `Number()` both convert **falsy values excluding undefined** into zero such as `'', ' ', null, '0'`. As a result, `isNaN(' ')` or `isNaN('')` returns **false**. Use `parseInt` will fix this problem as `parseInt` will fail to convert empty string into number.
+* `isNaN()` and `Number()` both convert **falsy values excluding undefined** into zero such as `'', ' ', null, '0', false`. As a result, `isNaN(' ')` or `isNaN('')` returns **false**. Use `parseInt` will fix this problem as `parseInt` will fail to convert empty string into number.
 ```javascript
 isNaN(null); // false
 isNaN(parseInt("")); // true
