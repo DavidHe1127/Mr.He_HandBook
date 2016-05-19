@@ -1,10 +1,10 @@
 # Tips and Practices
 
-* `var myel = this.el` - plain html element
+* `this.el` - plain html element
 
-  `var myel = this.$el` - jQuery object of this element providing show, hide methods etc. Use this way to access element since 
+  `this.$el` - jQuery object of this element providing show, hide methods etc. Use this way to access element since 
   it keeps a reference to element. No need to traverse DOM to find element every time you need it. Performance Benefits
-* Use `Backbone.history.start({pushState: true})` to tell Backbone to begin routing
+* Use `Backbone.history.start({pushState: true})` to tell Backbone to begin routing.
 * Set `trigger` to fire bound logic to the route.
 ```Javascript
     var router = new Backbone.Router({
@@ -14,6 +14,7 @@
             }
         }
     });
+    router.navigate('foo', {trigger: true});
 ```
 
 * Let`s say we have page A, B and C. Browser will navigate back to page A rather than B when clicking browser back button on page C - see code below
@@ -48,7 +49,7 @@ var variableTagView = Backbone.View.extend({
     }
 })
 ```
-* event format - `<EVENT_NAME> <TARGET>` - `'click .action-cancel'`
+* event listener pattern - `<EVENT_NAME> <TARGET>` - `'click .action-cancel'`
 * Call save on Model will immediately triggers `change` event and set new vales on Model. Set `{wait: true}` to delay update until get a positive response from server.
 * Try not to use `{patch: true}` which will in turn send `PATCH` request that our server generally do not handle
 * Client issues either a `PUT` (valid model id) or `POST` (no model id) request when trying to save via `model.save()`. However, attrs need to have a valid `id` in order for client to trigger a `PUT` when trying to save via `model.save(attrs, {});`
@@ -87,7 +88,7 @@ var Model = Backbone.Model.extend({
 ```
 * Backbone Model/Collection methods like get, set, toJSON() can be chained - `model.set('id', 1).get('id').toJSON()`
 * Use `listenTo` NOT `on` for listening to changes
-* `el` is whole `<div>` including contents, template is `<ul>`, `tagName` is `<div></div>`  
+* `el` is whole `<div>` including contents, `tagName` is `<div></div>`  
 
 ```HTML
 <div>
