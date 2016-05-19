@@ -6,6 +6,7 @@
   * [Create Branch](#create-branch)
   * [Rename Branch](#rename-branch)
   * [Check Branch presence](#check-branch)
+  * [Remove branch](#remove-branch)
 * Changes
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
@@ -31,6 +32,12 @@ git push origin :<OLD_NAME> // delete old remote branch
 List all branches on remote. Pass optional `BRANCH` to see if that specific branch is there
 ```Javascript
 git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
+```
+
+#remove-branch
+```javascript
+git branch -d [BRANCH]
+git push origin :[BRANCH]
 ```
 
 #remove-commit
