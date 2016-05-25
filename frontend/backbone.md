@@ -1,7 +1,6 @@
 # Tips and Practices
 
 * `this.el` - plain html element
-
   `this.$el` - jQuery object of this element providing show, hide methods etc. Use this way to access element since 
   it keeps a reference to element. No need to traverse DOM to find element every time you need it. Performance Benefits
 * Use `Backbone.history.start({pushState: true})` to tell Backbone to begin routing.
@@ -99,3 +98,4 @@ var Model = Backbone.Model.extend({
 </div>
 ```
 * To trigger `success` event on `model.destroy()`, server needs to respond with a valid `json`
+* Model `change` event will be bubbled up to its Collection. To catch that use `Collection.on('change', () =>)`
