@@ -98,4 +98,4 @@ var Model = Backbone.Model.extend({
 </div>
 ```
 * To trigger `success` event on `model.destroy()`, server needs to respond with a valid `json`
-* Model `change` event will be bubbled up to its Collection. To catch that use `Collection.on('change', () =>)`
+* Model `change` event will be bubbled up to its Collection. To catch that use `Collection.on('change', () => {})`
