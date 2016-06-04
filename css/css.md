@@ -15,7 +15,7 @@
 
 `static`
 * Default position value
-* Position-related properties such as `left, right, top, bottom, height, width` are ignored 
+* Position-related properties such as `left, right, top, bottom` are ignored 
 
 `fixed`
 * Same as absolute but the element stays where it is permanently even screen is scrolled
