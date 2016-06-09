@@ -13,6 +13,7 @@
   * [Cherry-pick Commit](#cherry-pick)
   * [Stash Changes](#stash-change) 
   * [Unstage Changed files](#unstage)
+  * [View change details after pull](#view-change-detail-after-pull)
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -75,4 +76,10 @@ git stash clear //remove all stashed changes
 #unstage
 ```javascript 
 git reset <FILE_PATH>
+```
+
+#view-change-detail-after-pull
+Specify `filename` if you want to see changes in a specific file. `master@{1}` means previous state of master branch
+```javascript
+git diff master@{1} master [filename]
 ```
