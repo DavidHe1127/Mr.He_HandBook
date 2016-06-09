@@ -36,8 +36,8 @@ git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
 
 #remove-branch
 ```javascript
-git branch -d [BRANCH]
-git push origin :[BRANCH]
+git branch -d [BRANCH] // del local one
+git push origin :[BRANCH] // del remote one
 ```
 
 #remove-commit
