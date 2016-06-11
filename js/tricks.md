@@ -20,6 +20,7 @@
   * [Transform array into object](#transform-arr-into-obj)
   * [Convert values to boolean](#convert-values-to-boolean)
   * [Get last elements](#get-last-element)
+  * [Swap two elements](#swap-elements)
 * Object
   * [Ideal object](#ideal-obj)
 
@@ -166,6 +167,18 @@ function getWordCnt() {
 ```javascript
 [1,2,3,4,5].slice(-2); // [4, 5]
 [1,2,3].slice(-1); // [3]
+```
+
+#swap-elements
+`splice` can take 3 arguments. 
+1st is startIndex, 2nd is item deleted count, 3rd or more are items to be inserted.
+Return is an array containing deleted items.
+```javascript
+var arr = [1,2,3,4,5];
+var x = 0;
+var x = 4;
+arr[0] = arr.splice(4, 1, arr[0])[0];
+console.log(arr); // [5,2,3,4,1]
 ```
 
 #ideal-obj 
