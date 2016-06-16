@@ -40,7 +40,4 @@ To incorporate a module into your project, that module needs a `CLI` so you can 
 (cd site/main; browserify browser/main.js | uglifyjs -mc > static/bundle.js)
 (cd site/xyz; browserify browser.js > static/bundle.js)
 ```
-Then call it like this `"build.js": "bin/build.sh"`
-
-
-
+Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/build.sh"`
