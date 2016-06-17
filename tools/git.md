@@ -7,6 +7,7 @@
   * [Rename Branch](#rename-branch)
   * [Check Branch presence](#check-branch)
   * [Remove branch](#remove-branch)
+  * [Check Branch merge into master status](#if-merge-into-master)
 * Changes
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
@@ -39,6 +40,12 @@ git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
 ```javascript
 git branch -d [BRANCH] // del local one
 git push origin :[BRANCH] // del remote one
+```
+
+#if-merge-into-master
+```javascript
+git branch --no-merged master // list all unmerged feature branches
+git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or else not merged
 ```
 
 #remove-commit
