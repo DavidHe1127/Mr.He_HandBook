@@ -43,7 +43,7 @@ git push origin :[BRANCH] // del remote one
 ```
 
 #if-merge-into-master
-You **MUST** make sure you are on `master` branch and pull from remote before running the check
+You **MUST** make sure `master` branch is up-to-date before running the check. Otherwise, result might not be true!
 ```javascript
 git branch --no-merged master // list all unmerged feature branches
 git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or else not merged
