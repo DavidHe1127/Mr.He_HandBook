@@ -7,7 +7,7 @@
   * [Rename Branch](#rename-branch)
   * [Check Branch presence](#check-branch)
   * [Remove branch](#remove-branch)
-  * [Check Branch merge into master status](#if-merge-into-master)
+  * [Check Branch merge status](#if-merge-into-master)
 * Changes
   * [Remove Commit from origin](#remove-commit)
   * [Reset Commit](#reset-commit)
