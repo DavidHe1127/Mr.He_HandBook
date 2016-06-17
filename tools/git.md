@@ -80,7 +80,9 @@ git reset <FILE_PATH>
 
 #view-change-detail-after-pull
 Specify `filename` if you want to see changes in a specific file. `master@{1}` means the immediate prior value of master.
+
 If you are on branch `blabla` then `@{1}` means the same as `blabla@{1}`.
+
 For more details see [gitrevisions](http://schacon.github.io/git/gitrevisions.html)
 ```javascript
 git diff master@{1} master [filename]
