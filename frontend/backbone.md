@@ -51,7 +51,7 @@ var variableTagView = Backbone.View.extend({
 * event listener pattern - `<EVENT_NAME> <TARGET>` - `'click .action-cancel'`
 * Call save on Model will immediately triggers `change` event and set new vales on Model. Set `{wait: true}` to delay update until get a positive response from server.
 * Try not to use `{patch: true}` which will in turn send `PATCH` request that our server generally do not handle
-* Client issues either a `PUT` (valid model id) or `POST` (no model id) request when trying to save via `model.save()`. However, attrs need to have a valid `id` in order for client to trigger a `PUT` when trying to save via `model.save(attrs, {});`
+* Client issues either a `PUT` (valid model id) or `POST` (no model id) request when trying to save via `model.save()`. 
 * Call `fetch` on `Collection` will trigger `add` event for each model unless call it with `{reset: true}`
 ```Javascript
 users.fetch({reset: true});
