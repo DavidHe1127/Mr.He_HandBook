@@ -6,4 +6,6 @@ It is highly recommanded you use `PackageResourceViewer` to readily view and edi
 <key>inactiveSelection</key>
 <string>#622569</string>
 ```
+* `ctrl + k + v` to see the list of copy history that you can paste from.
+* `ctrl + k + l | u` to convert chars to either `l`owercase or `u`ppercase.
 
