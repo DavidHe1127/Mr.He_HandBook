@@ -24,6 +24,7 @@ Declare most generic items first followed by not-so-generic ones - this lets you
 1. Draw layout/draft wireframe
 2. Create a HTML structure representation of layout
 3. Design CSS
+
 #### Break down whole CSS block into separate stylesheets
 `navs.css`, `typography.css`, `menus.css`, `colors.css` etc.
 #### To center element
