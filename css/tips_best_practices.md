@@ -6,6 +6,7 @@ Declare most generic items first followed by not-so-generic ones - this lets you
 #### Useful Naming Conventions
 *Name CSS elements based on what they are, not what they look like.* - Leave position or style specific words out of styles.
 > If you must return to your HTML to change the presentation or styling of the page. You are doing it wrong!
+
 ```css
 /* bad */
 .comment-blue {}
