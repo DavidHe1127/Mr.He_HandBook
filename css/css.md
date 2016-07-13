@@ -13,7 +13,7 @@ body {
 .cascade {
   color: maroon;
 }
------------------------------
+/*-----------------------------*/
 <p class="cascade">Maroon</p> /* cascading - p is in maroon */
 <p>Lightblue</p> /* inheritence - p is in lightblue */
 ```
