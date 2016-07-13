@@ -1,7 +1,22 @@
 ##CSS Essentials
 
+* General
+  * [Cascading vs Inheritence](#cascading-inheritence)
 * Position and Layout
   * [Positioning](#positioning)
+
+#cascading-inheritence
+```css
+body {
+  color: lightblue;
+}
+.cascade {
+  color: maroon;
+}
+-----------------------------
+<p class="cascade">Maroon</p> /* cascading - p is in maroon */
+<p>Lightblue</p> /* inheritence - p is in lightblue */
+```
 
 #absolute-relative-position
 `absolute`
