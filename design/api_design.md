@@ -1,5 +1,6 @@
 ## Table of Contents
 
+* [Declarative better than Imperative](#declarative)
 * [Method Chaining](#method-chaining)
 * [Command and Query Separation](#cqs)
 * [Consistency](#consistency)
@@ -11,6 +12,11 @@
   * [Hooks](#hooks)
 * [Validations](#validations)
 * [Summary](#summary)
+
+#declarative
+Most of you know that a declarative style of programming results in less code.
+It tells a computer what to do without specifying how, while an imperative style
+of programming describes how to do it. JavaScript's call to the DOM API is an example of imperative programming. jQuery is another such example
 
 #method-chaining
 It creates fluently readable code and thus is easier to understand.
