@@ -79,6 +79,7 @@ git stash apply [stash@{0}] //apply all stashed changes or apply change with ind
 git stash drop stash@{0} //drop change with index 0
 git stash pop [stash@{0}] //apply all changes and remove them afterwards
 git stash clear //remove all stashed changes
+git stash show -p stash@{1} //view stash without applying it
 ```
 
 #unstage
