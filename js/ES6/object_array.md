@@ -1,4 +1,4 @@
-##ES6 common APIs
+##New ES6 Object and Array APIs
 
 * Array
   * [Find and findIndex](#find-findindex)
@@ -6,12 +6,6 @@
   * [Includes](#array-include)
 * Object
   * [Assign](#assign)
-* String
-  * [Includes](#string-include)
-  * [Repeat](#string-repeat)
-  * [Interpolation](#string-interpolation)
-* Miscellaneous
-  * [Fat arrow](#fat-arrow)
 
 #find-findindex
 * `Array.find` find the first matched element or `undefined` if no match.
@@ -68,54 +62,3 @@ res.del = [];
 
 // {put: [Function], get: [Function], val: 14, del: []}
 ```
-
-#string-include
-```javascript
-var str = 'To be, or not to be, that is the question.';
-
-console.log(str.includes('To be'));       // true
-console.log(str.includes('question'));    // true
-console.log(str.includes('nonexistent')); // false
-console.log(str.includes('To be', 1));    // false
-console.log(str.includes('TO BE'));       // false
-```
-
-#string-repeat
-```javascript
-'abc'.repeat(-1); // RangeError
-'abc'.repeat(0); // ''
-'abc'.repeat(1); // 'abc'
-'abc'.repeat(3); // 'abcabcabc'
-```
-
-#string-interpolation
-```javascript
-var me = "David";
-var you = {
-    "name": "Tracy"
-};
-
-var greetings = `Hi ${me}, My name is ${you.name} we love this game`;
-var o = {
-    x: 1,
-    y: 2
-};
-
-console.log(`${o.x + o.y}`); // 6
-console.log(`${() => {}()}`); // undefined
-```
-
-#fat-arrow
-* One line of statement can omit `{}`
-* Single parameter can omit `()`
-```javascript
-[1, 2].find(x => x > 0);
-
-var s = [1, 2].find((x, index) => {
-  if (index > 3) {
-    return true;
-  }
-  return false;
-});
-```
-
