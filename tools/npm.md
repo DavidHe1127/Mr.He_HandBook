@@ -1,6 +1,7 @@
 ## NPM Notes
 
 * [Scripts](#scripts)
+* [Quick init](#quick-init)
 
 #scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -42,3 +43,7 @@ To incorporate a module into your project, that module needs a `CLI` so you can 
 (cd site/xyz; browserify browser.js > static/bundle.js)
 ```
 Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/build.sh"`
+
+#quick-init
+`npm init --yes` accept default configs from npm.
+
