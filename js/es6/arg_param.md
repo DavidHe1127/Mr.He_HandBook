@@ -21,11 +21,13 @@ a(5, ...params, 20, ...[25]);    // 5 10 15 20 25
 ```
 
 #rest-parameter
-Same syntax as spread operator but collects parameters and turns them into an array.
+Same syntax as spread operator but collects parameters and turns them into an "array". Not real array but has array built-in methods.
 ```javascript
 function a(string, ...keys) {
   console.log(string, ...keys); // a A B
   console.log(...keys[0], ...keys[1]); // A B
+  console.log(Array.isArray(...keys)); // false
+  console.log(...keys.shift()); // A
 }
 a('a', 'A', 'B');   // true
 ```
