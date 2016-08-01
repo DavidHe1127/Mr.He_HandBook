@@ -100,7 +100,7 @@ To fix it, we need to assign a default value
 ```javascript
 function a({protocol, port, delay, retries, timeout, log} = {}) {
 }
-a(); / no error
+a(); // no error
 ```
 Use destructuring to check mandatory parameter
 ```javascript
