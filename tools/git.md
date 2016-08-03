@@ -15,6 +15,8 @@
   * [Stash Changes](#stash-change) 
   * [Unstage Changed files](#unstage)
   * [View change details after pull](#view-change-detail-after-pull)
+* Miscellaneous
+  * [Ignore tracked file](#ignore-tracked-file)
 
 #create-branch
 Create a new branch based on `yyy` and push it to remote 
