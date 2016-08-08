@@ -15,6 +15,7 @@
   * [Stash Changes](#stash-change) 
   * [Unstage Changed files](#unstage)
   * [View change details after pull](#view-change-detail-after-pull)
+  * [Unreset changes](#unreset-change)
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
 
@@ -97,6 +98,13 @@ If you are on branch `blabla` then `@{1}` means the same as `blabla@{1}`.
 For more details see [gitrevisions](http://schacon.github.io/git/gitrevisions.html)
 ```javascript
 git diff master@{1} master [filename]
+```
+
+#unreset-change
+Whenver you did a `reset HEAD^` and want to undo it, you need to run the following.
+```javascript
+git reflog // shows log list which guides you which point you need to go back to
+git reset HEAD@{N} // undo reset to N
 ```
 
 #ignore-tracked-file
