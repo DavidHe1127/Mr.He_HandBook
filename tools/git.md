@@ -16,6 +16,8 @@
   * [Unstage Changed files](#unstage)
   * [View change details after pull](#view-change-detail-after-pull)
   * [Unreset changes](#unreset-change)
+* Merge
+  * [Check unmerged commits](#unmerged-commits)
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
 
@@ -105,6 +107,12 @@ Whenver you did a `reset HEAD^` and want to undo it, you need to run the followi
 ```javascript
 git reflog // shows log list which guides you which point you need to go back to
 git reset HEAD@{N} // undo reset to N
+```
+
+#unmerged-commits
+Whenever you want to see unmerged commits from another branch, run the following
+```javascript
+git log <OLD_BRANCH> ^<NEW_BRANCH> --no-merges
 ```
 
 #ignore-tracked-file
