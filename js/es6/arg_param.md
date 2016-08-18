@@ -11,7 +11,9 @@
 `...` basically expands `array` into individual parameters.
 
 ```javascript
-function a() {
+function a(first) {
+  console.log(first); // 5
+  console.log(arguments[0]); // 5
   console.log(arguments[1], arguments[2]); // 10 15
   console.log(arguments[4]); // 25
 }
