@@ -65,6 +65,13 @@ const d = (a) => {
 d(b); // a: 1, b: {a:1, c:[]}
 ```
 
+### Arrow function and `this`
+A few things to keep in mind
+* No `arguments` object
+* No own `this` - always look upward to find `this` context i.e function scope
+* Cannot use `apply, call, bind` to change its context - it will be the same value as when the function was called. Use function expression instead.
+
+
 
 
 
