@@ -11,15 +11,15 @@
 `...` basically expands `array` into individual parameters.
 
 ```javascript
-function a(first) {
-  console.log(first); // 5
-  console.log(arguments[0]); // 5
-  console.log(arguments[1], arguments[2]); // 10 15
-  console.log(arguments[4]); // 25
+function a(first, second) {
+  console.log(first, second); // 10 15
+  console.log(arguments[0]); // 10
+  console.log(arguments[1], arguments[2]); // 15 20
+  console.log(arguments[3]); // 25
 }
 
 var params = [10, 15];
-a(5, ...params, 20, ...[25]);    // 5 10 15 20 25
+a(...params, 20, ...[25]);    // 5 10 15 20 25
 ```
 
 #rest-parameter
