@@ -1,6 +1,9 @@
-#Secrets
+## Table of Contents
 
-### Prototype
+* Prototype
+  * [Prototype](#prototype)
+
+# Prototype
 * Every JS func (except Fucntion.bind) has a prototype property - an empty object by default. You attach properties and methods on this prototype property in order to implement inheritance. 
 
 * If an object is created with an object literal `var newObj = {}`, it inherits properties from Object.prototype and we say its prototype object (or prototype attribute) is Object.prototype.
