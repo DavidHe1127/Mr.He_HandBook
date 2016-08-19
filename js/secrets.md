@@ -68,7 +68,9 @@ d(b); // a: 1, b: {a:1, c:[]}
 ### Arrow function and `this`
 A few things to keep in mind
 * No `arguments` object
-* No own `this` - always look upward to find `this` context i.e function scope
+* No own `this` - always look upward to find `this` context
+Traditional functions have a dynamic this - its value is determined by how they are called.
+Arrow functions have a lexical this - its value is determined by the surrounding scope.
 ```javascript
 var o = {
   sum: 4,
