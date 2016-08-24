@@ -111,8 +111,8 @@ function throwError() {
 }
 function a(param1 = throwError()) {
 }
-a(); // ok
-a(10); // Error: missing parameter
+a(10); // ok
+a(); // Error: missing parameter
 ```
 
 #callee
