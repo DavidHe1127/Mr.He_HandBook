@@ -99,3 +99,23 @@ var Model = Backbone.Model.extend({
 ```
 * To trigger `success` event on `model.destroy()`, server needs to respond with a valid `json`
 * Model `change` event will be bubbled up to its Collection. To catch that use `Collection.on('change', () => {})`
+* Backbone will elegantly compute the difference between previous and current state of Model by using `underscore _.isEqual`. What it does is recursively check all values of object to determine a change event. No change will be fired if two states are the same.
+Code below will not fire a change event since there is no change when you call set on model. (Change already happened when calling push)
+```
+var Model = Backbone.Model.extend({
+  defaults: {
+    names: []
+  }
+});
+
+var model = new Model();
+model.on('change', function() {
+  console.log('changed');
+});
+
+var names = model.get('names');
+
+    
+```
+
+
