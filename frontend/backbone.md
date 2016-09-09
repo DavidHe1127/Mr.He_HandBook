@@ -107,15 +107,13 @@ var Model = Backbone.Model.extend({
     names: []
   }
 });
-
 var model = new Model();
 model.on('change', function() {
   console.log('changed');
 });
-
 var names = model.get('names');
-
-    
+names.push(12);
+model.set('names', names);
 ```
 
 
