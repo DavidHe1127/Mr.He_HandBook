@@ -2,7 +2,7 @@
 
 * Use `let` and `const` in place of `var` since they are both block-scoped variables.
 
-* Defind multiple variables
+* Define multiple variables
 ```javascript
 //bad
 var a = 1, b = 2, c = 3;
