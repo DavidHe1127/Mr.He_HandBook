@@ -1,6 +1,7 @@
 ## Table of Contents
 
 * [Declarative better than Imperative](#declarative)
+* [Function design - 3 main points](#func-design)
 * [Method Chaining](#method-chaining)
 * [Command and Query Separation](#cqs)
 * [Consistency](#consistency)
@@ -42,6 +43,11 @@ var youngest = _.chain(stooges)
   .first()
   .value(); // moe is 21
 ```
+
+#func-design
+* DOT (DO ONE THING)
+* DRY (DO NOT REPEAT YOURSELF)
+* KISS (Keep it stupid simple)
 
 #cqs
 Functions to change object state are called `commands`
