@@ -65,6 +65,11 @@ obj.code = 10; // throws an error since no setter defined
 ```
 
 #string-replacement
+Syntax
+```
+str.replace(regexp|substr, newSubStr|function)
+```
+
 ```javascript
 function replacer(match, p1, p2, p3, offset, string){
   // p1 is nondigits, p2 digits, and p3 non-alphanumerics
