@@ -65,10 +65,10 @@ obj.code = 10; // throws an error since no setter defined
 ```
 
 #string-replacement
-Syntax
-```
-str.replace(regexp|substr, newSubStr|function)
-```
+
+* `str.replace(regexp|substr, newSubStr|function)`
+* Returns a new string with some or all matches of a pattern replaced by a replacement
+* This method does not change the String object it is called on. It simply returns a new string
 
 ```javascript
 function replacer(match, p1, p2, p3, offset, string){
