@@ -48,8 +48,10 @@ num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
 ```
 
 ### Pass by Reference & Pass by Value
-The function only knows the value not the argument's **location**.
-`Objects` **references** are values - that is why `Objects` behave like they are passed by reference.
+* In Javascript, arguments are passed by `value`. The function only knows the `value` *NOT* argument's location. Therefore, changes made on argument's value will not change the parameter's original value.
+* In Javascript, object reference are values. That is why objects will behave like they are passed by reference.
+Any changes to object property will be visible outside the function.
+
 ```javascript
 var o = {
   a: function () {},
@@ -60,8 +62,8 @@ var o = {
 function calc(r) {
   r.a = 10;
   r.b = 4;
-  r.c = [];
-  r = {};
+  r.c = []; // see point 2
+  r = {}; // see point 1
 }
 
 calc(o); // {a:10, b:4, c:[]}
