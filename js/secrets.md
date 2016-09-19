@@ -51,18 +51,20 @@ num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
 The function only knows the value not the argument's **location**.
 `Objects` **references** are values - that is why `Objects` behave like they are passed by reference.
 ```javascript
-let a = {
-  a: 1,
-  c: []
+var o = {
+  a: function () {},
+  b: [],
+  c: 5
 };
 
-let b = 1;
+function calc(r) {
+  r.a = 10;
+  r.b = 4;
+  r.c = [];
+  r = {};
+}
 
-const d = (a) => {
-  a = 4;
-};
-
-d(b); // a: 1, b: {a:1, c:[]}
+calc(o); // {a:10, b:4, c:[]}
 ```
 
 ### Arrow function and `this`
