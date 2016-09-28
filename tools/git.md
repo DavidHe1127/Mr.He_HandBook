@@ -58,8 +58,8 @@ git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or
 Remove an already-pushed commit. Need to make sure no one else pulls out your bad changes or bad commit will come back
 next time others push their code.
 ```javascript
-`git reset --hard <LAST_GOOD_COMMIT>`
-`git push --force`
+git reset --hard <LAST_GOOD_COMMIT>
+git push --force
 ```
 If others already have your bad commit. See below
 ```Javascript
