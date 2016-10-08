@@ -47,10 +47,9 @@ var num = 2.443242342;
 num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
 ```
 
-### Pass by Reference & Pass by Value
-* In Javascript, arguments are passed by `value`. The function only knows the `value` *NOT* argument's location. Therefore, changes made on argument's value will not change the parameter's original value.
-* In Javascript, object reference are values. That is why objects will behave like they are passed by reference.
-Any changes to object property will be visible outside the function.
+### Arguments are pass-by-value
+* Primitive values are stored in stack. When variables holding the values are passed into the function, copy of values are passed. Thus, any modifications to arguments' values will not affect variables sitting outside of the function.
+* Reference values are stored in heap. The reference itself, think of it as the pointer, is stored in stack. Same as primitive values, copy of value is passed. Since value is the pointer, changes made on argument will also reflect on outside variables.
 
 ```javascript
 var o = {
@@ -62,8 +61,8 @@ var o = {
 function calc(r) {
   r.a = 10;
   r.b = 4;
-  r.c = []; // see point 2
-  r = {}; // see point 1
+  r.c = [];
+  r = {};
 }
 
 calc(o); // {a:10, b:4, c:[]}
