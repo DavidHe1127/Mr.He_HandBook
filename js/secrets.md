@@ -48,6 +48,8 @@ num = num.toFixed(4);  // num will be equal to "2.4432" IT IS A STRING!!!
 ```
 
 ### Arguments are pass-by-value
+In Javascript, we can only access or modify reference-typed value by reference.
+
 * Primitive values are stored in stack. When variables holding the values are passed into the function, copy of values are passed. Thus, any modifications to arguments' values will not affect variables sitting outside of the function.
 * Reference values are stored in heap. The reference itself, think of it as the pointer, is stored in stack. Same as primitive values, copy of value is passed. Since value is the pointer, changes made on argument will also reflect on outside variables.
 
