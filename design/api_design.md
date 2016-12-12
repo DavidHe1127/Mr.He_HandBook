@@ -12,6 +12,7 @@
   * [Event](#event)
   * [Hooks](#hooks)
 * [Validations](#validations)
+* [Refactoring](#refactoring)
 * [Summary](#summary)
 
 #declarative
@@ -193,6 +194,9 @@ var count = (num) => {
  }
 };
 ```
+
+#refactoring
+Enhanced readability and extensibility should always come before micro-optimizations.
 
 #summary
 * An API is a contract between you (the provider) and the user (the consumer). Don’t just change things between versions.
