@@ -41,7 +41,7 @@ Updating
 
 whenever parent passes down 'text' and it is equal to current 'text' no re-render
 
-```
+```javascript
 var TextComponent = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
         if (this.props.text === nextProps.text) return false;
