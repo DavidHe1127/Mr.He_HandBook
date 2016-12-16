@@ -34,7 +34,9 @@ Updating
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
 `componentWillUpdate` - DO NOT use setState()
+
 `render`
+
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here                              
 
 whenever parent passes down 'text' and it is equal to current 'text' no re-render
