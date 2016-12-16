@@ -26,6 +26,7 @@ Init
 Mounting
 ---
 `componentWillMount` - setState will not re-render
+
 `componentDidMount` - fetch data
 
 Updating
