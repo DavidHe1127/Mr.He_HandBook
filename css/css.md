@@ -35,5 +35,5 @@ body {
 `fixed`
 * Same as absolute but the element stays where it is permanently even screen is scrolled
 
-See `css.html` for more examples. 
+See `positioning.html` for more examples. 
 
