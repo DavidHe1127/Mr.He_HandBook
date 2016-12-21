@@ -26,7 +26,7 @@ body {
 
 `relative`
 * In the document flow
-* Elements added before it affects its position since `relative` makes element in document flow - see `css.html`
+* Elements added before it affects its position since `relative` makes element in document flow - see `positioning.html`
 
 `static`
 * Default position value
