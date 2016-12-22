@@ -2,6 +2,7 @@
 
 * [Scripts](#scripts)
 * [Quick init](#quick-init)
+* [PeerDependency](#peer-dependency)
 
 #scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -46,4 +47,11 @@ Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/buil
 
 #quick-init
 `npm init --yes` accept default configs from npm.
+
+#peer-dependency
+[Peer Dependency mechanism](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/).
+
+As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it mannually.
+
+
 
