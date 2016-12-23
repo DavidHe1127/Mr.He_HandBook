@@ -60,5 +60,8 @@ Unmounting
 * Container Component - components that deal with backend data
 Presentational Component - Stateless component vs Stateful component
 
+* React element is an object representation of a DOM node and its properties
+  A component is a function or a Class which optionally accepts input and returns a React element.
+
 
 https://www.youtube.com/watch?v=-DX3vJiqxm4 - see rationale behind the virtual DOM
