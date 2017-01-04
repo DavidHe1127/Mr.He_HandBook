@@ -51,7 +51,7 @@ Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/buil
 #peer-dependency
 [Peer Dependency mechanism](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/).
 
-As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it mannually.
+As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
 
 
 
