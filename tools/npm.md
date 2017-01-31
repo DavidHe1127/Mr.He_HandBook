@@ -14,8 +14,9 @@ Using `npm scripts` has a few benefits over the other JS automation tools such a
 To incorporate a module into your project, that module needs a `CLI` so you can run from npm scripts.
 
 ####Example
-```js
-{
+```json
+{ 
+  "config": {"port": 3000},
   "dependencies": {
     "browserify": "~2.35.2",
     "uglifyjs": "~2.3.6"
@@ -32,11 +33,16 @@ To incorporate a module into your project, that module needs a `CLI` so you can 
     "watch-js": "watchify browser/main.js -o static/bundle.js -dv",
     "watch-css": "catw static/pages/*.css tabs/*/*.css -o static/bundle.css -v",
     "watch": "npm run watch-js & npm run watch-css",                            // run two tasks in parallel
-    "start": "node server.js",
+    "start": "node server.js -- --port $npm_package_config_port", // 3000
     "test": "tap test/*.js"
   }
 }
 ```
+Access port in js
+```javascript
+console.log(process.env.npm_package_config_port)
+```
+
 ####Put tasks in bash file
 ```bash
 #!/bin/bash
