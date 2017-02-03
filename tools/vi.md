@@ -18,6 +18,7 @@
 * `p` paste
 * `dd` delete one line
 * `cw` change word
+* `:$` goes to file end
 
 
 
