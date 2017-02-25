@@ -116,7 +116,7 @@ git reset HEAD@{N} // undo reset to N
 #amend-commit-message
 Whenver you have committed a wrong message, use this command to modify the message. The modified message will overwrite the old one.
 ```javascript
-git ci --amend
+git commit --amend
 ```
 
 #unmerged-commits
