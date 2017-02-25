@@ -16,6 +16,8 @@
   * [Unstage Changed files](#unstage)
   * [View change details after pull](#view-change-detail-after-pull)
   * [Unreset changes](#unreset-change)
+  * [Amend commit message](#amend-commit-message)
+  
 * Merge
   * [Check unmerged commits](#unmerged-commits)
 * Miscellaneous
@@ -109,6 +111,12 @@ Whenver you did a `reset HEAD^` and want to undo it, you need to run the followi
 ```javascript
 git reflog // shows log list which guides you which point you need to go back to
 git reset HEAD@{N} // undo reset to N
+```
+
+#amend-commit-message
+Whenver you have committed a wrong message, use this command to modify the message. The modified message will overwrite the old one.
+```javascript
+git ci --amend
 ```
 
 #unmerged-commits
