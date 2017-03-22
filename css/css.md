@@ -5,7 +5,7 @@
 * Position and Layout
   * [Positioning](#positioning)
 
-#cascading-inheritence
+# cascading-inheritence
 ```css
 body {
   color: lightblue;
@@ -18,7 +18,7 @@ body {
 <p>Lightblue</p> /* inheritence - p is in lightblue */
 ```
 
-#absolute-relative-position
+# absolute-relative-position
 `absolute`
 * Out of document flow
 * Room taken up by the element is not preserved (as opposed to relative)
