@@ -17,6 +17,7 @@
   * [View change details after pull](#view-change-detail-after-pull)
   * [Unreset changes](#unreset-change)
   * [Amend commit message](#amend-commit-message)
+  * [See all commits in one file](#see-all-changes)
   
 * Merge
   * [Check unmerged commits](#unmerged-commits)
@@ -118,6 +119,11 @@ git reset HEAD@{N} // undo reset to N
 Whenver you have committed a wrong message, use this command to modify the message. The modified message will overwrite the old one.
 ```javascript
 git commit --amend
+```
+
+# see-all-changes
+```javascript
+git log -p filename
 ```
 
 # unmerged-commits
