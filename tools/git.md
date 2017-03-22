@@ -123,7 +123,7 @@ git commit --amend
 
 # see-all-changes
 ```javascript
-git log -p filename
+git log -p <FILENAME>
 ```
 
 # unmerged-commits
