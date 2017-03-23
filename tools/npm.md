@@ -10,8 +10,7 @@ Run `npm run [YOUR_SCRIPT]` in terminal.
 Using `npm scripts` has a few benefits over the other JS automation tools such as ```grunt and gulp```.
 * `npm` will automatically setup `$PATH` to look into `node_modules/.bin`, so you can just run commands supplied by `dependencies` and `devDependencies` directly without a global installation of module.
 
-javascript
-```
+```javascript
 tap test/*.js // rather than ./node_modules/.bin/tap test/*.js
 ```
 
