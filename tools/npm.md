@@ -11,7 +11,7 @@ Using `npm scripts` has a few benefits over the other JS automation tools such a
 * `npm` will automatically setup `$PATH` to look into `node_modules/.bin`, so you can just run commands supplied by `dependencies` and `devDependencies` directly without a global installation of module.
 
 ```javascript
-tap test/*.js // rather than ./node_modules/.bin/tap test/*.js
+tap test\/*.js   // rather than ./node_modules/.bin/tap test/*.js
 ```
 
 To incorporate a module into your project, that module needs a `CLI` so you can run from npm scripts.
