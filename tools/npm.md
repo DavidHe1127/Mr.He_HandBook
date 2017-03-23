@@ -4,7 +4,7 @@
 * [Quick init](#quick-init)
 * [PeerDependency](#peer-dependency)
 
-#scripts
+# scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
 
 Using `npm scripts` has a few benefits over the other JS automation tools such as ```grunt and gulp```.
@@ -43,7 +43,7 @@ Access port in js
 console.log(process.env.npm_package_config_port)
 ```
 
-####Put tasks in bash file
+#### Put tasks in bash file
 ```bash
 #!/bin/bash
 (cd site/main; browserify browser/main.js | uglifyjs -mc > static/bundle.js)
@@ -51,10 +51,10 @@ console.log(process.env.npm_package_config_port)
 ```
 Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/build.sh"`
 
-#quick-init
+# quick-init
 `npm init --yes` accept default configs from npm.
 
-#peer-dependency
+# peer-dependency
 [Peer Dependency mechanism](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/).
 
 As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
