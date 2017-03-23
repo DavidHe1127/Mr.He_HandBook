@@ -4,14 +4,14 @@
 * [Quick init](#quick-init)
 * [PeerDependency](#peer-dependency)
 
-# scripts
+### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
 
 Using `npm scripts` has a few benefits over the other JS automation tools such as ```grunt and gulp```.
 * `npm` will automatically setup `$PATH` to look into `node_modules/.bin`, so you can just run commands supplied by `dependencies` and `devDependencies` directly without a global installation of module.
 
 ```javascript
-tap test\/*.js   // rather than ./node_modules/.bin/tap test/*.js
+tap test/*.js   // rather than ./node_modules/.bin/tap test/*.js
 ```
 
 To incorporate a module into your project, that module needs a `CLI` so you can run from npm scripts.
@@ -53,10 +53,10 @@ console.log(process.env.npm_package_config_port)
 ```
 Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/build.sh"`
 
-# quick-init
+### quick-init
 `npm init --yes` accept default configs from npm.
 
-# peer-dependency
+### peer-dependency
 [Peer Dependency mechanism](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/).
 
 As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
