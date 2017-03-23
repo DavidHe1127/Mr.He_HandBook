@@ -1,4 +1,4 @@
-## NPM Notes
+## NPM
 
 * [Scripts](#scripts)
 * [Quick init](#quick-init)
@@ -45,7 +45,7 @@ Access port in js
 console.log(process.env.npm_package_config_port)
 ```
 
-#### Put tasks in bash file
+Put tasks in bash file
 ```bash
 #!/bin/bash
 (cd site/main; browserify browser/main.js | uglifyjs -mc > static/bundle.js)
