@@ -73,7 +73,8 @@ If others already have your bad commit. See below
 
 # reset-commit
 Reset to the last two commits (yet to be pushed to remote). `--hard` discard changes, `--soft` retain changes.
-```git reset --hard HEAD^^
+```javascript
+git reset --hard HEAD^^
 ```
 
 # cherry-pick
