@@ -20,6 +20,7 @@
   * [Amend commit message](#amend-commit-message)
   * [See all commits in one file](#see-all-changes)
   * [Show branches containing a commit](#show-branch-has-commit)
+  * [Sync with remote, overwrite local changes](#sync-remote-kill-local)
   
 * Merge
   * [Check unmerged commits](#unmerged-commits)
@@ -63,7 +64,6 @@ git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or
 ```javascript
 git checkout -
 ```
-
 
 # remove-commit
 Remove an already-pushed commit. Need to make sure no one else pulls out your bad changes or bad commit will come back
@@ -140,6 +140,11 @@ git log -p <FILENAME>
 git branch -a --contains <COMMIT_HASH> // include remote branch
 git branch --contains <COMMIT_HASH> // just local one
 ```
+# sync-remote-kill-local
+```javascript
+git fetch origin && git reset --hard origin/master && git clean -f -d
+```
+
 # unmerged-commits
 Whenever you want to see unmerged commits from another branch, run the following
 ```javascript
