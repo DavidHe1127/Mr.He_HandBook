@@ -18,6 +18,7 @@
   * [Unreset changes](#unreset-change)
   * [Amend commit message](#amend-commit-message)
   * [See all commits in one file](#see-all-changes)
+  * [Show branches containing a commit](#show-branch-has-commit)
   
 * Merge
   * [Check unmerged commits](#unmerged-commits)
@@ -127,7 +128,11 @@ git commit --amend
 ```javascript
 git log -p <FILENAME>
 ```
-
+# show-branch-has-commit
+```javascript
+git branch -a --contains <COMMIT_HASH> // include remote branch
+git branch --contains <COMMIT_HASH> // just local one
+```
 # unmerged-commits
 Whenever you want to see unmerged commits from another branch, run the following
 ```javascript
