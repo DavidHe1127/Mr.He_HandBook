@@ -53,6 +53,11 @@ Put tasks in bash file
 ```
 Run `chmod + x` on the bash file and specify it like this `"build-js": "bin/build.sh"`
 
+Use command below to page all npm scripts
+```bash
+npm run | less
+```
+
 ### quick-init
 `npm init --yes` accept default configs from npm.
 
