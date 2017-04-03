@@ -142,7 +142,7 @@ git branch --contains <COMMIT_HASH> // just local one
 ```
 # sync-remote-kill-local
 ```javascript
-git fetch origin && git reset --hard origin/master && git clean -f -d
+git fetch origin && git reset --hard origin/<BRANCH_NAME> && git clean -f -d
 ```
 
 # unmerged-commits
