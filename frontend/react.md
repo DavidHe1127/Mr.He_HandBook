@@ -11,7 +11,7 @@
 
 * Component LifeCycle
 
-|Initialization   |Mounting           |Updating  |Unmounting|
+|Initialization   |Mounting           |State or Props updating  |Unmounting|
 | -------- |:---------------:|:---------------:| --------:|
 |getDefaultProps   |componentWillMount|componentWillReceiveProps(props update only)|componentWillUnmount
 |getInitialState   |componentDidMount |shouldComponentUpdate|
