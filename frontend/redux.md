@@ -76,7 +76,15 @@ this.props.toggleTod(id)
 ```
 Note: The `dispatch` method is passed down by `Provider` as a prop if you leave out defining your own `mapDispatchToProps`.
 
-
+* `<Provider>` makes the store available to all container components in the App without passing it explicitly. Only do it once in root component.
+```javascript
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
 
 
 
