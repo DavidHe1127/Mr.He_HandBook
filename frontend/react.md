@@ -3,7 +3,7 @@
   * React then calculates the difference between the two virtual DOM (current state vs previous state).
     The resulting difference will be applied to real DOM to reflect changes.
   * React updates only what needs to be updated in the real DOM.   
-* Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` methodo figure out what properties needs to be provided.
+* Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
 * It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
 
