@@ -26,6 +26,7 @@
   * [Check unmerged commits](#unmerged-commits)
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
+  * [Remove node_modules committed by mistake](#remove-node_modules)
 
 # create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -157,3 +158,9 @@ be ignored. To force ignore, do the following
 ```javascript
 git update-index --[no-]assume-unchanged filename // no is optional for un-assume changed
 ```
+
+# remove-node_modules
+```
+git rm -r --cached node_modules
+```
+
