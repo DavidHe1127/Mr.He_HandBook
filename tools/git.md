@@ -156,7 +156,8 @@ git log <OLD_BRANCH> ^<NEW_BRANCH> --no-merges
 Normally, any untracked files can be ignored by putting them in `.gitignore` under root directory. If file is tracked (in the INDEX), it cannot
 be ignored. To force ignore, do the following
 ```javascript
-git update-index --[no-]assume-unchanged filename // no is optional for un-assume changed
+git update-index --[no-]assume-unchanged filename // no is optional for un-assume changed. 
+git update-index --assume-unchanged app/*.js // supports wildcard match
 ```
 
 # remove-node_modules
