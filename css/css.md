@@ -1,4 +1,4 @@
-##CSS Essentials
+## CSS Essentials
 
 * General
   * [Cascading vs Inheritence](#cascading-inheritence)
