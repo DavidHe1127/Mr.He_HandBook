@@ -2,7 +2,7 @@
   * Whenever the state of your data model changes, the virtual DOM and React will rerender your UI to a virtual DOM representation.
   * React then calculates the difference between the two virtual DOM (current state vs previous state).
     The resulting difference will be applied to real DOM to reflect changes.
-  * React updates only what needs to be updated in the real DOM.   
+  * React updates only what needs to be updated in the real DOM.
 * Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
 * It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
@@ -37,7 +37,7 @@ Updating
 
 `render`
 
-`componentDidUpdate`  - updated DOM interactions and post-render actions go here                              
+`componentDidUpdate`  - updated DOM interactions and post-render actions go here
 
 whenever parent passes down 'text' and it is equal to current 'text' no re-render
 
@@ -47,7 +47,7 @@ var TextComponent = React.createClass({
         if (this.props.text === nextProps.text) return false;
         return true;
     },
-    
+
     render: function() {
         return <textarea value={this.props.text} />;
     }
@@ -68,3 +68,18 @@ Presentational Component - Stateless component vs Stateful component
 
 
 https://www.youtube.com/watch?v=-DX3vJiqxm4 - see rationale behind the virtual DOM
+
+### React UI reconciliation
+
+* Reconciliation in react is the process of updating real DOM by calculating the difference between two states of virtual DOM.
+
+![React UI update](./react_ui_update.png)
+
+* By default, when parent component props or states are changed, React will do the comparison between newly-returned element and previously rendered one - reconciliation, if they are not equal, update will be performed.
+* `shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother doing reconciliation if parent's `shouldComponentUpdate` returns false
+* Use `React.PureComponent` to do *shallow comparison* on all `props` and `state` by default.
+
+
+
+
+
