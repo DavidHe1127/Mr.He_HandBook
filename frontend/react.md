@@ -76,7 +76,7 @@ https://www.youtube.com/watch?v=-DX3vJiqxm4 - see rationale behind the virtual D
 ![React UI update](./react_ui_update.png)
 
 * By default, when parent component props or states are changed, React will do the comparison between newly-returned element and previously rendered one, if they are not equal, update will be performed.
-* `shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother doing reconciliation if parent's `shouldComponentUpdate` returns false
+* `shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false
 * Use `React.PureComponent` to do *shallow comparison* on all `props` and `state` by default.
 
 
