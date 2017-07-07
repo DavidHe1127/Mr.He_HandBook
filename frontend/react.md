@@ -37,7 +37,7 @@ Updating
 
 `render`
 
-`componentDidUpdate`  - updated DOM interactions and post-render actions go here
+`componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
 whenever parent passes down 'text' and it is equal to current 'text' no re-render
 
