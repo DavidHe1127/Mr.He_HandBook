@@ -71,7 +71,7 @@ https://www.youtube.com/watch?v=-DX3vJiqxm4 - see rationale behind the virtual D
 
 ### React UI reconciliation
 
-* Reconciliation in react is the process of updating real DOM based on the calculated difference between two states of virtual DOM.
+* Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
 
 ![React UI update](./react_ui_update.png)
 
