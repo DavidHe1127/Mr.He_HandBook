@@ -1,6 +1,12 @@
 
+* Advanced
+  * [Scaling and load balancing](#scaling-load-balancing)
 * Miscellaneous
   * [Module Loading](#module-loading)
+
+
+# scaling-load-balancing
+
 
 # module-loading
 ```javascript
