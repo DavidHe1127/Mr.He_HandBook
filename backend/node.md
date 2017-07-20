@@ -1,7 +1,8 @@
-* [Module Loading](#module-loading)
 
+* Miscellaneous
+  * [Module Loading](#module-loading)
 
-#module-loading
+# module-loading
 ```javascript
 const foo = require('./foo');
 
