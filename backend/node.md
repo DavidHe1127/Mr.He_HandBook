@@ -1,6 +1,6 @@
 
 * Advanced
-  * [Scaling and load balancing](#scaling-load-balancing)
+  * [Scaling and load balancing](#backend/scaling_load_balancing.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
 
