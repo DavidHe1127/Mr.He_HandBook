@@ -21,6 +21,7 @@
   * [See all commits in one file](#see-all-changes)
   * [Show branches containing a commit](#show-branch-has-commit)
   * [Sync with remote, overwrite local changes](#sync-remote-kill-local)
+  * [Add only modified/deleted files excluding untracked files](#add-exclude-untracked-files)
   
 * Merge
   * [Check unmerged commits](#unmerged-commits)
@@ -144,6 +145,11 @@ git branch --contains <COMMIT_HASH> // just local one
 # sync-remote-kill-local
 ```javascript
 git fetch origin && git reset --hard origin/<BRANCH_NAME> && git clean -f -d
+```
+
+# add-exclude-untracked-files
+```js
+git add -u
 ```
 
 # unmerged-commits
