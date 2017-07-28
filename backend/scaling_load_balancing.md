@@ -41,6 +41,6 @@ process.on('message', msg => {
 ```
 * Recommended tool [StrongLoop Process Manager](https://github.com/strongloop/strong-pm)
 * We should not always rely on CPU cores to determine how many workers we need to spin up since if the server has limited resources - i.e 512M memory, more than one worker will simply compete for more memory. Thus, multi-instance will hurt rather than benefit. Heroku for instance resolve such problem by using `process.env.WEB_CONCURRENCY` which works out the optimal number of instances you should spin up as per `dyno` resources.
-
+* Use `throng` for node clustering.
 
 
