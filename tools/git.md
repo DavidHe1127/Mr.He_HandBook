@@ -25,6 +25,7 @@
   
 * Merge
   * [Check unmerged commits](#unmerged-commits)
+  * [See when commites merged](#when-merged)
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
   * [Remove node_modules committed by mistake](#remove-node_modules)
@@ -156,6 +157,12 @@ git add -u
 Whenever you want to see unmerged commits from another branch, run the following
 ```javascript
 git log <OLD_BRANCH> ^<NEW_BRANCH> --no-merges
+```
+
+# unmerged-commits
+Use [When merged](https://github.com/mhagger/git-when-merged)
+```javascript
+git when-merged -l <COMMIT>
 ```
 
 # ignore-tracked-file
