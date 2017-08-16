@@ -44,8 +44,7 @@ process.on('message', msg => {
 * Use `throng` for node clustering.
 
 # Worker queue
-* [https://devcenter.heroku.com/articles/background-jobs-queueing](Background long-running task)
-* [https://devcenter.heroku.com/articles/asynchronous-web-worker-model-using-rabbitmq-in-node](RabbitMQ example)
-
+* [Background long-running task](https://devcenter.heroku.com/articles/background-jobs-queueing)
+* [RabbitMQ example](https://devcenter.heroku.com/articles/asynchronous-web-worker-model-using-rabbitmq-in-node)
 
 
