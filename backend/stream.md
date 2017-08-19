@@ -28,5 +28,5 @@ File content will be read into chunks (chunk-sized buffer) and transferred to th
 * Transform Stream (Read, Write and modify)
 
 ### More readings 
-[Node Stream Handbook](https://github.com/substack/stream-handbook)
-[Read files with Node](http://stackabuse.com/read-files-with-node-js/)
+* [Node Stream Handbook](https://github.com/substack/stream-handbook)
+* [Read files with Node](http://stackabuse.com/read-files-with-node-js/)
