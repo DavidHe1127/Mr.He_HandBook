@@ -2,6 +2,7 @@
 * Fundamental
   * [Scaling and load balancing](scaling_load_balancing.md)
   * [Web Caching](web_caching.md)
+  * [Streams](stream.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
 
