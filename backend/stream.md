@@ -19,7 +19,7 @@ Rewrite code above in stream:
 var stream = fs.createReadStream(__dirname + '/data.txt');
 stream.pipe(res);
 ```
-File content will be read into chunks (chunk-sized buffer) and transferred to the client.
+File content will be read into chunks (chunk-sized buffer) and transferred to the client continuously.
 * All streams are instances of `EventEmitter`. They emit events that can be used to read and write data.
 
 ### Stream types
