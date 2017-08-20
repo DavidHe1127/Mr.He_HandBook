@@ -10,14 +10,11 @@ Every time `state` or `prop` changes in component, process below happens
 * The resulting difference will be applied to real DOM to reflect changes. Note, React updates only what needs to be updated in the
   real DOM
 
+![React UI update](./rendering_process.gif)
 
 
 
-* How react virtual DOM (fast and in-memory) works
-  * Whenever the state of your data model changes, the virtual DOM and React will rerender your UI to a virtual DOM representation.
-  * React then calculates the difference between the two virtual DOM (current state vs previous state).
-    The resulting difference will be applied to real DOM to reflect changes.
-  * React updates only what needs to be updated in the real DOM.
+
 * Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
 * It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
