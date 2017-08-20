@@ -1,11 +1,15 @@
-### 3 must-follow rules
 
+* [3 must-follow rules](#3-must-follow-rules)
+* [Action essentials](#action-essentials)
+* [Reducer essentials](#reducer-essentials)
+* [Store essentials](#store-essentials)
+
+### 3-must-follow-rules
 * Only one single store holding the whole App state
 * State is ready-only - the only way to change it is to emit an action and an object describing the changes (payload)
 * Changes are made with pure reducers - take previous state and an action, and return the next state - NO state MUTATION ALLOWED
 
-### Actions
-
+### action-essentials
 * Only source of information for store
 * Being sent to Store by using `store.dispatch()`
 * Action is comprised of type and payload - can be object, string, array
@@ -24,23 +28,25 @@ Dispatch action
 dispatch(addTodo(text)); // When being used together with react, we typically access dispatch via connect()
 ```
 
-### Reducers
-
+### Reducers-essentials
 * Specify how the App state changes
 ```javascript
 (previousState, action) => newState
 
 action - action.type, action.payload
 ```
+Things below must not happen in reducers.
+* Mutate existing values. Instead, it needs to return a new object with new state
+* Perform side effects like API calls and routing transitions
+* Call non-pure functions. i.e `Date.now()` or `Math.random()`
+
 * App state needs to be separated from UI state
 * Things should never happen in reducers
   * Mutate arguments
   * Perform side effects like API calls and routing transitions
   * Call non-pure functions. e.g `Date.now()` or `Math.random()`
-* Never assign to anything inside the state unless you clone it first
-* Split root reducer into sub-reducers so that each manages one branch of state tree
 
-### Store
+### store-essentials
 
 * Responsibilities
   * Hold App state
