@@ -1,4 +1,4 @@
-# Tips and Practices
+## Backbone
 
 * `this.el` - plain html element
   `this.$el` - jQuery object of this element providing show, hide methods etc. Use this way to access element since 
