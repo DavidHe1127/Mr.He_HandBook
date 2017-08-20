@@ -129,5 +129,6 @@ class B extends React.PureComponent { // NOT HELP!!! a different onChange passed
 It is for react to determine what component in the list has changed. Use `shortid` as keys rather than `index` in the array. Using `index` as keys leads to performance issue when you
 * Add new elements to the front
 * Sort the list
+
 For more details, read [Why need keys](https://paulgray.net/keys-in-react/?utm_source=reactnl&utm_medium=email)
 
