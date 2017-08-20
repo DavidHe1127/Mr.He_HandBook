@@ -8,6 +8,7 @@
 * [Smart vs Dumb Components](#smart-vs-dumb)
 * [Prevent unncessary re-rendering](#prevent-unncessary-rerendering)
 * [Why need keys](#why-need-keys)
+* [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
   
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -132,3 +133,7 @@ It is for react to determine what component in the list has changed. Use `shorti
 
 For more details, read [Why need keys](https://paulgray.net/keys-in-react/?utm_source=reactnl&utm_medium=email)
 
+### controlled-vs-uncontrolled
+In a nutshell, Uncontrolled - Use `ref` to reference the component and get the value. While on the other hand, controlled means you access the component from the callback.
+
+For more details - read [Controlled vs Uncontrolled form inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
