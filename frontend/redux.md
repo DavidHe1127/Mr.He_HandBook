@@ -3,6 +3,7 @@
 * [Action essentials](#action-essentials)
 * [Reducer essentials](#reducer-essentials)
 * [Store essentials](#store-essentials)
+* [Use with React](#use-with-react)
 
 ### 3-must-follow-rules
 * Only one single store holding the whole App state
@@ -47,7 +48,6 @@ Things below must not happen in reducers.
   * Call non-pure functions. e.g `Date.now()` or `Math.random()`
 
 ### store-essentials
-
 * Responsibilities
   * Hold App state
   * Allow access to state via `getState()`
@@ -60,7 +60,9 @@ let store = createStore(todoApp)
 ```
 * Split reducers rather than having multiple stores
 
-### Use with React
+___
+
+### use-with-react
 
 * Connect store with React container component
 ```javascript
