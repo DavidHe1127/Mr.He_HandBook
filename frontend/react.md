@@ -9,7 +9,8 @@
 * [Prevent unncessary re-rendering](#prevent-unncessary-rerendering)
 * [Why need keys](#why-need-keys)
 * [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
-  
+* [Async setState](#async-setstate)
+
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
 * React will re-render your UI with updated `state` or `prop` to a virtual DOM representation.
@@ -137,3 +138,13 @@ For more details, read [Why need keys](https://paulgray.net/keys-in-react/?utm_s
 In a nutshell, Uncontrolled - Use `ref` to reference the component and get the value. While on the other hand, controlled means you access the component from the callback.
 
 For more details - read [Controlled vs Uncontrolled form inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
+
+### async-setstate
+`setState` is async and will batch updates. If you do something in the `setState` callback, then it will be triggered last. See flow below.
+
+**setState => render with new state => componentDidUpdate => setState callback**
+
+
+
+
+
