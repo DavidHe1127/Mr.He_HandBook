@@ -103,7 +103,8 @@ var TextComponent = React.createClass({
 });
 ```
 ![React UI update](./react_ui_update.png)
-`shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false
+
+`shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false.
 `React.PureComponent` does *shallow comparison* on all `props` and `states` by default.
 React uses `shallow-comparison` to work out if `state` or `prop` is changed. `shallow-comparion` only compares the value for primitive types or reference for reference types. Hence, code below should be avoided since component B always re-renders even though `onChange` is not changed.
 ```js
