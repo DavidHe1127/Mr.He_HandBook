@@ -1,8 +1,11 @@
 ## React Essentials and Tips
-* Basics
-  * [How react works](#how-react-works)
-  
 
+* [How react works](#how-react-works)
+* [Why use PropTypes](#why-use-proptypes)
+* [Event Listeners](#event-listeners)
+* [Lifecycle Event Hooks](#lifecycle-hooks)
+* [Smart vs Dumb Components](#smart-vs-dumb)
+  
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
 * React will re-render your UI with updated `state` or `prop` to a virtual DOM representation.
@@ -15,13 +18,45 @@ The only way to prevent re-rendering happening is explicitly call `shouldCompone
 
 ![React UI update](./react_ui_update.png)
 
-* Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
+### why-use-proptypes
+Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
-* It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
+### lifecycle-hooks
 
-* React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
+|Initialization   |Mounting           |State or Props updating  |Unmounting|
+| -------- |:---------------:|:---------------:| --------:|
+|getDefaultProps   |constructor|componentWillReceiveProps(props update only)|componentWillUnmount
+|getInitialState   |componentWillMount|shouldComponentUpdate|
+|                  |componentDidMount|componentWillUpdate|
+|                  |                  |render|
+|                  |                  |componentDidUpdate|
 
-* Component LifeCycle
+Init
+---
+`getDefaultProps` - set default props if parents not pass it down
+
+Mounting
+---
+`componentWillMount` - setState will not re-render
+
+`componentDidMount` - fetch data
+
+Updating
+---
+`componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
+`shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
+`componentWillUpdate` - DO NOT use setState()
+
+`render`
+
+`componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
+
+### smart-vs-dumb
+It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
+
+### event-listeners
+React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
+
 
 |Initialization   |Mounting           |State or Props updating  |Unmounting|
 | -------- |:---------------:|:---------------:| --------:|
