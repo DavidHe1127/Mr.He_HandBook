@@ -1,3 +1,18 @@
+## React Essentials and Tips
+* Basics
+  * [How react works](#how-react-works)
+  
+
+### how-react-works
+Every time `state` or `prop` changes in component, process below happens
+* React will re-render your UI with updated `state` or `prop` to a virtual DOM representation.
+* React then smartly calculates the difference between the two virtual DOM (current state vs previous state)
+* The resulting difference will be applied to real DOM to reflect changes. Note, React updates only what needs to be updated in the
+  real DOM
+
+
+
+
 * How react virtual DOM (fast and in-memory) works
   * Whenever the state of your data model changes, the virtual DOM and React will rerender your UI to a virtual DOM representation.
   * React then calculates the difference between the two virtual DOM (current state vs previous state).
