@@ -5,6 +5,7 @@
 * [Event Listeners](#event-listeners)
 * [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
+* [Prevent unncessary re-rendering](#prevent-unncessary-rerendering)
   
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -13,10 +14,6 @@ Every time `state` or `prop` changes in component, process below happens
 * The resulting difference will be applied to real DOM to reflect changes. Note, React updates only what needs to be updated in the
   real DOM
 ![React UI update](./rendering-process.gif)
-
-The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`. Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
-
-![React UI update](./react_ui_update.png)
 
 ### why-use-proptypes
 Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
@@ -37,8 +34,8 @@ Init
 
 Mounting
 ---
+`constructor` - initialize `states`
 `componentWillMount` - setState will not re-render
-
 `componentDidMount` - fetch data
 
 Updating
@@ -46,10 +43,9 @@ Updating
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
 `componentWillUpdate` - DO NOT use setState()
-
 `render`
-
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
+
 
 ### smart-vs-dumb
 It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
@@ -73,7 +69,6 @@ Init
 Mounting
 ---
 `componentWillMount` - setState will not re-render
-
 `componentDidMount` - fetch data
 
 Updating
@@ -81,16 +76,23 @@ Updating
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
 `componentWillUpdate` - DO NOT use setState()
-
 `render`
-
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
-whenever parent passes down 'text' and it is equal to current 'text' no re-render
+Unmounting
+---
+`componentWillUnmount` - invalidate timers
 
-```javascript
+**NOTE, Try to avoid using these lifecycle events hooks as less as possible**
+
+### prevent-unnecessary-rerendering
+Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
+The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`. 
+
+```js
 var TextComponent = React.createClass({
     shouldComponentUpdate: function(nextProps, nextState) {
+    // whenever parent passes down 'text' and it is equal to current 'text' no re-render
         if (this.props.text === nextProps.text) return false;
         return true;
     },
@@ -100,12 +102,32 @@ var TextComponent = React.createClass({
     }
 });
 ```
-Unmounting
----
-`componentWillUnmount` - invalidate timers
+![React UI update](./react_ui_update.png)
+`React.PureComponent` implements `shouldComponentUpdate` out of box.
+React uses `shallow-comparison` to work out if `state` or `prop` is changed. `shallow-comparion` only compares the value for primitive types or reference for reference types. Hence, code below should be avoided since component B always re-renders even though `onChange` is not changed.
+```js
+// Component A
+...
+render () {
+  <B onChange={this.onChange.bind()} />
+}
 
-* Container Component - components that deal with backend data
-Presentational Component - Stateless component vs Stateful component
+// Component B
+class B extends React.PureComponent { // NOT HELP!!! a different onChange passed to it on every render
+  render () {
+    <div>
+      <input onChange={this.props.onChange} />
+    </div>
+  }
+}
+```
+
+
+
+
+
+
+
 
 
 ### React element vs component
