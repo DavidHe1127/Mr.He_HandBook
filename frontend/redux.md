@@ -1,3 +1,4 @@
+## Redux
 
 * [3 must-follow rules](#3-must-follow-rules)
 * [Action essentials](#action-essentials)
