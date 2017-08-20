@@ -4,6 +4,7 @@
 * [Action essentials](#action-essentials)
 * [Reducer essentials](#reducer-essentials)
 * [Store essentials](#store-essentials)
+* [Miscellaneous](#miscellaneous)
 * [Use with React](#use-with-react)
 
 ### 3-must-follow-rules
@@ -60,6 +61,9 @@ Things below must not happen in reducers.
 let store = createStore(todoApp)
 ```
 * Split reducers rather than having multiple stores
+
+### miscellaneous
+* The middlware acts like interceptors for actions before they reach the store: they can modify the actions, create more actions, suppress actions and much more.
 
 ___
 
