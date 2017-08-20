@@ -9,11 +9,11 @@ Every time `state` or `prop` changes in component, process below happens
 * React then smartly calculates the difference between the two virtual DOM (current state vs previous state)
 * The resulting difference will be applied to real DOM to reflect changes. Note, React updates only what needs to be updated in the
   real DOM
+![React UI update](./rendering-process.gif)
 
-![React UI update](./rendering_process.gif)
+The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`. Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
 
-
-
+![React UI update](./react_ui_update.png)
 
 * Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
