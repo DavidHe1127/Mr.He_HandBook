@@ -7,6 +7,7 @@
 * [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
 * [Prevent unncessary re-rendering](#prevent-unncessary-rerendering)
+* [Why need keys](#why-need-keys)
   
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -123,3 +124,9 @@ class B extends React.PureComponent { // NOT HELP!!! a different onChange passed
   }
 }
 ```
+
+### why-need-keys
+It is for react to determine what component in the list has changed. Use `shortid` as keys rather than `index` in the array. Using `index` as keys leads to performance issue when you
+* Add new elements to the front
+* Sort the list
+[Why need keys](https://paulgray.net/keys-in-react/?utm_source=reactnl&utm_medium=email)
