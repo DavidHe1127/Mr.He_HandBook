@@ -2,6 +2,7 @@
 
 * [How react works](#how-react-works)
 * [Why use PropTypes](#why-use-proptypes)
+* [Component VS Element](#component-vs-element)
 * [Event Listeners](#event-listeners)
 * [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
@@ -17,6 +18,10 @@ Every time `state` or `prop` changes in component, process below happens
 
 ### why-use-proptypes
 Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
+
+### component-vs-element
+* React element is an object representation of a DOM node and its properties
+* A component is a function or a Class which optionally accepts input and returns a React element.
 
 ### lifecycle-hooks
 
@@ -53,7 +58,6 @@ It is a common best practice to create several stateless components that just re
 ### event-listeners
 React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
 
-
 |Initialization   |Mounting           |State or Props updating  |Unmounting|
 | -------- |:---------------:|:---------------:| --------:|
 |getDefaultProps   |componentWillMount|componentWillReceiveProps(props update only)|componentWillUnmount
@@ -62,30 +66,26 @@ React doesn’t actually attach event handlers to the nodes themselves, instead 
 |                  |                  |render|
 |                  |                  |componentDidUpdate|
 
-Init
----
+##### Init
 `getDefaultProps` - set default props if parents not pass it down
 
-Mounting
----
+##### Mounting
 `componentWillMount` - setState will not re-render
 `componentDidMount` - fetch data
 
-Updating
----
+##### Updating
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
 `componentWillUpdate` - DO NOT use setState()
 `render`
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
-Unmounting
----
+##### Unmounting
 `componentWillUnmount` - invalidate timers
 
 **NOTE, Try to avoid using these lifecycle events hooks as less as possible**
 
-### prevent-unnecessary-rerendering
+### prevent-unncessary-rerendering
 Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
 The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`. 
 
@@ -103,7 +103,8 @@ var TextComponent = React.createClass({
 });
 ```
 ![React UI update](./react_ui_update.png)
-`React.PureComponent` implements `shouldComponentUpdate` out of box.
+`shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false
+`React.PureComponent` does *shallow comparison* on all `props` and `states` by default.
 React uses `shallow-comparison` to work out if `state` or `prop` is changed. `shallow-comparion` only compares the value for primitive types or reference for reference types. Hence, code below should be avoided since component B always re-renders even though `onChange` is not changed.
 ```js
 // Component A
@@ -121,35 +122,3 @@ class B extends React.PureComponent { // NOT HELP!!! a different onChange passed
   }
 }
 ```
-
-
-
-
-
-
-
-
-
-### React element vs component
-
-* React element is an object representation of a DOM node and its properties
-* A component is a function or a Class which optionally accepts input and returns a React element.
-
-
-https://www.youtube.com/watch?v=-DX3vJiqxm4 - see rationale behind the virtual DOM
-
-### React UI reconciliation
-
-* Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
-
-![React UI update](./react_ui_update.png)
-
-* Update process - render -> virtual DOM diff computations -> re-paint/update the real DOM
-* By default, when parent component props or states are changed, React will do the comparison between newly-returned element and previously rendered one, if they are not equal, update will be performed.
-* `shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false
-* Use `React.PureComponent` to do *shallow comparison* on all `props` and `state` by default.
-
-
-
-
-
