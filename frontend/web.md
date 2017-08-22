@@ -8,7 +8,30 @@ Traditionally, in old browsers scripts need to be downloaded and executed sequen
 
 At present, almost all browsers support parallel download of Js scripts. It allows us to download multiple Js scripts concurrently. But, blocking problem still presents - block `css styles` loading and `images`.
 
-Tips: For analytics, event tracking code, put them in `window.onload` callback.
+We can implement async loading of Js script tags as below.
+
+```js
+function loadScript(url, callback){
+    var script = document.createElement ("script")
+    script.type = "text/javascript";
+    if (script.readyState){ //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" || script.readyState == "complete"){
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else { //Others
+        script.onload = function(){
+            callback();
+        };
+    }
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+```
+One thing to keep in mind is browsers cannot guarantee the order of executions. If execution order really matters, consider to use promise-based async loadScript.
+
+Final tips: For analytics, event tracking code, put them in `window.onload` callback.
 
 
 
