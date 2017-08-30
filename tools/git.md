@@ -29,6 +29,7 @@
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
   * [Remove node_modules committed by mistake](#remove-node_modules)
+  * [See all tags with tagged messages](#tags-messages)
 
 # create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -178,3 +179,7 @@ git update-index --assume-unchanged app/*.js // supports wildcard match
 git rm -r --cached node_modules
 ```
 
+# tags-messages
+```
+git tag -n99
+```
