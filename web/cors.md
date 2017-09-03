@@ -4,6 +4,7 @@
 * [Why do we need it?](#why-need-it)
 * [JSONP](#jsonp)
 * [CORS](#cors)
+* [Preflight](#preflight)
 
 
 ### what-is-it
@@ -48,4 +49,12 @@ Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: FooBar
 Content-Type: text/html; charset=utf-8
 ```
-Now, ajax calls to another domain is successfully returned.
+Now, ajax calls to another domain is allowed.
+
+### preflight
+For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is 200, the actual request will then be issued.
+
+To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to its server (only serves up frontend code) which then forwards the requests to api server - backend. Because the communication is between two servers, preflight calls are completed not avoided.
+
+
+
