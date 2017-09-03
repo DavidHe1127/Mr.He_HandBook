@@ -40,6 +40,7 @@ Connection: keep-alive
 User-Agent: Mozilla/5.0...
 ```
 Server will respond without **Access-Control-Allow-Origin** which will in turn trigger `onerror` in the ajax call.
+
 Turn on cors for whole list of webistes as exceptions to same-origin policy. This time, server will respond
 ```js
 Access-Control-Allow-Origin: http://api.bob.com
@@ -47,3 +48,4 @@ Access-Control-Allow-Credentials: true
 Access-Control-Expose-Headers: FooBar
 Content-Type: text/html; charset=utf-8
 ```
+Now, ajax calls to another domain is successfully returned.
