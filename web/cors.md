@@ -1,4 +1,4 @@
-## CORS
+## Cross-Origin Resource Sharing
 
 * [What is it?](#what-is-it)
 * [Why do we need it?](#why-need-it)
