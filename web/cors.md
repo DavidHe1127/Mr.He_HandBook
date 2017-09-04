@@ -12,7 +12,7 @@ Stands for cross-origin resource sharing. i.e ajax calls can only access resourc
 
 ### why-need-it
 Security reasons. Protect your websites from CSRF or XSRF. The way CSRF works is as follow:
-  * User David signs in reliable website A
+  * User David signs in to a reliable website A
   * Authentication is passed. A sets **cookie** on response header to retain David's login
   * User David goes to malicious website B without firstly signing out from website A
   * website B then takes **cookie** to forge a request to website A saying `buy pizza 100000+ pieces`
