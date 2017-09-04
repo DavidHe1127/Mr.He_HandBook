@@ -29,5 +29,4 @@ header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET)
 
 * Never ever put the senstive data in **header** and **payload** - they are encoded not encrypted!!!
 * Why do we need signature? - It prevents somebody modifying the data.
-* How does server do the authentication? - Server will use the specified algorithm in the header and secret to generate another signature
-Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
+* How does server do the authentication? - Server will use the specified algorithm in the header and secret to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
