@@ -15,6 +15,7 @@
   * [Cherry-pick Commit](#cherry-pick)
   * [Stash Changes](#stash-change) 
   * [Unstage Changed files](#unstage)
+  * [Unstage all staged files](#unstage-all-staged-files)
   * [View change details after pull](#view-change-detail-after-pull)
   * [Unreset changes](#unreset-change)
   * [Amend commit message](#amend-commit-message)
@@ -110,6 +111,11 @@ git stash show -p stash@{1} //view stash without applying it
 # unstage
 ```javascript 
 git reset <FILE_PATH>
+```
+
+# unstage-all-staged-files
+```js
+git checkout .
 ```
 
 # view-change-detail-after-pull
