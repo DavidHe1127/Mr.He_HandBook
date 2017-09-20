@@ -1,5 +1,5 @@
 * [ISO](#iso)
-
+* [UTC](#utc)
 
 ### iso
 The ISO format is a simplification of the ISO 8601 extended format. See format as follow:
@@ -14,4 +14,7 @@ A few notes:
   - -hh:mm indicates that the input time is the absolute value of the specified offset before UTC time.
   Australia Eastern Standard Time is denoted by `2017-09-07T08:00:00+10:00` 
 
+### utc
+It is the time standard commonly used across the world.
+![](./UTC.jpg)
 
