@@ -3,7 +3,7 @@
   * [Unicode](#unicode)
   * [UTF-8](#utf-8)
 
-#ascii
+## ascii
 
 * `8 bits = 1 byte` which forms `256` combinations of `1` and `0` from `00000000` to `11111111`.
 
@@ -11,11 +11,11 @@
 
 * Can only suffice english characters not other chars from other languages.
 
-#unicode
+## unicode
 
 * A huge set of unique codes for all characters.
 
-#utf-8
+## utf-8
 
 * `UTF-8` implements `unicode`
 * It has variable-length and uses `1~4` bytes to denote a single character
