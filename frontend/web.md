@@ -28,6 +28,7 @@ function loadScript(url, callback){
     }
     script.src = url;
     document.getElementsByTagName("head")[0].appendChild(script);
+}
 ```
 One thing to keep in mind is browsers **cannot guarantee the order of executions**. If execution order really matters, consider to use promise-based async loadScript.
 
