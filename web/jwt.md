@@ -2,7 +2,7 @@
 
 ### Basics
 
-* JWT is comprised of 3 parts - **xxxx.yyyyy.zzzz** = **header**.**payload**.**signature**
+* JWT is comprised of 3 parts - **xxxx.yyyyy.zzzz** = **header**.**payload(claim)**.**signature**
 * header is as follow. It shows the algorithm we use for generating the signature. It needs to be base64 encoded.
 ```js
 {
@@ -10,7 +10,7 @@
   "alg": "HS256"
 }
 ```
-* payload contains metadata as follow. It then base64 encoded.
+* payload(claim) contains metadata as follow. It then base64 encoded.
 ```js
 {
   "iss": "Mr He. JWT", // issuer
@@ -29,4 +29,4 @@ header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET)
 
 * Never ever put the senstive data in **header** and **payload** - they are encoded not encrypted!!!
 * Why do we need signature? - It prevents somebody modifying the data.
-* How does server do the authentication? - Server will use the specified algorithm in the header and secret to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
+* How does server do the authentication? - Server will use the specified algorithm in the header and secret stored on the server to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
