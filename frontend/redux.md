@@ -1,11 +1,19 @@
 ## Redux
 
+* [What is Redux](#redux-concept)
 * [3 must-follow rules](#3-must-follow-rules)
 * [Action essentials](#action-essentials)
 * [Reducer essentials](#reducer-essentials)
 * [Store essentials](#store-essentials)
 * [Miscellaneous](#miscellaneous)
 * [Use with React](#use-with-react)
+
+### redux-concept
+Thanks ROSS for his terse explanation for redux
+
+`
+Redux is a JavaScript library that aims to simplify how we manage stateful data. Redux keeps all of our data in a single JS object called the Store. A single function, the reducer, is responsible for making modifications to the Store. We trigger the reducer by 'dispatching' an action - a JS object that describes how our data should change. The reducer function receives the action as an argument and makes changes accordingly. Other parts of the code (usually React Components) can subscribe to data in the Store. When data changes, Redux notifies subscribers of the change.
+`
 
 ### 3-must-follow-rules
 * Only one single store holding the whole App state
