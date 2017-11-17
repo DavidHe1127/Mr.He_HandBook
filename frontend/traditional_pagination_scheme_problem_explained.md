@@ -1,7 +1,9 @@
 Let's say we have 20 comments in total and want to display them in two pages so 10 for each.
 
+```js
 pg1 1 2 3 4 5 6 7 8 9 10
 pg2 11 12 13 14 15 16 17 18 19 20
+```
 
 User A is reading all comments on page one. Everything works fine so far until someone adds a new comment.
 
