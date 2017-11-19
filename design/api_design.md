@@ -15,12 +15,12 @@
 * [Refactoring](#refactoring)
 * [Summary](#summary)
 
-#declarative
+# declarative
 Most of you know that a declarative style of programming results in less code.
 It tells a computer what to do without specifying how, while an imperative style
 of programming describes how to do it. JavaScript's call to the DOM API is an example of imperative programming. jQuery is another such example
 
-#method-chaining
+# method-chaining
 It creates fluently readable code and thus is easier to understand.
 ```javascript
 var stooges = [{
@@ -45,12 +45,12 @@ var youngest = _.chain(stooges)
   .value(); // moe is 21
 ```
 
-#func-design
+# func-design
 * DOT (DO ONE THING)
 * DRY (DO NOT REPEAT YOURSELF)
 * KISS (Keep it stupid simple)
 
-#cqs
+# cqs
 Functions to change object state are called `commands`
 Functions to retrieve values are called `queries`
 Separate them out!! Multi-signature function harder to document.
@@ -66,13 +66,13 @@ $el.css('background', 'green'); //command
 $el.css('color'); //query
 ```
 
-#consistency
+# consistency
 * **Never** name functions like `str_repeat, strpos, substr`.
 * **Never** shuffle around posistions of arguments. If you declare
 `find_in_array(haystack, needle)` at some point, introducing `findInString(needle, haystack)` will arouse zombies from graves to hunt you down in the future.
 * Choose one style and stick to it - even if you find yourself disliking it at some point in the future.
 
-#handle-arguments
+# handle-arguments
 Consider sample code below.
 Try to reduce the need for boilerplate code with tricks shown below and your API users will invite you over for a drink.
 ```javascript
@@ -110,7 +110,7 @@ jQuery('input').val(() => {
 });
 ```
 
-#named-arguments
+# named-arguments
 Consider sample below which is utterly a nightmare.
 ```javascript
 event.initMouseEvent("click", true, true, window,
@@ -121,11 +121,11 @@ true, false, false, false,
 Point is - `No matter how good your docs is, do what you can so 
 people don't have to look things up`
 
-#extensibility
+# extensibility
 Focus on the primary user cases, only do the things most of your
 API users will need. Everything else should be left up to them.
 
-#callback
+# callback
 ```javascript
 var readFile = (path, name, done) => {
   var res = fHandle.read(path, name);
@@ -136,7 +136,7 @@ var readFile = (path, name, done) => {
 };
 ```
 
-#event
+# event
 ```javascript
 var widget = () => {
   
@@ -155,7 +155,7 @@ $(document.body).on('dialog:show', () => {
 });
 ```
 
-#hooks
+# hooks
 ```javascript
 DateInterval.nameHooks = {
   "yesterday": function () {
@@ -184,7 +184,7 @@ var di = new DateInterval();
 di.start("yesterday");
 ```
 
-#validations
+# validations
 Make validation of input a top-level citizen even if it is ugly. Make our program robust means not accepting rubbish and
 telling developers about it.
 ```javascript
@@ -195,10 +195,10 @@ var count = (num) => {
 };
 ```
 
-#refactoring
+# refactoring
 Enhanced readability and extensibility should always come before micro-optimizations.
 
-#summary
+# summary
 * An API is a contract between you (the provider) and the user (the consumer). Don’t just change things between versions.
 * You should invest as much time into the question - How will people use my software? as you have put into How does my software work internally?
 * With a couple of simple tricks you can greatly reduce the developer's efforts (in terms of lines of code).
