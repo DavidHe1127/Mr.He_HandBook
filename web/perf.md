@@ -5,6 +5,7 @@
   * [Use shallow css selectors](#use-shallow-css-selectors)
   * [Scan & remove unused css](#scan-remove-unused-css)
   * [Stay DRY](#stay-dry)
+  * [segment css or bulk css](#segment-css-or-bulk-css)
 
 
 ### write-shorthand-css
@@ -88,4 +89,14 @@ Use `uncss`, `csscss` node module to remove them.
   background: #fff;
 }
 ```
+### segment-css-or-bulk-css
+Segment css allows users to only download css of the page they are visiting not unvisited pages. Bulk css means we concatenate all segment css files into one. It allows for the whole site's css cached while enforce users to download css portions they might never use (i.e some specific pages css).
+
+The rule of thumb is check your style sheet. If they are highly generalized, stick to one big style sheet. On the contrary, use css segments if these pages have distinct css.
+
+
+
+
+
+
 
