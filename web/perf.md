@@ -5,7 +5,7 @@
   * [Use shallow css selectors](#use-shallow-css-selectors)
   * [Scan & remove unused css](#scan-remove-unused-css)
   * [Stay DRY](#stay-dry)
-  * [segment css or bulk css](#segment-css-or-bulk-css)
+  * [Segment css or bulk css](#segment-css-or-bulk-css)
 
 
 ### write-shorthand-css
