@@ -1,6 +1,10 @@
 
 * CSS
   * [Write shorthand css](#write-shorthand-css)
+  * [Minify css](#minify-css)
+  * [Use shallow css selectors](#use-shallow-css-selectors)
+  * [Scan & remove unused css](#scan-remove-unused-css)
+  * [Stay DRY](#stay-dry)
 
 
 ### write-shorthand-css
@@ -39,3 +43,49 @@ To override, do this
   }
 }
 ```
+
+### minify-css
+Remove all unnecessary spaces/carriage returns
+
+### use-shallow-css-selectors
+Don't be too specific. Keep css selectors brief can save space.
+```css
+// don't
+div.mainContent div.genericContent div.listContainer ul.genericList {
+  width: 202px;
+  margin-right: 12px;
+  float: left;
+  display: inline;
+  list-style: none;
+}
+
+// do
+.genericList {
+  width: 202px;
+  margin-right: 12px;
+  float: left;
+  display: inline;
+  list-style: none;
+}
+```
+
+### scan-remove-unused-css
+Use `uncss` node module to remove them.
+
+### stay-dry
+```css
+// don't
+#mainColumn {
+  background: #fff;
+}
+#sideColumn {
+  background: #fff;
+}
+
+// do
+#mainColumn,
+#sideColumn {
+  background: #fff;
+}
+```
+
