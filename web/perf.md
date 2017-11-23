@@ -16,4 +16,17 @@ p {
 p {
   font: italic 0.75rem "Arial", "Helvetica", sans-serif;
 }
+
+// don't
+.page {
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+}
+
+// do
+.page {
+ margin: 0 auto;
+}
 ```
