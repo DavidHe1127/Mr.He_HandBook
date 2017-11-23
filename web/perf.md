@@ -12,8 +12,8 @@ p {
   font-style: italic;
 }
 
-// do
+// do ~35% smaller
 p {
-  font: italic 0.75 rem "Arial", "Helvetica", sans-serif;
+  font: italic 0.75rem "Arial", "Helvetica", sans-serif;
 }
 ```
