@@ -27,6 +27,15 @@ p {
 
 // do
 .page {
- margin: 0 auto;
+  margin: 0 auto;
+}
+```
+To override, do this
+```css
+.parent {
+  margin: 20px;
+  .child {
+    margin-top: 15px; 
+  }
 }
 ```
