@@ -90,7 +90,7 @@ Use `uncss`, `csscss` node module to remove them.
 }
 ```
 ### segment-css-or-bulk-css
-Segment css allows users to only download css of the page they are visiting not unvisited pages. Bulk css means we concatenate all segment css files into one. It allows for the whole site's css cached while enforce users to download css portions they might never use (i.e some specific pages css).
+Segment css allows users to only download css of the page they are visiting not unvisited pages. Bulk css means we concatenate all segment css files into one. It allows for the whole site's css cached while on the other hand, enforce users to download css portions they might never use (i.e some specific pages css).
 
 The rule of thumb is check your style sheet. If they are highly generalized, stick to one big style sheet. On the contrary, use css segments if these pages have distinct css.
 
