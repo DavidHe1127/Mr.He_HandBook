@@ -1,4 +1,5 @@
-
+* General
+  * [Server compression](#server-compression)
 * CSS
   * [Write shorthand css](#write-shorthand-css)
   * [Minify css](#minify-css)
@@ -6,6 +7,9 @@
   * [Scan & remove unused css](#scan-remove-unused-css)
   * [Stay DRY](#stay-dry)
   * [Segment css or bulk css](#segment-css-or-bulk-css)
+
+### server-compression
+Enable server-side compression to gzip assets (.js and .css). Don't apply it to images since most of their formats are already compressed.
 
 
 ### write-shorthand-css
