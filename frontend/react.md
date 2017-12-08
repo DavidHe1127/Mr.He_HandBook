@@ -50,7 +50,7 @@ Updating
 ---
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
-`componentWillUpdate` - DO NOT use setState()
+`componentWillUpdate` - DO NOT use setState() in
 `render`
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
