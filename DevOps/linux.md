@@ -7,9 +7,9 @@
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
 We open a shell window via terminal.
 
-### #ctrld-ctrlc
-`ctrl+d` on an empty line stops the current standard input entry from terminal. 
-`ctrl+c` terminates a program regardless of ites input or output.
+### ctrld-ctrlc
+* `ctrl+d` on an empty line stops the current standard input entry from terminal. 
+* `ctrl+c` terminates a program regardless of ites input or output.
 
 
 ### env-var
