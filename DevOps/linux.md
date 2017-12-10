@@ -1,4 +1,12 @@
-## Linux key points
+* [Shell Definition](#shell-def)
+
+### shell-def
+A shell is a program that runs commands. The shell also serves as a small programming environment
+
+
+
+
+
 
 * [Environment Variable](#env-var)
 * [Edit PATH variable on mac](#edit-path-var)
