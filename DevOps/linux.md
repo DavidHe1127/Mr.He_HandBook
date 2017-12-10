@@ -5,6 +5,7 @@
  * [ls output explained](#ls)
  * [Shell globbing (wildcard)](#globbing)
  * [Stdout file content](#stdout-file-content)
+ * [Dot files](#dotfiles)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -36,5 +37,6 @@ less file1.txt
 ```
 You can also search for text inside `less`. forward search `/word` and backward search `?word`.
 
-
+### dotfiles
+Don files such as `.babelrc` is a configuration file that is not displayed when you run `ls` unless with `-a`. Similarly, shell globs don't match dot files.
 
