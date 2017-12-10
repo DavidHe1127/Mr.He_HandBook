@@ -25,11 +25,16 @@ sudo vi /etc/paths
 ### ls
 ![ls](./ls.jpg)
 
+### globbing
+The s
+
 ### stdout-file-content
-Use `less` rather than `cat` to output large file content since the former allows to scroll **up/down** contents
+Use `less` rather than `cat` to output large file content since the former allows to scroll **up/down** contents.
+If `less` is not supported out of box then try `more`.
 ```Shell
 less file1.txt
 ```
+You can also search for text inside `less`. forward search `/word` and backward search `?word`.
 
 
 
