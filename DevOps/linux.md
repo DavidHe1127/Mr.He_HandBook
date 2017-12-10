@@ -1,6 +1,7 @@
 * [Shell Definition](#shell-def)
 * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 * [Environment Variable](#env-var)
+* [ls output explained](#ls)
 
 
 ### shell-def
@@ -10,6 +11,8 @@ We open a shell window via terminal.
 ### ctrld-ctrlc
 * `ctrl+d` on an empty line stops the current standard input entry from terminal. 
 * `ctrl+c` terminates a program regardless of ites input or output.
+
+### ls
 
 
 ### env-var
