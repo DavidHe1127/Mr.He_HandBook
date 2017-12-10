@@ -13,6 +13,7 @@ We open a shell window via terminal.
 * `ctrl+c` terminates a program regardless of ites input or output.
 
 ### ls
+![ls](./ls.jpg)
 
 
 ### env-var
