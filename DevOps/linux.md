@@ -1,4 +1,4 @@
-* Shell
+## Shell
  * [Shell Definition](#shell-def)
  * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
  * [Environment Variable](#env-var)
