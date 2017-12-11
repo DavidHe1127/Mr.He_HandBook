@@ -6,6 +6,7 @@
 * [Stdout file content](#stdout-file-content)
 * [Dot files](#dotfiles)
 * [Man page](#manpage)
+* [Input and Output](#input-output)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -44,5 +45,22 @@ Dot files such as `.babelrc` is a configuration file that is not displayed when 
 ```js
 man ls
 man -k <KEYWORD>
+```
+
+### input-output
+To send output of a command to a file rather than terminal:
+```
+$ command > file
+```
+Command above will overwrite the existing file content. To append it use `>>`.
+
+To send the standard output of a command to the standard input of another command:
+```
+$ command | another_command
+```
+
+To send the standard output to `f` and standard error to `e`:
+```
+$ ls /fffffffffffffffff > f 2> e
 ```
 
