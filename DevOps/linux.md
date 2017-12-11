@@ -6,6 +6,7 @@
  * [Shell globbing (wildcard)](#globbing)
  * [Stdout file content](#stdout-file-content)
  * [Dot files](#dotfiles)
+ * [Man page](#manpage)
 ## fs
  * xx
 
@@ -41,4 +42,10 @@ You can also search for text inside `less`. forward search `/word` and backward 
 
 ### dotfiles
 Dot files such as `.babelrc` is a configuration file that is not displayed when you run `ls` unless with `-a`. Similarly, shell globs don't match dot files.
+
+### manpage
+```js
+man ls
+man -k <KEYWORD>
+```
 
