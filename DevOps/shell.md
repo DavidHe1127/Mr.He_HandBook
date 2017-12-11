@@ -82,9 +82,14 @@ $ gunzip file.gz &
 ### file
 `Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
 
-`Others` permissions give everyone else on the system. 
+`Other` permissions give everyone else on the system. 
 
 To see which group you are in:
 ```
 $ groups davidhe
+```
+
+To modify permissions (user: read/write, group, other: read):
+```
+$ chmod 644 file
 ```
