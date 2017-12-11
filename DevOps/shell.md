@@ -89,7 +89,7 @@ To see which group you are in:
 $ groups davidhe
 ```
 
-To modify permissions (user: read/write  group, other: read):
+To modify permissions (user: read/write & group, other: read):
 ```
 $ chmod 644 file
 ```
