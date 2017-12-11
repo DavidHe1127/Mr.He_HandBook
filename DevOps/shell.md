@@ -8,6 +8,7 @@
 * [Man page](#manpage)
 * [Input and Output](#input-output)
 * [Process](#process)
+* [File](#file)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -54,10 +55,12 @@ To send output of a command to a file rather than terminal:
 $ command > file
 ```
 Command above will overwrite the existing file content. To append it use `>>`.
+
 To send the standard output of a command to the standard input of another command:
 ```
 $ command | another_command
 ```
+
 To send the standard output to `f` and standard error to `e`:
 ```
 $ ls /fffffffffffffffff > f 2> e
@@ -70,6 +73,17 @@ To kill a process:
 $ kill pid
 ```
 When we run `kill`, we're asking the kernal to send a signal to another process. 
-To run a process and put it in the background which then gives you prompt back:
 
+To run a process and put it in the background (using &) which then gives you prompt back:
+```
+$ gunzip file.gz &
+```
 
+### file
+`Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
+`Others` permissions give everyone else on the system. 
+
+To see which group you are in:
+```
+$ groups davidhe
+```
