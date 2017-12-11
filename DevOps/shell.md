@@ -7,8 +7,6 @@
  * [Stdout file content](#stdout-file-content)
  * [Dot files](#dotfiles)
  * [Man page](#manpage)
-## fs
- * xx
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
