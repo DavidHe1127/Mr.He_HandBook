@@ -7,6 +7,7 @@
 * [Dot files](#dotfiles)
 * [Man page](#manpage)
 * [Input and Output](#input-output)
+* [Process](#process)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -63,4 +64,15 @@ To send the standard output to `f` and standard error to `e`:
 ```
 $ ls /fffffffffffffffff > f 2> e
 ```
+
+### process
+A process is a running program and each process on the system has a numeric process ID(PID). 
+To kill a process:
+```
+$ kill pid
+```
+When we run `kill`, we're asking the kernal to send a signal to another process. 
+
+To run a process and put it in the background which then gives you prompt back:
+
 
