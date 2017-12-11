@@ -1,12 +1,11 @@
-## Shell
- * [Shell Definition](#shell-def)
- * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
- * [Environment Variable](#env-var)
- * [ls output explained](#ls)
- * [Shell globbing (wildcard)](#globbing)
- * [Stdout file content](#stdout-file-content)
- * [Dot files](#dotfiles)
- * [Man page](#manpage)
+* [Shell Definition](#shell-def)
+* [ctrl+d vs ctrl+c](#ctrld-ctrlc)
+* [Environment Variable](#env-var)
+* [ls output explained](#ls)
+* [Shell globbing (wildcard)](#globbing)
+* [Stdout file content](#stdout-file-content)
+* [Dot files](#dotfiles)
+* [Man page](#manpage)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
