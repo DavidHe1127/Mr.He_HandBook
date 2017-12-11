@@ -54,12 +54,10 @@ To send output of a command to a file rather than terminal:
 $ command > file
 ```
 Command above will overwrite the existing file content. To append it use `>>`.
-
 To send the standard output of a command to the standard input of another command:
 ```
 $ command | another_command
 ```
-
 To send the standard output to `f` and standard error to `e`:
 ```
 $ ls /fffffffffffffffff > f 2> e
@@ -72,7 +70,6 @@ To kill a process:
 $ kill pid
 ```
 When we run `kill`, we're asking the kernal to send a signal to another process. 
-
 To run a process and put it in the background which then gives you prompt back:
 
 
