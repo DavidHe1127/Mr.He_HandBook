@@ -81,6 +81,7 @@ $ gunzip file.gz &
 
 ### file
 `Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
+
 `Others` permissions give everyone else on the system. 
 
 To see which group you are in:
