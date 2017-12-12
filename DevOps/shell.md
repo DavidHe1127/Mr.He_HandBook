@@ -2,7 +2,6 @@
 * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 * [Environment Variable](#env-var)
 * [ls output explained](#ls)
-* [Shell globbing (wildcard)](#globbing)
 * [Stdout file content](#stdout-file-content)
 * [Dot files](#dotfiles)
 * [Man page](#manpage)
@@ -28,9 +27,6 @@ sudo vi /etc/paths
 
 ### ls
 ![ls](./ls.jpg)
-
-### globbing
-The s
 
 ### stdout-file-content
 Use `less` rather than `cat` to output large file content since the former allows to scroll **up/down** contents.
