@@ -4,7 +4,7 @@
 * [ls output explained](#ls)
 * [Stdout file content](#stdout-file-content)
 * [Dot files](#dotfiles)
-* [Man page](#manpage)
+* [Man page/help](#manpage-help)
 * [Input and Output](#input-output)
 * [Process](#process)
 * [File](#file)
@@ -41,8 +41,12 @@ Dot files such as `.babelrc` is a configuration file that is not displayed when 
 
 ### manpage
 ```js
-man ls
-man -k <KEYWORD>
+$ man ls
+$ man -k <KEYWORD>
+```
+Sometimes, you might need to run:
+```
+$ ls --help
 ```
 
 ### input-output
