@@ -1,7 +1,9 @@
 * Docker
   * [Dockerfile tips](#dockerfile-tips)
 * Docker Compose
-  * [Create Branch](#create-branch)
+  * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
+  * [Use hostnames to connect to containers](#use-host-as-ref)
+  * [Running Compose in background mode](#run-in-detached-mode)
 
 
 ### dockerfile-tips
@@ -43,3 +45,31 @@ RUN buildDeps='gcc libc6-dev make' \
 * Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
 * Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
 * Each line of instruction should only do things relating to that layer.
+
+### mount-src-to-volume
+Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now rebuilds are no longer necessary when code is changed.
+
+```yml
+services:
+  web:
+    volumes:
+      - ./webapp:/opt/webapp
+```
+
+### use-host-as-ref
+By default Compose sets up a single network for your app. When you name a service in your Compose YAML, it creates a hostname that you can then use to connect to the service.
+
+```yml
+services:
+  web:
+  redis:
+  db:
+```
+
+```js
+postgres://db:5432
+redis://redis:6379
+```
+
+### run-in-detached-mode
+`docker-compose up -d`
