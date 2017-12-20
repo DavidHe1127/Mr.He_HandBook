@@ -21,6 +21,7 @@ RUN make -C /usr/src/redis install
 ```
 
 **GOOD**
+Use `\` to mark line break
 ```js
 FROM debian:jessie
 
