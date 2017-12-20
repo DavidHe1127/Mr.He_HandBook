@@ -21,8 +21,9 @@ RUN make -C /usr/src/redis install
 ```
 
 **GOOD**
-Use `\` to mark line break
 ```js
+# Use `\` to mark line break
+
 FROM debian:jessie
 
 RUN buildDeps='gcc libc6-dev make' \
@@ -41,3 +42,4 @@ RUN buildDeps='gcc libc6-dev make' \
 
 * Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
 * Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
+* Each line of instruction should only do things relating to that layer.
