@@ -8,7 +8,7 @@
 * Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
 
 **BAD!**
-```js
+```yml
 FROM debian:jessie
 
 RUN apt-get update
@@ -21,7 +21,7 @@ RUN make -C /usr/src/redis install
 ```
 
 **GOOD**
-```js
+```yml
 # Use `\` to mark line break
 
 FROM debian:jessie
