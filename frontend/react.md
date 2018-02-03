@@ -10,7 +10,6 @@
 * [Why need keys](#why-need-keys)
 * [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
 * [Async setState](#async-setstate)
-
 * [Useful tools/resources](#useful-tools-resources)
 
 ### how-react-works
