@@ -11,6 +11,8 @@
 * [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
 * [Async setState](#async-setstate)
 
+* [Useful tools/resources](#useful-tools-resources)
+
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
 * React will re-render your UI with updated `state` or `prop` to a virtual DOM representation.
@@ -144,7 +146,6 @@ For more details - read [Controlled vs Uncontrolled form inputs](https://goshakk
 
 **setState => render with new state => componentDidUpdate => setState callback**
 
-
-
-
+### useful-tools-resources
+[Bits - the powerful way to share react UI components among projects](https://bitsrc.io/bit/movie-app/components/navigation)
 
