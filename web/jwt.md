@@ -3,7 +3,7 @@
 ### Basics
 
 * JWT is comprised of 3 parts - **xxxx.yyyyy.zzzz** = **header**.**payload(claim)**.**signature**
-* header is as follow. It shows the algorithm we use for generating the signature. It needs to be base64 encoded.
+* header is as follow. It shows the algorithm we use to generate the signature. It needs to be base64 encoded.
 ```js
 {
   "typ": "JWT",
