@@ -13,6 +13,7 @@
 * [Useful tools/resources](#useful-tools-resources)
 * [Render Props](#render-props)
 * [Create component dynamically](#create-component-dynamically)
+* [Why findDOMNode only works on classical component](#finddomnode-only-works-on-classical-component)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -215,4 +216,7 @@ class MyComponent extends Component {
 }
 export default MyComponent;
 ```
+
+### finddomnode-only-works-on-class-based-component
+`findDOMNode` only works on mounted component that why it only works on **classical** component not stateless component.
 
