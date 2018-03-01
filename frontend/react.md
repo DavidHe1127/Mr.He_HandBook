@@ -217,6 +217,6 @@ class MyComponent extends Component {
 export default MyComponent;
 ```
 
-### finddomnode-only-works-on-class-based-component
+### finddomnode-only-works-on-classical-component
 `findDOMNode` only works on mounted component that why it only works on **classical** component not stateless component.
 
