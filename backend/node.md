@@ -6,8 +6,8 @@
 * Miscellaneous
   * [Module Loading](#module-loading)
 * Best Practice
-  * [Production Deployment](#production-deployment.md)
-  * [Graceful shutdown](#graceful-shutdown.md)
+  * [Production Deployment](#production_deployment.md)
+  * [Graceful shutdown](#graceful_shutdown.md)
 
 # module-loading
 ```javascript
