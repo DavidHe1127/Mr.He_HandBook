@@ -1,11 +1,12 @@
 ## Graceful shutdown of your Node App Server 
 
+Essentially, you need to
 
+* Stop accepting new requests
+* Finish all ongoing requests
+* Clean up resources it used - database connections, file locks
 
-Should stop accepting new requests, finish all the ongoing requests, and clean up the resources it used. Resources may include database connections or file locks.
-
-For your Node.js process you may add something like this:
-
+```js
 process.on('SIGTERM', () => {
   logger.info('shutdown started')
   server.stop()
@@ -14,3 +15,4 @@ process.on('SIGTERM', () => {
       logger.info('process is stopping')
     })
 })
+```
