@@ -1,13 +1,13 @@
 
 * Fundamental
-  * [Scaling and load balancing](scaling_load_balancing.md)
-  * [Web Caching](web_caching.md)
-  * [Streams](stream.md)
+  * [Scaling and load balancing](./links/scaling_load_balancing.md)
+  * [Web Caching](./links/web_caching.md)
+  * [Streams](./links/stream.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
 * Best Practice
-  * [Production Deployment](production_deployment_tips.md)
-  * [Graceful shutdown](graceful_shutdown.md)
+  * [Production Deployment](./links/production_deployment_tips.md)
+  * [Graceful shutdown](./links/graceful_shutdown.md)
 
 # module-loading
 ```javascript
