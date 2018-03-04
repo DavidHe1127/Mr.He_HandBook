@@ -6,7 +6,7 @@
 
 
 ### query-resolver
-![Query Execution](./query_execution.png)
+![Query Execution](./links/query_execution.png)
 
 A few things to note
 * Root field (user) resolver will have parent `null` since it is the first resolver
