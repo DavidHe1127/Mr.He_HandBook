@@ -22,5 +22,6 @@ The idiomatic way is
       font-family: yourCustomFont;
     }
     ```
+ See (this guide)[https://survivejs.com/webpack/loading/fonts/] for fonts bundling in webpack 
 
 
