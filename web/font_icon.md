@@ -1,5 +1,3 @@
-THIS IS A DRAFT
-
 * What is `Web Safe Fonts`
 Those which are available across all OS - Arial, Times New Roman etc. In context of web, browser will load font that is specified in the `font-family`
 in your css from your OS.
