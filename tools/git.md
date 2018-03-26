@@ -8,6 +8,7 @@
   * [Check Branch presence](#check-branch)
   * [Remove branch](#remove-branch)
   * [Check Branch merge status](#if-merge-into-master)
+  * [Remove local branches that their remote counterparts no longer exist](#remove-non-tracking-local-branches)
   * [Quickly switch back to previous branch](#go-back-to-previous-branch)
 * Changes
   * [Remove Commit from origin](#remove-commit)
@@ -63,6 +64,11 @@ You **MUST** make sure `master` branch is up-to-date before running the check. O
 ```javascript
 git branch --no-merged master // list all unmerged feature branches
 git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or else not merged
+```
+
+# remove-non-tracking-local-branches
+```js
+git remote prune origin
 ```
 
 # go-back-to-previous-branch
