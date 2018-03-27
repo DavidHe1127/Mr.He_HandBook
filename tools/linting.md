@@ -40,6 +40,8 @@ console.log('bar');
 // entire file
 /* eslint-disable no-alert */
 
+alert('foo');
+
 // entire directory
 // create a new config file inside that dir. One project is allowed to have multiple config files. The closest config file will be used // and overwrite all outer ones
 
