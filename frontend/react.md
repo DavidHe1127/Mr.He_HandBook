@@ -217,9 +217,9 @@ class MyComponent extends Component {
 }
 export default MyComponent;
 ```
-Example 2
+Example 2 **ONLY** works on standard html tags
 ```js
-const FullForm = isGreyhounds(raceType) ? 'GreyhoundsForm' : 'HorseForm';
+const FullForm = isGreyhounds(raceType) ? 'input' : 'textarea';
 return <FullForm key={key} formData={val} />
 ```
 
