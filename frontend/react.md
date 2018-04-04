@@ -200,6 +200,7 @@ ReactDOM.render(<App/>, document.getElementById('app'))
 ```
 
 ### create-component-dynamically
+Example 1
 ```js
 import React, { Component } from 'react';
 import FooComponent from './foo-component';
@@ -215,6 +216,11 @@ class MyComponent extends Component {
     }
 }
 export default MyComponent;
+```
+Example 2
+```js
+const FullForm = isGreyhounds(raceType) ? 'GreyhoundsForm' : 'HorseForm';
+return <FullForm key={key} formData={val} />
 ```
 
 ### finddomnode-only-works-on-classical-component
