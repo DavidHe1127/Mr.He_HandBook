@@ -200,7 +200,7 @@ ReactDOM.render(<App/>, document.getElementById('app'))
 ```
 
 ### create-component-dynamically
-Example 1
+Example 1 works in components
 ```js
 import React, { Component } from 'react';
 import FooComponent from './foo-component';
