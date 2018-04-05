@@ -1,2 +1,2 @@
 ![](./event-loop-phases.png)
-![](./v8-internal.png)
+![](./v8-engine.png)
