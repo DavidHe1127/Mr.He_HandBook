@@ -22,7 +22,7 @@ body {
 `absolute`
 * Out of document flow
 * Room taken up by the element is not preserved (as opposed to relative)
-* Position relatively to element's direct ancestor element. If an absolutely-positioned element has no positioned ancestors, it uses the document body. Remember, a `positioned` element is one whose position is anything except static.
+* Position relatively to element's **ancestor element that has `relative` as position**. If an absolutely-positioned element has no positioned ancestors, it uses the document body. Remember, a `positioned` element is one whose position is anything except static.
 
 `relative`
 * In the document flow
