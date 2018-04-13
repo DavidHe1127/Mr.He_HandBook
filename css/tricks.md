@@ -1,4 +1,4 @@
-* Multiline truncation with ellipsis
+* Multiline text truncation with ellipsis
 ```css
 .event-header-race-overview-details-partial {
   overflow: hidden;
