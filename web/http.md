@@ -1,4 +1,4 @@
-## HTTP2
+## HTTP/2
 
 #### Multiplexing
   * With HTTP/1.1, you can only download one resource at time. When your site needs two resources `a.css` and `b.js`, a needs to be downloaded first
