@@ -138,6 +138,10 @@ It is for react to determine what component in the list has changed. Use `shorti
 * Add new elements to the front
 * Sort the list
 
+Elements will be compared one by one on each index - two elements both on index 0 will be compared.
+
+> If an element has a key property, elements will be compared by a value of a key, not by index. As long as keys are unique, React will move elements around without removing them from DOM tree and then putting them back (a process known in React as mounting/unmounting).
+
 For more details, read [Why need keys](https://paulgray.net/keys-in-react/?utm_source=reactnl&utm_medium=email)
 
 ### controlled-vs-uncontrolled
