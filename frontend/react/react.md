@@ -6,7 +6,8 @@
 * [Event Listeners](#event-listeners)
 * [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
-* [Prevent unncessary re-rendering](#prevent-unncessary-rerendering)
+* [Prevent unnecessary re-rendering](#prevent-unnecessary-rerendering)
+* [Avoid unnecessary mounting/unmounting](./avoid-unnecessary-mounting-unmounting.md)
 * [Why need keys](#why-need-keys)
 * [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
 * [Async setState](#async-setstate)
@@ -94,9 +95,9 @@ React doesn’t actually attach event handlers to the nodes themselves, instead 
 
 **NOTE, Try to avoid using these lifecycle events hooks as less as possible**
 
-### prevent-unncessary-rerendering
+### prevent-unnecessary-rerendering
 Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
-The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`. 
+The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`.
 
 ```js
 var TextComponent = React.createClass({
