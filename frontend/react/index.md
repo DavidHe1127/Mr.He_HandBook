@@ -7,7 +7,7 @@
 * [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
 * [Prevent unnecessary re-rendering](#prevent-unnecessary-rerendering)
-* [Avoid inadvertent mounting/unmounting](./avoid-inadvertent-mounting-unmounting.md)
+* [Avoid inadvertent mounting/unmounting](avoid-inadvertent-mounting-unmounting.md)
 * [Why need keys](#why-need-keys)
 * [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
 * [Async setState](#async-setstate)
