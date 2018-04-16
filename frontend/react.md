@@ -26,6 +26,8 @@ Every time `state` or `prop` changes in component, process below happens
 ### why-use-proptypes
 Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
+> If an element has a key property, elements will be compared by a value of a key, not by index. As long as keys are unique, React will move elements around without removing them from DOM tree and then putting them back (a process known in React as mounting/unmounting).
+
 ### component-vs-element
 * React element is an object representation of a DOM node and its properties
 * A component is a function or a Class which optionally accepts input and returns a React element.
