@@ -1,4 +1,5 @@
 * [Shell Definition](#shell-def)
+* [Make a dir and cd into it with one liner](#mkdir-cdinto-it)
 * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 * [Environment Variable](#env-var)
 * [ls output explained](#ls)
@@ -12,6 +13,11 @@
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
 We open a shell window via terminal.
+
+### mkdir-cdinto-it
+```js
+mkdir /home/foo/doc/bar && cd $_
+```
 
 ### ctrld-ctrlc
 * `ctrl+d` on an empty line stops the current standard input entry from terminal. 
