@@ -20,6 +20,5 @@
 
 * `UTF-8` implements `unicode`
 * It has variable-length and uses `1~4` bytes to denote a single character
-
-[Further reading](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
-[How is unicode char represented by utf-8](https://www.jianshu.com/p/9ed19a6645df)
+* [Further reading](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
+* [How is unicode char represented by utf-8](https://www.jianshu.com/p/9ed19a6645df)
