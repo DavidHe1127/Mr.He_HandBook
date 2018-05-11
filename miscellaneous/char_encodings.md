@@ -14,6 +14,7 @@
 ## unicode
 
 * A huge set of unique codes for all characters.
+* Represents as `U+<codepoint>`. i.e `鱼` is `U+9C7C` 
 
 ## utf-8
 
