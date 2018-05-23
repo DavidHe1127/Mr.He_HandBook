@@ -14,6 +14,7 @@
 * [Useful tools/resources](#useful-tools-resources)
 * [Render Props](#render-props)
 * [Create component dynamically](#create-component-dynamically)
+* [Namespace your components](#namespace-your-components)
 * [Why findDOMNode only works on classical component](#finddomnode-only-works-on-classical-component)
 
 ### how-react-works
@@ -228,6 +229,18 @@ Example 2 **ONLY** works on standard html tags
 ```js
 const FullForm = isGreyhounds(raceType) ? 'input' : 'textarea';
 return <FullForm key={key} formData={val} />
+```
+
+### namespace-your-components
+```js
+const FKEventCompetitorProperty = {
+  Sex: {
+    Label: () => <div><span>Sex:</span></div>
+  }
+};
+
+...
+<FKEventCompetitorProperty.Sex.Label value={'good'} />
 ```
 
 ### finddomnode-only-works-on-classical-component
