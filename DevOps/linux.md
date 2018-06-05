@@ -102,4 +102,4 @@ $ chmod 644 file
 ```
 
 ### chmod
-![chmod](./chmod.jpg)
+![chmod](./linux_permissions_chmod.jpg)
