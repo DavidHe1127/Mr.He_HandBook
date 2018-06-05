@@ -9,6 +9,7 @@
 * [Input and Output](#input-output)
 * [Process](#process)
 * [File](#file)
+* [chmod explained in simple english](#chmod)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -99,3 +100,6 @@ To modify permissions (user: read/write & group, other: read):
 ```
 $ chmod 644 file
 ```
+
+### chmod
+![chmod](./chmod.jpg)
