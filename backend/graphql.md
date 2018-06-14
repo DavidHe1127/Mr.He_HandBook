@@ -37,7 +37,7 @@ type Address {
 ```graphql
 const resolvers = {
   query: {
-    userList: (root) => {
+    allUsers: (root) => {
       return db.users.all()
     }
   },
@@ -52,10 +52,10 @@ const resolvers = {
 And you query like this:
 
 ```graphql
-query allUsers {
-  users {         # fetches users (1 query)
+query getUserList {
+  allUsers {         # fetches users (1 query)
     id
-    address {     # fetches address for each user (N queries for N users)
+    address {        # fetches address for each user (N queries for N users)
       id
       street
     }
