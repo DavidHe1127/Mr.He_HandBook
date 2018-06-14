@@ -2,8 +2,7 @@
 
 * [Query Resolver](#query-resolver)
 * [GraphQL middleware jobs](#graphql-middleware-jobs)
-
-
+* [N+1 problem](#n+1-problem)
 
 ### query-resolver
 ![Query Execution](./links/query_execution.png)
@@ -19,3 +18,49 @@ Graphql middleware like `apollo-server-restify` basically does two things:
 * Ensure `queries` and `mutations` included in the body of incoming POST requests can be executed by `GraphQL.js`.
 It needs to parse out the query and forward it to the `graphql` function for execution.
 * Attach the result of operations to the response object to be returned to the client.
+
+### n+1-problem
+Say you have schema and resolvers as follow:
+
+```graphql
+type User {
+  id: ID
+  address: Address
+}
+type Address {
+  id: ID
+  street: String
+  city: String
+}
+```
+
+```graphql
+const resolvers = {
+  query: {
+    userList: (root) => {
+      return db.users.all()
+    }
+  },
+  User: {
+    address: (user) => {
+      return db.addresses.fromId(user.addressId)
+    }
+  }
+}
+```
+
+And you query like this:
+
+```graphql
+query allUsers {
+  users {         # fetches users (1 query)
+    id
+    address {     # fetches address for each user (N queries for N users)
+      id
+      street
+    }
+  }
+}
+```
+
+As you would expect, `User.address` resolver is executed `N` times resulting in multiple access to data store!!!
