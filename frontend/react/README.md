@@ -17,6 +17,7 @@
 * [Namespace your components](#namespace-your-components)
 * [Why findDOMNode only works on classical component](#finddomnode-only-works-on-classical-component)
 * [Use shouldComponentUpdate correctly](#use-shouldcomponentupdate-correctly)
+* [Use controlled component widely](#use-controlled-component-widely)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
