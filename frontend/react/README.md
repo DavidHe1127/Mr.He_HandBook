@@ -16,6 +16,7 @@
 * [Create component dynamically](#create-component-dynamically)
 * [Namespace your components](#namespace-your-components)
 * [Why findDOMNode only works on classical component](#finddomnode-only-works-on-classical-component)
+* [Use shouldComponentUpdate correctly](#use-shouldcomponentupdate-correctly)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -245,4 +246,10 @@ const FKEventCompetitorProperty = {
 
 ### finddomnode-only-works-on-classical-component
 `findDOMNode` only works on mounted component that why it only works on **classical** component not stateless component.
+
+### use-shouldcomponentupdate-correctly
+`shouldComponentUpdate` is best used as a performance optimization, not to ensure correctness of derived state.
+
+### use-controlled-component-widely
+Instead of trying to *"mirror" a prop value in state*, make the component *controlled*, and consolidate the two diverging values in the state of some parent component. For example, rather than a child accepting a `committed(final)` props.value and tracking a `draft(transitional)` *state.value*, have the parent manage both *state.draftValue* and *state.committedValue* and control the child’s value directly. This makes the data flow more explicit and predictable.
 
