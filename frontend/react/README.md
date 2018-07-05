@@ -18,6 +18,7 @@
 * [Why findDOMNode only works on classical component](#finddomnode-only-works-on-classical-component)
 * [Use shouldComponentUpdate correctly](#use-shouldcomponentupdate-correctly)
 * [Use controlled component widely](#use-controlled-component-widely)
+* [JSX Control Statement](#jsx-control-statement)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -254,3 +255,14 @@ const FKEventCompetitorProperty = {
 ### use-controlled-component-widely
 Instead of trying to **"mirror" a prop value in state**, make the component **controlled**, and consolidate the two diverging values in the state of some parent component. For example, rather than a child accepting a `committed(final)` **props.value** and tracking a `draft(transitional)` **state.value**, have the parent manage both **state.draftValue** and **state.committedValue** and control the child’s value directly. This makes the data flow more explicit and predictable.
 
+### jsx-control-statement
+With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do things below
+```js
+// before transformation
+<If condition={ test }>
+  <span>Truth</span>
+</If>
+
+// after transformation
+{ test ? <span>Truth</span> : null }
+```
