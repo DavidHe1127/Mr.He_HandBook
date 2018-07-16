@@ -3,6 +3,7 @@
 * [Scripts](#scripts)
 * [Quick init](#quick-init)
 * [PeerDependency](#peer-dependency)
+* [Semver](#semantic-versioning)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -66,5 +67,11 @@ npm run | less
 
 As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
 
+### semantic-versioning
+Given version `1.2.3`:
+  * 1 - Major a large change that breaks compatibility. If users don't adapt to a major version change, stuff won't work
+  * 2 - Minor a new functionality that doesn't break anything
+  * 3 - Patch a bugfix
 
-
+By default, npm installs the latest version, and prepends a caret e.g. “^1.2.12”. This signifies that at a minimum, version 1.2.12 should be used, but any version higher than that is OK, as long as it has the same major version.
+ 
