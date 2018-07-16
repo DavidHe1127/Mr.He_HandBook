@@ -22,14 +22,18 @@ const foo = require('./foo');
 ```
 
 ### manage-env-vars
-Use [dotenv](https://github.com/motdotla/dotenv) to load env vars for development **ONLY**.
-
-```js
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load();
-}
-```
+* Use [dotenv](https://github.com/motdotla/dotenv) to load env vars for development **ONLY**.
+  ```js
+  if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').load();
+  }
+  ```
 For production, use deployment host to set variables.
+
+* Have a `.env.example` file as a base to unfold potential params for other team members to share.
+* `.env` needs to be shortlisted in `.gitignore`.
+
+
 
 
 
