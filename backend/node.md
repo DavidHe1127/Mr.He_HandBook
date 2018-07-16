@@ -10,8 +10,9 @@
 * Best Practice
   * [Production Deployment](./links/production_deployment_tips.md)
   * [Graceful shutdown](./links/graceful_shutdown.md)
+  * [Manage Environment Variables](#manage-env-vars)
 
-# module-loading
+### module-loading
 ```javascript
 const foo = require('./foo');
 
@@ -19,3 +20,18 @@ const foo = require('./foo');
 // if not found, search for index.js in ./foo/index.js
 // or else throws out error 'module not found'
 ```
+
+### manage-env-vars
+Use [dotenv](https://github.com/motdotla/dotenv) to load env vars for development **ONLY**.
+
+```js
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
+```
+For production, use deployment host to set variables.
+
+
+
+
+
