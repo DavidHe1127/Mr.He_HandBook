@@ -32,6 +32,7 @@ const foo = require('./foo');
 
 * Have a `.env.example` file as a base to unfold potential params for other team members to share.
 * `.env` needs to be shortlisted in `.gitignore`.
+[Good readings](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
 
 
 
