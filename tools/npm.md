@@ -73,5 +73,5 @@ Given version `1.2.3`:
   * 2 - Minor a new functionality that doesn't break anything
   * 3 - Patch a bugfix
 
-By default, npm installs the latest version, and prepends a caret e.g. “^1.2.12”. This signifies that at a minimum, version 1.2.12 should be used, but any version higher than that is OK, as long as it has the same major version.
+By default, npm installs the latest version, and prepends a caret e.g. `^1.2.12`. This signifies that at a minimum, version `1.2.12` should be used, but any version higher than that is OK, as long as it has the same major version.
  
