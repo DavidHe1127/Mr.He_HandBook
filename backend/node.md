@@ -28,7 +28,7 @@ const foo = require('./foo');
     require('dotenv').load();
   }
   ```
-For production, use deployment host to set variables.
+  For production, use deployment host to set variables.
 
 * Have a `.env.example` file as a base to unfold potential params for other team members to share.
 * `.env` needs to be shortlisted in `.gitignore`.
