@@ -11,6 +11,7 @@
   * [Production Deployment](./links/production_deployment_tips.md)
   * [Graceful shutdown](./links/graceful_shutdown.md)
   * [Manage Environment Variables](#manage-env-vars)
+  * [Hoisting import](#hoisting-import)
 
 ### module-loading
 ```javascript
@@ -35,8 +36,28 @@ const foo = require('./foo');
 
  [Good readings](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html)
 
+### hoisting-import
+Import will be hoisted during evaluations!
+Entry
+```js
+import dotenv from 'dotenv';
 
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config();
+  console.log(11);
+}
 
+import firebase from './firebase';
+```
+
+module firebase
+```js
+console.log(1333)
+const firebase = 12;
+
+export default firebase;
+```
+Execution will print `1333` followed by `11`.
 
 
 
