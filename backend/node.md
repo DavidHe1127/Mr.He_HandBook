@@ -25,7 +25,7 @@ const foo = require('./foo');
 * Use [dotenv](https://github.com/motdotla/dotenv) to load env vars for development **ONLY**.
   ```js
   if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').load();
+    require('dotenv').config();
   }
   ```
   For production, use deployment host to set variables.
