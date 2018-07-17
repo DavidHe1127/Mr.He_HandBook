@@ -38,6 +38,7 @@ const foo = require('./foo');
 
 ### hoisting-import
 Import will be hoisted during evaluations!
+
 Entry
 ```js
 import dotenv from 'dotenv';
