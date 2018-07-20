@@ -1,5 +1,6 @@
 
 * [JS tags loading](#js-tags-loading)
+* [Service workder](#service-worker)
 
 ### js-tags-loading
 Js script tags can be embedded into HTML in two forms - `inline` and `external`. For external ones, they basically need to be downloaded first before executions. During this process, page rendering and other assets loading (css styles) are blocked. In other words, page will not be rendered until all Js script tags defined `before <body>` finish executions. The rationale behind this is `JS script might modify DOM`.
@@ -34,5 +35,6 @@ One thing to keep in mind is browsers **cannot guarantee the order of executions
 
 Final tips: For analytics, event tracking code, put them in `window.onload` callback.
 
+### service-worker
 
-
+A service worker is a script that your browser runs in the background, separate from a web page, opening the door to features that don't need a web page or user interaction. Today, they already include features like push notifications, offline features and background sync.
