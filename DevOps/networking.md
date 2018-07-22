@@ -7,6 +7,7 @@
 
 ### dns-resolution-flow
 * ![DNS Resolution process](./dns_resolution_process.png)
+* ![NS](./ns.png)
 * [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
 
 ### www-vs-naked
