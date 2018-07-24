@@ -20,7 +20,8 @@
 Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
 
 ### nc
-Use `nc` as you would with `telnet`
+Use `nc` as you would with `telnet:
 ```js
-nc https://xyz.com 443
+nc -v https://xyz.com 443
 ```
+`-v` is verbose mode
