@@ -24,4 +24,12 @@ Use `nc` as you would with `telnet:
 ```js
 nc -v https://xyz.com 443
 ```
-`-v` is verbose mode
+`-v` is verbose mode.
+Here are some troubleshooting tips:
+if you receive `Connection refused` as the response, chances are your EC2 instance does not have a web server running.
+Likewise, you will see `This site cannot be reached` when trying to access your EC2 instance from your browser via EC2 public ip.
+
+
+
+
+If you receive `Connection refused` as the response in your terminal, chances are your EC2 instance 
