@@ -3,6 +3,7 @@
   * [DNS Resolution workflow](#dns-resolution-flow)
   * [www domain and naked domain](#www-vs-naked)
   * [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
+* [nc(telnet) on Mac](#nc)
 
 
 ### dns-resolution-flow
@@ -17,3 +18,9 @@
 `alias` record is similar to a `CNAME` record, except you can create an alias record both for the `root domain - example.com` and for `subdomains - www.example.com` whereas you can create `CNAME` records only for subdomains.
 
 Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
+
+### nc
+Use `nc` as you would with `telnet`
+```js
+nc https://xyz.com 443
+```
