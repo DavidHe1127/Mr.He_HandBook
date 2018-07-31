@@ -20,6 +20,7 @@
 * [Use controlled component widely](#use-controlled-component-widely)
 * [JSX Control Statement](#jsx-control-statement)
 * [Platform-specific styling with styled-components](#platform-specific-styling-with-styled-component)
+* [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -293,3 +294,24 @@ const StyledBackBtnContainerDiv = styled.div.attrs({
   style: isDesktopClient ? styles.backButtonContainer.desktop : styles.backButtonContainer.others
 });
 ```
+
+### react-import-need-for-stateless-component
+Code below:
+```js
+import React from "react";
+const App = () => (
+  <div>Hello World!!!</div>
+);
+export default App;
+```
+will be transpiled into:
+```js
+var App = function App() {
+  return React.createElement(
+    "div",
+    null,
+    "Hello World!!!"
+  );
+};
+```
+See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
