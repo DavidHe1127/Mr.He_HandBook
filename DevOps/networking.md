@@ -31,7 +31,7 @@ if you receive `Connection refused` as the response, chances are your EC2 instan
 Likewise, you will see `This site cannot be reached` when trying to access your EC2 instance from `chrome` via EC2 public ip.
 
 ### ephemeral-ports
-It is a range of ports your client randomly chooses one from for a connection with the server. By using this, client will listen on that port for any traffic coming back from connected servers.
+It is a range of ports your clients randomly choose one from for a connection with the server. By using this, client will listen on that port for any traffic coming back from connected servers.
 
 The range varies depending on different OS. For instance, Windows operating systems through Windows Server 2003 use ports 1025-5000. Windows Server 2008 and later versions use ports 49152-65535.
 
