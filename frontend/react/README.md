@@ -303,6 +303,7 @@ const postPickStylesWeb = `
   border: 1px solid #ccc;
   font-size: 12px;
   padding: 4px;
+  ${false ? 'color: red;' : ''}
   color: ${true ? 'red' : 'green'};
 `;
 
