@@ -270,6 +270,7 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 ```
 
 ### platform-specific-styling-with-styled-component
+Scenario 1: totally different styles
 ```js
 
 const styles = {
@@ -293,6 +294,23 @@ const styles = {
 const StyledBackBtnContainerDiv = styled.div.attrs({
   style: isDesktopClient ? styles.backButtonContainer.desktop : styles.backButtonContainer.others
 });
+```
+Scenario 2: have most in common
+```js
+const postPickStylesWeb = `
+  height: 20px;
+  width: 80px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  padding: 4px;
+`;
+
+const postPickStylesOthers = `${postPickStylesWeb}
+  font-size: 9px; 
+  padding: 2px;
+`;
+
+const Title = `${postPickStylesOthers}`;
 ```
 
 ### react-import-need-for-stateless-component
