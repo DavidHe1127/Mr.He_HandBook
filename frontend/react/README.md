@@ -21,6 +21,7 @@
 * [JSX Control Statement](#jsx-control-statement)
 * [Platform-specific styling with styled-components](#platform-specific-styling-with-styled-component)
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
+* [Compound Components](#compound-components)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -335,3 +336,46 @@ var App = function App() {
 };
 ```
 See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
+
+### compound-components
+Say components `A` and `B` will nowhere be used individually, it makes sense only when they're used with `Main`. And for better maintainability you prefer managing them in different files. So you can use this trick below to achieve what you expect. 
+```js
+// A.js
+export class A extends Component {
+  render() {
+    return <div>A</div>
+  }
+}
+
+// B.js
+export class B extends Component {
+  render() {
+    return <div>B</div>
+  }
+}
+
+// Main.js
+import A from './A';
+import B from './B';
+
+export class Main extends Component {
+  static A = A
+  static B = B
+  
+  render() {
+    return <div>Main</div>
+  }
+}
+
+// usage
+<Main.A></Main.A>
+<Main.B></Main.B>
+```
+[Compound Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
+
+
+
+
+
+
+
