@@ -10,6 +10,7 @@
 * [Process](#process)
 * [File](#file)
 * [chmod explained in simple english](#chmod)
+* [host file under etc](#host-file-purpose)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -103,3 +104,15 @@ $ chmod 644 file
 
 ### chmod
 ![chmod](./linux_permissions_chmod.jpg)
+
+### host-file-purpose
+Given `host` file below
+```
+127.0.x.x mydomain
+```
+It means system will not do a DNS lookup for `mydomain`, it will be automatically redirected to the IP address you specified in your hosts file.
+On most systems the default entry in the hosts file is:
+```
+127.0.0.1    localhost
+```
+127.0.0.1 is always the address of the computer you're on. For example, if you run a web server on your pc, you can access it from the web browser via `http://localhost:port` instead of typing the whole IP address `http://127.0.0.1:port`.
