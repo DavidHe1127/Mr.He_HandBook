@@ -128,3 +128,4 @@ Host remote
      User ec2-user
      IdentityFile ~/.ssh/id_rsa
 ```
+With this configuration, you ssh into another ec2 instance by typing `ssh remote`.
