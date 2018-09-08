@@ -50,5 +50,5 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 4. `Server` decrypts the symmetric session key using its private key and sends back an acknowledgement encrypted with the session key to start the encrypted session.
 5. `Server` and `Browser` now encrypt all transmitted data with the session key.
 
-Please note, for all above to work, `ssl cert` needs to be placed under the particular directory on server for `ssl` server to locate.
+Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
 
