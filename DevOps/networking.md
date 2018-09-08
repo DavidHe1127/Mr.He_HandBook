@@ -5,6 +5,7 @@
   * [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 * [nc(telnet) on Mac](#nc)
 * [Ephemeral Ports](#ephemeral-ports)
+* [SSL/TLS](#ssl-tls)
 
 
 ### dns-resolution-flow
@@ -41,4 +42,13 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 
 `37852` is the randomly-picked port number by your OS for communications. Since it's random, that's why you need to specify ephemeral port range when defining inbound/outbound traffic rules in NACL. i.e in order for your server to respond to connected client (Windows XP Client) on random ports between `1025-5000`, you must have to enable outbound traffic destined for ports `1025-5000`.
 
+### ssl-tls
+`SSL/TLS` enforces data encryption during transmission over the network:
+1. `Browser` connects to a web server (website) secured with SSL (https). `Browser` requests that the server identify itself.
+2. `Server` sends a copy of its `SSL Certificate`, including the server's public key.
+3. `Browser` checks the certificate root against a list of trusted CAs (comes with Browsers) and that the certificate is unexpired, unrevoked and that its common name is valid for the website that it is connecting to. If the `Browser` trusts the certificate, it creates, encrypts and sends back a symmetric session key using the server's public key.
+4. `Server` decrypts the symmetric session key using its private key and sends back an acknowledgement encrypted with the session key to start the encrypted session.
+5. `Server` and `Browser` now encrypt all transmitted data with the session key.
+
+Please note, for all above to work, `ssl cert` needs to be placed under the particular directory on server for `ssl` server to locate.
 
