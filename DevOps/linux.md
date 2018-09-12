@@ -116,7 +116,7 @@ On most systems the default entry in the hosts file is:
 ```
 127.0.0.1  localhost
 ```
-127.0.0.1 is always the address of the computer you're on. For example, if you run a web server on your pc, you can access it from the web browser via `http://localhost:port` instead of typing the whole IP address `http://127.0.0.1:port`.
+`127.0.0.1` is always the address of the computer you're on. For example, if you run a web server on your pc, you can access it from the web browser via `http://localhost:port` instead of typing the whole IP address `http://127.0.0.1:port`.
 
 ### ssh-config-file
 Example `ssh config`
