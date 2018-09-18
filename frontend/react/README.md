@@ -34,8 +34,6 @@ Every time `state` or `prop` changes in component, process below happens
 ### why-use-proptypes
 Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
 
-> If an element has a key property, elements will be compared by a value of a key, not by index. As long as keys are unique, React will move elements around without removing them from DOM tree and then putting them back (a process known in React as mounting/unmounting).
-
 ### component-vs-element
 * React element is an object representation of a DOM node and its properties
 * A component is a function or a Class which optionally accepts input and returns a React element.
@@ -68,39 +66,11 @@ Updating
 `render`
 `componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
-
 ### smart-vs-dumb
 It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
 
 ### event-listeners
 React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
-
-|Initialization   |Mounting           |State or Props updating  |Unmounting|
-| -------- |:---------------:|:---------------:| --------:|
-|getDefaultProps   |componentWillMount|componentWillReceiveProps(props update only)|componentWillUnmount
-|getInitialState   |componentDidMount |shouldComponentUpdate|
-|                  |                  |componentWillUpdate|
-|                  |                  |render|
-|                  |                  |componentDidUpdate|
-
-##### Init
-`getDefaultProps` - set default props if parents not pass it down
-
-##### Mounting
-`componentWillMount` - setState will not re-render
-`componentDidMount` - fetch data
-
-##### Updating
-`componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
-`shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
-`componentWillUpdate` - DO NOT use setState()
-`render`
-`componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
-
-##### Unmounting
-`componentWillUnmount` - invalidate timers
-
-**NOTE, Try to avoid using these lifecycle events hooks as less as possible**
 
 ### prevent-unnecessary-rerendering
 Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
@@ -158,6 +128,7 @@ In a nutshell, Uncontrolled - Use `ref` to reference the component and get the v
 For more details - read [Controlled vs Uncontrolled form inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
 
 ### async-setstate
+Behaviour described below is outdated (React version prior to 16.0)
 `setState` is async and will batch updates. If you do something in the `setState` callback, then it will be triggered last. See flow below.
 
 **setState => render with new state => componentDidUpdate => setState callback**
@@ -309,7 +280,7 @@ const postPickStylesWeb = `
 `;
 
 const postPickStylesOthers = `${postPickStylesWeb}
-  font-size: 9px; 
+  font-size: 9px;
   padding: 2px;
 `;
 
@@ -338,7 +309,7 @@ var App = function App() {
 See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
 
 ### compound-components
-Say components `A` and `B` will nowhere be used individually, it makes sense only when they're used with `Main`. And for better maintainability you prefer managing them in different files. So you can use this trick below to achieve what you expect. 
+Say components `A` and `B` will nowhere be used individually, it makes sense only when they're used with `Main`. And for better maintainability you prefer managing them in different files. So you can use this trick below to achieve what you expect.
 ```js
 // A.js
 export class A extends Component {
@@ -361,7 +332,7 @@ import B from './B';
 export class Main extends Component {
   static A = A
   static B = B
-  
+
   render() {
     return <div>Main</div>
   }
@@ -372,10 +343,3 @@ export class Main extends Component {
 <Main.B></Main.B>
 ```
 [Compound Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
-
-
-
-
-
-
-
