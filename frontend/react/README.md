@@ -48,17 +48,17 @@ Use `propTypes` on all occasions - You can use it to document your components. Y
 |                  |                  |render|
 |                  |                  |componentDidUpdate|
 
-Init
+#### Init
 ---
 `getDefaultProps` - set default props if parents not pass it down
 
-Mounting
+#### Mounting
 ---
 `constructor` - initialize `states`
 `componentWillMount` - setState will not re-render
 `componentDidMount` - fetch data
 
-Updating
+#### Updating
 ---
 `componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
 `shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
