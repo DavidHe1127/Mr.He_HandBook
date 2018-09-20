@@ -18,7 +18,7 @@ Thanks ROSS for his terse explanation for redux
 ### 3-must-follow-rules
 * Only one single store holding the whole App state
 * State is ready-only - the only way to change it is to emit an action and an object describing the changes (payload)
-* Changes are made with pure reducers - take previous state and an action, and return the next state - NO state MUTATION ALLOWED
+* Changes are made with pure reducers - take previous state and an action, and return the next state - **NO state MUTATION ALLOWED**
 
 ### action-essentials
 * Only source of information for store
