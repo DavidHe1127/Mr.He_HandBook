@@ -1,6 +1,6 @@
 ## OAuth2
 
-### Basics
+### Key Points
 
 * Four participants
   * Resource Owner - User
