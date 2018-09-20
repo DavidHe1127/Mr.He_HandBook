@@ -35,7 +35,7 @@ Cursor-based pagination works by returning a pointer to a specific item in the d
   * Similar to the offset implementation, the client would make a request with a parameter indicating the number of results they want per page - `count`. Instead of the page parameter, we would accept a `cursor` parameter, which the client would get in the response from the previous request.
   * The server would then use cursor and count to paginate through the list.
   
-  #### workflow
+  #### Workflow
   Let’s assume we want to paginate from the most recent user, to the oldest user. For the first request, we’d select the first page:
 
 ```sql
@@ -65,7 +65,7 @@ ORDER BY id DESC
 LIMIT %limit
 ```
 
-Again, limit is equal to count plus one. By setting the limit to one more than the count requested by the client, we’ll know we’re at the last page when the number of rows returned is less than count. At that point, we’ll return an empty next_cursor which tells the client there are no more pages to be fetched.
+Again, limit is equal to count plus one. By setting the limit to one more than the count requested by the client, we’ll know we’re at the last page when the number of rows returned is less than count. At that point, we’ll return an empty `next_cursor` which tells the client there are no more pages to be fetched.
 
 The response from the server would be:
 
