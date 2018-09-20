@@ -32,7 +32,7 @@
   Some people advocate attempting to recover from programmer errors — that is, allow the current operation to fail, but keep handling requests. This is not recommended. Consider that a programmer error is a case that you didn't think about when you wrote the original code. How can you be sure that the problem won't affect other requests? If other requests share any common state (a server, a socket, a pool of database connections, etc.), it's very possible that the other requests will do the wrong thing.
   
 * Comparisons
-![error_handling](./error_handling.png)
+![error_handling](./error_handling.PNG)
 
 * The general rule is that a function may deliver operational errors synchronously (e.g., by throwing) or asynchronously (by passing them to a callback or emitting error on an EventEmitter), but it should not do both. This way, a user can handle errors by either handling them in the callback or using try/catch, but they never need to do both.
 
