@@ -32,5 +32,5 @@ Cursor-based pagination works by returning a pointer to a specific item in the d
   
   #### How it works?
   * We’d pick a unique, sequential column to paginate on. In this case, we’ll use the id field and assume this is an auto-incremented, primary key value.
-  * Similar to the offset implementation, the client would make a request with a parameter indicating the number of results they want per page, count. Instead of the page parameter, we would accept a cursor parameter, which the client would get in the response from the previous request.
+  * Similar to the offset implementation, the client would make a request with a parameter indicating the number of results they want per page - `count`. Instead of the page parameter, we would accept a `cursor` parameter, which the client would get in the response from the previous request.
   * The server would then use cursor and count to paginate through the list.
