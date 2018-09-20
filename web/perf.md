@@ -1,3 +1,5 @@
+## Perf tips
+
 * General
   * [Server compression](#server-compression)
 * CSS
