@@ -1,29 +1,31 @@
+## JS/Node error handling guide
 
+### Key points
 * When a runtime error occurs, a new `Error` object will be created and thrown. We can use `try/catch` block to handle errors ourselves rather than
   let the browsers handle it
 * Never throw errors in your api server since throw a error simply turns errors into exceptions!
-```js
-// don't do this unless unless it is in async/await
-throw new Error('something bad happened');
+  ```js
+  // don't do this unless unless it is in async/await
+  throw new Error('something bad happened');
 
-// do this instead
-callback(new Error('something bad happened'));
-```
+  // do this instead
+  callback(new Error('something bad happened'));
+  ```
 * Two types of errors: **Operational Errors** vs **Programmers Errors**
 
   * Operational errors represent run-time problems experienced by correctly-written programs. These are not bugs in the program. In fact, these are usually problems with something else: the system itself (e.g., out of memory or too many open files), the system's configuration (e.g., no route to a remote host), the network (e.g., socket hang-up), or a remote service (e.g., a 500 error, failure to connect, or the like). Examples include:
-      failed to connect to server
-      failed to resolve hostname
-      invalid user input
-      request timeout
-      server returned a 500 response
-      socket hang-up
-      system is out of memory
+      * failed to connect to server
+      * failed to resolve hostname
+      * invalid user input
+      * request timeout
+      * server returned a 500 response
+      * socket hang-up
+      * system is out of memory
   * Programmer errors are **BUGS** in the program. These are things that can always be avoided by changing the code. They can never be handled properly (since by definition the code in question is broken).
-      tried to read property of "undefined"
-      called an asynchronous function without a callback
-      passed a "string" where an object was expected
-      passed an object where an IP address string was expected
+      * tried to read property of "undefined"
+      * called an asynchronous function without a callback
+      * passed a "string" where an object was expected
+      * passed an object where an IP address string was expected
 * **The best way to recover from programmer errors is to crash immediately.**
 
 You should run your programs using a restarter that will automatically restart the program in the event of a crash. With a restarter in place, crashing is the fastest way to restore reliable service in the face of a transient programmer error.
