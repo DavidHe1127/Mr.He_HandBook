@@ -1,6 +1,6 @@
 ## Traditional Pagination VS Cursor-based Pagination
 
-### Problem with tradtional pagination
+#### Problem with tradtional pagination
 Let's say we have 20 comments in total and want to display them in two pages so 10 for each.
 
 ```js
