@@ -12,6 +12,7 @@
 * [chmod explained in simple english](#chmod)
 * [host file under etc](#host-file-purpose)
 * [ssh config file](#ssh-config-file)
+* [scp file to EC2](#scp)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -129,3 +130,9 @@ Host remote
      IdentityFile ~/.ssh/id_rsa
 ```
 With this configuration, you ssh into another ec2 instance by typing `ssh remote`.
+
+### scp
+```
+scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
+```
+
