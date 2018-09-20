@@ -34,3 +34,45 @@ Cursor-based pagination works by returning a pointer to a specific item in the d
   * We’d pick a unique, sequential column to paginate on. In this case, we’ll use the id field and assume this is an auto-incremented, primary key value.
   * Similar to the offset implementation, the client would make a request with a parameter indicating the number of results they want per page - `count`. Instead of the page parameter, we would accept a `cursor` parameter, which the client would get in the response from the previous request.
   * The server would then use cursor and count to paginate through the list.
+  
+  #### workflow
+  Let’s assume we want to paginate from the most recent user, to the oldest user. For the first request, we’d select the first page:
+
+```sql
+   SELECT * FROM users
+   WHERE team_id = %team_id
+   ORDER BY id DESC
+   LIMIT %limit
+```
+
+Where limit is equal to count plus one, to fetch one more result than the count specified by the client. The extra result isn’t returned in the result set, but we use the ID of the value as the `next_cursor`.
+
+The response from the server would be:
+  ```js
+  {
+      "users": [...],
+      "next_cursor": "123456",  # the user id of the extra result
+  }
+  ```
+  
+The client would then provide `next_cursor` as cursor in the second request:
+
+```sql
+SELECT * FROM users
+WHERE team_id = %team_id
+AND id <= %cursor
+ORDER BY id DESC
+LIMIT %limit
+```
+
+Again, limit is equal to count plus one. By setting the limit to one more than the count requested by the client, we’ll know we’re at the last page when the number of rows returned is less than count. At that point, we’ll return an empty next_cursor which tells the client there are no more pages to be fetched.
+
+The response from the server would be:
+
+```js
+{
+    "users": [...],
+    "next_cursor": ""
+}
+```
+  
