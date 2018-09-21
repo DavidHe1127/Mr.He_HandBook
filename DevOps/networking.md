@@ -12,6 +12,11 @@
 * ![DNS Resolution process](./dns_resolution_process.png)
 * ![Root NS](./ns.png)
 * [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
+* Given url `https://www.ABC.com`:
+  * `com` is Top-level Domain aka (TLD)
+  * `ABC` is Second-level Domain aka (SLD)
+  * `www` is Subdomain(third-level domain)
+  * `http` is the protocol with TLS/SSL
 
 ### www-vs-naked
 * From SEO point of view, some search engine recognize `www` and `non-www` as two different web sites and this cause to penalize the domain considering website has duplicate contents.
