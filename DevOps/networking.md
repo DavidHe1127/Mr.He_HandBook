@@ -6,7 +6,7 @@
 * [nc(telnet) on Mac](#nc)
 * [Ephemeral Ports](#ephemeral-ports)
 * [SSL/TLS](#ssl-tls)
-^ [CNAME record](#cname)
+* [CNAME record](#cname)
 
 
 ### dns-resolution-flow
