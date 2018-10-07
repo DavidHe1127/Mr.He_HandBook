@@ -6,6 +6,7 @@
 * [nc(telnet) on Mac](#nc)
 * [Ephemeral Ports](#ephemeral-ports)
 * [SSL/TLS](#ssl-tls)
+^ [CNAME record](#cname)
 
 
 ### dns-resolution-flow
@@ -56,4 +57,20 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 5. `Server` and `Browser` now encrypt all transmitted data with the session key.
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
+
+### cname
+| (sub)Domain/Hostname        | Record Type           | Target/Destination  |
+| ------------- |:-------------:| -----:|
+| mydomain.com     | A | 111.222.333.444 | mydomain.com |
+| www.mydomain.com      | CNAME      |   mydomain.com |
+| ftp.mydomain.com | CNAME      |    mydomain.com |
+| mail.mydomain.com | CNAME | mydomain.com |
+
+Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed. 
+One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+
+
+
+
+
 
