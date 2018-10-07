@@ -67,6 +67,7 @@ Please note, for all above to work, `ssl cert` needs to be placed under a partic
 | mail.mydomain.com | CNAME | mydomain.com |
 
 Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed. 
+
 One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
 
 
