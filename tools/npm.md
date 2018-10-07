@@ -4,6 +4,7 @@
 * [Quick init](#quick-init)
 * [PeerDependency](#peer-dependency)
 * [Semver](#semantic-versioning)
+* [Scoped Packages](#scoped-packages)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -75,3 +76,11 @@ Given version `1.2.3`:
 
 By default, npm installs the latest version, and prepends a caret e.g. `^1.2.12`. This signifies that at a minimum, version `1.2.12` should be used, but any version higher than that is OK, as long as it has the same major version.
  
+### scoped-packages
+`@storybook/react` is a scoped package.
+* `@storybook/react` indicates this it is published by `storybook` core team.
+* `@storybook/react` only has to be unique in the scope `storybook` it's published in not the entire npm registry.
+
+
+
+
