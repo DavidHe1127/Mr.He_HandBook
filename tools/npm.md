@@ -78,7 +78,7 @@ By default, npm installs the latest version, and prepends a caret e.g. `^1.2.12`
  
 ### scoped-packages
 `@storybook/react` is a scoped package.
-* `@storybook/react` indicates this it is published by `storybook` core team.
+* `@storybook/react` indicates it is published by `storybook` core team.
 * `@storybook/react` only has to be unique in the scope `storybook` it's published in not the entire npm registry.
 
 
