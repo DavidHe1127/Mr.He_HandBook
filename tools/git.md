@@ -67,6 +67,7 @@ git branch [BRANCH] --merged master // If output is that BRANCH, it is merged or
 ```
 
 # remove-non-tracking-local-branches
+Command below will remove your local `remote tracking` branches that are no longer exist on the remote.
 ```js
 git remote prune origin
 ```
