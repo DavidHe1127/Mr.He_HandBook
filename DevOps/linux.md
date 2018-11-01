@@ -138,7 +138,7 @@ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```
 
 ### double-dash
-`--` means the end of command options i.e `-v, -i, -s` etc. So `-v` here is considered to be a string rather than a command option. In this example, we simply grep `-v` string in side file `xxx`.
+`--` means the end of command options i.e `-v, -i, -s` etc. So `-v` here is considered to be a string rather than a command option. In this example, we simply grep string `-v` in side file `xxx`.
 ```bash
 grep -- -v xxx
 ```
