@@ -13,6 +13,7 @@
 * [host file under etc](#host-file-purpose)
 * [ssh config file](#ssh-config-file)
 * [scp file to EC2](#scp)
+* [double dash in command](#double-dash)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -135,4 +136,12 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
 ```
 scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```
+
+### double-dash
+`--` means the end of command options i.e `-v, -i, -s` etc. So `-v` here is considered to be a string rather than a command option. In this example, we simply grep `-v` string in side file `xxx`.
+```bash
+grep -- -v xxx
+```
+
+
 
