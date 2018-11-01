@@ -4,6 +4,7 @@
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
   * [Running Compose in background mode](#run-in-detached-mode)
+  * [Enter the container](#enter-the-container)
 
 
 ### dockerfile-tips
@@ -47,7 +48,7 @@ RUN buildDeps='gcc libc6-dev make' \
 * Each line of instruction should only do things relating to that layer.
 
 ### mount-src-to-volume
-Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now rebuilds are no longer necessary when code is changed.
+Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
 
 ```yml
 services:
@@ -73,3 +74,8 @@ redis://redis:6379
 
 ### run-in-detached-mode
 `docker-compose up -d`
+
+### enter the container
+```bash
+docker exec -it <container id> /bin/bash
+```
