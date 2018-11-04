@@ -6,8 +6,3 @@ It is highly recommanded you use `PackageResourceViewer` to readily view and edi
 ```
 * `ctrl + k + v` to see the list of copy history that you can paste from.
 * `ctrl + k + l | u` to convert chars to either `l`owercase or `u`ppercase.
-* To sync configs/pkgs onto a fresh sublime:
-  1. Remove `User` folder under `~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User`
-  2. Clone the entire `User` folder from source Mac
-  3. Install `Package Control`
-  4. Restart your fresh sublime text
