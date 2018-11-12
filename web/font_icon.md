@@ -7,7 +7,7 @@ This is because the `Web safe fonts` is lack of some special fonts - handwriting
 #### How to use custom svg images in your app
 The idiomatic way is 
   * Generate a font file like woff or woff2 from `svg` file(s)
-  * Create a new `font-face`
+  * Create a new `font-face` in `index.css` if it is a global style file.
     ```css
     @font-face {
       font-family: yourCustomFont;
