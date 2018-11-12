@@ -5,6 +5,7 @@
   * [Use hostnames to connect to containers](#use-host-as-ref)
   * [Running Compose in background mode](#run-in-detached-mode)
   * [Enter the container](#enter-the-container)
+  * [Use multi-stage build](#use-multi-stage-build)
 
 
 ### dockerfile-tips
@@ -79,3 +80,6 @@ redis://redis:6379
 ```bash
 docker exec -it <container id> /bin/bash
 ```
+### use-multi-stage-build
+[Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
+
