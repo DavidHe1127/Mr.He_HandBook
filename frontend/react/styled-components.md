@@ -1,4 +1,7 @@
+## Styled-components
+
 * [Smart way to attach classes](#smart-way-to-attach-classes)
+* [Platform-specific styling with styled-components](#platform-specific-styling-with-styled-component)
 
 ### smart-way-to-attach-classes
 
@@ -54,6 +57,51 @@ const StyledModal = styled(ReactModalAdapter)`
 `;
 ```
 
+### platform-specific-styling-with-styled-component
+Scenario 1: totally different styles
+```js
+
+const styles = {
+  backButtonContainer: {
+    desktop: {
+      width: '32px',
+      height: '32px',
+      display: 'table-cell',
+      'vertical-align': 'middle',
+    },
+    others: {
+      float: 'left',
+      height: '100%',
+      width: '25%',
+      'padding-left': '16px',
+      cursor: 'pointer',
+    },
+  },
+};
+
+const StyledBackBtnContainerDiv = styled.div.attrs({
+  style: isDesktopClient ? styles.backButtonContainer.desktop : styles.backButtonContainer.others
+});
+```
+Scenario 2: have most in common
+```js
+const postPickStylesWeb = `
+  height: 20px;
+  width: 80px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  padding: 4px;
+  ${false ? 'color: red;' : ''}
+  color: ${true ? 'red' : 'green'};
+`;
+
+const postPickStylesOthers = `${postPickStylesWeb}
+  font-size: 9px;
+  padding: 2px;
+`;
+
+const Title = `${postPickStylesOthers}`;
+```
 
 
 
