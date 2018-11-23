@@ -24,36 +24,36 @@ If you wish to use styled-component way of styling it, you can do this:
 
 ```js
 const ReactModalAdapter = ({ className, ...props }) => (
-	<ReactModal
-		portalClassName={`${className}__portal`}
-		className={`${className}__reactModal`}
-		overlayClassName={`${className}__overlay`}
-		bodyOpenClassName={`${className}__bodyOpen`}
-		htmlOpenClassName={`${className}__htmlOpen`}
-		{...props}
-	/>
+  <ReactModal
+     portalClassName={`${className}__portal`}
+     className={`${className}__reactModal`}
+     overlayClassName={`${className}__overlay`}
+     bodyOpenClassName={`${className}__bodyOpen`}
+     htmlOpenClassName={`${className}__htmlOpen`}
+	{...props}
+  />
 );
 
 const StyledModal = styled(ReactModalAdapter)`
-	&__bodyOpen {
-		${styles.bodyOpen};
-	}
+  &__bodyOpen {
+    ${styles.bodyOpen};
+  }
 
-	&__reactModal {
-		${styles.reactModal};
-	}
+  &__reactModal {
+    ${styles.reactModal};
+  }
 
-	&__htmlOpen {
-		${styles.htmlOpen};
-	}
+  &__htmlOpen {
+    ${styles.htmlOpen};
+  }
 
-	&__overlay {
-		${styles.overlay};
-	}
+  &__overlay {
+    ${styles.overlay};
+  }
 
-	&__portal {
-		${styles.portal};
-	}
+  &__portal {
+    ${styles.portal};
+  }
 `;
 ```
 
