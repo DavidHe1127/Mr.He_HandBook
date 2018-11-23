@@ -1,5 +1,7 @@
-## React Essentials and Tips
+# React Essentials and Tips
 
+
+## General
 * [How react works](#how-react-works)
 * [Why use PropTypes](#why-use-proptypes)
 * [Component VS Element](#component-vs-element)
@@ -19,9 +21,12 @@
 * [Use shouldComponentUpdate correctly](#use-shouldcomponentupdate-correctly)
 * [Use controlled component widely](#use-controlled-component-widely)
 * [JSX Control Statement](#jsx-control-statement)
-* [Platform-specific styling with styled-components](#platform-specific-styling-with-styled-component)
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Compound Components](#compound-components)
+
+## Styled-components
+* [Styled-components](./styled-components.md)
+
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
@@ -241,51 +246,7 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 { test ? <span>Truth</span> : null }
 ```
 
-### platform-specific-styling-with-styled-component
-Scenario 1: totally different styles
-```js
 
-const styles = {
-  backButtonContainer: {
-    desktop: {
-      width: '32px',
-      height: '32px',
-      display: 'table-cell',
-      'vertical-align': 'middle',
-    },
-    others: {
-      float: 'left',
-      height: '100%',
-      width: '25%',
-      'padding-left': '16px',
-      cursor: 'pointer',
-    },
-  },
-};
-
-const StyledBackBtnContainerDiv = styled.div.attrs({
-  style: isDesktopClient ? styles.backButtonContainer.desktop : styles.backButtonContainer.others
-});
-```
-Scenario 2: have most in common
-```js
-const postPickStylesWeb = `
-  height: 20px;
-  width: 80px;
-  border: 1px solid #ccc;
-  font-size: 12px;
-  padding: 4px;
-  ${false ? 'color: red;' : ''}
-  color: ${true ? 'red' : 'green'};
-`;
-
-const postPickStylesOthers = `${postPickStylesWeb}
-  font-size: 9px;
-  padding: 2px;
-`;
-
-const Title = `${postPickStylesOthers}`;
-```
 
 ### react-import-need-for-stateless-component
 Code below:
