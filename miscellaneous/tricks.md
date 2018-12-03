@@ -1,4 +1,4 @@
-Some tricks that help you get around tricky problems
+## Some tricks that help you get around tricky problems
 
 * [Inspect dropdown menu when it's opened](#inspect-dropdown)
 
