@@ -179,7 +179,7 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
       ```
       
 ### Conclusion
-The rule is simple - **ONLY USE ref on class Component wherever the class Component is used (both class or function components)**
+The rule is simple - **ONLY USE ref on class Component wherever it is used (either from inside a class or function component)**
     
     
     
