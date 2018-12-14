@@ -79,8 +79,6 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
           }
 
           focusTextInput = () => {
-            console.log(this.textInput.current)
-
             this.textInput.current.focus();
           }
 
@@ -99,7 +97,7 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
         } 
       ```
       
-      * Ref will not work against function component
+     * Ref will not work against function component
       
       ```js
         function MyFunctionComponent() {
