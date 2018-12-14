@@ -1,6 +1,6 @@
 # Everything you need to know about using Refs
 
-## (Note: discussions below assumes React v16.3 or higher is used)
+(Note: discussions below assumes React v16.3 or higher is used)
 
 ### Why do we need it?
 React components wrap up DOM element to give encapsulations:
