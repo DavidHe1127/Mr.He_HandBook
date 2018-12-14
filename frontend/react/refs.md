@@ -1,6 +1,6 @@
 # Everything you need to know about using Refs
 
-(Note: discussions below assumes React v16.2 or lower version that supports React.createRef)
+**Note: discussions below assumes React v16.2 or lower version that supports React.createRef. As of React 16.3 and above, Forwarding Ref is supported and it will be discussed as well**
 
 ### Why do we need it?
 React components wrap up DOM element to give encapsulations:
