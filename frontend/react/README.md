@@ -23,7 +23,7 @@
 * [JSX Control Statement](#jsx-control-statement)
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Compound Components](#compound-components)
-* [Refs](#refs)
+* [Refs](./refs.md)
 
 ## Styled-components
 * [Styled-components](./styled-components.md)
