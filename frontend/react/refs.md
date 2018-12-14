@@ -1,6 +1,6 @@
 # Everything you need to know about using Refs
 
-(Note: discussions below assumes React v16.3 or higher is used)
+(Note: discussions below assumes React v16.2 or lower version that supports React.createRef)
 
 ### Why do we need it?
 React components wrap up DOM element to give encapsulations:
@@ -97,11 +97,11 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
         } 
       ```
       
-     * Ref will not work against function component
+     * Ref assigned to a function component
       
       ```js
-        function MyFunctionComponent() {
-          return <input />;
+        function MyFunctionComponent({ innerRef }) {
+          return <input type="text" ref={innerRef} />;
         }
 
         class Parent extends React.Component {
@@ -109,13 +109,20 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
             super(props);
             this.textInput = React.createRef();
           }
+
+          textInputFocus = () => {
+            this.textInput.current.focus();
+          };
+
           render() {
-            // This will *not* work!
             return (
-              <MyFunctionComponent ref={this.textInput} />
+              <>
+                <MyFunctionComponent innerRef={this.textInput} />
+                <button onClick={this.textInputFocus}>Click me</button>
+              </>
             );
           }
-        }      
+        }     
       ```
 
   * Access DOM from inside a function component
@@ -178,8 +185,7 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
         }    
       ```
       
-### Conclusion
-The rule is simple - **ONLY USE ref on class Component wherever it is used (either from inside a class or function component)**
+
     
     
     
