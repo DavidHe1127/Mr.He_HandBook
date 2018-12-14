@@ -4,6 +4,7 @@
 
 * [Why do we need it?](#why-do-we-need-it)
 * [How can we access it?](#how-can-we-access-it)
+* [InnerRef workaround](#innerref-workaround)
 * [Forwarding Refs (React 16.3 and above)](#forwarding-refs)
 
 ### why-do-we-need-it
@@ -188,6 +189,11 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
           );
         }    
       ```
+      
+### innerref-workaround
+As per react docs, the `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don’t receive the ref argument, and ref is not available in props either. This explains why we need `innerRef` as workaround to access DOM node.
+
+For use case, see above `Ref assigned to a class component (where innerRef comes into play)`.
 
 ### forwarding-refs
 With help of `forwardRef`, you don't have to use `innerRef` technique anymore to gain access to underlying DOM node.
