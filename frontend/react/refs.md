@@ -2,7 +2,11 @@
 
 **Note: discussions below assumes React v16.2 or lower version that supports React.createRef. As of React 16.3 and above, Forwarding Ref is supported and it will be discussed as well**
 
-### Why do we need it?
+* [Why do we need it?](#why-do-we-need-it)
+* [How can we access it?](#how-can-we-access-it)
+* [Forwarding Refs (React 16.3 and above)](#forwarding-refs)
+
+### why-do-we-need-it
 React components wrap up DOM element to give encapsulations:
 
 ```js
@@ -24,7 +28,7 @@ But sometimes, we need to be able to access underlying DOM i.e manage button foc
 Thus, we need a way to reference DOM elements.
 
 
-### How can we access it?
+### how-can-we-access-it
 
 DOM is not always accessible via using `Ref`. Below, we will discuss a few different scenarios where DOM can be accessed. Besides, the case where DOM isn't accessible.
 
@@ -184,8 +188,8 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
           );
         }    
       ```
-      
 
+### forwarding-refs
     
     
     
