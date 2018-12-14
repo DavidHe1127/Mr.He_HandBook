@@ -190,8 +190,36 @@ DOM is not always accessible via using `Ref`. Below, we will discuss a few diffe
       ```
 
 ### forwarding-refs
+With help of `forwardRef`, you don't have to use `innerRef` technique anymore to gain access to underlying DOM node.
     
-    
+```js
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} onClick={props.onClick} >
+    {props.children}
+  </button>
+));
+
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.button = React.createRef();    
+  }
+
+  buttonClick = () => {
+    // <button>Click me</button>
+    console.log(this.button.current);
+  }
+
+  render() {
+    // This will *not* work!
+    return (
+      <>
+        <FancyButton onClick={this.buttonClick} ref={this.button}>Click me</FancyButton>
+      </>
+    );
+  }
+}
+```
     
   
    
