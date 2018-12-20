@@ -6,6 +6,7 @@
 * [How can we access it?](#how-can-we-access-it)
 * [InnerRef workaround](#innerref-workaround)
 * [Forwarding Refs (React 16.3 and above)](#forwarding-refs)
+* [Uncover mystery](#uncover-mystery)
 
 ### why-do-we-need-it
 React components wrap up DOM element to give encapsulations:
@@ -226,6 +227,32 @@ class Parent extends React.Component {
   }
 }
 ```
-    
+
+### uncover-mystery
+ 
+In order for a component to access `ref` passed to it, you need:
+ 
+```js
+const ComponentWithRef = React.forwardRef((props, ref) => {
+  return <Component forwardRef={ref} {...props} />;
+});
+
+// now you can pass ref
+<ComponentWithRef ref={this.button} />
+```
+ 
+No matter how deep `ref` can go, you will always need to access it from and pass it further down via `forwardRef` until the point where you reach either a `DOM node` or another `Component` wrapped up inside `React.forwardRef` where you access it from `forwardRef` but pass it down via `ref`. `Styled-Components` implements `forwarding ref` technique that is why styled components accept `ref`.
+ 
+```js
+// forwarding ref down
+<InnerRef forwardRef={this.props.forwardRef} />
+ 
+// DOM node
+<div ref={this.props.forwardRef} />
+// other components that have forwarding ref implemented so that ref is available from inside them
+<StyledComponent ref={this.props.forwardRef } />
+```
+
+[Demo on codesandbox](https://codesandbox.io/s/v0n9jx9xl5)    
   
    
