@@ -5,6 +5,7 @@
 * [PeerDependency](#peer-dependency)
 * [Semver](#semantic-versioning)
 * [Scoped Packages](#scoped-packages)
+* [Show pkg latest version](#show-pkg-latest-version)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -81,6 +82,10 @@ By default, npm installs the latest version, and prepends a caret e.g. `^1.2.12`
 * `@storybook/react` indicates it is published by `storybook` core team.
 * `@storybook/react` only has to be unique in the scope `storybook` it's published in not the entire npm registry.
 
+### show-pkg-latest-version
+```js
+npm show <PKG> version
+```
 
 
 
