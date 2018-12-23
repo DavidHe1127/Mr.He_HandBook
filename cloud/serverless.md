@@ -1,6 +1,6 @@
 
 
-* (Print resolved variables)[#print_resolved_variables]
+* [Print resolved variables](#print_resolved_variables)
 
 ### print_resolved_variables
 
