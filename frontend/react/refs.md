@@ -241,7 +241,7 @@ const ComponentWithRef = React.forwardRef((props, ref) => {
 <ComponentWithRef ref={this.button} />
 ```
  
-No matter how deep `ref` can go, you will always need to access it from and pass it further down via `forwardRef` until the point where you reach either a `DOM node` or another `Component` wrapped up inside `React.forwardRef` where you access it from `forwardRef` but pass it down via `ref`. `Styled-Components` implements `forwarding ref` technique that is why styled components accept `ref`.
+No matter how deep `ref` goes, you will always need to access it from and pass it further down via `forwardRef` until the point where you reach either a `DOM node` or another `Component` wrapped up inside `React.forwardRef` where you access it from `forwardRef` but pass it down via `ref`. `Styled-Components` implements `forwarding ref` technique that is why styled components accept `ref`.
  
 ```js
 // forwarding ref down
