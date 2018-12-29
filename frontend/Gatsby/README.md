@@ -1,6 +1,6 @@
-* `/pages` contains files acting as path-based routes. i.e `src/pages/index.jsx` is mapped to `yoursite.com` and `src/pages/about.jsx` becomes `yoursite.com/about/`. Pages support running `graphql` queries.
+* `/pages` contains files used to create static pages i.e `src/pages/index.jsx` is mapped to `yoursite.com` and `src/pages/about.jsx` becomes `yoursite.com/about/`. Pages support running `graphql` queries.
 
-* `/templates` contains files used to create pages programmatically. i.e `/blogs/:slug` is a dynamic page (route).
+* `/templates` contains files used to create dynamic pages (create pages programmatically). i.e `/blogs/:slug` is a dynamic page (route).
 
 ```js
 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
