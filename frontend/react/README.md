@@ -24,6 +24,7 @@
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Compound Components](#compound-components)
 * [Refs](./refs.md)
+* [Pass props to parent children](#props-forwarding-to-children)
 
 ## Styled-components
 * [Styled-components](./styled-components.md)
@@ -305,3 +306,20 @@ export class Main extends Component {
 <Main.B></Main.B>
 ```
 [Compound Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
+
+# props-forwarding-to-children
+```js
+import React, { Children, cloneElement } from 'react';
+
+const Parent = ({children}) => {
+  const arrayOfChildren = Children.toArray(children);
+  
+  return (
+    <>
+      {arrayOfChildren.map(x => {
+        return cloneElement(x, {disabled: true});
+      })}
+    </>
+  );
+};
+```
