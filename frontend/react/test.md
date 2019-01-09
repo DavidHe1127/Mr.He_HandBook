@@ -10,7 +10,7 @@ it('calls onChange with the new value when the value has changed', () => {
   const ref = React.createRef();
   const wrapper = mount(
      <div>
-       <Input theme={defaultTheme} ref={ref} onChange={changeHandlerSpy} />
+       <Input ref={ref} />
      </div>
   );
   
