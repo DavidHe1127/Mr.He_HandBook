@@ -24,6 +24,7 @@
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Compound Components](#compound-components)
 * [Refs](./refs.md)
+* [Tests](./test.md)
 * [Pass props to parent children](#props-forwarding-to-children)
 
 ## Styled-components
