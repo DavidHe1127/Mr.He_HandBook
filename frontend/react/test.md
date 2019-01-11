@@ -24,15 +24,10 @@ Oftentimes, you use 3rd UI libraries and still want to pass `ref` to them. It's 
 import ReactDayPicker from 'react-day-picker';
 
 it('pass ref to access dom node', () => {
-	const ref = React.createRef();
-	mount(
-		<div>
-			<DatePicker ref={ref} />
-		</div>
-	);
-
-	const res = ReactTestUtils.isCompositeComponentWithType(ref.current, ReactDayPicker);
-	expect(res).toBe(true);
+  const ref = React.createRef();
+  mount(<div><DatePicker ref={ref} /></div>);
+  const res = ReactTestUtils.isCompositeComponentWithType(ref.current, ReactDayPicker);
+  expect(res).toBe(true);
 });
 ```
 
