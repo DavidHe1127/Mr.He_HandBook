@@ -18,7 +18,7 @@ it('calls onChange with the new value when the value has changed', () => {
   expect(ref.current.tagName).toEqual('INPUT');
 });
 ```
-Oftentimes, you use 3rd UI libraries and still want to pass `ref` to them. It's fine but where `ref` is bound to is controlled by libraries themselves. For example, `react-day-picker` takes `ref` and will attach it to a internal component called `DayPicker`.
+Oftentimes, you use 3rd UI libraries and still want to pass `ref` to them. It's fine but where `ref` is bound to is controlled by libraries themselves. For example, `react-day-picker` takes `ref` and attaches it to the class instance called `DayPicker`.
 
 To ensure you pass `ref` to it, you can do:
 
