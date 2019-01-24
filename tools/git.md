@@ -32,6 +32,7 @@
   * [Ignore tracked file](#ignore-tracked-file)
   * [Remove node_modules committed by mistake](#remove-node_modules)
   * [See all tags with tagged messages](#tags-messages)
+  * [Revert vs Reset](#revert-vs-reset)
 
 # create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -197,3 +198,7 @@ git rm -r --cached node_modules
 ```
 git tag -n99
 ```
+
+# revert-vs-reset
+`git revert <insert bad commit hash here>`
+`git revert` creates a new commit with the changes that are rolled back. `git reset` erases your git history instead of making a new commit.
