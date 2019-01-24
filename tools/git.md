@@ -201,4 +201,5 @@ git tag -n99
 
 # revert-vs-reset
 `git revert <insert bad commit hash here>`
+
 `git revert` creates a new commit with the changes that are rolled back. `git reset` erases your git history instead of making a new commit.
