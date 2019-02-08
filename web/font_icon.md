@@ -21,4 +21,5 @@ The idiomatic way is
     ```
  See [this guide](https://survivejs.com/webpack/loading/fonts/) for fonts bundling in webpack 
 
-
+### Which formats do I need to support?
+If you intend to support most modern browsers, then use `woff` and `woff2`. `otf` and `ttf` are old school font families.
