@@ -10,3 +10,6 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 ### React
   * [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
 
+### Misc
+  * [Mock data generator & API](https://mockaroo.com/)
+
