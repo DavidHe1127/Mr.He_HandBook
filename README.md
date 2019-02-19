@@ -12,4 +12,5 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 
 ### Misc
   * [Mock data generator & API](https://mockaroo.com/)
+  * [Disposable temporary email](https://mailinator.com/)
 
