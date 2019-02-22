@@ -12,6 +12,7 @@ A few things to note
 * `parent` argument in the 2nd resolvers will be `{id: 'abc', name: 'Sarah'}` which is returned from 1st resolver
 * Step 3 and 4 happen in parallel
 * No need for fields id and name to have resolvers, since they are really easy to be inferred by `GraphQL.js`
+* If a field is another type, then the resolver for that type will be run to resolve it until the scalar type is finally reached
 
 ### graphql-middleware-jobs
 Graphql middleware like `apollo-server-restify` basically does two things:
