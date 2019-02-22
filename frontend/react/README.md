@@ -30,6 +30,8 @@
 ## Styled-components
 * [Styled-components](./styled-components.md)
 
+## JSS
+* [Elegant media queries](./media-queries-jss.md)
 
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
