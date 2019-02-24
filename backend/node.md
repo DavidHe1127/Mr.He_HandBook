@@ -13,6 +13,7 @@
   * [Graceful shutdown](./links/graceful_shutdown.md)
   * [Manage Environment Variables](#manage-env-vars)
   * [Hoisting import](#hoisting-import)
+  * [logging](#logging)
 
 ### module-loading
 ```javascript
@@ -61,6 +62,8 @@ export default firebase;
 ```
 Execution will print `1333` followed by `11`.
 
+### logging
 
+The target should always be the standard output/error. It is not the responsibility of the application to route logs.
 
 
