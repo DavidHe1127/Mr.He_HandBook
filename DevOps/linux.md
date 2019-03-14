@@ -14,6 +14,7 @@
 * [ssh config file](#ssh-config-file)
 * [scp file to EC2](#scp)
 * [double dash in command](#double-dash)
+* [Find and kill process](#find-kill-process)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -142,6 +143,19 @@ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```bash
 grep -- -v xxx
 ```
+
+### find-kill-process
+Works on OS X
+
+```bash
+> lsof -i:8000
+> kill PID
+```
+
+
+
+
+
 
 
 
