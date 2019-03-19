@@ -40,3 +40,5 @@ class Red extends Component {
   }
 }
 ```
+
+[Original link](https://hackernoon.com/how-to-use-the-new-react-context-api-fce011e7d87)
