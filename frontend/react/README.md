@@ -26,6 +26,7 @@
 * [Refs](./refs.md)
 * [Tests](./test.md)
 * [Pass props to parent children](#props-forwarding-to-children)
+* [React Context](./context.md)
 
 ## Styled-components
 * [Styled-components](./styled-components.md)
