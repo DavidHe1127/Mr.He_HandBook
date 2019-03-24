@@ -12,6 +12,7 @@
 ### unicode
 * A huge set of unique codes for all characters.
 * Represents as `U+<codepoint>`. i.e `鱼` is `U+9C7C`
+* [Unicode](http://www.ruanyifeng.com/blog/2014/12/unicode.html)
 
 ### utf-8
 * `UTF-8` implements `unicode`
