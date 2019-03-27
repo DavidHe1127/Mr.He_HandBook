@@ -4,6 +4,9 @@ Webpack tips & notes
 
 ### require-context
 ```js
+// working
+require.context('./templates', false, /\*.js/);
+
 var regexp = /^\.\/.*\.js$/;
 var req = require.context("./templates", false, regexp);   // Uncaught Error
 
