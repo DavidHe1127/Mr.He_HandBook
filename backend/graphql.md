@@ -3,6 +3,7 @@
 * [Query Resolver](#query-resolver)
 * [GraphQL middleware jobs](#graphql-middleware-jobs)
 * [N+1 problem](#n+1-problem)
+* [Resolver Deisgn](#resolver-design)
 
 ### query-resolver
 ![Query Execution](./links/query_execution.png)
@@ -15,15 +16,13 @@ A few things to note
 * If a field is another type, then the resolver for that type will be run to resolve it until the scalar type is finally reached
 * GraphQL server has a default resolver will look in root to find a property with the same name as the field. So you don't have to specify resolvers for every single filed:
 
-```css
+```graphql
 query user {
   user {
     name # don't need a resolver and default resolver will find out what needs to return by looking at root - which is user object containing name field
   }
 }
 ```
-
-
 
 ### graphql-middleware-jobs
 Graphql middleware like `apollo-server-restify` basically does two things:
@@ -76,3 +75,43 @@ query getUserList {
 ```
 
 As you would expect, `User.address` resolver is executed `N` times resulting in multiple access to data store!!!
+
+### resolver-design
+Don't do this:
+```graphql
+export default {
+  Query: {
+    event: async (root, { id }) => await getEvent(id)
+  },
+  Event: {
+    attendees: async (root, { id }) => await getAttendeesFromEvent(id)
+  }
+}
+```
+Do this
+```graphql
+export default {
+  Query: {
+    event: (root, { id }) => ({ id })
+  },
+  Event: {
+    title: async ({ id }) => {
+      const {title} = await getEvent(id);
+    },
+    attendees: async ({ id }) => await getAttendeesFromEvent(id)
+  }
+}
+```
+The problem with first design is you still need to fetch entire event object even though users only ask for event attendees. i.e
+```graphql
+{
+  event(id: "xxx") {
+    attendees
+  }
+}
+```
+
+
+
+
+
