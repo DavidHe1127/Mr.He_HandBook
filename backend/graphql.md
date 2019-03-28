@@ -13,6 +13,17 @@ A few things to note
 * Step 3 and 4 happen in parallel
 * No need for fields id and name to have resolvers, since they are really easy to be inferred by `GraphQL.js`
 * If a field is another type, then the resolver for that type will be run to resolve it until the scalar type is finally reached
+* GraphQL server has a default resolver will look in root to find a property with the same name as the field. So you don't have to specify resolvers for every single filed:
+
+```js
+query user {
+  user {
+    name # don't need a resolver and default resolver will find out what needs to return by looking at root - which is user            # object containing name field
+  }
+}
+```
+
+
 
 ### graphql-middleware-jobs
 Graphql middleware like `apollo-server-restify` basically does two things:
