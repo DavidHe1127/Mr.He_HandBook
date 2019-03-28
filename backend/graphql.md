@@ -15,7 +15,7 @@ A few things to note
 * If a field is another type, then the resolver for that type will be run to resolve it until the scalar type is finally reached
 * GraphQL server has a default resolver will look in root to find a property with the same name as the field. So you don't have to specify resolvers for every single filed:
 
-```js
+```css
 query user {
   user {
     name # don't need a resolver and default resolver will find out what needs to return by looking at root - which is user            # object containing name field
