@@ -18,7 +18,7 @@ A few things to note
 ```css
 query user {
   user {
-    name # don't need a resolver and default resolver will find out what needs to return by looking at root - which is user            # object containing name field
+    name # don't need a resolver and default resolver will find out what needs to return by looking at root - which is user object containing name field
   }
 }
 ```
