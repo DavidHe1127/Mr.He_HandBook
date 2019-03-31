@@ -13,4 +13,5 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 ### Misc
   * [Mockaroo - Mock data generator & API](https://mockaroo.com/)
   * [Mailinator - Disposable temporary email](https://mailinator.com/)
+  * [Majestic - 0 config test GUI](https://github.com/Raathigesh/majestic)
 
