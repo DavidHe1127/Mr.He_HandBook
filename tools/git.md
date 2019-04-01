@@ -116,7 +116,8 @@ git stash clear //remove all stashed changes
 git stash show -p stash@{1} //view stash without applying it
 git stash save tweaks on dtm // save is mandatory for adding custom message to stashed changes
 
-git stash push <FILE_PATH> // stash a specific file only
+git stash push <FILE_PATH> // stash a single file only
+git stash save <YOUR_MESSAGE> push <FILE_PATH> // stash a single file with messages
 ```
 
 # unstage
