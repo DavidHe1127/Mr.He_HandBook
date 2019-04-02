@@ -6,7 +6,6 @@
 * [Why use PropTypes](#why-use-proptypes)
 * [Component VS Element](#component-vs-element)
 * [Event Listeners](#event-listeners)
-* [Lifecycle Event Hooks](#lifecycle-hooks)
 * [Smart vs Dumb Components](#smart-vs-dumb)
 * [Prevent unnecessary re-rendering](#prevent-unnecessary-rerendering)
 * [Avoid inadvertent mounting/unmounting](./avoid_inadvertent_mounting_unmounting.md)
@@ -22,10 +21,11 @@
 * [Use controlled component widely](#use-controlled-component-widely)
 * [JSX Control Statement](#jsx-control-statement)
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
-* [Compound Components](#compound-components)
+* [Composite Components](#composite-components)
 * [Refs](./refs.md)
 * [Tests](./test.md)
 * [Pass props to parent children](#props-forwarding-to-children)
+* [Pass param to event handler](#pass-param-to-event-handler)
 * [React Context](./context.md)
 
 ## Styled-components
@@ -48,34 +48,6 @@ Use `propTypes` on all occasions - You can use it to document your components. Y
 ### component-vs-element
 * React element is an object representation of a DOM node and its properties
 * A component is a function or a Class which optionally accepts input and returns a React element.
-
-### lifecycle-hooks
-
-|Initialization   |Mounting           |State or Props updating  |Unmounting|
-| -------- |:---------------:|:---------------:| --------:|
-|getDefaultProps   |constructor|componentWillReceiveProps(props update only)|componentWillUnmount
-|getInitialState   |componentWillMount|shouldComponentUpdate|
-|                  |componentDidMount|componentWillUpdate|
-|                  |                  |render|
-|                  |                  |componentDidUpdate|
-
-#### Init
----
-`getDefaultProps` - set default props if parents not pass it down
-
-#### Mounting
----
-`constructor` - initialize `states`
-`componentWillMount` - setState will not re-render
-`componentDidMount` - fetch data
-
-#### Updating
----
-`componentWillReceiveProps` - setState will not trigger additional re-render / place to access old props
-`shouldComponentUpdate` - return true/false def true. if false methods below won't be called - see example below
-`componentWillUpdate` - DO NOT use setState() in
-`render`
-`componentDidUpdate`  - updated DOM interactions and post-render actions go here. **NO setState otherwise it might cause infinite loop**
 
 ### smart-vs-dumb
 It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
@@ -252,8 +224,6 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 { test ? <span>Truth</span> : null }
 ```
 
-
-
 ### react-import-need-for-stateless-component
 Code below:
 ```js
@@ -275,7 +245,7 @@ var App = function App() {
 ```
 See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
 
-### compound-components
+### composite-components
 Say components `A` and `B` will nowhere be used individually, it makes sense only when they're used with `Main`. And for better maintainability you prefer managing them in different files. So you can use this trick below to achieve what you expect.
 ```js
 // A.js
@@ -309,9 +279,32 @@ export class Main extends Component {
 <Main.A></Main.A>
 <Main.B></Main.B>
 ```
-[Compound Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
+[Composite Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
 
-# props-forwarding-to-children
+### pass-param-to-event-handler
+```js
+// instead of doing this
+<li onClick={() => this.handleClick(letter)}>{letter}</li>
+
+// do this
+<ul>
+  {this.state.letters.map(letter =>
+    <li key={letter} data-letter={letter} onClick={this.handleClick}>
+      {letter}
+    </li>
+  )}
+</ul>
+...
+// handler
+handleClick(e) {
+  this.setState({
+    justClicked: e.target.dataset.letter
+  });
+}
+```
+
+
+### props-forwarding-to-children
 ```js
 import React, { Children, cloneElement } from 'react';
 
