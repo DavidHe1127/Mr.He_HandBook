@@ -296,7 +296,7 @@ export class Main extends Component {
 </ul>
 ...
 // handler
-handleClick(e) {
+handleClick = e => {
   this.setState({
     justClicked: e.target.dataset.letter
   });
