@@ -5,6 +5,7 @@
 * [Linux](./linux.md)
 * [SSL](./ssl.md)
 * [App Scaling](./scale_your_app.md)
+* [K8S](./k8s.md)
 * AWS
   * [ELB](./elb.md)
   * [EC2 & EBS](./ec2_ebs.md)
