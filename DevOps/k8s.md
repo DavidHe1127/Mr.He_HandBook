@@ -14,7 +14,7 @@ Basic Concepts, learning resources and best practices
 * It intelligently handles distributing work to the individual nodes for you when deploying your program onto cluster.
 
 #### Persistent volumes
-* Files and app data cannot be saved into local fs on pod since app might be running on a different pod everytime it needs to run.
+* Files and app data cannot be saved into local `fs` on pod since app might be running on a different pod everytime it needs to run.
 * Local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster.
 * Persistent Volumes provide a file system that can be mounted to the cluster, without being associated with any particular node.
 
