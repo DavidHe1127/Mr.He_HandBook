@@ -25,4 +25,4 @@
    * Global SI - An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
    * Local SI - An index that has the **same** partition key as the table, but a different sort key. Max no. on a table - 5
 
-![XX](./dynamoDB-2nd-index.jpg)
+![XX](./dynamoDB-2nd-index.png)
