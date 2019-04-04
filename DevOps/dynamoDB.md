@@ -7,6 +7,19 @@
 
 ### core-concept
 
+#### partition
+
+* An allocation of storage for a table backed by SSD and auto replicated across multiple AZs within a region
+* AWS allocates additional partitions when:
+  * If you increase the table's provisioned throughput settings beyond what the existing partitions can support.
+  * If an existing partition fills to capacity and more storage space is required.
+* GSI in DynamoDB are also composed of partitions.
+* When writing data, partition key will be used to determine which partition the data will be stored.
+* When reading data, partition key will be used to determine which partition the data can be found.
+* Choose a partition key that can have a large number of distinct values relative to the number of items in the table.
+* Items with the same partition key value are stored physically close together, ordered by sort key value.
+![xxx](./dynamoDB-partition-data-distribution.png)
+
 #### primary-key
 
 * Only key-related attributes need to be defined beforehand. No need put non-key attributes in definition. i.e cloudformation template. 
@@ -25,9 +38,9 @@
 * 2 types
    * Global SI - An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
    * Local SI - An index that has the **same** partition key as the table, but a different sort key. Max no. on a table - 5
-![XX](./dynamoDB-2nd-index.png)
+   ![XX](./dynamoDB-2nd-index.png)
 
-At a minimum, DynamoDB projects the key attributes from base table into the index.
+   At a minimum, DynamoDB projects the key attributes from base table into the index.
 
 #### Streams
 ![XX](./dynamoDB-streams.png)
