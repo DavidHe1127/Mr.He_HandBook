@@ -3,6 +3,7 @@
 * [Core Concept](#core-concept)
  * [Primary Key](#primary-key)
  * [Secondary Indexs](#secondary-index)
+ * [Streams](#streams)
 
 ### core-concept
 
@@ -24,5 +25,9 @@
 * 2 types
    * Global SI - An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
    * Local SI - An index that has the **same** partition key as the table, but a different sort key. Max no. on a table - 5
-
 ![XX](./dynamoDB-2nd-index.png)
+
+At a minimum, DynamoDB projects the key attributes from base table into the index.
+
+#### Streams
+![XX](./dynamoDB-streams.png)
