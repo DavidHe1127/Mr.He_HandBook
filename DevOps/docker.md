@@ -1,12 +1,18 @@
 * Docker
+  * [Basics](#basics)
   * [Dockerfile tips](#dockerfile-tips)
+  * [Enter the container](#enter-the-container)
+  * [Use multi-stage build](#use-multi-stage-build)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
   * [Running Compose in background mode](#run-in-detached-mode)
-  * [Enter the container](#enter-the-container)
-  * [Use multi-stage build](#use-multi-stage-build)
 
+### basics
+Typically, we talk about 2 things when working with docker - Docker Client and Docker Server.
+`Docker Client(cli) talks to Docker Server(daemon) via rest api`.
+
+![./docker-arch](docker-arch)
 
 ### dockerfile-tips
 * Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
