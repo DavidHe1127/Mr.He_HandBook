@@ -10,6 +10,7 @@
 
 ### basics
 Typically, we talk about 2 things when working with docker - Docker Client and Docker Server.
+
 `Docker Client(cli) talks to Docker Server(daemon) via rest api`.
 
 ![./docker-arch](docker-arch)
