@@ -13,7 +13,7 @@ Typically, we talk about 2 things when working with docker - Docker Client and D
 
 `Docker Client(cli) talks to Docker Server(daemon) via rest api`.
 
-![./docker-arch](docker-arch)
+![docker-arch](./docker-arch.png)
 
 ### dockerfile-tips
 * Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
