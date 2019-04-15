@@ -4,3 +4,5 @@ Pooled connections have TCP Keep-Alive enabled for them, but servers may still c
 
 When a connection is closed by the client or the server, it is removed from the pool. Any unused sockets in the pool will be unrefed so as not to keep the Node.js process running when there are no outstanding requests. (see socket.unref()).
 
+[Good explaining in Chinese](https://www.jianshu.com/p/cf8ce464c8a0)
+
