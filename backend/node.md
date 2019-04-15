@@ -6,6 +6,7 @@
   * [Scaling and load balancing](./links/scaling_load_balancing.md)
   * [Web Caching](./links/web_caching.md)
   * [Streams](./links/stream.md)
+  * [HTTP Agent](./links/http_agent.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
 * Best Practice
