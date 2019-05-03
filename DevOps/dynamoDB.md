@@ -37,7 +37,7 @@
 * Allow query data using an alternate key in addition to queries against the PK
 * GSI
   * An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
-  * **must** have a partition key and can have a sort key.
+  * **Must** have a partition key and can have a sort key.
   * Cannot fetch attributes from base table! Make sure you choose the right projected attributes.
   * Key attributes projected automatically.
 * LSI
