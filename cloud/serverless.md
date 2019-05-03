@@ -1,4 +1,4 @@
-* [Best practice](#best practice)
+* [Best practice](#best_practice)
 
 ### best practice
 
