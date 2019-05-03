@@ -30,15 +30,20 @@
                                `Partition key` determines where data is stored whereas `sort key` determines sorted order.
                                For tables with composite primary key, partition key can be the same but sort key must be different.
 
-#### secondary-key
+#### secondary-index
 
 * Provide more querying flexibility
 * Allow 1 or more SI on a table
 * Allow query data using an alternate key in addition to queries against the PK
-* 2 types
-   * Global SI 
-     * An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
-   * Local SI - An index that has the **same** partition key as the table, but a different sort key. Max no. on a table - 5
+* GSI
+  * An index with a partition key and sort key that can be different from those on the table. Max no. on a table - 20
+  * **must** have a partition key and can have a sort key.
+  * Cannot fetch attributes from base table! Make sure you choose the right projected attributes.
+  * Key attributes projected automatically.
+* LSI
+  * An index that has the **same** partition key as the table, but a different sort key. Max no. on a table - 5
+  * Key attributes projected automatically.
+  * Can fetch from base table for non-projected attributes in index at a greater latency and with higher provisioned throughput costs.
    ![XX](./dynamoDB-2nd-index.png)
 
    At a minimum, DynamoDB projects the key attributes from base table into the index.
