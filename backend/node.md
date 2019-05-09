@@ -71,7 +71,10 @@ The logging output target should always be the standard output/error. It is not 
 ### exec_script_from_command_line
 
 ```shell
-node -e 'require("./db").init()'
+$ node -e 'require("./db").init()'
+
+// or in npm script
+"go": "node -e 'require(\"shelljs\")'",
 ```
 
 
