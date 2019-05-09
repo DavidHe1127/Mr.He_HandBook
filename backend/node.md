@@ -9,6 +9,7 @@
   * [HTTP Agent](./links/http_agent.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
+  * [Exec script from command line](#exec-script-from-command-line)
 * Best Practice
   * [Production Deployment](./links/production_deployment_tips.md)
   * [Graceful shutdown](./links/graceful_shutdown.md)
@@ -65,6 +66,12 @@ Execution will print `1333` followed by `11`.
 
 ### logging
 
-The target should always be the standard output/error. It is not the responsibility of the application to route logs.
+The logging output target should always be the standard output/error. It is not the responsibility of the application to route logs.
+
+### exec_script_from_command_line
+
+```shell
+node -e 'require("./db").init()'
+```
 
 
