@@ -6,7 +6,7 @@
 * [Semver](#semantic-versioning)
 * [Scoped Packages](#scoped-packages)
 * [Show pkg latest version](#show-pkg-latest-version)
-* [Cli searching path](#cli-searching-path)
+* [Cli searching rule](#cli-searching-rule)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -88,7 +88,7 @@ By default, npm installs the latest version, and prepends a caret e.g. `^1.2.12`
 npm show <PKG> version
 ```
 
-### cli-searching-path
+### cli-searching-rule
 In a mono repo (managed by lerna) case, `yarn` will look up in the locations as below to find the targeted cli. Lower numbered location will be searched first before looking at higher numbered ones.
 
 1. `packages/pkgA/node_modules/.bin`
