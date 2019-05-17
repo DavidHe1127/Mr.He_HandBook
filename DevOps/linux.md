@@ -148,6 +148,9 @@ Works on OS X
 ```
 
 ### find-kill-process
+
+Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
+
 ![File Descriptors](./file-descriptor.png)
 
 
