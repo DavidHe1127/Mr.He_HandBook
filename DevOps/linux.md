@@ -1,5 +1,4 @@
 * [Shell Definition](#shell-def)
-* [Make a dir and cd into it with one liner](#mkdir-cdinto-it)
 * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 * [Environment Variable](#env-var)
 * [ls output explained](#ls)
@@ -15,15 +14,11 @@
 * [scp file to EC2](#scp)
 * [double dash in command](#double-dash)
 * [Find and kill process](#find-kill-process)
+* [File Descriptor](#find-kill-process)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
 We open a shell window via terminal.
-
-### mkdir-cdinto-it
-```js
-mkdir /home/foo/doc/bar && cd $_
-```
 
 ### ctrld-ctrlc
 * `ctrl+d` on an empty line stops the current standard input entry from terminal. 
@@ -62,7 +57,7 @@ $ ls --help
 ```
 
 ### input-output
-To send output of a command to a file rather than terminal:
+To send output of a command to a **file** rather than terminal:
 ```
 $ command > file
 ```
@@ -139,7 +134,7 @@ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```
 
 ### double-dash
-`--` means the end of command options i.e `-v, -i, -s` etc. So `-v` here is considered to be a string rather than a command option. In this example, we simply grep string `-v` in side file `xxx`.
+`--` means the end of command options i.e `-v, -i, -s` etc. So `-v` here is considered to be a string rather than a command option. In this example, we simply grep string `-v` inside file `xxx`.
 ```bash
 grep -- -v xxx
 ```
@@ -152,7 +147,8 @@ Works on OS X
 > kill PID
 ```
 
-
+### find-kill-process
+![File Descriptors](./file-descriptor.png)
 
 
 
