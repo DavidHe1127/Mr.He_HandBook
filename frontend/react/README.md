@@ -226,7 +226,7 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 ```
 
 ### local-state-or-prop
-> If a lifetime of the data is the same as the component’s lifetime, the data should belong to the component’s state. If the > data lives longer than the component, it should be received as a prop and might be a member of some upper component state. > Only the data living longer than any particular component should be stored globally.
+> If a lifetime of the data is the same as the component’s lifetime, the data should belong to the component’s state. If the   data lives longer than the component, it should be received as a prop and might be a member of some upper component state.   Only the data living longer than any particular component should be stored globally.
 
 ### react-import-need-for-stateless-component
 Code below:
