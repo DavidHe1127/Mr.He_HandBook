@@ -6,7 +6,6 @@
 * [Why use PropTypes](#why-use-proptypes)
 * [Component VS Element](#component-vs-element)
 * [Event Listeners](#event-listeners)
-* [Smart vs Dumb Components](#smart-vs-dumb)
 * [Prevent unnecessary re-rendering](#prevent-unnecessary-rerendering)
 * [Avoid inadvertent mounting/unmounting](./avoid_inadvertent_mounting_unmounting.md)
 * [Why need keys](#why-need-keys)
@@ -49,9 +48,6 @@ Use `propTypes` on all occasions - You can use it to document your components. Y
 ### component-vs-element
 * React element is an object representation of a DOM node and its properties
 * A component is a function or a Class which optionally accepts input and returns a React element.
-
-### smart-vs-dumb
-It is a common best practice to create several stateless components that just render data, and have a stateful component wrapping them that passes its state to the children via props. This way you can encapsulate all the interaction logic in one place — the stateful component — , while the stateless components take care of rendering data in a declarative way.
 
 ### event-listeners
 React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
