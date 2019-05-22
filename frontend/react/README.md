@@ -201,7 +201,7 @@ const FKEventCompetitorProperty = {
 ```
 
 ### finddomnode-only-works-on-classical-component
-`findDOMNode` only works on mounted component that why it only works on **classical** component not stateless component.
+`findDOMNode` only works on mounted component that why it only works on **classical** component not functional component.
 
 ### use-shouldcomponentupdate-correctly
 `shouldComponentUpdate` is best used as a performance optimization, not to ensure correctness of derived state.
