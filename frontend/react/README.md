@@ -20,6 +20,7 @@
 * [Use shouldComponentUpdate correctly](#use-shouldcomponentupdate-correctly)
 * [Use controlled component widely](#use-controlled-component-widely)
 * [JSX Control Statement](#jsx-control-statement)
+* [local state or prop](#local-state-or-prop)
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Composite Components](#composite-components)
 * [Refs](./refs.md)
@@ -223,6 +224,9 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 // after transformation
 { test ? <span>Truth</span> : null }
 ```
+
+### local-state-or-prop
+> If a lifetime of the data is the same as the component’s lifetime, the data should belong to the component’s state. If the > data lives longer than the component, it should be received as a prop and might be a member of some upper component state. > Only the data living longer than any particular component should be stored globally.
 
 ### react-import-need-for-stateless-component
 Code below:
