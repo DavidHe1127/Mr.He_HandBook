@@ -174,7 +174,7 @@ But, consider this code below:
 npm script
 ```shell
 "go": "export VAR=foo",
-"no": "yarn go && node",
+"no": "yarn go && node", // but node is launched by 'no' not 'go'
 
 // run yarn no and printing process.env.VAR will give you undefined
 
@@ -183,8 +183,4 @@ npm script
 
 // this will set process.env.VAR to foo correctly
 ```
-
-
-
-
-
+As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` launched by `go`. As thus, the second case does the thing right.
