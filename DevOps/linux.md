@@ -16,6 +16,7 @@
 * [Find and kill process](#find-kill-process)
 * [File Descriptor](#find-kill-process)
 * [Reset var value to empty](#reset-var-value)
+* [Define and use Variables](#define-n-use-variables)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -157,6 +158,31 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 ### reset-var-value
 `HTTP_PROXY= `
 
+### define-n-use-variables
+Variables can be defined in two ways - with and without `export`:
+```shell
+$ VAR=foo // or export VAR=foo
+```
+The difference between these two is `export` will make variables available to (inherited by) other programs run by the shell that exports them.
+
+```shell
+$ VAR=foo node // process.env.VAR is foo
+$ VAR=foo && node // process.env.VAR is undefined
+$ export VAR=foo && node // process.env.VAR is foo
+```
+But, consider this code below:
+npm script
+```shell
+"go": "export VAR=foo",
+"no": "yarn go && node",
+
+// run yarn no and printing process.env.VAR will give you undefined
+
+"go": "export VAR=foo && node",
+"no": "yarn go",
+
+// this will set process.env.VAR to foo correctly
+```
 
 
 
