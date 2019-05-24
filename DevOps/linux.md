@@ -15,6 +15,7 @@
 * [double dash in command](#double-dash)
 * [Find and kill process](#find-kill-process)
 * [File Descriptor](#find-kill-process)
+* [Reset var value to empty])(#reset-var-value)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -152,6 +153,9 @@ Works on OS X
 Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
 
 ![File Descriptors](./file-descriptor.png)
+
+### reset-var-value
+`HTTP_PROXY= `
 
 
 
