@@ -170,17 +170,16 @@ $ VAR=foo node // process.env.VAR is foo
 $ VAR=foo && node // process.env.VAR is undefined
 $ export VAR=foo && node // process.env.VAR is foo
 ```
-But, consider this code below:
-npm script
+But, consider the npm script below:
 ```shell
+// run yarn go and print process.env.VAR
+
 "go": "export VAR=foo",
 "no": "yarn go && node", // but node is launched by 'no' not 'go'
 
-// run yarn no and printing process.env.VAR will give you undefined
+"go": "yarn no",
+"no": "export VAR=foo && node",
 
-"go": "export VAR=foo && node",
-"no": "yarn go",
-
-// this will set process.env.VAR to foo correctly
+// first one is undefined while second one is foo
 ```
-As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` launched by `go`. As thus, the second case does the thing right.
+As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` being launched by `no`. As thus, the second case does the thing right.
