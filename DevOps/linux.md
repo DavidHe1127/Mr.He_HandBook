@@ -15,7 +15,7 @@
 * [double dash in command](#double-dash)
 * [Find and kill process](#find-kill-process)
 * [File Descriptor](#find-kill-process)
-* [Reset var value to empty])(#reset-var-value)
+* [Reset var value to empty](#reset-var-value)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
