@@ -156,7 +156,7 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 ![File Descriptors](./file-descriptor.png)
 
 ### reset-var-value
-`HTTP_PROXY= `
+`HTTP_PROXY= ` will set `HTTP_PROXY` to an empty string.
 
 ### define-n-use-variables
 Variables can be defined in two ways - with and without `export`:
