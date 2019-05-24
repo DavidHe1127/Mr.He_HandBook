@@ -169,6 +169,7 @@ The difference between these two is `export` will make variables available to (i
 $ VAR=foo node // process.env.VAR is foo
 $ VAR=foo && node // process.env.VAR is undefined
 $ export VAR=foo && node // process.env.VAR is foo
+$ http_proxy=123 && node // process.env.http_proxy is 123 why? because http_proxy is an env var
 ```
 But, consider the npm script below:
 ```shell
