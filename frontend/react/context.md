@@ -14,6 +14,7 @@ render() {
     </AppContext.Provider>
   }
 }
+
 const Green = () => (
   <div className="green">
       <AppContext.Consumer>
@@ -21,6 +22,17 @@ const Green = () => (
       </AppContext.Consumer>
   </div>
 )
+
+// or use useContext
+const Green = () => {
+  const value = useContext(AppContext);
+  return (<div className="green">
+    {value.number}
+  </div>
+  )
+}
+
+
 const Blue = () => (
   <div className="blue">
     <Green />
