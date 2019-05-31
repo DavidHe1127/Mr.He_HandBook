@@ -92,7 +92,9 @@ class B extends React.PureComponent { // NOT HELP!!! a different onChange passed
 ```
 
 ### why-need-keys
-It is for react to determine what component in the list has changed. Use `shortid` as keys rather than `index` in the array. Using `index` as keys leads to performance issue when you
+It is for react to determine what component in the list has changed. When a key changes, React will **create a new component instance rather than update the current one**. Keys are usually used for dynamic lists not useful for fixed lists.
+
+Use `shortid` as keys rather than `index` in the array. Using `index` as keys leads to performance issue when you
 * Add new elements to the front
 * Sort the list
 
