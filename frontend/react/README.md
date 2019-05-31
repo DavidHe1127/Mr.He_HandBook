@@ -327,7 +327,7 @@ const Parent = ({children}) => {
 ### reset-all-states
 When key is changed, React will dump the current component and re-create a new one and all states are reset as a result.
 
-```react
+```js
 <EmailInput
   defaultEmail={this.props.user.email}
   key={this.props.user.id}
