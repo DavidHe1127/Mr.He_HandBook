@@ -11,4 +11,4 @@
   * [EC2 & EBS](./ec2_ebs.md)
   * [ASG & ALB](./asg_alb.md)
   * [DynamoDB](./dynamoDB.md)
-  * [Lambda](./lambda.md)
+  * [Lambda & API Gateway](./lambda_apig.md)
