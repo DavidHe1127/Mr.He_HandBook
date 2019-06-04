@@ -13,4 +13,4 @@ Easier support for promotion of new versions of Lambda functions and rollback wh
 
 Now, you can update the code (the $LATEST version) with all of your improvements, and then publish another stable and improved version (version 2). You can promote version 2 to production by remapping the PROD alias so that it points to version 2. If you find something wrong, you can easily roll back the production version to version 1 by remapping the PROD alias so that it points to version 1.
 ```
-* ![versioning_aliasing](#versioning_aliasing.png)
+* ![versioning_aliasing](#lambda_versioning_aliasing.png)
