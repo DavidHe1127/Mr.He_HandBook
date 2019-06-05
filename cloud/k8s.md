@@ -1,7 +1,6 @@
-Basic Concepts, learning resources and best practices
+K8s Basic Concepts, learning resources and best practices
 
 * [Basics](#basics)
-
 
 ### basics
 

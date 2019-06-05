@@ -1,6 +1,6 @@
 ## HTTP/2
 
-#### Multiplexing
+### Multiplexing
   * With HTTP/1.1, you can only download one resource at time. When your site needs two resources `a.css` and `b.js`, a needs to be downloaded first
     before connection to download b can be established. It is really inefficient since client and server don't do too much.
   * To mitigate this, browsers allow for opening multiple connections (typically 6-8) to download them simultaneously. But there is cost involved.
@@ -11,7 +11,7 @@
 
 ------------------------------------------------------------
 
-#### HTTPs communications between clients and servers
+### HTTPs communications between clients and servers
 SSL/TLS is implemented in the browsers (and web server) to provide confidentiality and integrity for HTTPS traffic (actual encryption of the data).
 
 * Browser connects to a web server (website) secured with SSL (https). Browser requests that the server identify itself.
@@ -21,3 +21,5 @@ SSL/TLS is implemented in the browsers (and web server) to provide confidentiali
 * Server and Browser now encrypt all transmitted data with the session key.
 
 [AWS ELB and ECS](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
+
+### HTTP status code 403 explained

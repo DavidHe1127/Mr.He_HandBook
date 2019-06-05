@@ -1,3 +1,4 @@
+## Fundamentals
 
 * [JS tags loading](#js-tags-loading)
 * [Service workder](#service-worker)

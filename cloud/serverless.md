@@ -1,3 +1,5 @@
+## Serverless
+
 * [Thin handler](#thin_handler)
 * [Supply event payload](#supply_event_payload)
 
@@ -12,7 +14,7 @@ const utils = require('../utils');
 const createUser = (event, context) => {
   const user = utils.CreateUser(event.user)
   const avatarUrl = utils.updateAvatar(user)
-  
+
   return {
     statusCode: 200,
     body: 'User Created!'
@@ -27,8 +29,3 @@ You can supply a mock file as event payload by calling cli. Helpful when your la
 ```shell
 $ sls invoke -f resizeImage -p mock.json
 ```
-
-
-
-
-

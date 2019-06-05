@@ -1,3 +1,5 @@
+## Encoding
+
 * Fundamentals
   * [ASCii](#ascii)
   * [Unicode](#unicode)

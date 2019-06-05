@@ -1,3 +1,5 @@
+## Linux
+
 * [Shell Definition](#shell-def)
 * [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 * [Environment Variable](#env-var)
@@ -24,7 +26,7 @@ Located in `/bin/sh`. A shell is a program that runs commands. The shell also se
 We open a shell window via terminal.
 
 ### ctrld-ctrlc
-* `ctrl+d` on an empty line stops the current standard input entry from terminal. 
+* `ctrl+d` on an empty line stops the current standard input entry from terminal.
 * `ctrl+c` terminates a program regardless of ites input or output.
 
 ### env-var
@@ -77,12 +79,12 @@ $ ls /fffffffffffffffff > f 2> e
 ```
 
 ### process
-A process is a running program and each process on the system has a numeric process ID(PID). 
+A process is a running program and each process on the system has a numeric process ID(PID).
 To kill a process:
 ```
 $ kill pid
 ```
-When we run `kill`, we're asking the kernal to send a signal to another process. 
+When we run `kill`, we're asking the kernal to send a signal to another process.
 
 To run a process and put it in the background (using &) which then gives you prompt back:
 ```
@@ -92,7 +94,7 @@ $ gunzip file.gz &
 ### file
 `Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
 
-`Other` permissions give everyone else on the system. 
+`Other` permissions give everyone else on the system.
 
 To see which group you are in:
 ```

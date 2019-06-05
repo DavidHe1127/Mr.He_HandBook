@@ -1,4 +1,4 @@
-Webpack tips & notes
+## Webpack tips & notes
 
 * [require.context](#require-context)
 

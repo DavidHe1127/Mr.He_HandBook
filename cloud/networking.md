@@ -6,8 +6,8 @@
 * [nc(telnet) on Mac](#nc)
 * [Ephemeral Ports](#ephemeral-ports)
 * [SSL/TLS](#ssl-tls)
+* [SSL/TLS Prot](#ssl-tls-port)
 * [CNAME record](#cname)
-
 
 ### dns-resolution-flow
 * ![DNS Resolution process](./dns_resolution_process.png)
@@ -42,7 +42,7 @@ It is a range of ports your clients randomly choose one from for a connection wi
 
 The range varies depending on different OS. For instance, Windows operating systems through Windows Server 2003 use ports `1025-5000`. Windows Server 2008 and later versions use ports `49152-65535`.
 
-Let's say your client (your machine) initiates a `ssh` connection with a remote server. 
+Let's say your client (your machine) initiates a `ssh` connection with a remote server.
 
 `192.168.1.102:37852 ---> 233.200.177.122:22`
 
@@ -58,6 +58,11 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
 
+### ssl-tls-port
+
+In a web context, a custom port can be specified for `https` other than conventional one `443` like:
+`https://www.example.com:7342/foobar.html`. If omitted, `443` will be used as default.
+
 ### cname
 | (sub)Domain/Hostname        | Record Type           | Target/Destination  |
 | ------------- |:-------------:| -----:|
@@ -66,12 +71,7 @@ Please note, for all above to work, `ssl cert` needs to be placed under a partic
 | ftp.mydomain.com | CNAME      |    mydomain.com |
 | mail.mydomain.com | CNAME | mydomain.com |
 
-Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed. 
+Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
 
 One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
-
-
-
-
-
 

@@ -1,4 +1,4 @@
-An elegant way to write media queries with JSS.
+## An elegant way to write media queries with JSS.
 
 ```
 const xsmall = '@media (max-width: 600px)';

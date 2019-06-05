@@ -1,4 +1,5 @@
-### Example
+## Example
+
 * Use `-d "{"version": "1.0.0.1"}"` to send plain json data
 * `-v` - verbose mode
 * `-o` - output response to a file. `-O` - filename in the URL will be taken and used as the filename to store result

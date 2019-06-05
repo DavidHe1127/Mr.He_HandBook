@@ -1,4 +1,4 @@
-New Context APIs
+## New Context APIs
 
 ![React Context](./context.png)
 
@@ -38,10 +38,10 @@ const Blue = () => (
     <Green />
   </div>
 )
- 
+
 class Red extends Component {
   render() {
-    return  <AppProvider> 
+    return  <AppProvider>
         <div className="red">
           <AppContext.Consumer>
             {(context) => context.number}
