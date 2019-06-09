@@ -1,6 +1,7 @@
 ## Hooks
 * [useState](#use-state)
 * [useCallback](#use-callback)
+* [Tips & Best practices](#tips-best-practices)
 
 
 ### use-state
@@ -32,3 +33,4 @@ const onClick = useCallback(e => {
 }, [setNav, value]);
 ```
 
+### tips-best-practices
