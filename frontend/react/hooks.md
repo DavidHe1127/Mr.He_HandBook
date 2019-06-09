@@ -60,3 +60,4 @@ function Example({ someProp }) {
 ```
 
 * React uses `Object.is(a, b)` to do referential equality check.
+* The function passed to `useEffect` will run after the render is committed to the screen.
