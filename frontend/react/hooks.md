@@ -34,3 +34,27 @@ const onClick = useCallback(e => {
 ```
 
 ### tips-best-practices
+```js
+// bad
+function Example({ someProp }) {
+  function doSomething() {
+    console.log(someProp);
+  }
+
+  useEffect(() => {
+    doSomething();
+  }, [someProp]);
+}
+
+// good
+function Example({ someProp }) {
+  useEffect(() => {
+    function doSomething() {
+      console.log(someProp);
+    }
+
+    doSomething();
+  }, [someProp]);
+}
+```
+
