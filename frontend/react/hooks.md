@@ -34,7 +34,7 @@ const onClick = useCallback(e => {
 ```
 
 ### tips-best-practices
-Declare functions needed by an effect inside of it.
+Declare functions needed by an effect inside of it:
 ```js
 // bad
 function Example({ someProp }) {
