@@ -5,6 +5,7 @@
   * [Dockerfile tips](#dockerfile-tips)
   * [Enter the container](#enter-the-container)
   * [Use multi-stage build](#use-multi-stage-build)
+  * [Debugging](#debugging)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
@@ -92,3 +93,9 @@ docker exec -it <container id> /bin/bash
 ### use-multi-stage-build
 [Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
 
+### debugging
+To debug a cranshed/stopped container, you can do:
+```shell
+$ docker ps -a // get container id. it prints out all containers infor default is running ones only
+$ docker logs <CONTAINER_ID> 
+```
