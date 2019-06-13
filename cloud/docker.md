@@ -88,7 +88,7 @@ redis://redis:6379
 
 ### enter running container
 ```bash
-docker exec -it <container id> /bin/bash
+docker exec -it <CONTAINER_ID> /bin/bash
 ```
 ### use-multi-stage-build
 [Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
