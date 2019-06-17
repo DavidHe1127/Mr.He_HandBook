@@ -6,6 +6,7 @@
   * [Enter running container](#enter-running-container)
   * [Use multi-stage build](#use-multi-stage-build)
   * [Debugging](#debugging)
+  * [Copy files](#copy-files)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
@@ -104,3 +105,6 @@ To debug a cranshed/stopped container, you can do:
 $ docker ps -a // get container id. it prints out all containers infor default is running ones only
 $ docker logs <CONTAINER_ID> 
 ```
+
+### copy-files
+Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
