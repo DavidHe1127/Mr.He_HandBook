@@ -92,7 +92,7 @@ docker exec -it <CONTAINER_ID> /bin/bash
 ```
 or this if it's alpine-based container
 ```bash
-docker run -it --rm alpine /bin/ash
+docker run -it --rm <IMAGE_ID/TAG> /bin/ash
 ```
 
 ### use-multi-stage-build
