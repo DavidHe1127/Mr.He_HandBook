@@ -2,7 +2,7 @@
 
 * Docker
   * [Basics](#basics)
-  * [Dockerfile tips](#dockerfile-tips)
+  * [Dockerfile](#dockerfile)
   * [Enter running container](#enter-running-container)
   * [Use multi-stage build](#use-multi-stage-build)
   * [Debugging](#debugging)
@@ -19,8 +19,14 @@ Typically, we talk about 2 things when working with docker - Docker Client and D
 
 ![docker-arch](./docker-arch.png)
 
-### dockerfile-tips
-* Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
+### dockerfile
+Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
+
+Docker images are layered. When you build a new image, Docker does this for each instruction (RUN, COPY etc.) in your Dockerfile:
+
+* Create a temporary container from the previous image layer (or the base FROM image for the first command
+* Run the Dockerfile instruction in the temporary `intermediate` container
+* Save the temporary container as a new image layer
 
 **BAD!**
 ```yml
