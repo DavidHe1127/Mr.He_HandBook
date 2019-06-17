@@ -90,6 +90,11 @@ redis://redis:6379
 ```bash
 docker exec -it <CONTAINER_ID> /bin/bash
 ```
+or this if it's alpine-based container
+```bash
+docker run -it --rm alpine /bin/ash
+```
+
 ### use-multi-stage-build
 [Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
 
