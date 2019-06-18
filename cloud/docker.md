@@ -5,7 +5,7 @@
   * [Dockerfile](#dockerfile)
   * [Enter running container](#enter-running-container)
   * [Use multi-stage build](#use-multi-stage-build)
-  * [Debugging](#debugging)
+  * [logging](#logging)
   * [Copy files](#copy-files)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
@@ -105,12 +105,18 @@ docker run -it --rm <IMAGE_ID/TAG> /bin/ash
 ### use-multi-stage-build
 [Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
 
-### debugging
-To debug a cranshed/stopped container, you can do:
+### logging
+To pull out a cranshed/stopped container logs, you can do:
 ```shell
 $ docker ps -a // get container id. it prints out all containers infor default is running ones only
 $ docker logs <CONTAINER_ID> 
 ```
+To see logs printed in real-time while running your container, you can do:
+```shell
+$ docker run -ip 3000:3000 serverless
+```
+
+
 
 ### copy-files
 Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
