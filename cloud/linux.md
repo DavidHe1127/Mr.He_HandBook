@@ -110,6 +110,7 @@ $ chmod 644 file
 ![chmod](./linux_permissions_chmod.jpg)
 
 ### host-file-purpose
+Hosts file is a simple txt file situated at `/etc/hosts` on Linux and Mac OS.
 Given `host` file below
 ```
 127.0.x.x  mydomain
