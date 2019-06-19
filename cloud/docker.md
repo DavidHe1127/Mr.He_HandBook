@@ -99,7 +99,7 @@ docker exec -it <CONTAINER_ID> /bin/bash
 ```
 or this if it's alpine-based container
 ```bash
-docker run -it --rm <IMAGE_ID/TAG> /bin/ash
+docker exec -it --rm <IMAGE_ID/TAG> /bin/ash
 ```
 
 ### use-multi-stage-build
@@ -113,7 +113,7 @@ $ docker logs <CONTAINER_ID>
 ```
 To see logs printed in real-time while running your container, you can do:
 ```shell
-$ docker run -ip 3000:3000 serverless
+$ docker exec -ip 3000:3000 serverless
 ```
 
 
