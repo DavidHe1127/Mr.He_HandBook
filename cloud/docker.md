@@ -7,6 +7,7 @@
   * [Use multi-stage build](#use-multi-stage-build)
   * [logging](#logging)
   * [Copy files](#copy-files)
+  * [Delete dangling images](#delete-dangling-images)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
@@ -116,7 +117,9 @@ To see logs printed in real-time while running your container, you can do:
 $ docker exec -ip 3000:3000 serverless
 ```
 
-
-
 ### copy-files
 Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
+
+### delete-dangling-images
+To remove images such as `<none>:<none>`, run command below:
+`$ docker rmi -f $(docker images -f "dangling=true" -q)`
