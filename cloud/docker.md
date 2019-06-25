@@ -122,4 +122,5 @@ Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker 
 
 ### delete-dangling-images
 To remove images such as `<none>:<none>`, run command below:
+
 `$ docker rmi -f $(docker images -f "dangling=true" -q)`
