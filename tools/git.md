@@ -31,8 +31,9 @@
 * Miscellaneous
   * [Ignore tracked file](#ignore-tracked-file)
   * [Remove node_modules committed by mistake](#remove-node_modules)
-  * [See all tags with tagged messages](#tags-messages)
+  * [See all tags with tagged messages](#show-tags)
   * [Revert vs Reset](#revert-vs-reset)
+  * [Create & push a tag](#create-n-push-tag)
 
 # create-branch
 Create a new branch based on `yyy` and push it to remote 
@@ -196,9 +197,15 @@ git update-index --assume-unchanged app/*.js // supports wildcard match
 git rm -r --cached node_modules
 ```
 
-# tags-messages
+# show-tags
 ```
 git tag -n99
+```
+
+# create-n-push-tag
+```
+git tag -a v1.0.0 -m "Releasing version v1.0.0"
+git push origin <tag>
 ```
 
 # revert-vs-reset
