@@ -8,6 +8,7 @@
   * [logging](#logging)
   * [Copy files](#copy-files)
   * [Delete dangling images](#delete-dangling-images)
+  * [Networking](#networking)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
   * [Use hostnames to connect to containers](#use-host-as-ref)
@@ -65,6 +66,8 @@ RUN buildDeps='gcc libc6-dev make' \
 * Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
 * Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
 * Each line of instruction should only do things relating to that layer.
+
+### networking
 
 ### mount-src-to-volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
