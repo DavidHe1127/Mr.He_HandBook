@@ -73,8 +73,8 @@ The Docker server creates and configures the host system’s **docker0** interfa
 When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
 
 Docker bridge network:
-![docker-bridge-network-01](./docker-bridge-network-01.png)
-![docker-bridge-network-02](./docker-bridge-network-02.png)
+![docker-bridge-network-01](./../docker-bridge-network-01.png)
+![docker-bridge-network-02](./../docker-bridge-network-02.tiff)
 
 
 
