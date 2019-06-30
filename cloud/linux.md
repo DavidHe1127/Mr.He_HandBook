@@ -20,6 +20,7 @@
 * [Reset var value to empty](#reset-var-value)
 * [Define and use Variables](#define-n-use-variables)
 * [Command evaluation & param sub](#command-eval-param-sub)
+* [Networking](#networking)
 
 ### shell-def
 Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
@@ -194,3 +195,7 @@ As stated above, we export `VAR` from inside `go` script and its value is only a
 LAMBDA_PORT=3000
 LAMBDA_SERVICE=`lsof -t -i :"$LAMBDA_PORT"`
 ```
+
+### networking
+* Network interface
+  * It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
