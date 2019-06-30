@@ -4,8 +4,8 @@
   * [Basics](#basics)
   * [Dockerfile](#dockerfile)
   * [Enter running container](#Enter-running-container)
-  * [Use multi-stage build](#use-multi-stage-build)
-  * [logging](#logging)
+  * [Use multi-stage build](#Use-multi-stage-build)
+  * [logging](#Logging)
   * [Copy files](#copy-files)
   * [Delete dangling images](#delete-dangling-images)
   * [Networking](#networking)
@@ -116,10 +116,10 @@ or this if it's alpine-based container
 docker exec -it --rm <IMAGE_ID/TAG> /bin/ash
 ```
 
-### use-multi-stage-build
+### Use multi-stage build
 [Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
 
-### logging
+### Logging
 To pull out a cranshed/stopped container logs, you can do:
 ```shell
 $ docker ps -a // get container id. it prints out all containers infor default is running ones only
