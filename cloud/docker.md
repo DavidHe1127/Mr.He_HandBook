@@ -1,24 +1,18 @@
 ## Docker
 
 * Docker
-  * [Basics](#basics)
+  * [Architecture](#Architecture)
   * [Dockerfile](#dockerfile)
   * [Enter running container](#Enter-running-container)
-  * [Use multi-stage build](#Use-multi-stage-build)
-  * [logging](#Logging)
-  * [Copy files](#copy-files)
-  * [Delete dangling images](#delete-dangling-images)
+  * [Logging](#Logging)
+  * [Copy files](#Copy-files)
+  * [Delete dangling images](#Delete-dangling-images)
   * [Networking](#networking)
 * Docker Compose
-  * [Mount your code as a volume to avoid image rebuilds](#mount-src-to-volume)
-  * [Use hostnames to connect to containers](#use-host-as-ref)
-  * [Running Compose in background mode](#run-in-detached-mode)
+  * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
+  * [Use hostnames to connect to containers](#Use-host-as-ref)
 
-### basics
-Typically, we talk about 2 things when working with docker - Docker Client and Docker Server.
-
-`Docker Client(cli) talks to Docker Server(daemon) via rest api`.
-
+### Architecture
 ![docker-arch](./docker-arch.png)
 
 ### dockerfile
@@ -73,13 +67,10 @@ The Docker server creates and configures the host system’s **docker0** interfa
 When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
 
 Docker bridge network:
-![docker-bridge-network-01](./../docker-bridge-network-01.png)
-![docker-bridge-network-02](./../docker-bridge-network-02.tiff)
+![docker-bridge-network-01](./docker-bridge-network-01.png)
+![docker-bridge-network-02](./docker-bridge-network-02.png)
 
-
-
-
-### mount-src-to-volume
+### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
 
 ```yml
@@ -89,7 +80,7 @@ services:
       - ./webapp:/opt/webapp
 ```
 
-### use-host-as-ref
+### Use host as ref
 By default Compose sets up a single network for your app. When you name a service in your Compose YAML, it creates a hostname that you can then use to connect to the service.
 
 ```yml
@@ -104,9 +95,6 @@ postgres://db:5432
 redis://redis:6379
 ```
 
-### run-in-detached-mode
-`docker-compose up -d`
-
 ### Enter running container
 ```bash
 docker exec -it <CONTAINER_ID> /bin/bash
@@ -116,24 +104,21 @@ or this if it's alpine-based container
 docker exec -it --rm <IMAGE_ID/TAG> /bin/ash
 ```
 
-### Use multi-stage build
-[Docker multi-stage build](https://medium.com/@tonistiigi/advanced-multi-stage-build-patterns-6f741b852fae)
-
 ### Logging
 To pull out a cranshed/stopped container logs, you can do:
 ```shell
 $ docker ps -a // get container id. it prints out all containers infor default is running ones only
-$ docker logs <CONTAINER_ID> 
+$ docker logs <CONTAINER_ID>
 ```
 To see logs printed in real-time while running your container, you can do:
 ```shell
 $ docker exec -ip 3000:3000 serverless
 ```
 
-### copy-files
+### Copy files
 Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
 
-### delete-dangling-images
+### Delete dangling images
 To remove images such as `<none>:<none>`, run command below:
 
 `$ docker rmi -f $(docker images -f "dangling=true" -q)`
