@@ -24,38 +24,8 @@ Docker images are layered. When you build a new image, Docker does this for each
 * Run the Dockerfile instruction in the temporary `intermediate` container
 * Save the temporary container as a new image layer
 
-**BAD!**
-```yml
-FROM debian:jessie
-
-RUN apt-get update
-RUN apt-get install -y gcc libc6-dev make
-RUN wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz"
-RUN mkdir -p /usr/src/redis
-RUN tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1
-RUN make -C /usr/src/redis
-RUN make -C /usr/src/redis install
-```
-
-**GOOD**
-```yml
-# Use `\` to mark line break
-
-FROM debian:jessie
-
-RUN buildDeps='gcc libc6-dev make' \
-    && apt-get update \
-    && apt-get install -y $buildDeps \
-    && wget -O redis.tar.gz "http://download.redis.io/releases/redis-3.2.5.tar.gz" \
-    && mkdir -p /usr/src/redis \
-    && tar -xzf redis.tar.gz -C /usr/src/redis --strip-components=1 \
-    && make -C /usr/src/redis \
-    && make -C /usr/src/redis install \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm redis.tar.gz \
-    && rm -r /usr/src/redis \
-    && apt-get purge -y --auto-remove $buildDeps
-```
+#### ARGS vs ENV
+![docker-args-vs-env](./docker-args-n-env.png)
 
 * Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
 * Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
@@ -67,8 +37,18 @@ The Docker server creates and configures the host system’s **docker0** interfa
 When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
 
 Docker bridge network:
+
 ![docker-bridge-network-01](./docker-bridge-network-01.png)
 ![docker-bridge-network-02](./docker-bridge-network-02.png)
+
+As shown above, **docker0** bridge is virtual interface created by docker, it randomly chooses an address and subnet from the private range that are not in use on the host machine, and assigns it to **docker0**. By default, all the docker containers will be connected to the **docker0 bridge**, the docker containers connnected to the **docker0 bridge** could use the **iptables NAT rules** created by docker to communicate with the outside world.
+
+Bridge network provides isolations that containers sitting outside the default bridge network (custom one) cannot communicate with ones sitting inside.
+
+Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
+
+Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network).
+
 
 ### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.

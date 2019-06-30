@@ -196,6 +196,9 @@ LAMBDA_PORT=3000
 LAMBDA_SERVICE=`lsof -t -i :"$LAMBDA_PORT"`
 ```
 
-### networking
+### Networking
 * Network interface
   * It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
+* Virtual Ethernet Devices
+  * A virtual ethernet device or veth is a Linux networking interface that acts as a connecting wire between two network namespaces. A veth is a full duplex link that has a single interface in each namespace. Traffic in one interface is directed out to the other interface.
+
