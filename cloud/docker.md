@@ -68,6 +68,16 @@ RUN buildDeps='gcc libc6-dev make' \
 * Each line of instruction should only do things relating to that layer.
 
 ### networking
+The Docker server creates and configures the host system’s **docker0** interface as an Ethernet bridge inside the Linux kernel that could be used by the docker containers to communicate with each other and with the outside world.
+
+When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
+
+Docker bridge network:
+![docker-bridge-network-01](./docker-bridge-network-01.png)
+![docker-bridge-network-02](./docker-bridge-network-02.png)
+
+
+
 
 ### mount-src-to-volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
