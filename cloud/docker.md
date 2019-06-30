@@ -3,7 +3,7 @@
 * Docker
   * [Basics](#basics)
   * [Dockerfile](#dockerfile)
-  * [Enter running container](#enter-running-container)
+  * [Enter running container](#Enter-running-container)
   * [Use multi-stage build](#use-multi-stage-build)
   * [logging](#logging)
   * [Copy files](#copy-files)
@@ -107,7 +107,7 @@ redis://redis:6379
 ### run-in-detached-mode
 `docker-compose up -d`
 
-### enter running container
+### Enter running container
 ```bash
 docker exec -it <CONTAINER_ID> /bin/bash
 ```
