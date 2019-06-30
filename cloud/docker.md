@@ -7,7 +7,7 @@
   * [Logging](#Logging)
   * [Copy files](#Copy-files)
   * [Delete dangling images](#Delete-dangling-images)
-  * [Networking](#networking)
+  * [Networking](#Networking)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
@@ -31,7 +31,13 @@ Docker images are layered. When you build a new image, Docker does this for each
 * Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
 * Each line of instruction should only do things relating to that layer.
 
-### networking
+#### ENTRYPOINT VS CMD
+The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh`.
+The CMD specifies arguments that will be fed to the ENTRYPOINT.
+
+If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
+
+### Networking
 The Docker server creates and configures the host system’s **docker0** interface as an Ethernet bridge inside the Linux kernel that could be used by the docker containers to communicate with each other and with the outside world.
 
 When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
@@ -47,8 +53,7 @@ Bridge network provides isolations that containers sitting outside the default b
 
 Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
 
-Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network).
-
+Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
 
 ### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
