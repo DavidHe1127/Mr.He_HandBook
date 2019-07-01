@@ -18,6 +18,8 @@
 ### dockerfile
 Layers are also known as intermediate images. Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
 
+Use `docker history <image>` to view constituted layers of an image.
+
 Docker images are layered. When you build a new image, Docker does this for each instruction (RUN, COPY etc.) in your Dockerfile:
 
 * Create a temporary container from the previous image layer (or the base FROM image for the first command
