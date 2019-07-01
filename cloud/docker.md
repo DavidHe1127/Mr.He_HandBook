@@ -16,7 +16,7 @@
 ![docker-arch](./docker-arch.png)
 
 ### dockerfile
-Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
+Layers are also known as intermediate images. Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
 
 Docker images are layered. When you build a new image, Docker does this for each instruction (RUN, COPY etc.) in your Dockerfile:
 
