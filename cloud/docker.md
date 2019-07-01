@@ -82,11 +82,7 @@ redis://redis:6379
 
 ### Enter running container
 ```bash
-docker exec -it <CONTAINER_ID> /bin/bash
-```
-or this if it's alpine-based container
-```bash
-docker exec -it --rm <IMAGE_ID/TAG> /bin/ash
+docker exec -it <CONTAINER_ID> /bin/sh
 ```
 
 ### Logging
