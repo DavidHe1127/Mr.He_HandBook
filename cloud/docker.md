@@ -13,6 +13,7 @@
   * [Use hostnames to connect to containers](#Use-host-as-ref)
 
 ### Architecture
+When people say `docker` they typically refer to `docker engine` whose architecture is below:
 ![docker-arch](./docker-arch.png)
 
 ### dockerfile
