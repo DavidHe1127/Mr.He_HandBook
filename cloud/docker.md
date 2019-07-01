@@ -32,7 +32,7 @@ Docker images are layered. When you build a new image, Docker does this for each
 * Each line of instruction should only do things relating to that layer.
 
 #### ENTRYPOINT VS CMD
-The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh`.
+The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 The CMD specifies arguments that will be fed to the ENTRYPOINT.
 
 If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
