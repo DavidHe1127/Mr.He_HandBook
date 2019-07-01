@@ -42,7 +42,7 @@ If you want to make an image dedicated to a specific command you will use `ENTR
 ### Networking
 The Docker server creates and configures the host system’s **docker0** interface as an Ethernet bridge inside the Linux kernel that could be used by the docker containers to communicate with each other and with the outside world.
 
-When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM.
+When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM (on OS X docker host is a linux virtual machine called docker machine). You can run `docker-machine ssh default` to ssh into docker machine.
 
 Docker bridge network:
 
