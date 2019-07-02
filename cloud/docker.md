@@ -8,6 +8,7 @@
   * [Copy files](#Copy-files)
   * [Delete dangling images](#Delete-dangling-images)
   * [Networking](#Networking)
+  * [Disk space on daemon](#disk-space-on-daemon)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
@@ -57,6 +58,13 @@ Bridge network provides isolations that containers sitting outside the default b
 Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
 
 Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
+
+### Disk space on daemon
+
+```shell
+$ docker system df // to see space usage status
+$ docker system prune // remove build cache, dangling images, stopped containers networks not used by any one container
+```
 
 ### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
