@@ -1,10 +1,11 @@
 ## Hooks
-* [useState](#use-state)
-* [useCallback](#use-callback)
-* [Tips & Best practices](#tips-best-practices)
+* [useState](#useState)
+* [useCallback](#useCallback)
+* [useEffect](#useEffect)
+* [Tips & Best practices](#Tips-n-best-practice)
 
 
-### use-state
+### useState
 When there is too many states to be managed, you can do this:
 ```js
 const initialState = { loading: false, results: [], value: '' };
@@ -20,7 +21,7 @@ const App = () => {
 };
 ```
 
-### use-callback
+### useCallback
 For better performance. i.e avoid creating new func repeatedly. Put deps in the array as the 2nd argument, when you access them from inside the func.
 
 ```js
@@ -33,7 +34,17 @@ const onClick = useCallback(e => {
 }, [setNav, value]);
 ```
 
-### tips-best-practices
+### useEffect
+Do something only once:
+```js
+useEffect(() => {
+  api.fetch('/data');
+}, []) // empty array means no dependency to watch on
+```
+
+
+
+### Tips-n-best-practice
 * Declare functions needed by an effect inside of it:
 ```js
 // bad
