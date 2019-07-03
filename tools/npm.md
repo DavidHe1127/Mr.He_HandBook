@@ -7,7 +7,7 @@
 * [Scoped Packages](#scoped-packages)
 * [Show pkg latest version](#show-pkg-latest-version)
 * [Cli searching rule](#cli-searching-rule)
-* [Proxy](# Proxy)
+* [Proxy](#Proxy)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
