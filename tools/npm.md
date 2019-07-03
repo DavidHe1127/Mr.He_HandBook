@@ -7,6 +7,7 @@
 * [Scoped Packages](#scoped-packages)
 * [Show pkg latest version](#show-pkg-latest-version)
 * [Cli searching rule](#cli-searching-rule)
+* [Proxy](# Proxy)
 
 ### scripts
 Run `npm run [YOUR_SCRIPT]` in terminal.
@@ -95,5 +96,15 @@ In a mono repo (managed by lerna) case, `yarn` will look up in the locations as 
 2. `<projectRoot>/node_modules/.bin`
 3. Global bin folder 
 
+### Proxy
+In `package.json`, specify proxy to tell development server to proxy any unknown requests to your API server:
+```json
+{
+  "proxy": "http://localhost:8080" 
+}
+```
+This way, when you `fetch('/api/todos')` in development, the development server will recognize that it’s not a static asset, and will proxy your request to `http://localhost:8080/api/todos` as a fallback. Conveniently, this avoids `CORS` errors during local development.
+
+Note, it is **ONLY** working in development mode.
 
 
