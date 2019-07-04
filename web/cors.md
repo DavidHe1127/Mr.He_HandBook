@@ -1,7 +1,7 @@
 ## Cross-Origin Resource Sharing
 
 * [What is it?](#what-is-it)
-* [Why do we need it?](#why-need-it)
+* [Why do we need it?](#why-do-we-need-it)
 * [JSONP](#jsonp)
 * [CORS](#cors)
 * [Preflight](#preflight)
