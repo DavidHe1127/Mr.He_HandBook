@@ -42,8 +42,7 @@ useEffect(() => {
 }, []) // empty array means no dependency to watch on
 ```
 
-Nice refactoring traditional lifecycle hooks based code to `useEffect`
-
+See how you can refactor lifecycle hooks based code to `useEffect` one.
 ```js
 // old
 import React, { Component } from 'react';
