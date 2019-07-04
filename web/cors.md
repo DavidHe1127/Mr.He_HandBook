@@ -7,7 +7,7 @@
 * [Preflight](#preflight)
 
 
-### what-is-it
+### What is it
 Stands for cross-origin resource sharing. i.e ajax calls can only access resources on your domain not some other domains.
 
 ### why-need-it
