@@ -111,8 +111,7 @@ function ChatChannel({ channelId }) {
 ```
 
 > Instead of thinking about when we should apply the side effect, we declare the side effect’s dependencies. This way React knows when it needs to run, update, or clean up.
-
-> That’s where the power of useEffect lies. The websocket listener doesn’t care about mounting and unmounting components, it > cares about the value of channelId over time.
+> That’s where the power of useEffect lies. The websocket listener doesn’t care about mounting and unmounting components, it  cares about the value of channelId over time.
 
 
 ### Tips-n-best-practice
