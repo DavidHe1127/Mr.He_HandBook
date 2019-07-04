@@ -10,7 +10,7 @@
 ### What is it
 Stands for cross-origin resource sharing. i.e ajax calls can only access resources on your domain not some other domains.
 
-Note, client's request still hits the server and gets the response, but HTTP client like `fetch` will prevent the client accessing the response since there is a lack of `Access-Control-Allow-Origin` header. You can set up a proxy server to fix the problem if you don't have control over the server.
+Note, client's request still hits the server and gets the response, but HTTP client like `fetch` which follows `same origin policy` will prevent the client accessing the response since there is a lack of `Access-Control-Allow-Origin` header. You can set up a proxy server to fix the problem if you don't have control over the server.
 
 [Useful link](https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe/43881141#43881141)
 
