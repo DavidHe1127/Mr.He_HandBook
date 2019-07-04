@@ -42,6 +42,79 @@ useEffect(() => {
 }, []) // empty array means no dependency to watch on
 ```
 
+Nice refactoring traditional lifecycle hooks based code to `useEffect`
+
+```js
+// old
+import React, { Component } from 'react';
+import websockets from 'websockets';
+
+class ChatChannel extends Component {
+  state = {
+    messages: [];
+  }
+
+  componentDidMount() {
+    this.startListeningToChannel(this.props.channelId);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.channelId !== prevProps.channelId) {
+      this.stopListeningToChannel(prevProps.channelId);
+      this.startListeningToChannel(this.props.channelId);
+    }
+  }
+
+  componentWillUnmount() {
+    this.stopListeningToChannel(this.props.channelId);
+  }
+
+  startListeningToChannel(channelId) {
+    websockets.listen(
+      `channels.${channelId}`,
+      message => {
+        this.setState(state => {
+          return { messages: [...state.messages, message] };
+        });
+      }
+    );
+  }
+
+  stopListeningToChannel(channelId) {
+    websockets.unlisten(`channels.${channelId}`);
+  }
+
+  render() {
+    // ...
+  }
+}
+
+
+// new
+import React, { useEffect, useState } from 'react';
+import websockets from 'websockets';
+
+function ChatChannel({ channelId }) {
+  const [messages, setMessages] = useState([]);
+  
+  // cleanup callback will be triggered either when channelId changes, or when the component unmounts.
+  useEffect(() => {
+    websockets.listen(
+      `channels.${channelId}`,
+      message => setMessages(messages => [...messages, message])
+    );
+
+    return () => websockets.unlisten(`channels.${channelId}`);
+  }, [channelId]);
+
+  // ...
+}
+```
+
+>>>
+Instead of thinking about when we should apply the side effect, we declare the side effect’s dependencies. This way React knows when it needs to run, update, or clean up.
+
+That’s where the power of useEffect lies. The websocket listener doesn’t care about mounting and unmounting components, it cares about the value of channelId over time.
 
 
 ### Tips-n-best-practice
