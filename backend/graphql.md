@@ -1,11 +1,11 @@
 ## GraphQL
 
 * [Query Resolver](#query-resolver)
-* [GraphQL middleware jobs](#graphql-middleware-jobs)
+* [GraphQL middleware jobs](#graphql-middleware-role)
 * [N+1 problem](#n+1-problem)
 * [Resolver Deisgn](#resolver-design)
 
-### query-resolver
+### Query Resolver
 ![Query Execution](./links/query_execution.png)
 
 A few things to note
@@ -24,7 +24,7 @@ query user {
 }
 ```
 
-### graphql-middleware-jobs
+### Graphql middleware role
 Graphql middleware like `apollo-server-restify` basically does two things:
 * Ensure `queries` and `mutations` included in the body of incoming POST requests can be executed by `GraphQL.js`.
 It needs to parse out the query and forward it to the `graphql` function for execution.
@@ -76,7 +76,7 @@ query getUserList {
 
 As you would expect, `User.address` resolver is executed `N` times resulting in multiple access to data store!!!
 
-### resolver-design
+### Resolver Design
 Don't do this:
 ```graphql
 export default {
