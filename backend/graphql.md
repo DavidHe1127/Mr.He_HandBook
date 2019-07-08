@@ -88,7 +88,7 @@ export default {
   }
 }
 ```
-Do this
+Do this:
 ```graphql
 export default {
   Query: {
