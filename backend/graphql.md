@@ -4,6 +4,7 @@
 * [GraphQL middleware jobs](#graphql-middleware-role)
 * [N+1 problem](#n+1-problem)
 * [Resolver Deisgn](#resolver-design)
+* [Custom Scalar Type](#custom-scalar-type)
 
 ### Query Resolver
 ![Query Execution](./links/query_execution.png)
@@ -64,9 +65,9 @@ And you query like this:
 
 ```graphql
 query getUserList {
-  allUsers {         # fetches users (1 query)
+  allUsers {         # Fetch N users
     id
-    address {        # fetches address for each user (N queries for N users)
+    address {        # Another 1 query to fetch address for each one of N users
       id
       street
     }
@@ -110,6 +111,43 @@ The problem with first design is you still need to fetch entire event object eve
   }
 }
 ```
+
+### Custom Scalar Type
+```js
+// First, create a new scalar type
+const Image = new GraphQLScalarType({
+  name: "Image",
+  description: "An Image Scalar",
+  serialize: value => isImage(value)
+});
+
+// Second, define it in resolver
+const resolvers = {
+  Image: Image,
+  Query: {
+    image: () =>
+      "https://uploads.codesandbox.io/uploads/user/8d35d7c1-eecb-4aad-87b0-c22d30d12081/l2nh-cat.jpeg",
+    notImage: () => "https://codesandbox.io/s/4qlo54l7k9"
+  }
+};
+
+// third, use it!
+const schemaString = `
+  scalar Image
+  
+  type Query {
+    image: Image,
+    notImage: Image
+  }
+`;
+
+const jsSchema = makeExecutableSchema({
+  typeDefs: schemaString,
+  resolvers: resolvers,
+});
+```
+[Create custom GraphQL types](https://medium.com/yld-engineering-blog/create-custom-graphql-types-999f009d3f46)
+
 
 
 
