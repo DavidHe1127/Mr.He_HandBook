@@ -24,13 +24,13 @@ query user {
 }
 ```
 
-### Graphql middleware role
+### Graphql Middleware Role
 Graphql middleware like `apollo-server-restify` basically does two things:
 * Ensure `queries` and `mutations` included in the body of incoming POST requests can be executed by `GraphQL.js`.
 It needs to parse out the query and forward it to the `graphql` function for execution.
 * Attach the result of operations to the response object to be returned to the client.
 
-### n+1-problem
+### N+1 Problem
 Say you have schema and resolvers as follow:
 
 ```graphql
