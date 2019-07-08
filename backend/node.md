@@ -34,7 +34,7 @@ const foo = require('./foo');
   }
   ```
 Ideally, env-specific vars should be set by ci/cd pipeline/tool.
-![env_config.png](../links/env_config.png)
+![env_config.png](./links/env_config.png)
 * Have a `.env.example` file as a base to unfold potential params for other team members to share.
 * `.env` needs to be shortlisted in `.gitignore`.
 
