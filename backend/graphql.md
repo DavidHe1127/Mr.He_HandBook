@@ -5,6 +5,7 @@
 * [N+1 problem](#n+1-problem)
 * [Resolver Deisgn](#resolver-design)
 * [Custom Scalar Type](#custom-scalar-type)
+* [Pass vars to mutation/query in playground](#pass-vars-in-playground)
 
 ### Query Resolver
 ![Query Execution](./links/query_execution.png)
@@ -148,6 +149,26 @@ const jsSchema = makeExecutableSchema({
 ```
 [Create custom GraphQL types](https://medium.com/yld-engineering-blog/create-custom-graphql-types-999f009d3f46)
 
+### Pass vars in playground
+```graphql
+mutation addNavMenu($input: createNavMenuInput! ) {
+  putNavMenu(input: $input ) {
+    message
+  }
+}
+```
+vars
+```graphql
+{
+  "input": {
+      "navMenu": [
+        { "id": "me1", "title": "Menu Expander 1" },
+        { "id": "me2", "title": "Menu Expander 2" }
+      ],
+    "profileId": "789"
+  }
+}
+```
 
 
 
