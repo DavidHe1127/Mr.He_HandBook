@@ -159,21 +159,22 @@ const jsSchema = makeExecutableSchema({
     }
     ```
     Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result
-  * `parseValue` - called when     ```graphql
-    query ($howMany: YourCustomType) {
-      users(first: $howMany) {
-        id
+  * `parseValue` - called when input value is fed through JSON:    
+      ```graphql
+      query ($howMany: YourCustomType) {
+        users(first: $howMany) {
+          id
+        }
       }
-    }
 
-    // vars
-    {
-      "howMany": {
-        "thisMany": 10
+      // vars
+      {
+        "howMany": {
+          "thisMany": 10
+        }
       }
-    }
-    ```
-    Function gets the input as JSON and returns whatever the query resolver should use.reading input from JSON:
+      ```
+      Function gets the input as JSON and returns whatever the query resolver should use.reading input from JSON:
 
 
 Basically, you need to implement both methods in order for input to be correctly retrieved.
