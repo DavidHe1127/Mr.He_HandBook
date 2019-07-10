@@ -151,30 +151,30 @@ const jsSchema = makeExecutableSchema({
 ```
   * `serialize` - called when the value of the type is going to be sent to the client as a response.
   * `parseLiteral` - called when reading input from inline:
-  ```graphql
-  query {
-      allUsers(first:10) {
-          id
+    ```graphql
+    query {
+        allUsers(first:10) {
+            id
+        }
+    }
+    ```
+    Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result
+  * `parseValue` - called when     ```graphql
+    query ($howMany: YourCustomType) {
+      users(first: $howMany) {
+        id
       }
-  }
-  ```
-  Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result
-  * `parseValue` - called when reading input from JSON:
-  ```graphql
-  query ($howMany: YourCustomType) {
-    users(first: $howMany) {
-      id
     }
-  }
-  
-  // vars
-  {
-    "howMany": {
-      "thisMany": 10
+
+    // vars
+    {
+      "howMany": {
+        "thisMany": 10
+      }
     }
-  }
-  ```
-  Function gets the input as JSON and returns whatever the query resolver should use.
+    ```
+    Function gets the input as JSON and returns whatever the query resolver should use.reading input from JSON:
+
 
 Basically, you need to implement both methods in order for input to be correctly retrieved.
   
