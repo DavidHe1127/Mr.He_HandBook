@@ -158,7 +158,7 @@ const jsSchema = makeExecutableSchema({
         }
     }
     ```
-    Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result
+    Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result.
   * `parseValue` - called when input value is fed through JSON:    
       ```graphql
       query ($howMany: YourCustomType) {
@@ -174,11 +174,9 @@ const jsSchema = makeExecutableSchema({
         }
       }
       ```
-      Function gets the input as JSON and returns whatever the query resolver should use.reading input from JSON:
-
+      Function gets the input as JSON and returns whatever the query resolver should use.
 
 Basically, you need to implement both methods in order for input to be correctly retrieved.
-  
 [Create custom GraphQL types](https://medium.com/yld-engineering-blog/create-custom-graphql-types-999f009d3f46)
 
 ### Pass vars in playground
