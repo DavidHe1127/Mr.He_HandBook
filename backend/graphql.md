@@ -9,7 +9,7 @@
 * [Pass vars to mutation/query in playground](#pass-vars-in-playground)
 
 ### Graphql-unfriendly use cases
-Weigh up the usage of graphql when dealing with below use cases 
+Weigh up the usage of graphql when dealing with below use cases:
 
 * Recurisve data - tree-structure menu with any depth
 * Arbitrary data - free-form data i.e arbitrary values contained object
