@@ -1,11 +1,18 @@
 ## GraphQL
 
+* [graphql-unfriendly use cases](#graphql-unfriendly-use-cases)
 * [Query Resolver](#query-resolver)
 * [GraphQL middleware jobs](#graphql-middleware-role)
 * [N+1 problem](#n+1-problem)
 * [Resolver Deisgn](#resolver-design)
 * [Custom Scalar Type](#custom-scalar-type)
 * [Pass vars to mutation/query in playground](#pass-vars-in-playground)
+
+### Graphql-unfriendly use cases
+Weigh up the usage of graphql when dealing with below use cases 
+
+* Recurisve data - tree-structure menu with any depth
+* Arbitrary data - free-form data i.e arbitrary values contained object
 
 ### Query Resolver
 ![Query Execution](./links/query_execution.png)
