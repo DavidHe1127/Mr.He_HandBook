@@ -7,6 +7,7 @@
 * [Resolver Deisgn](#resolver-design)
 * [Custom Scalar Type](#custom-scalar-type)
 * [Pass vars to mutation/query in playground](#pass-vars-in-playground)
+* [Field argument](#field-argument)
 
 ### Graphql-unfriendly use cases
 Weigh up the usage of graphql when dealing with below use cases:
@@ -203,6 +204,27 @@ vars
         { "id": "me2", "title": "Menu Expander 2" }
       ],
     "profileId": "789"
+  }
+}
+```
+
+### Field argument
+```graphql
+type Query {
+    course(id: Int!): Course
+}
+
+type Course {
+    id: Int!
+    title: String!
+    author(lowercase: Boolean! = true): String!
+}
+
+// query
+{
+  course(id: 1) {
+    title
+    author(lowercase: false)
   }
 }
 ```
