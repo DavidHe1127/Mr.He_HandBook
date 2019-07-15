@@ -22,7 +22,7 @@ const App = () => {
 ```
 
 ### useCallback
-For better performance. i.e avoid creating new func repeatedly. Put deps in the array as the 2nd argument, when you access them from inside the func.
+For better performance. i.e avoid creating new func repeatedly which causes unnecessary re-rendering of child component which accepts the callback as a prop. Put deps in the array as the 2nd argument, when you access them from inside the func.
 
 ```js
 const { setNav } = props;
