@@ -231,7 +231,7 @@ type Course {
 ```
 
 ### Fetch schema from remote
-Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema when you want to centralize your schema in one place for the sake of maintenance. 
+Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema remotely when you want to centralize your schema in one place for the sake of maintenance. 
 
 
 
