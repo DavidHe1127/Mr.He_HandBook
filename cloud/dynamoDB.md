@@ -4,6 +4,7 @@
  * [Primary Key](#primary-key)
  * [Secondary Indexs](#secondary-index)
  * [Streams](#streams)
+ * [Caveats](#caveats)
 
 ### core-concept
 
@@ -51,3 +52,6 @@
 
 #### Streams
 ![XX](./dynamoDB-streams.png)
+
+#### Caveats
+* `Query` requires partition key to be provided. Sort key is optional. While `Get` requires you provide both partition key and sort key.
