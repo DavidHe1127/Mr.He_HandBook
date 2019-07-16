@@ -8,6 +8,7 @@
 * [Custom Scalar Type](#custom-scalar-type)
 * [Pass vars to mutation/query in playground](#pass-vars-in-playground)
 * [Field argument](#field-argument)
+* [Fetch schema from remote](#fetch-schema-from-remote)
 
 ### Graphql-unfriendly use cases
 Weigh up the usage of graphql when dealing with below use cases:
@@ -229,6 +230,8 @@ type Course {
 }
 ```
 
+### Fetch schema from remote
+Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema when you want to centralize your schema in one place for the sake of maintenance. 
 
 
 
