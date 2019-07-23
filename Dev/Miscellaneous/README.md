@@ -1,3 +1,8 @@
+## Miscellaneous
+
+* [Traditional Pagination vs Cursor-based Pagination](#traditional-pagination-vs-cursor-based-pagination)
+* [Debounce vs Throttle](#debounce-vs-throttle)
+
 ## Traditional Pagination VS Cursor-based Pagination
 
 ### Problem with tradtional pagination (ONLY applicable to real time data)
@@ -29,12 +34,12 @@ Cursor-based pagination works by returning a pointer to a specific item in the d
   * The cursor must be based on a unique, sequential column (or columns) in the source table.
   * There is no concept of the total number of pages or results in the set.
   * The client can’t jump to a specific page.
-  
+
   #### How it works?
   * We’d pick a unique, sequential column to paginate on. In this case, we’ll use the id field and assume this is an auto-incremented, primary key value.
   * Similar to the offset implementation, the client would make a request with a parameter indicating the number of results they want per page - `count`. Instead of the page parameter, we would accept a `cursor` parameter, which the client would get in the response from the previous request.
   * The server would then use cursor and count to paginate through the list.
-  
+
   #### Workflow
   Let’s assume we want to paginate from the most recent user, to the oldest user. For the first request, we’d select the first page:
 
@@ -54,7 +59,7 @@ The response from the server would be:
       "next_cursor": "123456",  # the user id of the extra result
   }
   ```
-  
+
 The client would then provide `next_cursor` as cursor in the second request:
 
 ```sql
@@ -75,4 +80,6 @@ The response from the server would be:
     "next_cursor": ""
 }
 ```
-  
+
+
+## Debounce vs Throttle
