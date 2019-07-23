@@ -1,9 +1,8 @@
+## Testing
 
 * [Test ref](#test-ref)
 
-
-
-### test-ref
+### Test ref
 
 ```js
 it('calls onChange with the new value when the value has changed', () => {
@@ -13,7 +12,7 @@ it('calls onChange with the new value when the value has changed', () => {
        <Input ref={ref} />
      </div>
   );
-  
+
   expect(ReactTestUtils.isDOMComponent(ref.current)).toBeTruthy();
   expect(ref.current.tagName).toEqual('INPUT');
 });
