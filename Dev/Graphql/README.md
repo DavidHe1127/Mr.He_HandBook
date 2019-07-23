@@ -146,7 +146,7 @@ const resolvers = {
 // third, use it!
 const schemaString = `
   scalar Image
-  
+
   type Query {
     image: Image,
     notImage: Image
@@ -168,7 +168,7 @@ const jsSchema = makeExecutableSchema({
     }
     ```
     Input value will be transformed to AST which is then served as input to the function. Parsed value needs to be returned as a result.
-  * `parseValue` - called when input value is fed through JSON:    
+  * `parseValue` - called when input value is fed through JSON:
       ```graphql
       query ($howMany: YourCustomType) {
         users(first: $howMany) {
@@ -231,8 +231,4 @@ type Course {
 ```
 
 ### Fetch schema from remote
-Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema remotely when you want to centralize your schema in one place for the sake of maintenance. 
-
-
-
-
+Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema remotely when you want to centralize your schema in one place for the sake of maintenance.

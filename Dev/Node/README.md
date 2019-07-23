@@ -1,18 +1,19 @@
+## Node
 
 * Internals
-  * [Node internals](./links/node_internals.md)
-  * [nextTick vs setImmediate](./links/nexttick_vs_setimmediate.md)
+  * [Node internals](./node_internals.md)
+  * [nextTick vs setImmediate](./nexttick_vs_setimmediate.md)
 * Fundamental
-  * [Scaling and load balancing](./links/scaling_load_balancing.md)
-  * [Web Caching](./links/web_caching.md)
-  * [Streams](./links/stream.md)
-  * [HTTP Agent](./links/http_agent.md)
+  * [Scaling and load balancing](./scaling_load_balancing.md)
+  * [Web Caching](./web_caching.md)
+  * [Streams](./stream.md)
+  * [HTTP Agent](./http_agent.md)
 * Miscellaneous
   * [Module Loading](#module-loading)
   * [Exec script from command line](#exec-script-from-command-line)
 * Best Practice
-  * [Production Deployment](./links/production_deployment_tips.md)
-  * [Graceful shutdown](./links/graceful_shutdown.md)
+  * [Production Deployment](./production_deployment_tips.md)
+  * [Graceful shutdown](./graceful_shutdown.md)
   * [Manage Environment Variables](#manage-env-vars)
   * [Hoisting import](#hoisting-import)
   * [logging](#logging)
@@ -34,7 +35,7 @@ const foo = require('./foo');
   }
   ```
   Ideally, env-specific vars should be set by ci/cd pipeline/tool.
-  ![env_config.png](./links/env_config.png)
+  ![env_config.png](./env_config.png)
 * Have a `.env.example` file as a base to unfold potential params for other team members to share.
 * `.env` needs to be shortlisted in `.gitignore`.
 

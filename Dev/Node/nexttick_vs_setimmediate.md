@@ -1,10 +1,10 @@
 
 ## process.nextTick vs setImmediate
 
-* `setImmediate(Fn)` will queue the `Fn` behind whatever I/O event callbacks that are already in the task queue. 
+* `setImmediate(Fn)` will queue the `Fn` behind whatever I/O event callbacks that are already in the task queue.
 * `process.nextTick(Fn)` will effectively queue the `Fn` at the front of task queue so that it executes straight after the completion of current executing function.
 
-So in a case where you're trying to break up a long running, CPU-bound job using recursion, you would now want to use setImmediate rather than process.nextTick to queue the next iteration as otherwise any I/O event callbacks wouldn't get the chance to run between iterations.
+So in a case where you're trying to break up a long running, CPU-bound job using recursion, you would now want to use `setImmediate` rather than `process.nextTick` to queue the next iteration as otherwise any I/O event callbacks wouldn't get the chance to run between iterations.
 
 Referenced from [NodeJS Multi-threading: What are Worker Threads and Why do They Matter](https://blog.logrocket.com/node-js-multithreading-what-are-worker-threads-and-why-do-they-matter-48ab102f8b10)
 
