@@ -9,6 +9,7 @@
 * [Pass vars to mutation/query in playground](#pass-vars-in-playground)
 * [Field argument](#field-argument)
 * [Fetch schema from remote](#fetch-schema-from-remote)
+* [Fragments](#fragments)
 
 ### Graphql-unfriendly use cases
 Weigh up the usage of graphql when dealing with below use cases:
@@ -232,3 +233,84 @@ type Course {
 
 ### Fetch schema from remote
 Consider tools like [this](https://github.com/prisma/get-graphql-schema) to fetch schema remotely when you want to centralize your schema in one place for the sake of maintenance.
+
+
+### Fragments
+Two different use cases:
+
+1. Incorporating a fragment by reference
+
+```graphql
+query Foo {
+  user(id: 4) {
+    ...userFields
+  }
+}
+
+fragment userFields on User {
+  name
+  sex
+}
+
+// compiled down to
+
+query Foo {
+  user(id: 4) {
+    name
+    sex
+  }
+}
+```
+
+2. Inline fragments
+
+```graphql
+interface Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+}
+
+type Galaxy implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  name: String
+  planets: [Planet]
+  stars: [Star]
+}
+
+type Star implements Node {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  name: String
+  class: StellarClassEnum
+}
+
+type Query {
+  node(
+    id: ID!
+  ): Node
+}
+
+// query
+query getPlanet($id: ID!) {
+  node(id: $id) {
+    ... on Galaxy {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+    }
+
+    ... on Star {
+      id
+      name
+      description
+    }
+  }
+}
+```
+Server will determine whether to return `Galaxy` or `Star` at the runtime based on whether the requested object is a `Galaxy` or `Star`.
