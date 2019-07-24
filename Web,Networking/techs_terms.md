@@ -11,9 +11,13 @@
 ### premature_optimization
 Any coding practice that makes your code harder to understand in the name of performance is a `premature optimization`.
 
+***
+
 ### web-assembly
 * It's a new kind of code that can be compiled (ahead of time) down into a binary format that browsers can read. This means that high-level languages (C, C++) can be compiled down into a format that is legible to the browser. For developers that want to do some heavy computing on the web, this is a huge plus.
 * At the time of writing, it does not support `DOM access` - so JS is still needed.
+
+***
 
 ### HTTP/2
 * Multiplexing
@@ -23,6 +27,8 @@ Any coding practice that makes your code harder to understand in the name of per
   * With HTTP/2, it allows you to send off multiple requests on the **same** connection. The requested resources are fetched in parallel and received
     **in any order**.
   * Note, HTTP/1.1 has a concept of `pipelining` which also allows multiple requests to be sent off at once but they need to be returned **in the order they were requested**. This feature is nowhere near as good as HTTP/2 so it is hardly used.
+
+***
 
 ### JWT
 
@@ -57,6 +63,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET)
 * Why do we need signature? - It prevents somebody modifying the data.
 * How does server do the authentication? - Server will use the specified algorithm in the header, secret stored on the server, **header** and **payload** to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
 
+***
 
 ### SSO
 
@@ -71,6 +78,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET)
 
 ![](./sso_auth0.png)
 
+***
 
 ### CORS
 
@@ -132,6 +140,8 @@ Now, ajax calls to another domain is allowed.
 For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is 200, the actual request will then be issued.
 
 To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to its server (only serves up frontend code) which then forwards the requests to api server - backend. Because the communication is between two servers, preflight calls are completed avoided.
+
+***
 
 ### OAuth2
 
