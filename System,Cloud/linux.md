@@ -9,6 +9,7 @@
 * [Man page/help](#manpage-help)
 * [Input and Output](#input-output)
 * [Process](#process)
+* [Signal](#signal)
 * [File](#file)
 * [chmod explained in simple english](#chmod)
 * [host file under etc](#host-file-purpose)
@@ -79,18 +80,39 @@ To send the standard output to `f` and standard error to `e`:
 $ ls /fffffffffffffffff > f 2> e
 ```
 
-### process
-A process is a running program and each process on the system has a numeric process ID(PID).
-To kill a process:
-```
-$ kill pid
-```
-When we run `kill`, we're asking the kernal to send a signal to another process.
+### Process
+* Application stored in the disk will be loaded into memory when it's running. This process will turn the application into a running process with an id (pid). Also, process has state.
+* The system libs are shared - i.e there is only one copy of `printf` in the memory so it can be accessed by different processes.
+* When system is being booted, kernel creates a special process called `init` - the parent of all processes which is derived from the file `/sbin/init`. It is never killed until the system shuts down.
+
 
 To run a process and put it in the background (using &) which then gives you prompt back:
 ```
 $ gunzip file.gz &
 ```
+
+What's happened when pressing `ctrl+c`?
+We ask the kernal to send the interrupt (SIGINT) to the process. Say it's a NodeJS process, then a signal event will be emitted by EventEmitter:
+
+```js
+process.on('SIGINT', () => {
+  console.log('received SIGINT');
+});
+```
+
+What's happened when running ls in a shell?
+Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
+![](./fork-and-exec.png)
+
+### Signal
+* Signal is a notification, a message sent by either operating system or some application to our program.
+* Signals are a mechanism for one-way asynchronous notifications.
+* A signal may be sent from the kernel to a process, from a process to another process, or from a process to itself.
+* With the exception of SIGKILL and SIGSTOP which always terminates the process or stops the process, respectively, processes may control what happens when they receive a signal. They can
+1. accept the default action, which may be to terminate the process, terminate and coredump the process, stop the process, or do nothing, depending on the signal.
+2. Or, processes can elect to explicitly ignore or handle signals.
+    1. Ignored signals are silently dropped.
+    2. Handled signals cause the execution of a user-supplied signal handler function. The program jumps to this function as soon as the signal is received, and the control of the program resumes at the previously interrupted instructions
 
 ### file
 `Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
