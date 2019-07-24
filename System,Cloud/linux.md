@@ -110,7 +110,7 @@ What's happened when running ls in a shell?
 * Signal is a notification, a message sent by either operating system or some application to our program.
 * Signals are a mechanism for one-way asynchronous notifications.
 * A signal may be sent from the kernel to a process, from a process to another process, or from a process to itself.
-* With the exception of SIGKILL and SIGSTOP which always terminates the process or stops the process, respectively, processes may control what happens when they receive a signal. They can
+* With the exception of `SIGKILL` and `SIGSTOP` which always terminates the process or stops the process, respectively, processes may control what happens when they receive a signal. They can
 1. accept the default action, which may be to terminate the process, terminate and coredump the process, stop the process, or do nothing, depending on the signal.
 2. Or, processes can elect to explicitly ignore or handle signals.
     1. Ignored signals are silently dropped.
