@@ -92,7 +92,8 @@ $ gunzip file.gz &
 ```
 
 What's happened when pressing `ctrl+c`?
-We ask the kernal to send the interrupt (SIGINT) to the process. Say it's a NodeJS process, then a signal event will be emitted by EventEmitter:
+
+> We ask the kernal to send the interrupt (SIGINT) to the process. Say it's a NodeJS process, then a signal event will be emitted by EventEmitter:
 
 ```js
 process.on('SIGINT', () => {
@@ -101,8 +102,9 @@ process.on('SIGINT', () => {
 ```
 
 What's happened when running ls in a shell?
-Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
-![](./fork-and-exec.png)
+
+> Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
+> ![](./fork-and-exec.png)
 
 ### Signal
 * Signal is a notification, a message sent by either operating system or some application to our program.
