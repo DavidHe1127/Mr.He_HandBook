@@ -1,5 +1,4 @@
-
-## Cert
+## SSL/TLS
 
 * [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
 

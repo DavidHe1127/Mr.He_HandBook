@@ -1,3 +1,4 @@
 # Web, Networking
 
-* [HTTPS, SSL/TLS](./cert.md)
+* [HTTPS, SSL/TLS](./ssl.md)
+* [Techs & Terms](./techs_terms.md)
