@@ -17,6 +17,7 @@
   * [Manage Environment Variables](#manage-env-vars)
   * [Hoisting import](#hoisting-import)
   * [logging](#logging)
+  * [Error handling](./error_handling.md)
 
 ### module-loading
 ```javascript
@@ -77,5 +78,3 @@ $ node -e 'require("./db").init()'
 // or in npm script
 "go": "node -e 'require(\"shelljs\")'",
 ```
-
-
