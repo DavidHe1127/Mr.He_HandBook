@@ -41,3 +41,5 @@ let interval = setInterval(() => {
   if (arr.length === 0) clearInterval(interval)
 }, 0)
 ```
+
+[Node.js multithreading: What are Worker Threads and why do they matter?](https://blog.logrocket.com/node-js-multithreading-what-are-worker-threads-and-why-do-they-matter-48ab102f8b10/)
