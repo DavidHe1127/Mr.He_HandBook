@@ -9,6 +9,7 @@
   * [Delete dangling images](#Delete-dangling-images)
   * [Networking](#Networking)
   * [Disk space on daemon](#disk-space-on-daemon)
+  * [Data persistence](#data-persistence)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
@@ -65,6 +66,30 @@ Docker network drivers utilize **veths** to provide explicit connections between
 $ docker system df // to see space usage status
 $ docker system prune // remove build cache, dangling images, stopped containers networks not used by any one container
 ```
+
+### Data Persistence
+Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
+
+3 ways:
+
+* Volumes - stored in `/var/lib/docker/volumes/` managed by Docker. Non-docker processes should not modify it. The best option.
+
+attach volume `myvol1` to `/var/jenkins_home` in container. By default, Jenkins will write all data to this directory. With mounting in place, everytime Jenkins writes data to `/var/jenkins_home`, the same data will be copied to `myvol1`.
+```shell
+$ docker run -v myvol1:/var/jenkins_home -p 8080:8080 jenkins
+```
+
+* Bind mounts - stored anywhere on host file system - i.e Desktop. non-docker processes can modify it anytime.
+```shell
+$ docker run -v /Users/david.he/Desktop/Jenkins_Home:/var/jenkins_home -p 8080:8080 jenkins
+```
+
+* tmpfs - stored in host system's memory only. Never written to host filesystem.
+
+
+
+
+
 
 ### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
