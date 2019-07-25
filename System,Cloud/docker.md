@@ -9,6 +9,7 @@
   * [Delete dangling images](#Delete-dangling-images)
   * [Networking](#Networking)
   * [Disk space on daemon](#disk-space-on-daemon)
+  * [Data persistence](#data-persistence)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
@@ -67,29 +68,27 @@ $ docker system df // to see space usage status
 $ docker system prune // remove build cache, dangling images, stopped containers networks not used by any one container
 ```
 
-### Enter running container
-```bash
-docker exec -it <CONTAINER_ID> /bin/sh
-```
+### Data Persistence
+Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
 
-### Logging
-To pull out a cranshed/stopped container logs, you can do:
+Volume can also be shared among different containers. Data in volume will be mirrored across to mounting directory inside the container.
+
+3 ways:
+
+* Volumes - stored in `/var/lib/docker/volumes/` managed by Docker. Non-docker processes should not modify it. The best option.
+
+attach volume `myvol1` to `/var/jenkins_home` in container. By default, Jenkins will write all data to this directory. With mounting in place, everytime Jenkins writes data to `/var/jenkins_home`, the same data will be copied to `myvol1`.
 ```shell
-$ docker ps -a // get container id. it prints out all containers infor default is running ones only
-$ docker logs <CONTAINER_ID>
+$ docker run -v myvol1:/var/jenkins_home -p 8080:8080 jenkins
 ```
-To see logs printed in real-time while running your container, you can do:
+
+* Bind mounts - stored anywhere on host file system - i.e Desktop. non-docker processes can modify it anytime.
 ```shell
-$ docker exec -ip 3000:3000 serverless
+$ docker run -v /Users/david.he/Desktop/Jenkins_Home:/var/jenkins_home -p 8080:8080 jenkins
 ```
 
-### Copy files
-Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
+* tmpfs - stored in host system's memory only. Never written to host filesystem.
 
-### Delete dangling images
-To remove images such as `<none>:<none>`, run command below:
-
-`$ docker rmi -f $(docker images -f "dangling=true" -q)`
 
 ***
 ## Docker Compose
