@@ -70,6 +70,8 @@ $ docker system prune // remove build cache, dangling images, stopped containers
 ### Data Persistence
 Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
 
+Volume can also be shared among different containers. Data in volume will be mirrored across to mounting directory inside the container.
+
 3 ways:
 
 * Volumes - stored in `/var/lib/docker/volumes/` managed by Docker. Non-docker processes should not modify it. The best option.
