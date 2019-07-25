@@ -12,6 +12,7 @@
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
+  * [links](#links)
 
 ### Architecture
 When people say `docker` they typically refer to `docker engine` whose architecture is below:
@@ -66,6 +67,33 @@ $ docker system df // to see space usage status
 $ docker system prune // remove build cache, dangling images, stopped containers networks not used by any one container
 ```
 
+### Enter running container
+```bash
+docker exec -it <CONTAINER_ID> /bin/sh
+```
+
+### Logging
+To pull out a cranshed/stopped container logs, you can do:
+```shell
+$ docker ps -a // get container id. it prints out all containers infor default is running ones only
+$ docker logs <CONTAINER_ID>
+```
+To see logs printed in real-time while running your container, you can do:
+```shell
+$ docker exec -ip 3000:3000 serverless
+```
+
+### Copy files
+Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
+
+### Delete dangling images
+To remove images such as `<none>:<none>`, run command below:
+
+`$ docker rmi -f $(docker images -f "dangling=true" -q)`
+
+***
+## Docker Compose
+
 ### Mount src to volume
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
 
@@ -91,26 +119,14 @@ postgres://db:5432
 redis://redis:6379
 ```
 
-### Enter running container
-```bash
-docker exec -it <CONTAINER_ID> /bin/sh
+### Links
+Deprecated!!! Able to access service by name out of box.
+
+```yml
+web:
+  links:
+    - db
+db:
+  image: postgres:latest
 ```
-
-### Logging
-To pull out a cranshed/stopped container logs, you can do:
-```shell
-$ docker ps -a // get container id. it prints out all containers infor default is running ones only
-$ docker logs <CONTAINER_ID>
-```
-To see logs printed in real-time while running your container, you can do:
-```shell
-$ docker exec -ip 3000:3000 serverless
-```
-
-### Copy files
-Use `COPY` command in `Dockerfile` when copying files to **image**, Use `docker cp` while copying files in/out of a **container**. Container basically implies it's running.
-
-### Delete dangling images
-To remove images such as `<none>:<none>`, run command below:
-
-`$ docker rmi -f $(docker images -f "dangling=true" -q)`
+Code inside web can access database using `db:5432`.

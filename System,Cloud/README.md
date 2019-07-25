@@ -7,6 +7,7 @@
 * [App Scaling](./app_scaling.md)
 * [K8S](./k8s.md)
 * [Serverless](./serverless.md)
+* [NGINX](./nginx.md)
 * AWS
   * [ELB](./elb.md)
   * [EC2 & EBS](./ec2_ebs.md)

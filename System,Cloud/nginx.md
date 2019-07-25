@@ -1,0 +1,37 @@
+## NGINX
+
+* [Modules](#modules)
+  * [try_files](#try_files)
+* [Debugging](#debugging)
+
+
+### Modules
+
+#### try_files
+
+```config
+root /var/www/main;
+location / {
+    try_files $uri $uri.html $uri/ /fallback/index.html;
+}
+
+location /fallback {
+    root /var/www/another;
+}
+```
+if a request made to `/image.js`, `/` location will catch the request and follow rules defined in `try_files` to try to find the match:
+
+* $uri - try to find `image.js` from inside `/var/www/main`.
+* $uri.html - try to find `image.js.html` from inside `/var/www/main`.
+* $uri/ - try to find `image.js` dir from inside `/var/www/main`.
+* /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
+
+### Debugging
+
+Put nginx var values via header. Handy for development.
+
+`add_header X-uri "$uri";`
+
+Then var will be interpreted in response header.
+
+`X-uri:/index.php`
