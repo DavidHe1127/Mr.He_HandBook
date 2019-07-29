@@ -27,7 +27,7 @@ if a request made to `/image.js`, `/` location will catch the request and follow
 * $uri/ - try to find `image.js` dir from inside `/var/www/main`.
 * /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
 
-#### Default Type
+#### default_type
 Default MIME type for response. The value will be set in the response header. When NGINX serves a file, The file extension is matched against the known types declared within the `types` block. If the extension doesn't match any of the known MIME types, the value of the `default_type` directive is used.
 
 ### Debugging
