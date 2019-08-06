@@ -188,11 +188,11 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 `HTTP_PROXY= ` will set `HTTP_PROXY` to an empty string.
 
 ### define-n-use-variables
-Variables can be defined in two ways - with and without `export`:
-```shell
-$ VAR=foo // or export VAR=foo
-```
-The difference between these two is `export` will make variables available to (inherited by) other programs run by the shell that exports them.
+Varying ways of setting variables:
+
+* `VARNAME="my value"` - only in current shell.
+* `export VARNAME="my value"` - current shell and all processes started from current shell.
+* Define vars in `.bashrc` - permanently for all future bash sessions.
 
 ```shell
 $ VAR=foo node // process.env.VAR is foo
