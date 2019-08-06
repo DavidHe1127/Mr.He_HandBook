@@ -10,6 +10,7 @@
 * Miscellaneous
   * [Module Loading](#module-loading)
   * [Exec script from command line](#exec-script-from-command-line)
+  * [Non-blocking intensive computation with Fork](#non-blocking-computation-with-fork)
 * Best Practice
   * [Production Deployment](./production_deployment_tips.md)
   * [Graceful shutdown](./graceful_shutdown.md)
@@ -76,4 +77,43 @@ $ node -e 'require("./db").init()'
 
 // or in npm script
 "go": "node -e 'require(\"shelljs\")'",
+```
+
+### Non-blocking Computation with Fork
+
+```js
+// compute.js
+const longComputation = () => {
+  let sum = 0;
+  for (let i = 0; i < 1e9; i++) {
+    sum += i;
+  };
+  return sum;
+};
+
+process.on('message', message => {
+  const result = longComputation();
+  process.send(result);
+});
+
+// main.js
+const http = require('http');
+const { fork } = require('child_process');
+
+const server = http.createServer();
+
+server.on('request', (request, res) => {
+  if (request.url === '/compute') {
+    const compute = fork('compute.js');
+    compute.send('start');
+
+    compute.on('message', result => {
+      res.end(`Long computation result: ${result}`)
+    });
+  } else {
+    res.end('Route not found')
+  }
+});
+
+server.listen(3000);
 ```
