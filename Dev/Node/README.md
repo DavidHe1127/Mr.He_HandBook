@@ -5,7 +5,6 @@
   * [nextTick vs setImmediate](./nexttick_vs_setimmediate.md)
 * Fundamental
   * [Scaling and load balancing](./scaling_load_balancing.md)
-  * [Web Caching](./web_caching.md)
   * [Streams](./stream.md)
   * [HTTP Agent](./http_agent.md)
 * Miscellaneous
