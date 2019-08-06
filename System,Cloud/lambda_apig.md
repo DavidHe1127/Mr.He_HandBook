@@ -24,8 +24,8 @@ Whenever you write to `stdout`, those outputs are captured by the Lambda service
 
 One log group per function and one log stream for each concurrent invocation. Another entry of log stream will be created when a new instance is created and sends output to `stdout`. This occurs when all concurrent instance(s) are busy with processing requests - see `Concurrency` as above.
 
-Since it's not easy to search for log messages in CloudWatch Logs, log aggregation services emerge such as `datadog`, `papertrail` and `sentry`.
+Since it's not easy to search for log messages in CloudWatch Logs, log aggregation services emerge such as `datadog`, `papertrail` and `sentry`. This is achieved by [CloudWatch Logs Subscription](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Subscriptions.html)
 
 1. logs captured by lambda and pushed to CloudWatch logs asynchronously
-2. CloudWatch triggers another lambda alongside logs
+2. CloudWatch forwards logs to another service (lambda) via subscription
 3. Lambda ships logs to log aggregation service
