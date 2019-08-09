@@ -72,7 +72,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET)
 * [What is it?](#what-is-it)
 * [Why do we need it?](#why-do-we-need-it)
 * [JSONP](#jsonp)
-* [CORS](#cors)
+* [How to enable it?](#how-to-enable-it)
 * [Preflight](#preflight)
 
 #### What is it
@@ -102,7 +102,7 @@ Altough ajax requests are restricted, remote scripts loaded via `src tags` are f
 ```
 Downside of jsonp is - it only works for http `GET`.
 
-#### How to enable cors
+#### How to enable it
 **Origin** header specifies where this request is being sent from.
 ```js
 GET /cors HTTP/1.1
