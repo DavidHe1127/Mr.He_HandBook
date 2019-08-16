@@ -28,7 +28,7 @@ For more infor, see [Specify environments](https://eslint.org/docs/user-guide/co
 ```
 * Disable rules
 ```js
-// one line
+// disable one line for specific rules
 alert('foo'); // eslint-disable-line no-alert, quotes, semi
 
 // block
