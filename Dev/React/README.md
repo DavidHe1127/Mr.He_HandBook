@@ -37,6 +37,9 @@
 ## JSS
 * [Elegant media queries](./media-queries-jss.md)
 
+## Ohter topics
+* [Abstract logic from JSX into class](./abstract-logic-into-class.md)
+
 ### how-react-works
 Every time `state` or `prop` changes in component, process below happens
 * React will re-render your UI with updated `state` or `prop` to a virtual DOM representation.
@@ -315,7 +318,7 @@ import React, { Children, cloneElement } from 'react';
 
 const Parent = ({children}) => {
   const arrayOfChildren = Children.toArray(children);
-  
+
   return (
     <>
       {arrayOfChildren.map(x => {
