@@ -11,9 +11,10 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 ### React
   * [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
 
-### Superb Libs
+### Useful Libs
   * [Mockaroo - Mock data generator & API](https://mockaroo.com/)
   * [Mailinator - Disposable temporary email](https://mailinator.com/)
   * [Majestic - 0 config test GUI](https://github.com/Raathigesh/majestic)
   * [NPKILL - Easily find and remove old and heavy node_modules folders](https://github.com/voidcosmos/npkill)
+  * [Node pkgs stats browser](https://www.pkgstats.com/?search=webpack)
 
