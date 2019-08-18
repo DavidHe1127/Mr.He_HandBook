@@ -25,7 +25,7 @@
 * [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 * [Composite Components](#composite-components)
 * [Refs](./refs.md)
-* [Tests](./test.md)
+* [Test](./test.md)
 * [Pass props to parent children](#props-forwarding-to-children)
 * [Pass param to event handler](#pass-param-to-event-handler)
 * [React Context](./context.md)

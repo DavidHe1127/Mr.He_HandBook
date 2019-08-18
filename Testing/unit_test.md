@@ -1,11 +1,11 @@
 ## Unit Test Tips/Code Snippets
 
-* External resources
-  * [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
-  * [Jest cheatsheet](https://github.com/sapegin/jest-cheat-sheet)
-* [Mocking modules](#mocking-modules)
-* [Mock required, non-existent file](#mock-required-non-existent-file)
-* [Mock large input](#mock-large-input)
+- Good articles
+  - [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+  - [Jest cheatsheet](https://github.com/sapegin/jest-cheat-sheet)
+- [Mocking modules](#mocking-modules)
+- [Mock required, non-existent file](#mock-required-non-existent-file)
+- [Mock large input](#mock-large-input)
 
 ### Mocking Modules
 
@@ -28,8 +28,8 @@ jest.mock('cookies-js', () => ({
     }),
     get: jest.fn().mockImplementation((...args) => {
       mockGetCookie(...args);
-    }),
-  },
+    })
+  }
 }));
 // ...
 it('should call Cookie.set', () => {
@@ -42,16 +42,16 @@ it('should call Cookie.set', () => {
 ```js
 // runtimeConfig.json does not exist on the filesystem, but your test
 // will still execute and your code will use this runtimeConfig.json file
-jest.mock("./runtimeConfig.json", () => ({env: 'QA1'}), { virtual: true });
+jest.mock('./runtimeConfig.json', () => ({ env: 'QA1' }), { virtual: true });
 ```
 
 ### Mock large input
+
 Use snapshot to test the return value is expected.
 
 ```js
 it('should get sort characters', () => {
-    const result = sortedByName(require('./starWarsCharacters.json'));
-    expect(result).toMatchSnapshot();
+  const result = sortedByName(require('./starWarsCharacters.json'));
+  expect(result).toMatchSnapshot();
 });
 ```
-
