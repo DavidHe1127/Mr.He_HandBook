@@ -1,7 +1,10 @@
 ## Unit Test Tips/Code Snippets
 
-- [Mocking modules](#mocking_modules)
-- [Mock required, non-existent file](#mock_required_non-existent-file)
+- [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+
+- [Mocking modules](#mocking-modules)
+- [Mock required, non-existent file](#mock-required-non-existent-file)
+- [Mock large input](#mock-large-input)
 
 ### Mocking Modules
 
@@ -39,5 +42,15 @@ it('should call Cookie.set', () => {
 // runtimeConfig.json does not exist on the filesystem, but your test
 // will still execute and your code will use this runtimeConfig.json file
 jest.mock("./runtimeConfig.json", () => ({env: 'QA1'}), { virtual: true });
+```
+
+### Mock large input
+Use snapshot to test the return value is expected.
+
+```js
+it('should get sort characters', () => {
+    const result = sortedByName(require('./starWarsCharacters.json'));
+    expect(result).toMatchSnapshot();
+});
 ```
 
