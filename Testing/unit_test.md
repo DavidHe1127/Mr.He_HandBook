@@ -2,6 +2,7 @@
 
 * External resources
   * [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+  * [Jest cheatsheet](https://github.com/sapegin/jest-cheat-sheet)
 * [Mocking modules](#mocking-modules)
 * [Mock required, non-existent file](#mock-required-non-existent-file)
 * [Mock large input](#mock-large-input)
