@@ -1,10 +1,10 @@
 ## Unit Test Tips/Code Snippets
 
-- [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
-
-- [Mocking modules](#mocking-modules)
-- [Mock required, non-existent file](#mock-required-non-existent-file)
-- [Mock large input](#mock-large-input)
+* External resources
+  * [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
+* [Mocking modules](#mocking-modules)
+* [Mock required, non-existent file](#mock-required-non-existent-file)
+* [Mock large input](#mock-large-input)
 
 ### Mocking Modules
 
