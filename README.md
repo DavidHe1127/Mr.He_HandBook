@@ -8,13 +8,16 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 </details>
 
 ## Resources
+
 ### React
-  * [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
 
-### Useful Libs
-  * [Mockaroo - Mock data generator & API](https://mockaroo.com/)
-  * [Mailinator - Disposable temporary email](https://mailinator.com/)
-  * [Majestic - 0 config test GUI](https://github.com/Raathigesh/majestic)
-  * [NPKILL - Easily find and remove old and heavy node_modules folders](https://github.com/voidcosmos/npkill)
-  * [Node pkgs stats browser](https://www.pkgstats.com/?search=webpack)
+- [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
 
+### Cool tools
+
+- [Mockaroo - Mock data generator & API](https://mockaroo.com/)
+- [Mailinator - Disposable temporary email](https://mailinator.com/)
+- [Majestic - 0 config test GUI](https://github.com/Raathigesh/majestic)
+- [NPKILL - Easily find and remove old and heavy node_modules folders](https://github.com/voidcosmos/npkill)
+- [pkgstats - Node pkgs stats browser](https://www.pkgstats.com/?search=webpack)
+- [sampler - visualize metrics from shell execution](https://github.com/sqshq/sampler)
