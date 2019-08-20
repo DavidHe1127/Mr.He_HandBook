@@ -2,7 +2,7 @@
 
 - Good articles/tips
   - [Habits of successful react components](https://javascriptplayground.com/habits-of-successful-react-components/)
-  - [Rule of thumb testing tips](https://gist.github.com/fokusferit/e4558d384e4e9cab95d04e5f35d4f913)
+  - [Mount, shallow, renderer diff and tips](https://gist.github.com/fokusferit/e4558d384e4e9cab95d04e5f35d4f913)
 - [Test ref](#test-ref)
 
 ### Test ref
