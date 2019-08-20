@@ -4,6 +4,7 @@
   - [Habits of successful react components](https://javascriptplayground.com/habits-of-successful-react-components/)
   - [Mount, shallow, renderer diff and tips](https://gist.github.com/fokusferit/e4558d384e4e9cab95d04e5f35d4f913)
 - [Test ref](#test-ref)
+- [Don't test implementation details](#dont-test-implementation-details)
 
 ### Test ref
 
@@ -42,3 +43,92 @@ it('pass ref to access dom node', () => {
   expect(res).toBe(true);
 });
 ```
+
+---
+
+### Dont test implementation details
+
+Implementation details refer to the details around how you achieve the desired component behaviours.
+
+Consider code below:
+```js
+import React from 'react'
+import AccordionContents from './accordion-contents'
+class Accordion extends React.Component {
+  state = {openIndex: 0}
+  setOpenIndex = openIndex => this.setState({openIndex})
+  render() {
+    const {openIndex} = this.state
+    return (
+      <div>
+        {this.props.items.map((item, index) => (
+          <>
+            <button onClick={() => this.setOpenIndex(index)}>
+              {item.title}
+            </button>
+            {index === openIndex ? (
+              <AccordionContents>{item.contents}</AccordionContents>
+            ) : null}
+          </>
+        ))}
+      </div>
+    )
+  }
+}
+export default Accordion
+
+// test
+import React from 'react'
+// if you're wondering why not shallow,
+// then please read https://kcd.im/shallow
+import Enzyme, {mount} from 'enzyme'
+import EnzymeAdapter from 'enzyme-adapter-react-16'
+import Accordion from '../accordion'
+// Setup enzyme's react adapter
+Enzyme.configure({adapter: new EnzymeAdapter()})
+test('setOpenIndex sets the open index state properly', () => {
+  const wrapper = mount(<Accordion items={[]} />)
+  expect(wrapper.state('openIndex')).toBe(0)
+  wrapper.instance().setOpenIndex(1)
+  expect(wrapper.state('openIndex')).toBe(1)
+})
+```
+
+As you can see, it's testing state but as an end user, we don't care about `openIndex` is kept as an internal state we only care about when a segement of accordion is opened/closed when being clicked.
+
+So we should test behaviour:
+```js
+import React from 'react'
+import {render, fireEvent} from 'react-testing-library'
+import Accordion from '../accordion'
+test('can open accordion items to see the contents', () => {
+  const hats = {title: 'Favorite Hats', contents: 'Fedoras are classy'}
+  const footware = {
+    title: 'Favorite Footware',
+    contents: 'Flipflops are the best',
+  }
+  const {getByText, queryByText} = render(
+    <Accordion items={[hats, footware]} />,
+  )
+  expect(getByText(hats.contents)).toBeInTheDocument()
+  expect(queryByText(footware.contents)).toBeNull()
+  fireEvent.click(getByText(footware.title))
+  expect(getByText(footware.contents)).toBeInTheDocument()
+  expect(queryByText(hats.contents)).toBeNull()
+})
+```
+
+See [Testing Implementation Details](https://kentcdodds.com/blog/testing-implementation-details) for the reasons why we shouldn't do it.
+
+
+
+
+
+
+
+
+
+
+
+
+
