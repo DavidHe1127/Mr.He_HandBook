@@ -19,8 +19,7 @@ Weigh up the usage of graphql when dealing with below use cases:
 - Arbitrary data - free-form data i.e arbitrary values contained object
 
 ### Query Resolver
-
-![Query Execution](./links/query_execution.png)
+![Query Execution](./query_execution.png)
 
 A few things to note
 
@@ -338,3 +337,6 @@ query getPlanet($id: ID!) {
 ```
 
 Server will determine whether to return `Galaxy` or `Star` at the runtime based on whether the requested object is a `Galaxy` or `Star`.
+
+Read [this](https://www.apollographql.com/docs/apollo-server/features/unions-interfaces/) for resolver implementation which is able to figure out what type it needs to resolve to with little help from `__resolveType` field.
+
