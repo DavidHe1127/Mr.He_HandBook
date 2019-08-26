@@ -314,3 +314,6 @@ query getPlanet($id: ID!) {
 }
 ```
 Server will determine whether to return `Galaxy` or `Star` at the runtime based on whether the requested object is a `Galaxy` or `Star`.
+
+Read [this](https://www.apollographql.com/docs/apollo-server/features/unions-interfaces/) for resolver implementation which is able to figure out what type it needs to resolve to with little help from `__resolveType` field.
+
