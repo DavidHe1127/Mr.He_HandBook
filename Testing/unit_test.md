@@ -60,10 +60,12 @@ it('should get sort characters', () => {
 ### Partially mock a module
 Basically, 2 ways to partially mock a module:
 ```js
+// 1st approach
 jest.spyOn(lodash, 'random').mockImplementationOnce(() => {
   return 2;
 });
 
+// 2nd approach
 jest.mock('./browserStorage', () => ({
   ...jest.requireActual('./browserStorage'),
   get: jest.fn(),
