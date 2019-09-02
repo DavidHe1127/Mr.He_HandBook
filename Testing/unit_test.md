@@ -80,7 +80,7 @@ Remember, ES6 class is just syntactic sugar for prototype-based class, so we can
 jest.mock('./myClass', () => {
   const module = jest.requireActual('./myClass');
 
-  module.myClass.prototype.values = jest.fn().mockImplementationOnce(() => ({
+  module.myClass.prototype.oneMethod = jest.fn().mockImplementationOnce(() => ({
     id: '2def'
   }));
 
