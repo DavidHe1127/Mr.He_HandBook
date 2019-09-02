@@ -6,7 +6,7 @@
 - [Mocking modules](#mocking-modules)
 - [Mock required, non-existent file](#mock-required-non-existent-file)
 - [Mock large input](#mock-large-input)
-- [Partially mock a module](#partially-mock-a-module)
+- [Partially mock a module/class](#partially-mock-a-module-or-class)
 
 ### Mocking Modules
 
@@ -57,7 +57,7 @@ it('should get sort characters', () => {
 });
 ```
 
-### Partially mock a module
+### Partially mock a module or class
 Basically, 2 ways to partially mock a module:
 ```js
 // 1st approach
@@ -73,5 +73,20 @@ jest.mock('./browserStorage', () => ({
 
 const {get: mockGet} = require('./browserStorage');
 ```
+
+Remember, ES6 class is just syntactic sugar for prototype-based class, so we can do this:
+
+```js
+jest.mock('./myClass', () => {
+  const module = jest.requireActual('./myClass');
+
+  module.myClass.prototype.values = jest.fn().mockImplementationOnce(() => ({
+    id: '2def'
+  }));
+
+  return module;
+});
+```
+
 
 
