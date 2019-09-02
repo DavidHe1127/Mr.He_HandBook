@@ -6,6 +6,7 @@
 - [Mocking modules](#mocking-modules)
 - [Mock required, non-existent file](#mock-required-non-existent-file)
 - [Mock large input](#mock-large-input)
+- [Partially mock a module](#partially-mock-a-module)
 
 ### Mocking Modules
 
@@ -55,3 +56,20 @@ it('should get sort characters', () => {
   expect(result).toMatchSnapshot();
 });
 ```
+
+### Partially mock a module
+Basically, 2 ways to partially mock a module:
+```js
+jest.spyOn(lodash, 'random').mockImplementationOnce(() => {
+  return 2;
+});
+
+jest.mock('./browserStorage', () => ({
+  ...jest.requireActual('./browserStorage'),
+  get: jest.fn(),
+}));
+
+const {get: mockGet} = require('./browserStorage');
+```
+
+
