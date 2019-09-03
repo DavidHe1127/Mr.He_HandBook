@@ -61,8 +61,13 @@ it('should get sort characters', () => {
 Basically, 2 ways to partially mock a module:
 ```js
 // 1st approach
-jest.spyOn(lodash, 'random').mockImplementationOnce(() => {
-  return 2;
+import * as apolloHooks from '@apollo/react-hooks';
+
+jest.spyOn(apolloHooks, 'useApolloClient').mockImplementationOnce(() => {
+  return {
+    writeQuery: jest.fn(),
+    readQuery: jest.fn()
+  };
 });
 
 // 2nd approach
