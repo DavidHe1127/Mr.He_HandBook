@@ -7,6 +7,7 @@
 - [Mock required, non-existent file](#mock-required-non-existent-file)
 - [Mock large input](#mock-large-input)
 - [Partially mock a module/class](#partially-mock-a-module-or-class)
+- [Mock function](#mock-function)
 
 ### Mocking Modules
 
@@ -91,6 +92,22 @@ jest.mock('./myClass', () => {
 
   return module;
 });
+```
+
+### Mock function
+
+```js
+const myObj = {
+  myMethod: jest.fn().mockReturnThis(),
+};
+
+// is the same as
+
+const otherObj = {
+  myMethod: jest.fn(function() {
+    return this;
+  }),
+};
 ```
 
 
