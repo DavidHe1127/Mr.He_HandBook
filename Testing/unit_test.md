@@ -109,7 +109,7 @@ const otherObj = {
   }),
 };
 ```
-Call can be chained when needing access to mocked function returned by another mocked function. Example below shows how you can get the first argument of first call to a mocked function which is returned by `someMockFunc` as the second element in the array `value[1]`.
+Call can be chained when needing access to mocked function returned by another mocked function. Example below shows how you can get the first argument of the first call to a mocked function which is returned by `someMockFunc` as the second element in the array `value[1]`.
 
 ```js
 someMockFunc.mock.results[1].value[1].mock.calls[0][0]
