@@ -11,6 +11,11 @@
 
 ### Mocking Modules
 
+Mock your module when you need to:
+
+1) Monitor how a function/module is called/used
+2) Change the original implementations
+
 ```js
 // code.js
 import Cookie from 'cookies-js';
