@@ -40,6 +40,8 @@ const onClick = useCallback(
 );
 ```
 
+Note, it's a perfect fit for `useCallback` in the above example as `value` referenced by arrow function is defined outside the arrow function scope.
+
 ### useEffect
 
 Do something only once:
