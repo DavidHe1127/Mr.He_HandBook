@@ -2,6 +2,9 @@
 
 * [Traditional Pagination vs Cursor-based Pagination](#traditional-pagination-vs-cursor-based-pagination)
 * [Debounce vs Throttle](#debounce-vs-throttle)
+* [Cross-cutting concerns](#cross-cutting-concerns)
+* [Encoding](./char_encodings.md)
+* [Timestamp](./timestamp.md)
 
 ## Traditional Pagination VS Cursor-based Pagination
 
@@ -81,9 +84,11 @@ The response from the server would be:
 }
 ```
 
-## Debounce vs Throttle
+### Debounce vs Throttle
 
 * Throttle - enforce a max num of times a func can be called over time. i.e Under normal circumstances you would call this func 1000 times over 10 seconds. If you throttle it to only once per 100ms, it would only execute that func at most 100 times.
 
 * Debounce - enforce that a func not be called again until a certain amount of time has passed without it being called.
 
+### cross-cutting concerns
+![./cross-cutting-concerns](./cross-cutting-concerns.png)
