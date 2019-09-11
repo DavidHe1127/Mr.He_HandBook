@@ -14,7 +14,7 @@
 * [Validations](#validations)
 * [Refactoring](#refactoring)
 * [Summary](#summary)
-* [Coupling and ways to decouple your code](#coupling-decoupling)
+* [Coupling and ways to decouple your code](#identify-coupling-and-decouple-your-code)
 
 # declarative
 Most of you know that a declarative style of programming results in less code.
@@ -208,7 +208,7 @@ Enhanced readability and extensibility should always come before micro-optimizat
 
 ---
 
-### Coupling and Decoupling
+### Identify coupling and decouple your code
 
 Tight coupling causes:
 
@@ -225,7 +225,11 @@ How pure functions reduce coupling:
 * Do one thing
 * Structure, not instructions - Pure functions can be safely memoized, meaning that, if the system had infinite memory, any pure function could be replaced with a lookup table that uses the function’s input as an index to retrieve a corresponding value from the table
 
+### Rules
+
 > Rule to identify tight coupling: Can the unit be tested without mocking dependencies? If it can’t, it’s tightly coupled to the mocked dependencies.
+> You absolutely should not skip integration tests even if you can achieve 100% unit test coverage.
+> Mocking is OK in integration tests
 
 #### Solutions
 
@@ -317,10 +321,6 @@ function* sendMessageSaga (msg) {
 }
 ```
 Saga side effect functions such as `call`, `put` are pure. `call(doSomeAsyncStuff)` does not actually execute the API request. Instead, it returns a pure object that looks like `{type: 'CALL', func, args}`. The actual execution is taken care of by the redux-saga middleware and will return the value back into generator (hence the yield keyword) or throw an error if there was one.
-
-> You absolutely should not skip integration tests even if you can achieve 100% unit test coverage.
-> Mocking is OK in integration tests
-
 
 
 
