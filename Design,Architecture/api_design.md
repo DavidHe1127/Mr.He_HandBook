@@ -14,6 +14,7 @@
 * [Validations](#validations)
 * [Refactoring](#refactoring)
 * [Summary](#summary)
+* [Coupling and ways to decouple your code](#coupling-decoupling)
 
 # declarative
 Most of you know that a declarative style of programming results in less code.
@@ -101,7 +102,7 @@ jQuery("#some-selector").css({
 // alright but not that good
 jQuery('input').each(() => {
   var $this = jQuery(this);
-  $this.val($this.data('default')); 
+  $this.val($this.data('default'));
 });
 
 // good!
@@ -118,7 +119,7 @@ event.initMouseEvent("click", true, true, window,
 true, false, false, false,
 1, null);
 ```
-Point is - `No matter how good your docs is, do what you can so 
+Point is - `No matter how good your docs is, do what you can so
 people don't have to look things up`
 
 # extensibility
@@ -139,10 +140,10 @@ var readFile = (path, name, done) => {
 # event
 ```javascript
 var widget = () => {
-  
+
   var show = () => {
     $('.dialog').show();
-    $.trigger('dialog' + ':' + 'show');  
+    $.trigger('dialog' + ':' + 'show');
   };
 
   return {
@@ -151,7 +152,7 @@ var widget = () => {
 };
 
 $(document.body).on('dialog:show', () => {
-   // do something 
+   // do something
 });
 ```
 
@@ -205,7 +206,120 @@ Enhanced readability and extensibility should always come before micro-optimizat
 * Handle invalid input as early as possible — throw Errors.
 * Good APIs are flexible, better APIs don’t let you make mistakes.
 
+---
 
+### Coupling and Decoupling
+
+Tight coupling causes:
+
+* Mutation
+* Side-effects
+* Responsibility overload
+* Procedural instructions
+* Class inheritence
+
+How pure functions reduce coupling:
+
+* Immutability
+* No Side-effects
+* Do one thing
+* Structure, not instructions - Pure functions can be safely memoized, meaning that, if the system had infinite memory, any pure function could be replaced with a lookup table that uses the function’s input as an index to retrieve a corresponding value from the table
+
+> Rule to identify tight coupling: Can the unit be tested without mocking dependencies? If it can’t, it’s tightly coupled to the mocked dependencies.
+
+#### Solutions
+
+1. Decompose a larger problem into smaller, independent ones and unit test them. And use generic composition utility to compose the pieces back together. i.e
+
+```JavaScript
+// Function composition OR
+// import pipe from 'lodash/fp/flow';
+const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+// Functions to compose
+const g = n => n + 1;
+const f = n => n * 2;
+// Imperative composition
+const doStuffBadly = x => {
+  const afterG = g(x);
+  const afterF = f(afterG);
+  return afterF;
+};
+// Declarative composition
+const doStuffBetter = pipe(g, f);
+console.log(
+  doStuffBadly(20), // 42
+  doStuffBetter(20) // 42
+);
+```
+
+2. Use pure functions
+
+Big benefits - It allows us to detect changes to objects by using an identity comparison `===` checck, so we don't have to traverse through the entire object to discover if anything has changed. Non-pure function means there could be direct modification to the object being passed in which results in impossibility of `3 equal check`.
+
+  Also, pure function can be memoized, meaning that you don’t have to build the whole object again if you’ve seen the same inputs before.
+
+3. Isolate Side-effects from rest of your program logic
+
+* Use pub/sub
+* Isolate logic from I/O
+```javascript
+// tight coupling
+async function uploadFiles({user, folder, files}) {
+  const dbUser = await readUser(user);
+  const folderInfo = await getFolderInfo(folder);
+  if (await haveWriteAccess({dbUser, folderInfo})) {
+    return uploadToFolder({dbUser, folderInfo, files });
+  } else {
+    throw new Error("No write access to that folder");
+  }
+}
+
+const asyncPipe = (...fns) => x => (
+  fns.reduce(async (y, f) => f(await y), x)
+);
+
+const uploadFiles = asyncPipe(
+  readUser,
+  getFolderInfo,
+  haveWriteAccess,
+  uploadToFolder
+);
+
+uploadFiles({user, folder, files}).then(log);
+```
+* Use objects that represent future computations
+This is how `redux-saga` implemented.
+
+```javascript
+ // sugar for console.log we'll use later
+const log = msg => console.log(msg);
+const call = (fn, ...args) => ({ fn, args });
+const put = (msg) => ({ msg });
+// imported from I/O API
+const sendMessage = msg => Promise.resolve('some response');
+// imported from state handler/Reducer
+const handleResponse = response => ({
+  type: 'RECEIVED_RESPONSE',
+  payload: response
+});
+const handleError = err => ({
+  type: 'IO_ERROR',
+  payload: err
+});
+
+function* sendMessageSaga (msg) {
+  try {
+    const response = yield call(sendMessage, msg);
+    yield put(handleResponse(response));
+  } catch (err) {
+    yield put(handleError(err));
+  }
+}
+```
+Saga side effect functions such as `call`, `put` are pure. `call(doSomeAsyncStuff)` does not actually execute the API request. Instead, it returns a pure object that looks like `{type: 'CALL', func, args}`. The actual execution is taken care of by the redux-saga middleware and will return the value back into generator (hence the yield keyword) or throw an error if there was one.
+
+> You absolutely should not skip integration tests even if you can achieve 100% unit test coverage.
+> Mocking is OK in integration tests
 
 
 
