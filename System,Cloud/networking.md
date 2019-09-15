@@ -31,7 +31,7 @@ Note, `CNAME` only points the source domain to the destination domain, which the
 
 ### nc
 
-Use `nc` as you would with `telnet:
+Use `nc` as you would with `telnet`:
 
 ```js
 $ nc -v https://xyz.com 443
