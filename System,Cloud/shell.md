@@ -9,7 +9,6 @@
 * [Man page/help](#manpage-help)
 * [Input and Output](#input-output)
 * [double dash in command](#double-dash)
-
 * Tips
   * [Run command in history](#run-command-in-history)
   * [Define and use Variables](#define-n-use-variables)
