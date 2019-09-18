@@ -1,20 +1,20 @@
 ## Shell script, commands
 
-- [What is shell](#what-is-shell)
-- [ctrl+d vs ctrl+c](#ctrld-ctrlc)
-- [ls](#ls-output-explained)
-- [less](#less)
-- [scp](#scp)
-- [Dot files](#dotfiles)
-- [Man page/help](#manpage-help)
-- [Input and Output](#input-output)
-- [double dash in command](#double-dash)
+* [What is shell](#what-is-shell)
+* [ctrl+d vs ctrl+c](#ctrld-ctrlc)
+* [ls](#ls-output-explained)
+* [less](#less)
+* [scp](#scp)
+* [Dot files](#dotfiles)
+* [Man page/help](#manpage-help)
+* [Input and Output](#input-output)
+* [double dash in command](#double-dash)
 
-- Tips
-  - [Run command in history](#run-command-in-history)
-  - [Define and use Variables](#define-n-use-variables)
-  - [Command evaluation & param sub](#command-eval-param-sub)
-  - [Reset var value to empty](#reset-var-value)
+* Tips
+  * [Run command in history](#run-command-in-history)
+  * [Define and use Variables](#define-n-use-variables)
+  * [Command evaluation & param sub](#command-eval-param-sub)
+  * [Reset var value to empty](#reset-var-value)
 
 ### what is shell
 
