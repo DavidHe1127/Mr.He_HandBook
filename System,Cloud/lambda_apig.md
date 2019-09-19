@@ -34,7 +34,7 @@ arn:aws:lambda:aws-region:acct-id:function:helloworld
 
 AWS Lambda functions are stored as zip files in an S3 bucket. They are loaded up onto a container when the function is invoked. The time it takes to do this is called the cold start time. If a function has been recently invoked, the container is kept around. In this case, your functions get invoked a lot quicker and this delay is referred to as the warm start time. One of the factors that affects cold starts, is the size of your Lambda function package. The larger the package, the longer it takes to invoke your Lambda function.
 
-![Package Lambdas with serverless-bundle
+[Package Lambdas with serverless-bundle
 ](https://serverless-stack.com/chapters/package-lambdas-with-serverless-bundle.html)
 
 ### Concurrency
