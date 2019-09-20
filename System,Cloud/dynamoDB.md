@@ -19,7 +19,7 @@
 * Items with the same partition key value are stored physically close together, ordered by sort key value.
 ![xxx](./dynamoDB-partition-data-distribution.png)
 
-### primary-key
+### Primary Key
 
 * Only key-related attributes need to be defined beforehand. No need put non-key attributes in definition. i.e cloudformation template.
 * Primary Key
