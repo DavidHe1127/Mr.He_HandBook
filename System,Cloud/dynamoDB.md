@@ -1,10 +1,11 @@
 ## DynamoDB key points
 
 * [Core Concept](#core-concept)
- * [Primary Key](#primary-key)
- * [Secondary Indexs](#secondary-index)
- * [Streams](#streams)
- * [Caveats](#caveats)
+* [Primary Key](#primary-key)
+* [Secondary Indexs](#secondary-index)
+* [Streams](#streams)
+* [Caveats](#caveats)
+* [Design pattern(#design-pattern)
 
 ### core-concept
 
@@ -55,3 +56,18 @@
 
 #### Caveats
 * `Query` requires partition key to be provided while sort key is optional. However `Get` requires you provide both partition key and sort key.
+*
+
+#### Design Pattern
+
+Defining the database architecture for microservices we need to consider below points.
+* Services must be loosely coupled. They can be developed, deployed, and scaled independently.
+* Business transactions may enforce invariants that span multiple services.
+* Some business transactions need to query data that is owned by multiple services.
+* Databases must sometimes be replicated and shared in order to scale.
+* Different services have different data storage requirements.
+
+Database per Service
+
+To solve the above concerns, one database per microservice must be designed; it must be private to that service only. It should be accessed by the microservice API only. It cannot be accessed by other services directly. For example, for relational databases, we can use private-tables-per-service, schema-per-service, or database-server-per-service.
+
