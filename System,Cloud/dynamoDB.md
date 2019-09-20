@@ -1,15 +1,12 @@
 ## DynamoDB key points
 
-* [Core Concept](#core-concept)
 * [Primary Key](#primary-key)
 * [Secondary Indexs](#secondary-index)
 * [Streams](#streams)
 * [Caveats](#caveats)
 * [Design pattern](#design-pattern)
 
-### core-concept
-
-#### partition
+### partition
 
 * An allocation of storage for a table backed by SSD and auto replicated across multiple AZs within a region
 * AWS allocates additional partitions when:
@@ -22,7 +19,7 @@
 * Items with the same partition key value are stored physically close together, ordered by sort key value.
 ![xxx](./dynamoDB-partition-data-distribution.png)
 
-#### primary-key
+### primary-key
 
 * Only key-related attributes need to be defined beforehand. No need put non-key attributes in definition. i.e cloudformation template.
 * Primary Key
@@ -32,7 +29,7 @@
                                `Partition key` determines where data is stored whereas `sort key` determines sorted order.
                                For tables with composite primary key, partition key can be the same but sort key must be different.
 
-#### secondary-index
+### secondary-index
 
 * Provide more querying flexibility
 * Allow 1 or more SI on a table
@@ -51,14 +48,14 @@
    At a minimum, DynamoDB projects the key attributes from base table into the index.
 
 
-#### Streams
+### Streams
 ![XX](./dynamoDB-streams.png)
 
-#### Caveats
+### Caveats
 * `Query` requires partition key to be provided while sort key is optional. However `Get` requires you provide both partition key and sort key.
 *
 
-#### Design Pattern
+### Design Pattern
 
 Defining the database architecture for microservices we need to consider below points.
 * Services must be loosely coupled. They can be developed, deployed, and scaled independently.
