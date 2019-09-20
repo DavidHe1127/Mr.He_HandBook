@@ -5,6 +5,7 @@
 * [Streams](#streams)
 * [Caveats](#caveats)
 * [Design pattern](#design-pattern)
+* [Backup](#backup)
 
 ### Partition
 
@@ -53,7 +54,8 @@
 
 ### Caveats
 * `Query` requires partition key to be provided while sort key is optional. However `Get` requires you provide both partition key and sort key.
-*
+* Not equal `<>` sign not allowed as a comparator operator on Sort Key Attribute.
+* `Cond1 AND Cond2 or Cond1` - no more than 2 logical comparator is allowed.
 
 ### Design Pattern
 
@@ -68,3 +70,6 @@ Database per Service
 
 To solve the above concerns, one database per microservice must be designed; it must be private to that service only. It should be accessed by the microservice API only. It cannot be accessed by other services directly. For example, for relational databases, we can use private-tables-per-service, schema-per-service, or database-server-per-service.
 
+### Backup
+
+[Backup](https://serverless-stack.com/chapters/backups-in-dynamodb.html)
