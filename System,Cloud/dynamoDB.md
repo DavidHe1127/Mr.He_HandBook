@@ -5,7 +5,7 @@
 * [Secondary Indexs](#secondary-index)
 * [Streams](#streams)
 * [Caveats](#caveats)
-* [Design pattern(#design-pattern)
+* [Design pattern](#design-pattern)
 
 ### core-concept
 
