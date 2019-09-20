@@ -6,7 +6,7 @@
 * [Caveats](#caveats)
 * [Design pattern](#design-pattern)
 
-### partition
+### Partition
 
 * An allocation of storage for a table backed by SSD and auto replicated across multiple AZs within a region
 * AWS allocates additional partitions when:
