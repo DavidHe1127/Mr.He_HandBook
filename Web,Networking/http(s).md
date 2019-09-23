@@ -3,6 +3,7 @@
 - [How it works](#how-it-works)
 - [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
 - [HTTP/2](#http/2)
+- [CA](#ca)
 
 ### How it works
 
@@ -38,3 +39,17 @@ Certbot is a very popular agent.
   - With HTTP/2, it allows you to send off multiple requests on the **same** connection. The requested resources are fetched in parallel and received
     **in any order**.
   - Note, HTTP/1.1 has a concept of `pipelining` which also allows multiple requests to be sent off at once but they need to be returned **in the order they were requested**. This feature is nowhere near as good as HTTP/2 so it is hardly used.
+  
+### CA
+
+- Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
+- Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
+- CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than being issued by CAs.
+
+
+
+
+
+
+
+
