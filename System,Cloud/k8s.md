@@ -19,6 +19,7 @@ K8s Basic Concepts, learning resources and best practices
 
 #### Pod
 * Wraps one or more containers into a higher-level structure.
+* A Pod always runs on a Node.
 * Any containers in the same pod will share the same resources and local network.
 * Containers can easily communicate with other containers in the same pod as though they were on the same machine while maintaining a degree of isolation from others.
 * Used as the unit of replication in Kubernetes. If your application becomes too popular and a single pod instance can’t carry the load, Kubernetes can be configured to deploy new replicas of your pod to the cluster as necessary. Even when not under heavy load, it is standard to have multiple copies of a pod running at any time in a production system to allow load balancing and failure resistance.
@@ -27,5 +28,11 @@ K8s Basic Concepts, learning resources and best practices
 * Declare how many replicas of a pod should be running at a time
 * When a deployment is added to the cluster, it will automatically spin up the requested number of pods, and then monitor them. If a pod dies, the deployment will automatically re-create it.
 * By using `Deployment`, declare the desired state of the system, and it will be managed for you automatically.
+
+#### Summary
+
+* Node - a VM
+* Pod - a container running on VM
+* Cluster - a cluster of VMs
 
 
