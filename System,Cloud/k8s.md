@@ -10,7 +10,7 @@ K8s Basic Concepts, learning resources and best practices
 
 #### Cluster
 * All nodes pool together their resources to form a more powerful machine.
-* It intelligently handles distributing work to the individual nodes for you when deploying your program onto cluster.
+* K8S intelligently handles distributing work to the individual nodes for you when deploying your program onto cluster.
 
 #### Persistent volumes
 * Files and app data cannot be saved into local `fs` on pod since app might be running on a different pod everytime it needs to run.
