@@ -58,7 +58,7 @@ Every time `state` or `prop` changes in component, process below happens
 3 important phases
 
 - `render` - is when React calls your function to get React elements.
-- `reconciliation` - is when React compares those React elements with the previously rendered elements.
+- `reconciliation` - is when React compares those React elements with the previously rendered elements to work out the differences.
 - `commit` - is when React takes those differences and makes the DOM updates.
 
 ```
