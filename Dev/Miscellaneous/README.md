@@ -5,7 +5,7 @@
 * [Cross-cutting concerns](#cross-cutting-concerns)
 * [Encoding](./char_encodings.md)
 * [Timestamp](./timestamp.md)
-
+* [Debugging](./debugging.md)
 ## Traditional Pagination VS Cursor-based Pagination
 
 ### Problem with tradtional pagination (ONLY applicable to real time data)
