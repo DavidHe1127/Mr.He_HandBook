@@ -15,7 +15,7 @@
 - [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
 - Given url `https://www.ABC.com`:
   - `com` is Top-level Domain aka (TLD)
-  - `ABC` is Second-level Domain aka (SLD)
+  - `ABC` is Root(Second-level) Domain aka (SLD)
   - `www` is Subdomain(third-level domain)
   - `http` is the protocol with TLS/SSL
 
