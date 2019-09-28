@@ -21,3 +21,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [NPKILL - Easily find and remove old and heavy node_modules folders](https://github.com/voidcosmos/npkill)
 - [pkgstats - Node pkgs stats browser](https://www.pkgstats.com/?search=webpack)
 - [sampler - visualize metrics from shell execution](https://github.com/sqshq/sampler)
+- [lazydocker - terminal ui for both docker and docker-compose](https://github.com/jesseduffield/lazydocker)
