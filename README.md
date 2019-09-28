@@ -22,3 +22,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [pkgstats - Node pkgs stats browser](https://www.pkgstats.com/?search=webpack)
 - [sampler - visualize metrics from shell execution](https://github.com/sqshq/sampler)
 - [lazydocker - terminal ui for both docker and docker-compose](https://github.com/jesseduffield/lazydocker)
+- [httpie - curl-like cli but for human beings](https://github.com/jakubroztocil/httpie)
