@@ -4,7 +4,7 @@
 * [Supply event payload](#supply_event_payload)
 * [Use Terraform with Serverless](#terraform-with-serverless)
 
-### thin_handler
+### Thin handler
 
 Handler should be as thin as possible and reference utils/modules sitting in different files than handler. If those modules are adequately unit tested, then testing the serverless part of your application (i.e., the handlers) will be easy during the integration tests.
 
