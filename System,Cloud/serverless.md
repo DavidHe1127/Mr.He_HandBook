@@ -2,6 +2,7 @@
 
 * [Thin handler](#thin_handler)
 * [Supply event payload](#supply_event_payload)
+* [Use Terraform with Serverless](#terraform-with-serverless)
 
 ### thin_handler
 
@@ -22,10 +23,23 @@ const createUser = (event, context) => {
 }
 ```
 
-### supply_event_payload
+### Supply Event Payload
 
 You can supply a mock file as event payload by calling cli. Helpful when your lambda is triggered by another service - i.e file upload to s3. By doing this, no need to upload a file to s3 over and over again to trigger your lambda with event payload returned from file upload.
 
 ```shell
 $ sls invoke -f resizeImage -p mock.json
 ```
+
+### Terraform with Serverless
+
+Create resources through terraform and export them to SSM (Systems Manager Parameter Store). Then you can reference them in serverless.
+
+```js
+apns_platform: ${ssm:/${self:service}-${opt:stage, 'dev'}/sns/apns/platform}
+```
+
+[Integrate terraform into serverless](https://medium.com/swlh/integrating-the-serverless-framework-and-terraform-874215daa8bf)
+
+
+
