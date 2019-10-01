@@ -30,7 +30,7 @@
 - [Test](./test.md)
 - [Pass props to parent children](#props-forwarding-to-children)
 - [Pass param to event handler](#pass-param-to-event-handler)
-- [Anti-props-drilling](#anti-props-drilling)
+- [Use props.children to prevent props drilling](#prevent-props-drilling)
 - [React Context](./context.md)
 - [Reset all states in component](#reset-all-states)
 
@@ -340,7 +340,7 @@ export class Main extends Component {
 
 [Composite Components](https://itnext.io/using-advanced-design-patterns-to-create-flexible-and-reusable-react-components-part-1-dd495fa1823)
 
-### pass-param-to-event-handler
+### Pass param to event handler
 
 ```js
 // instead of doing this
@@ -363,7 +363,7 @@ handleClick = e => {
 }
 ```
 
-### props-forwarding-to-children
+### Props forwarding to children
 
 ```js
 import React, { Children, cloneElement } from 'react';
@@ -389,7 +389,7 @@ When key is changed, React will dump the current component and re-create a new o
 <EmailInput defaultEmail={this.props.user.email} key={this.props.user.id} />
 ```
 
-### anti-props-drilling
+### Prevent props drilling
 
 `GrandChild` props are passed all the way down from `Parent` without being traced from `Child` component that is sitting middle in the passing path.
 
