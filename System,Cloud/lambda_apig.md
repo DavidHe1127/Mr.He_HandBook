@@ -4,6 +4,7 @@
 - [cold vs warm start](#cold-vs-warm-start)
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
+- [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
 
 ### versioning-alias
 
@@ -56,3 +57,11 @@ Since it's not easy to search for log messages in CloudWatch Logs, log aggregati
 1. logs captured by lambda and pushed to CloudWatch logs asynchronously
 2. CloudWatch forwards logs to another service (lambda) via subscription
 3. Lambda ships logs to log aggregation service
+
+### Put lambdas inside vpc
+
+Think carefully before putting your lambdas inside a vpc because:
+
+- Each time a lambda function is executed, it uses a proportion of your ENI(Elastic Network Interface) capacity from the subnet. You must have sufficient ENI capacity to support your lambda scaling requirement. If you run out of ENI capacity this will cause your lambda functions to fail.
+- Increased cold start time!
+
