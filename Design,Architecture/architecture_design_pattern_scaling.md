@@ -21,7 +21,7 @@
   - Horizontal scaling - i.e multiple VM instances.
   - Load balancer placed in front of N vms. Different routing strategies - Round Robin, weighted response time etc.
   - CDN - useful when caching static content files i.e html, css, js.
-  - cache i.e redis used to cache DB query results.
+  - cache i.e key-value pair store such as redis which is used to cache DB query results.
   - Elasticsearch - store predefined `search queries` and `their results` in memory.
   - Separate api and frontend
   - Microservices in containers - each single microservice is scalable by itself using orchestrator such as Swarm and K8s.
