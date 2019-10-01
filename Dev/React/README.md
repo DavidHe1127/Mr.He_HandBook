@@ -30,6 +30,7 @@
 - [Test](./test.md)
 - [Pass props to parent children](#props-forwarding-to-children)
 - [Pass param to event handler](#pass-param-to-event-handler)
+- [Anti-props-drilling](#anti-props-drilling)
 - [React Context](./context.md)
 - [Reset all states in component](#reset-all-states)
 
@@ -380,10 +381,34 @@ const Parent = ({ children }) => {
 };
 ```
 
-### reset-all-states
+### Reset all states
 
 When key is changed, React will dump the current component and re-create a new one and all states are reset as a result.
 
 ```js
 <EmailInput defaultEmail={this.props.user.email} key={this.props.user.id} />
 ```
+
+### anti-props-drilling
+
+```js
+function Parent({ parentProps, childProps, grandchildProps }){
+  return (
+      <ul>
+        <Child { ...childProps }>
+            <Grandchild { ...grandchildProps } />
+        </Child>
+    </ul>;
+}
+
+function Child({ childProps }) {
+  return <li { ...childProps }>{ childProps.children }</li>;
+}
+
+function Grandchild({ grandchildProps }){
+  return <a { ...grandchildProps }>link</a>;
+}
+```
+
+
+
