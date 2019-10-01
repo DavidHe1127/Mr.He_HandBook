@@ -391,6 +391,8 @@ When key is changed, React will dump the current component and re-create a new o
 
 ### anti-props-drilling
 
+`GrandChild` props are passed all the way down from `Parent` without being traced from `Child` component that is sitting middle in the passing path.
+
 ```js
 function Parent({ parentProps, childProps, grandchildProps }){
   return (
