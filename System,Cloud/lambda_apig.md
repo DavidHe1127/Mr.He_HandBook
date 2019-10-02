@@ -5,6 +5,7 @@
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
+- [Lambda/serverless nice write-ups by Yan Cui](#lambda-nice-writeups)
 
 ### versioning-alias
 
@@ -66,3 +67,8 @@ Think carefully before putting your lambdas inside a vpc because:
 - Increased cold start time!
 
 [AWS lambdas in VPC](https://levelup.gitconnected.com/lambda-vpc-cold-starts-a-latency-killer-5408323278dd)
+
+### lambda nice writeups
+
+[All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
+
