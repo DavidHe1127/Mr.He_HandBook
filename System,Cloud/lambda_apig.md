@@ -5,6 +5,7 @@
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
+- [Reusable execution context](#reusable-execution-context)
 - [Lambda/serverless nice write-ups by Yan Cui](#lambda-nice-writeups)
 
 ### versioning-alias
@@ -67,6 +68,37 @@ Think carefully before putting your lambdas inside a vpc because:
 - Increased cold start time!
 
 [AWS lambdas in VPC](https://levelup.gitconnected.com/lambda-vpc-cold-starts-a-latency-killer-5408323278dd)
+
+### Reusable execution context
+
+The execution context is a temporary runtime environment that initializes any external dependencies of your Lambda function.
+
+> Background processes or callbacks initiated by your Lambda function that did not complete when the function ended resume if AWS Lambda chooses to reuse the Execution Context.
+
+As per lambda docs, code below illustrates `console.log('timeout cb fired after' + ms + 'ms');` in the current execution will be resumed in the next lambda execution which happens in 5 seconds.
+
+```js
+function timeout(ms) {
+  console.log('timeout start');
+  return new Promise(resolve => {
+    setTimeout(() => {
+      console.log('timeout cb fired after' + ms + 'ms'); // picked up by next execution
+      resolve();
+    }, ms);
+  });
+}
+
+async function main() {
+  console.log('main start');
+  timeout(5000);
+  console.log('main end');
+}
+
+exports.handler = main;
+```
+
+
+
 
 ### lambda nice writeups
 
