@@ -75,8 +75,7 @@ The execution context is a temporary runtime environment that initializes any ex
 
 > Background processes or callbacks initiated by your Lambda function that did not complete when the function ended resume if AWS Lambda chooses to reuse the Execution Context.
 
-As per lambda docs, code below illustrates `console.log('timeout cb fired after' + ms + 'ms');` in the current execution will be resumed in the next lambda execution which happens in 5 seconds.
-
+As per lambda docs, code below illustrates `console.log('timeout cb fired after' + ms + 'ms');` in the current execution will be resumed in the next lambda execution which happens after 5 seconds wait.
 ```js
 function timeout(ms) {
   console.log('timeout start');
