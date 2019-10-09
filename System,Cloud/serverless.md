@@ -1,8 +1,9 @@
 ## Serverless
 
-* [Thin handler](#thin_handler)
-* [Supply event payload](#supply_event_payload)
-* [Use Terraform with Serverless](#terraform-with-serverless)
+- [Thin handler](#thin_handler)
+- [Supply event payload](#supply_event_payload)
+- [Use Terraform with Serverless](#terraform-with-serverless)
+- [Use WAF to protect your service](#use-waf-to-protect-your-service)
 
 ### Thin handler
 
@@ -13,14 +14,14 @@ Handler should be as thin as possible and reference utils/modules sitting in dif
 const utils = require('../utils');
 
 const createUser = (event, context) => {
-  const user = utils.CreateUser(event.user)
-  const avatarUrl = utils.updateAvatar(user)
+  const user = utils.CreateUser(event.user);
+  const avatarUrl = utils.updateAvatar(user);
 
   return {
     statusCode: 200,
     body: 'User Created!'
   };
-}
+};
 ```
 
 ### Supply Event Payload
@@ -41,5 +42,6 @@ apns_platform: ${ssm:/${self:service}-${opt:stage, 'dev'}/sns/apns/platform}
 
 [Integrate terraform into serverless](https://medium.com/swlh/integrating-the-serverless-framework-and-terraform-874215daa8bf)
 
+### Use WAF to protect your service
 
-
+> AWS WAF gives you control over which traffic to allow or block to your web applications by defining customizable web security rules.
