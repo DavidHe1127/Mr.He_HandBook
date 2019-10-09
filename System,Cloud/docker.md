@@ -10,7 +10,7 @@
   * [Networking](#Networking)
   * [Disk space on daemon](#disk-space-on-daemon)
   * [Data persistence](#data-persistence)
-  * [Docker cheatsheet](https://gist.github.com/dwilkie/f8d6526edc5f1a8aca385df5113567e4)
+  * [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
 * Docker Compose
   * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   * [Use hostnames to connect to containers](#Use-host-as-ref)
