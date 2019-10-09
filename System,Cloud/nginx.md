@@ -32,8 +32,8 @@ Default MIME type for response. The value will be set in the response header. Wh
 
 #### rewrite
 
-- `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any
-- `break` will execute the remaining commands in the current block
+- `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any.
+- `break` will execute the remaining commands in the current block.
 
 ```yml
   server {
