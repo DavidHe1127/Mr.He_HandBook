@@ -3,8 +3,8 @@
 * [Directives](#directives)
   * [try_files](#try_files)
   * [default_type](#default_type)
+  * [rewrite last and break](#rewrite)
 * [Debugging](#debugging)
-
 
 ### Directives
 
@@ -29,6 +29,35 @@ if a request made to `/image.js`, `/` location will catch the request and follow
 
 #### default_type
 Default MIME type for response. The value will be set in the response header. When NGINX serves a file, The file extension is matched against the known types declared within the `types` block. If the extension doesn't match any of the known MIME types, the value of the `default_type` directive is used.
+
+#### rewrite
+
+- `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any
+- `break` will execute the remaining commands in the current block
+
+```yml
+  server {
+    listen 80 default_server;
+    server_name dcshi.com;
+    root www;
+
+    location /break/ {
+      rewrite ^/break/(.*) /test/$1 break;
+      echo "break page";
+    }
+
+    location /last/ {
+      rewrite ^/last/(.*) /test/$1 last;
+      echo "last page";
+    }
+
+    location /test/ {
+      echo "test page";
+    }
+  }
+```
+
+It prints `break page` when hitting `http://dcshi.com/break/foo` while prints `test page` when hitting `http://dcshi.com/last/foo`.
 
 ### Debugging
 
