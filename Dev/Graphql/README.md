@@ -369,7 +369,25 @@ type TimeRange {
 }
 ```
 
-- 
+- be specific with naming
+
+```graphql
+# bad! Generic name means if we introduce another comment stuff, we then need to be specific to avoid collision
+# Not only that, we then lost the ease of remembering what Comment is about - a Post comment or a Photo comment?
+type Comment {
+  name: String!
+}
+
+# good
+type PostComment {
+  name: String!
+}
+
+type PhotoComment {
+  name: String!
+}
+```
+
 
 
 
