@@ -388,6 +388,19 @@ type PhotoComment {
 }
 ```
 
+- avoid overusing custom scalars
+
+Recursive data structure is hard to model in Graphql. i.e tree-structure menu. It's tempting for us to use Custom Scalar to address modeling. However, introduction of Custom Scalar sources a few problems:
+
+1. Lose introspection ability - clients cannot work out the data shape i.e what fields and their types are available.
+2. Server does not know how this data is used by our integrators. Cannot deprecate custom scalars.
+
+
+
+
+
+
+
 
 
 
