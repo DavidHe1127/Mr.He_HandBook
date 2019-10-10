@@ -10,6 +10,7 @@
 - [Field argument](#field-argument)
 - [Fetch schema from remote](#fetch-schema-from-remote)
 - [Fragments](#fragments)
+- [Schema design tips](#schema-design-tips)
 
 ### Graphql-unfriendly use cases
 
@@ -339,4 +340,38 @@ query getPlanet($id: ID!) {
 Server will determine whether to return `Galaxy` or `Star` at the runtime based on whether the requested object is a `Galaxy` or `Star`.
 
 Read [this](https://www.apollographql.com/docs/apollo-server/features/unions-interfaces/) for resolver implementation which is able to figure out what type it needs to resolve to with little help from `__resolveType` field.
+
+### Schema design tips
+
+- Prefer Object types over simpler structure
+
+```graphql
+# bad
+type CalendarEvent {
+  name: String!
+  owner: User!
+  # first item is start, second item is end
+  timeRange: [DateTime!]!
+  timeRangeInPast: Boolean!
+}
+
+# good
+type CalendarEvent {
+  name: String!
+  owner: User!
+  timeRange: TimeRange!
+}
+
+type TimeRange {
+  start: DateTime!
+  end: DateTime!
+  isInPast: Boolean!
+}
+```
+
+- 
+
+
+
+
 
