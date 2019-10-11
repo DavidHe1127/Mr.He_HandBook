@@ -11,7 +11,7 @@
 
 #### try_files
 
-```config
+```conf
 root /var/www/main;
 location / {
     try_files $uri $uri.html $uri/ /fallback/index.html;
