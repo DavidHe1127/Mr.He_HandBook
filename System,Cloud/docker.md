@@ -1,44 +1,49 @@
 ## Docker
 
-* Docker
-  * [Architecture](#Architecture)
-  * [Dockerfile](#dockerfile)
-  * [Enter running container](#Enter-running-container)
-  * [Logging](#Logging)
-  * [Copy files](#Copy-files)
-  * [Delete dangling images](#Delete-dangling-images)
-  * [Networking](#Networking)
-  * [Disk space on daemon](#disk-space-on-daemon)
-  * [Data persistence](#data-persistence)
-  * [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
-* Docker Compose
-  * [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
-  * [Use hostnames to connect to containers](#Use-host-as-ref)
-  * [links](#links)
+- Docker
+  - [Architecture](#Architecture)
+  - [Dockerfile](#dockerfile)
+  - [Enter running container](#Enter-running-container)
+  - [Logging](#Logging)
+  - [Copy files](#Copy-files)
+  - [Delete dangling images](#Delete-dangling-images)
+  - [Networking](#Networking)
+  - [Disk space on daemon](#disk-space-on-daemon)
+  - [Data persistence](#data-persistence)
+  - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
+- Docker Compose
+  - [Networking](#networking)
+  - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
+  - [Use hostnames to connect to containers](#Use-host-as-ref)
+  - [links](#links)
 
 ### Architecture
+
 When people say `docker` they typically refer to `docker engine` whose architecture is below:
 ![docker-arch](./docker-arch.png)
 
 ### dockerfile
+
 Layers are also known as intermediate images. Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
 
 Use `docker history <image>` to view constituted layers of an image.
 
 Docker images are layered. When you build a new image, Docker does this for each instruction (RUN, COPY etc.) in your Dockerfile:
 
-* Create a temporary container from the previous image layer (or the base FROM image for the first command
-* Run the Dockerfile instruction in the temporary `intermediate` container
-* Save the temporary container as a new image layer
+- Create a temporary container from the previous image layer (or the base FROM image for the first command
+- Run the Dockerfile instruction in the temporary `intermediate` container
+- Save the temporary container as a new image layer
 
 #### ARGS vs ENV
+
 ![docker-args-vs-env](./docker-args-n-env.png)
 
-* Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
-* Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
-* Each line of instruction should only do things relating to that layer.
+- Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
+- Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
+- Each line of instruction should only do things relating to that layer.
 
 #### ENTRYPOINT VS CMD
+
 The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 The CMD specifies arguments that will be fed to the ENTRYPOINT.
 
@@ -61,19 +66,19 @@ As shown above, **docker0** bridge is virtual interface created by docker, it ra
 
 Bridge network provides isolations that containers sitting outside the default bridge network (custom one) cannot communicate with ones sitting inside.
 
-Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
+Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
 
 #### What happens when you run a container
+
 The `docker0` Ethernet bridge settings are used every time you create a new container. Docker selects a free IP address from the range available on the bridge each time you `docker run` a new container, and configures the container’s `eth0` interface with that IP address and the bridge’s netmask. The Docker host’s own IP address (randomly picked by docker from the private ip range that's not used on the host machine) on the bridge is used as the default gateway by which each container reaches the rest of the Internet.
 
 #### Bridge network gateway
+
 It determines where traffic should go if destination ip does not match any container's ip in the network.
 
 #### veths
+
 Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
-
-
-
 
 ### Disk space on daemon
 
@@ -83,31 +88,60 @@ $ docker system prune // remove build cache, dangling images, stopped containers
 ```
 
 ### Data Persistence
+
 Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
 
 Volume can also be shared among different containers. Data in volume will be mirrored across to mounting directory inside the container.
 
 3 ways:
 
-* Volumes - stored in `/var/lib/docker/volumes/` managed by Docker. Non-docker processes should not modify it. The best option.
+- Volumes - stored in `/var/lib/docker/volumes/` managed by Docker. Non-docker processes should not modify it. The best option.
 
 attach volume `myvol1` to `/var/jenkins_home` in container. By default, Jenkins will write all data to this directory. With mounting in place, everytime Jenkins writes data to `/var/jenkins_home`, the same data will be copied to `myvol1`.
+
 ```shell
 $ docker run -v myvol1:/var/jenkins_home -p 8080:8080 jenkins
 ```
 
-* Bind mounts - stored anywhere on host file system - i.e Desktop. non-docker processes can modify it anytime.
+- Bind mounts - stored anywhere on host file system - i.e Desktop. non-docker processes can modify it anytime.
+
 ```shell
 $ docker run -v /Users/david.he/Desktop/Jenkins_Home:/var/jenkins_home -p 8080:8080 jenkins
 ```
 
-* tmpfs - stored in host system's memory only. Never written to host filesystem.
+- tmpfs - stored in host system's memory only. Never written to host filesystem.
 
+---
 
-***
 ## Docker Compose
 
+### Networking
+
+Suppose there is a `docker-compose.yml` in `myapp` directory.
+
+```yml
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+  db:
+    image: postgres
+    ports:
+      - "8001:5432"
+```
+
+When you run `docker-compose up` from project root, the following happens:
+
+1. A network called `myapp_default` is created.
+2. A container is created using web’s configuration. It joins the network myapp_default under the name web.
+3. A container is created using db’s configuration. It joins the network myapp_default under the name db.
+
+Run `docker network ls` to find the desired network and run `docker network inspect <NETWORK_ID>` to see network configs.
+
 ### Mount src to volume
+
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
 
 ```yml
@@ -118,6 +152,7 @@ services:
 ```
 
 ### Use host as ref
+
 By default Compose sets up a single network for your app. When you name a service in your Compose YAML, it creates a hostname that you can then use to connect to the service.
 
 ```yml
@@ -133,6 +168,7 @@ redis://redis:6379
 ```
 
 ### Links
+
 Deprecated!!! Able to access service by name out of box.
 
 ```yml
@@ -142,4 +178,5 @@ web:
 db:
   image: postgres:latest
 ```
+
 Code inside web can access database using `db:5432`.
