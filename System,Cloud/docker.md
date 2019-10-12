@@ -167,8 +167,8 @@ db:
 
 Code inside web can access database using `db:5432`.
 
-### Force re-build
+### Force rebuild
 
-`$ docker-compose up -d --force-recreate --build`
+`$ docker-compose up --force-recreate --build`
 
 
