@@ -15,6 +15,7 @@
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [links](#links)
+  - [Force Re-build image and re-create container](#force-rebuild)
 
 ### Architecture
 
@@ -165,3 +166,9 @@ db:
 ```
 
 Code inside web can access database using `db:5432`.
+
+### Force re-build
+
+`$ docker-compose up -d --force-recreate --build`
+
+
