@@ -14,7 +14,6 @@
 - Docker Compose
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
-  - [Use hostnames to connect to containers](#Use-host-as-ref)
   - [links](#links)
 
 ### Architecture
@@ -138,6 +137,8 @@ When you run `docker-compose up` from project root, the following happens:
 2. A container is created using web’s configuration. It joins the network myapp_default under the name web.
 3. A container is created using db’s configuration. It joins the network myapp_default under the name db.
 
+Each container can now look up the hostname `web` or `db` and get back the appropriate container’s IP address. For example, web’s application code could connect to the URL `postgres://db:5432` and start using the Postgres database.
+
 Run `docker network ls` to find the desired network and run `docker network inspect <NETWORK_ID>` to see network configs.
 
 ### Mount src to volume
@@ -149,22 +150,6 @@ services:
   web:
     volumes:
       - ./webapp:/opt/webapp
-```
-
-### Use host as ref
-
-By default Compose sets up a single network for your app. When you name a service in your Compose YAML, it creates a hostname that you can then use to connect to the service.
-
-```yml
-services:
-  web:
-  redis:
-  db:
-```
-
-```js
-postgres://db:5432
-redis://redis:6379
 ```
 
 ### Links
