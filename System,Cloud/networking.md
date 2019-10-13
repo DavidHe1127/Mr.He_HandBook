@@ -7,6 +7,7 @@
 - [nc(telnet) on Mac](#nc)
 - [Ephemeral Ports](#ephemeral-ports)
 - [CNAME record](#cname)
+- [NAT](#nat)
 
 ### dns-resolution-flow
 
@@ -66,3 +67,7 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
 
 One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+
+### NAT
+
+![NAT Table](./nat_table.png)
