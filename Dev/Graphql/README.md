@@ -11,6 +11,8 @@
 - [Fetch schema from remote](#fetch-schema-from-remote)
 - [Fragments](#fragments)
 - [Schema design tips](#schema-design-tips)
+- [Tooling](#tooling)
+  - [Dedupe repeating query results - graphql-deduplicator](https://github.com/gajus/graphql-deduplicator)
 
 ### Graphql-unfriendly use cases
 
