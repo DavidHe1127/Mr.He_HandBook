@@ -144,13 +144,16 @@ Run `docker network ls` to find the desired network and run `docker network insp
 
 ### Mount src to volume
 
-Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed.
+Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed. It's because changes on host will also be replicated in the mounted volume inside the container.
 
 ```yml
 services:
   web:
     volumes:
       - ./webapp:/opt/webapp
+      # With this, you don't have to manually copy node_modules into container during dev
+      # Another benefit is you can debug node_modules locally
+      - ./node_modules:/home/node/app/server/node_modules
 ```
 
 ### Links
