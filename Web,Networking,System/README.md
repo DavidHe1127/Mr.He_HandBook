@@ -15,6 +15,7 @@
 - [SSO](#sso)
 - [CORS](#cors)
 - [OAuth2](#oauth2)
+- [Service Worker](#service-worker)
 
 ### premature_optimization
 
@@ -168,3 +169,18 @@ To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to it
 - In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
 
 ![](./oauth_2.png)
+
+---
+
+### Service Worker
+It enables your site to still work when users are offline after first load.
+
+The way it works is:
+
+- Intercept the http request browser sends to server for fetching resources
+- Checks whether the resource is already in cache
+- If not, send a request to fetch that image and save it in cache
+
+
+
+
