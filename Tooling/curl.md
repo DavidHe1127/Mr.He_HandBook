@@ -4,6 +4,7 @@
 * `-v` - verbose mode
 * `-o` - output response to a file. `-O` - filename in the URL will be taken and used as the filename to store result
 * **Quote url** if you have queries in it. i.e `http://localhost:2002/api/products?platform_id=xxxxx&flavor_id=xxxxx`
+* [Curl Progress Metre](https://ec.haxx.se/cmdline-progressmeter.html)
 
 ```javascript
 curl -v -X POST -H 'Authorization: Bearer xxxxxxx' -H 'Content-Type: application/json' http://localhost:2202/api/platforms/xxxxxx/firmware -d '@firmware.json' -o 'output.md'
