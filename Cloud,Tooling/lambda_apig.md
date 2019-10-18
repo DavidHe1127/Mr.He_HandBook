@@ -6,7 +6,8 @@
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
 - [Reusable execution context](#reusable-execution-context)
-- [Tips](#tips)
+- [Tips]
+  - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
 - [Lambda/serverless nice write-ups by Yan Cui](#lambda-nice-writeups)
 
 ### versioning-alias
@@ -104,7 +105,7 @@ async function main() {
 exports.handler = main;
 ```
 
-### Tips
+### Use SSM Parameter Store for env-vars
 
 - Use SSM parameter store to keep env vars for your lambda. Remember fetch them at runtime or you will see them in plain text in lambda in AWS console.
 
