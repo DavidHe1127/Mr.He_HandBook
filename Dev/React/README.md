@@ -25,7 +25,7 @@
 - [JSX Control Statement](#jsx-control-statement)
 - [local state or prop](#local-state-or-prop)
 - [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
-- [Composite Components](#composite-components)
+- [Compound Components](#compound-components)
 - [Refs](./refs.md)
 - [Test](./test.md)
 - [Pass props to parent children](#props-forwarding-to-children)
@@ -301,7 +301,7 @@ var App = function App() {
 
 See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
 
-### composite-components
+### compound-components
 
 Say components `A` and `B` will nowhere be used individually, it makes sense only when they're used with `Main`. And for better maintainability you prefer managing them in different files. So you can use this trick below to achieve what you expect.
 
