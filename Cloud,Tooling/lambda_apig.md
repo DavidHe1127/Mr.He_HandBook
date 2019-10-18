@@ -6,7 +6,7 @@
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
 - [Reusable execution context](#reusable-execution-context)
-- [Tips]
+- Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
 - [Lambda/serverless nice write-ups by Yan Cui](#lambda-nice-writeups)
 
