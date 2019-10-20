@@ -106,11 +106,11 @@ Works on OS X
 ### Find files
 
 ```sh
-$ find . -type f -exec grep "example" '{}' \; -print
+$ find . -type f -name "*.md" -exec grep "example" '{}' \; -print
 ```
 
 - Search every object in current directory that is a file
-- Execute `grep` on found one whose name includes `example`
+- Execute `grep` on found one whose content includes `example`
 - `{}` represents match result
 - `\;` escape `;`. `exec` is terminated with `;`
 - match results will be printed on the screen
