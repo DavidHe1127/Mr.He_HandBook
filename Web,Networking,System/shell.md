@@ -1,19 +1,20 @@
 ## Shell script, commands
 
-* [What is shell](#what-is-shell)
-* [ctrl+d vs ctrl+c](#ctrld-ctrlc)
-* [ls](#ls-output-explained)
-* [less](#less)
-* [scp](#scp)
-* [Dot files](#dotfiles)
-* [Man page/help](#manpage-help)
-* [Input and Output](#input-output)
-* [double dash in command](#double-dash)
-* Tips
-  * [Run command in history](#run-command-in-history)
-  * [Define and use Variables](#define-n-use-variables)
-  * [Command evaluation & param sub](#command-eval-param-sub)
-  * [Reset var value to empty](#reset-var-value)
+- [What is shell](#what-is-shell)
+- [ctrl+d vs ctrl+c](#ctrld-ctrlc)
+- [ls](#ls-output-explained)
+- [less](#less)
+- [scp](#scp)
+- [Dot files](#dotfiles)
+- [Man page/help](#manpage-help)
+- [Input and Output](#input-output)
+- [double dash in command](#double-dash)
+- [Find files](#find-files)
+- Tips
+  - [Run command in history](#run-command-in-history)
+  - [Define and use Variables](#define-n-use-variables)
+  - [Command evaluation & param sub](#command-eval-param-sub)
+  - [Reset var value to empty](#reset-var-value)
 
 ### what is shell
 
@@ -102,6 +103,20 @@ Works on OS X
 > kill PID
 ```
 
+### Find files
+
+```sh
+$ find . -type f -exec grep "example" '{}' \; -print
+```
+
+- Search every object in current directory that is a file
+- Execute `grep` on found one whose name includes `example`
+- `{}` represents match result
+- `\;` escape `;`. `exec` is terminated with `;`
+- match results will be printed on the screen
+
+---
+
 ### Run command in history
 
 ```shell
@@ -148,4 +163,5 @@ LAMBDA_SERVICE=`lsof -t -i :"$LAMBDA_PORT"`
 ```
 
 ### reset-var-value
-`HTTP_PROXY= ` will set `HTTP_PROXY` to an empty string.
+
+`HTTP_PROXY=` will set `HTTP_PROXY` to an empty string.
