@@ -256,6 +256,8 @@ console.log(
 );
 ```
 
+[async Pipeline](https://www.npmjs.com/package/p-pipe)
+
 2. Use pure functions
 
 Big benefits - It allows us to detect changes to objects by using an identity comparison `===` checck, so we don't have to traverse through the entire object to discover if anything has changed. Non-pure function means there could be direct modification to the object being passed in which results in impossibility of `3 equal check`.
