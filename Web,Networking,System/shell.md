@@ -10,11 +10,11 @@
 - [Input and Output](#input-output)
 - [double dash in command](#double-dash)
 - [Find files](#find-files)
+- [Source a file](#source-a-file)
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
-  - [Command evaluation & param sub](#command-eval-param-sub)
-  - [Reset var value to empty](#reset-var-value)
+- [Scripting](#scripting)
 
 ### what is shell
 
@@ -115,6 +115,26 @@ $ find . -type f -name "*.md" -exec grep "example" '{}' \; -print
 - `\;` escape `;`. `exec` is terminated with `;`
 - match results will be printed on the screen
 
+### Source a file
+
+- `./script` runs the script as an executable file, launching a **new shell** to run it
+- source script reads and executes commands in targeting file in the **current shell** environment
+
+a.sh
+```sh
+#!/bin/bash
+
+echo $BAR
+```
+
+```sh
+$ BAR=123 && source a.sh
+123
+
+$ BAR=123 && ./a.sh
+
+```
+
 ---
 
 ### Run command in history
@@ -128,12 +148,14 @@ $ !<COMMAND_NUMBER>
 
 Varying ways of setting variables:
 
-- `VARNAME="my value"` - only in current shell.
-- `export VARNAME="my value"` - current shell and all processes started from current shell.
+- `VARNAME=my_value` - only in current shell.
+- `export VARNAME=my_value` - current shell and all processes started from current shell.
 - Define vars in `.bashrc` - permanently for all future bash sessions.
 
 ```shell
-$ VAR=foo node // process.env.VAR is foo
+// The shell variable is explicitly set and passed to the command you're running, causing it be an environment variable for the duration of the command being run.
+$ VAR=foo node // process.env.VAR is foo.
+
 $ VAR=foo && node // process.env.VAR is undefined
 $ export VAR=foo && node // process.env.VAR is foo
 $ http_proxy=123 && node // process.env.http_proxy is 123 why? because http_proxy is an env var
@@ -155,13 +177,26 @@ But, consider the npm script below:
 
 As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` being launched by `no`. As thus, the second case does the thing right.
 
-### command-eval-param-sub
+---
 
-```shell
-LAMBDA_PORT=3000
-LAMBDA_SERVICE=`lsof -t -i :"$LAMBDA_PORT"`
+### Scripting
+
+```sh
+#!/bin/bash
+
+# e - exit immediately if a command exits with a non-zero status
+# x - print commands and their arguments as they are executed
+set -xe
+
+# turn off debugging
+set +x
+
+# evaluation & interpolation
+FOO=`whoami`
+EVAL_FOO=`echo Port no. is $FOO not good`
+
+echo $EVAL_FOO
+
+# reset var to an empty string
+HTTP_PROXY=
 ```
-
-### reset-var-value
-
-`HTTP_PROXY=` will set `HTTP_PROXY` to an empty string.
