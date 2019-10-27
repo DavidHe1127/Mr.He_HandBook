@@ -135,3 +135,4 @@ function filteredProductIds(state, filter) {
   }
 }
 ```
+Use [normalizr](https://github.com/paularmstrong/normalizr)
