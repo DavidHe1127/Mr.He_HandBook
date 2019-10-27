@@ -83,3 +83,55 @@ function filteredProductIds(state, filter) {
   }));  
 }
 ```
+
+- Normalise data
+
+```js
+// original from server
+{
+  "total": 1,
+  "offset": 0,
+  "orders": [
+    {
+      "id": "14e743f8-8fa5-4520-be62-4339551383b5",
+      "customer": "John Smith",
+      "products": [
+        {
+          "id": "88cd7621-d3e1-42b7-b2b8-8ca82cdac2f0",
+          "title": "Blue Shirt",
+          "price": 9.99,
+          "giftWrap": true,
+          "notes": "It's a gift, please remove price tag"
+        }
+      ],
+      "totalPrice": 9.99
+    }
+  ]
+}
+
+// normalised 
+{
+  "productsById": {
+    "88cd7621-d3e1-42b7-b2b8-8ca82cdac2f0": {
+      "title": "Blue Shirt",
+      "price": 9.99
+    },
+    "aec17a8e-4793-4687-9be4-02a6cf305590": {
+      "title": "Red Hat",
+      "price": 7.99
+    }
+  },
+  "ordersById": {
+    "14e743f8-8fa5-4520-be62-4339551383b5": {
+      "customer": "John Smith",
+      "products": {
+        "88cd7621-d3e1-42b7-b2b8-8ca82cdac2f0": {
+          "giftWrap": true,
+          "notes": "It's a gift, please remove price tag"
+        }
+      },
+      "totalPrice": 9.99
+    }
+  }
+}
+```
