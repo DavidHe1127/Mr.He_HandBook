@@ -4,6 +4,7 @@
 - [Communication strategies between microservices](#communication-between-microservices)
 - [Scaling applications in the cloud](#scaling-applications)
 - [Best practices for Developing a Node server](#best-practice-for-developing-node-server)
+- [Single source of truth](#single-source-of-truth)
 
 ### Microsoft Architecture Design Pattern
 
@@ -67,3 +68,18 @@ Quoted from [Scaling Applications in the Cloud](https://medium.com/faun/scaling-
 8. Keep secrets/params in the right place
   - Consider [SSM](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
 
+### Single source of truth
+
+- Never hold duplicate data in the app state
+- Never store derived data in the state - Any derived data found in the store violates the principle because updates have to made to multiple locations to maintain consistency. Use selector instead.
+
+```js
+function filteredProductIds(state, filter) {
+  return _.keys(_.pickBy(state.productsById, (product) => {
+    if (filter == "ALL_PRODUCTS") return true;
+    if (filter == "NO_DISCOUNTS" && product.discount == 0) return true;
+    if (filter == "ONLY_DISCOUNTS" && product.discount > 0) return true;
+    return false;
+  }));  
+}
+```
