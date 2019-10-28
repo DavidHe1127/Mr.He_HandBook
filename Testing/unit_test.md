@@ -100,7 +100,7 @@ jest.mock('./myClass', () => {
   return module;
 });
 ```
-Note, call `mockImplementationOnce` twice enable you have 2 different behaviours. i.e resolve fisrt then reject in the same targeting method.
+Note, call `mockImplementationOnce` twice enable you to have 2 different behaviours. i.e resolve fisrt then reject in the same targeting method.
 
 ### Mock function
 
