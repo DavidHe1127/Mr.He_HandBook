@@ -162,6 +162,17 @@ thing:
 # pass arg $ make test SOS='o yeah'
 test:
    @echo $(SOS)
+
+# execute clean anyway even if a file called clean exists in the same directory as makefile
+.PHONY: clean
+
+clean:
+  rm -rf *.o
+
+# use as a build tool
+deploy-something:
+  @echo "Deploy something..."
+  ./scripts/deploy_something.sh ${env} ${tag}
 ```
 
 ---
