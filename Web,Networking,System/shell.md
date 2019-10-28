@@ -15,7 +15,7 @@
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
-- [Scripting](#scripting)
+- [Scripting](./shell_scripting.md)
 
 ### what is shell
 
@@ -216,27 +216,3 @@ But, consider the npm script below:
 ```
 
 As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` being launched by `no`. As thus, the second case does the thing right.
-
----
-
-### Scripting
-
-```sh
-#!/bin/bash
-
-# e - exit immediately if a command exits with a non-zero status
-# x - print commands and their arguments as they are executed
-set -xe
-
-# turn off debugging
-set +x
-
-# evaluation & interpolation
-FOO=`whoami`
-EVAL_FOO=`echo Port no. is $FOO not good`
-
-echo $EVAL_FOO
-
-# reset var to an empty string
-HTTP_PROXY=
-```
