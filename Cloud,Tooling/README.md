@@ -8,6 +8,7 @@
 - AWS
   - [ELB](./elb.md)
   - [EC2 & EBS](./ec2_ebs.md)
+  - [VPC](./vpc.md)
   - [ASG & ALB](./asg_alb.md)
   - [DynamoDB](./dynamoDB.md)
   - [Lambda & API Gateway](./lambda_apig.md)
