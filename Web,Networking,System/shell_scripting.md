@@ -15,6 +15,9 @@ FOO=`whoami`
 EVAL_FOO=`echo Port no. is $FOO not good`
 echo $EVAL_FOO
 
+# print 'Default to good if 2nd arg not provided'
+Build=${2:-Default to good if 2nd arg not provided}
+
 # reset var to an empty string
 HTTP_PROXY=
 
