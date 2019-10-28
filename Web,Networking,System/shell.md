@@ -11,6 +11,9 @@
 - [double dash in command](#double-dash)
 - [Find files](#find-files)
 - [Source a file](#source-a-file)
+
+- [Makefile](#makefile)
+
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
@@ -134,6 +137,32 @@ $ BAR=123 && source a.sh
 $ BAR=123 && ./a.sh
 
 ```
+---
+
+### Makefile
+Use makefile as a build tool is a good idea!
+
+```makefile
+# Use tab as indentations
+
+# set value only if it's not set
+COLORTERM ?= "Bright"
+
+task:
+   # @ will suppress command name from being logged to terminal
+    @date
+some:
+    sleep 1
+    echo "Slept"
+thing:
+    cal
+    echo ${COLORTERM}
+
+# pass arg $ make test SOS='o yeah'
+test:
+   @echo $(SOS)
+```
+---
 
 ---
 
