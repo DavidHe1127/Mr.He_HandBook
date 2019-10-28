@@ -26,6 +26,10 @@ HTTP_PROXY=
 mkdir a/b/c/d # will fail
 mkdir -p a/b/c/d # will create a, b, c, d in the correct nested structure
 
+# substring. arg1 - zero-based offset arg2 - length
+str='123456789'
+output=${str:1:5} # 23456
+
 # func
 function validate_art_creds {
   # -z <STRING> means true if string is null/empty
