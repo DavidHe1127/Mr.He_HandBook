@@ -1,7 +1,6 @@
 ## Shell Scripting with example
 
 ```sh
-
 #!/bin/bash
 
 # e - exit immediately if a command exits with a non-zero status
@@ -14,7 +13,6 @@ set +x
 # evaluation & interpolation
 FOO=`whoami`
 EVAL_FOO=`echo Port no. is $FOO not good`
-
 echo $EVAL_FOO
 
 # reset var to an empty string
