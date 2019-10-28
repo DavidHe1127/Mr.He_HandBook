@@ -20,7 +20,11 @@ echo $EVAL_FOO
 # reset var to an empty string
 HTTP_PROXY=
 
-# a func
+# create dir recursively
+mkdir a/b/c/d # will fail
+mkdir -p a/b/c/d # will create a, b, c, d in the correct nested structure
+
+# func
 function validate_art_creds {
   # -z <STRING> means true if string is null/empty
   if [[ -z ${ARTIFACTORY_USER} || -z ${ARTIFACTORY_PASSWORD} ]]; then
