@@ -33,6 +33,7 @@
 - [Use props.children to prevent props drilling](#prevent-props-drilling)
 - [React Context](./context.md)
 - [Reset all states in component](#reset-all-states)
+- [Lazy loading](#lazy-loading)
 
 ## Styled-components
 
@@ -411,6 +412,19 @@ function Grandchild({ grandchildProps }){
   return <a { ...grandchildProps }>link</a>;
 }
 ```
+
+### Lazy loading
+
+Lazy load module when an introduced dependency is
+
+- too large i.e pdf generator
+- needed only in certain circumstances i.e user click a generate button to produce pdf
+
+Then you can do `const LazyPDFDocument = React.lazy(() => import("./PDFPreview"));`.
+
+
+
+
 
 
 
