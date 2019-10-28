@@ -90,14 +90,17 @@ Remember, ES6 class is just syntactic sugar for prototype-based class, so we can
 ```js
 jest.mock('./myClass', () => {
   const module = jest.requireActual('./myClass');
-
+  
   module.myClass.prototype.oneMethod = jest.fn().mockImplementationOnce(() => ({
     id: '2def'
-  }));
+  })).mockImplementationOnce(() => {
+    id: '1abc'
+  });
 
   return module;
 });
 ```
+Note, call `mockImplementationOnce` twice enable you have 2 different behaviours. i.e resolve fisrt then reject in the same targeting method.
 
 ### Mock function
 
