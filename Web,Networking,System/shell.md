@@ -11,9 +11,7 @@
 - [double dash in command](#double-dash)
 - [Find files](#find-files)
 - [Source a file](#source-a-file)
-
 - [Makefile](#makefile)
-
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
@@ -124,6 +122,7 @@ $ find . -type f -name "*.md" -exec grep "example" '{}' \; -print
 - source script reads and executes commands in targeting file in the **current shell** environment
 
 a.sh
+
 ```sh
 #!/bin/bash
 
@@ -137,9 +136,11 @@ $ BAR=123 && source a.sh
 $ BAR=123 && ./a.sh
 
 ```
+
 ---
 
 ### Makefile
+
 Use makefile as a build tool is a good idea!
 
 ```makefile
@@ -162,7 +163,6 @@ thing:
 test:
    @echo $(SOS)
 ```
----
 
 ---
 
