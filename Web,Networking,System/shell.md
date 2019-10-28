@@ -161,7 +161,7 @@ thing:
 
 # pass arg $ make test SOS='o yeah'
 test:
-   @echo $(SOS)
+   @echo ${SOS}
 
 # execute clean anyway even if a file called clean exists in the same directory as makefile
 .PHONY: clean
