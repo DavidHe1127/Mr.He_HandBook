@@ -126,17 +126,14 @@ someMockFunc.mock.results[1].value[1].mock.calls[0][0]
 
 ### Use doMock
 By default, `jest.mock` will hoist code to the top of test file. This behaviour leads to error when trying to reference a variable defined outside of scope.
-
 ```js
 // error: jest.mock() is not allowed to reference any out-of-scope variables
-
 let output = null;
 
 jest.mock('./code', () => {
   output = require('./fixtures/test-data.json');
 });
 ```
-
 Use `jest.doMock` can fix it. Change `jest.mock` to `jest.doMock` in the above example.
 
 
