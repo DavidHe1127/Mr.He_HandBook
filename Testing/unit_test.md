@@ -3,12 +3,14 @@
 - Good articles
   - [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
   - [Jest cheatsheet](https://github.com/sapegin/jest-cheat-sheet)
-- [Mocking modules](#mocking-modules)
-- [Mock required, non-existent file](#mock-required-non-existent-file)
-- [Mock large input](#mock-large-input)
-- [Partially mock a module/class](#partially-mock-a-module-or-class)
-- [Mock function](#mock-function)
-- [Use doMock to avoid hoisting](#use-domock)
+- Tips
+  - [Mocking modules](#mocking-modules)
+  - [Mock required, non-existent file](#mock-required-non-existent-file)
+  - [Mock large input](#mock-large-input)
+  - [Partially mock a module/class](#partially-mock-a-module-or-class)
+  - [Mock function](#mock-function)
+  - [Use doMock to avoid hoisting](#use-domock)
+  - [Correct Mocked data](#correct-mocked-data)
 
 ### Mocking Modules
 
@@ -135,6 +137,32 @@ jest.mock('./code', () => {
 });
 ```
 Use `jest.doMock` can fix it. Change `jest.mock` to `jest.doMock` in the above example.
+
+### Correct mocked data
+Ensure mocked data aligns with data produced in the real implementations when mocking out 3rd libraries. This is very crucial for writing correct tests.
+
+```js
+// Wrong mocked data can lead to hidden error
+
+// mock data returned by DynamoDB query
+
+// wrong
+{
+  "name": "David"
+}
+
+// correct
+{
+  "Items": [{
+    "name": "David"
+  }]
+}
+```
+With wrong one, it causes wrong implementation as well.
+
+```js
+query().promise().then(res => res.name); // wrong! should be res.Items[0].name
+```
 
 
 
