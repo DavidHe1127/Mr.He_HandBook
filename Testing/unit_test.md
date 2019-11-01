@@ -151,15 +151,14 @@ Ensure mocked data aligns with data produced in the real implementations when mo
   "name": "David"
 }
 
-// correct
+// actual
 {
   "Items": [{
     "name": "David"
   }]
 }
 ```
-With wrong one, it causes wrong implementation as well.
-
+With wrong one, your test is passed even though actual run of your code would fail.
 ```js
 query().promise().then(res => res.name); // wrong! should be res.Items[0].name
 ```
