@@ -8,7 +8,8 @@
 - [Reusable execution context](#reusable-execution-context)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
-- [Lambda/serverless nice write-ups by Yan Cui](#lambda-nice-writeups)
+  - [Share modules/libs](#share-modules/libs)
+- [Lambda/serverless nice write-ups](#lambda-nice-writeups)
 
 ### versioning-alias
 
@@ -115,6 +116,20 @@ functions
     handler: functions/withEnvVar.handler
     bar: ${ssm:bar~true} # true = decrypt it plz!
 ```
+
+### Share modules/libs
+
+- Put common modules/libs in a `lib` folder sitting at the same level as `functions` directory.
+```
+-- lib/
+    -- index.js
+-- functions/
+    -- lambda-a/
+    -- lambda-b/
+```
+- For common modules across different repos, publish them to NPM.
+
+---
 
 ### lambda nice writeups
 
