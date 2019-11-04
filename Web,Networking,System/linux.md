@@ -6,6 +6,8 @@
 - [Signal](#signal)
 - [File](#file)
 - [host file under etc](#host-file-purpose)
+- [sudo vs su](#sudo-vs-su)
+  - [sudoers file](#sudoers-file)
 - [ssh config file](#ssh-config-file)
 - [File Descriptor](#file-descriptor)
   - [Redirect app logs to stdout from static files](#log-redirection)
@@ -117,6 +119,41 @@ Host remote
 ```
 
 With this configuration, you ssh into another ec2 instance by typing `ssh remote`.
+
+### sudo-vs-su
+
+- sudo (super user do)
+  - lets you use your own password to execute commands
+  - When sudoing, things below will happen:
+    1. System does a look-up in `/etc/sudoers` file to find out if the user has privilege to execute `sudo`.
+    2. If yes, the users will be prompted for their own password.
+    3. If authed, system will execute command specified by `sudo`.
+
+  - i.e
+  ```shell
+  $ sudo node               # run node command as a root user
+  $ sudo node -U p782199    # run node command as user p782199
+  $ sudo -l -U p782191      # list all this user can do
+  ```
+  - if you see something like this:
+  ```
+  Sorry, user P782199 is not allowed to execute '/Users/P782199/.nvm/versions/node/v8.16.1/bin/node -u p782199' as root on C02X1KJSJG5H (host).
+  ```
+  it basically means the command you are trying to run is not a whitelisted command you can run on behalf of root.
+
+- su (switch user)
+  - lets you switch to that user by entering his password. Once auth is passed, a new shell prompt will be opened with target user's privileges.
+
+  - i.e
+  ```shell
+  $ su bob    # switch to user bob
+  $ su        # switch to root user or aka superuser. Keeps your existing env vars
+  $ su -      # Same as above but with settings of your specified user. It's root in this case
+  ```
+
+### sudoers-file
+
+
 
 ### File descriptor
 
