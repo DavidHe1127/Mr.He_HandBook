@@ -6,6 +6,7 @@
 - [Serverless](./serverless.md)
 - [NGINX](./nginx.md)
 - AWS
+  - [CLI](./cli.md)
   - [ELB](./elb.md)
   - [EC2 & EBS](./ec2_ebs.md)
   - [VPC](./vpc.md)
