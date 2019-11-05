@@ -173,6 +173,8 @@ peter ALL=(ALL) NOPASSWD: ALL
 papi ALL=(root) NOPASSWD: /bin/chown,/usr/sbin/useradd
 ```
 
+[sudoers file explained](https://www.cnblogs.com/jing99/p/9323080.html)
+
 ### File descriptor
 
 Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
