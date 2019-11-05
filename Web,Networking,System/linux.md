@@ -152,8 +152,26 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   ```
 
 ### sudoers-file
+![sudoers file](./sudoers_file.png)
+Anything enclosed by [] is optional
 
+```bash
+# root user
+root ALL=(ALL:ALL) ALL
 
+# sudo group users
+%sudo ALL=(ALL:ALL) ALL
+
+# user jack can run vi,ls on behalf of root on host nginx without passwords
+jack nginx=(root) NOPASSWD: vi,ls
+
+# user peter can run all commands on behalf of all users on all hosts without password
+peter ALL=(ALL) NOPASSWD: ALL
+
+# user papi can run /bin/chown on behalf of root on all hosts without password
+# user papi can run /usr/sbin/useradd on behalf of root on all hosts with password
+papi ALL=(root) NOPASSWD: /bin/chown,/usr/sbin/useradd
+```
 
 ### File descriptor
 
