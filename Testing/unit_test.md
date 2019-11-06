@@ -47,6 +47,18 @@ it('should call Cookie.set', () => {
 });
 ```
 
+Sometimes, you have your whole module mocked out automatically. This is good but you wish you can mock one of exported method manually. You can do:
+```js
+const { init, warmer, PcsSurvey } = require('../../utils');
+
+jest.mock('../../utils'); // everything is auto-mocked
+
+beforeAll(() => {
+  // manually mocks PcsSurvey export
+  PcsSurvey.prototype.getSurveyDetails = jest.fn().mockImplementation(() => Promise.resolve(surveyFixture));
+});
+```
+
 ### Mock required non-existent file
 
 ```js
