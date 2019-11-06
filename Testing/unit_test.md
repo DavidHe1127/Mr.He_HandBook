@@ -11,6 +11,8 @@
   - [Mock function](#mock-function)
   - [Use doMock to avoid hoisting](#use-domock)
   - [Correct Mocked data](#correct-mocked-data)
+- Best Practices
+  - [Tests should be deterministic](https://jestjs.io/docs/en/snapshot-testing#2-tests-should-be-deterministic)
 
 ### Mocking Modules
 
