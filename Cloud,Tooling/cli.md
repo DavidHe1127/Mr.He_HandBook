@@ -1,7 +1,7 @@
 ### CLI
 
 - [Set default profile](#set-default-profile)
-- [Show lib caller identity)(#show-lib-caller-identity)
+- [Show lib caller identity](#show-lib-caller-identity)
 
 ### Set Default profile
 
@@ -10,7 +10,7 @@ $ export AWS_DEFAULT_PROFILE=qq
 ```
 This will set it temporarily. It's gone after shell closed. For permanent approach, put that line in `.bash_profile` under user home dir.
 
-### Find lib caller identity
+### Show lib caller identity
 
 ```shell
 $ aws sts get-caller-identity
