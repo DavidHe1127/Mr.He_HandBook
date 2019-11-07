@@ -13,6 +13,7 @@
   - [Redirect app logs to stdout from static files](#log-redirection)
 - [Networking](#networking)
 - [Commands](#commands)
+  - [Tee](#tee)
 
 ### tty
 
@@ -204,8 +205,6 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 * Name after t-splitter in plumbing.
 * Write output to stdout as well as one or more files.
 * write to stdout and file simultaneously.
-* 
-
 ```shell
 command -> tee → stdout
             ↓
