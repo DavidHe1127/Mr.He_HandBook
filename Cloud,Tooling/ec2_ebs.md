@@ -26,4 +26,3 @@ i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resol
 
 ### Best Practice
 
-[Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances.](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#create-iam-users)
