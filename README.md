@@ -24,3 +24,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [lazydocker - terminal ui for both docker and docker-compose](https://github.com/jesseduffield/lazydocker)
 - [httpie - curl-like cli but for human beings](https://github.com/jakubroztocil/httpie)
 - [nginxconfig.io - generate the best config for your specific use-case](https://github.com/digitalocean/nginxconfig.io)
+- [Graphql Custom Scalars](https://github.com/urigo/graphql-scalars)
