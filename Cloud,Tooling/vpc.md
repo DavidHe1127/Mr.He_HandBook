@@ -12,7 +12,8 @@ Enable instances in a private subnet to connect to the internet or other AWS ser
 [Detailes about IGW and NATs](https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6)
 
 ### Public IP vs Elastic IP
-Public IP addresses are dynamic - i.e if you stop/start your instance you get reassigned a new public IP. 
+Public IP addresses are dynamic - i.e if you stop/start your instance you get reassigned a new public IP.
+
 Elastic IPs get allocated to your account and stay the same - it's up to you to attach them to any instance or not. you could say they are `static public ip addresses`. To avoid charge over using elastic ip, make sure it's attached to an instance. It will incur charges if it's detached.
 
 ### NAT Gatway vs IP Gateway
