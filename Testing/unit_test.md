@@ -11,6 +11,7 @@
   - [Mock function](#mock-function)
   - [Use doMock to avoid hoisting](#use-domock)
   - [Correct Mocked data](#correct-mocked-data)
+  - [Test rejected promise](#test-rejected-promise)
 - Best Practices
   - [Tests should be deterministic](https://jestjs.io/docs/en/snapshot-testing#2-tests-should-be-deterministic)
 
@@ -177,6 +178,26 @@ With wrong one, your test is passed even though actual run of your code would fa
 query().promise().then(res => res.name); // wrong! should be res.Items[0].name
 ```
 
+### Test rejected promise
+
+```js
+const connect = async () => {
+  try {
+    const conn = await AWS.RDS.connect().promise();
+  } catch(err) {
+    log.error(err); // rethrow error is useful when you want to log your errors or process it
+    throw err;
+  }
+}
+
+// test
+connect().catch(error => {
+    expect(error).toEqual(err);
+});
+
+// or
+await expect(connect()).rejects.toThrow(err);
+```
 
 
 
