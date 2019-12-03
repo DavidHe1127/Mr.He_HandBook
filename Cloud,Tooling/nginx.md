@@ -2,9 +2,9 @@
 
 - [Directives](#directives)
   - [try_files](#try_files)
-    - [default_type](#default_type)
-    - [rewrite last and break](#rewrite)
-    - [server_name](#server_name)
+  - [default_type](#default_type)
+  - [rewrite last and break](#rewrite)
+  - [server_name](#server_name)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 
