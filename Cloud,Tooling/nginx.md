@@ -11,7 +11,7 @@
 
 #### try_files
 
-```apache_conf
+```nginx
 root /var/www/main;
 location / {
     try_files $uri $uri.html $uri/ /fallback/index.html;
@@ -36,26 +36,26 @@ Default MIME type for response. The value will be set in the response header. Wh
 - `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any.
 - `break` will execute the remaining commands in the current block.
 
-```yml
-  server {
-    listen 80 default_server;
-    server_name dcshi.com;
-    root www;
+```nginx
+server {
+  listen 80 default_server;
+  server_name dcshi.com;
+  root www;
 
-    location /break/ {
-      rewrite ^/break/(.*) /test/$1 break;
-      echo "break page";
-    }
-
-    location /last/ {
-      rewrite ^/last/(.*) /test/$1 last;
-      echo "last page";
-    }
-
-    location /test/ {
-      echo "test page";
-    }
+  location /break/ {
+    rewrite ^/break/(.*) /test/$1 break;
+    echo "break page";
   }
+
+  location /last/ {
+    rewrite ^/last/(.*) /test/$1 last;
+    echo "last page";
+  }
+
+  location /test/ {
+    echo "test page";
+  }
+}
 ```
 
 It prints `break page` when hitting `http://dcshi.com/break/foo` while prints `test page` when hitting `http://dcshi.com/last/foo`.
@@ -73,7 +73,7 @@ Then var will be interpreted in response header.
 
 ### Sample config
 
-```apache_conf
+```nginx
 #user  nobody;
 worker_processes  1;
 
