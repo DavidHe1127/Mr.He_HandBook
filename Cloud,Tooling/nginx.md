@@ -89,6 +89,9 @@ server {
 # $1 is /myapp while $2 is hello.php Parentheses denotes match group
 location ~* (.*/myapp)/(.+\.php)$ {
     #...
+    
+    # /download/music/media/aoa -> download/music/mp3/aoa.mp3
+    rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.mp3 last;
 }
 ```
 
