@@ -110,7 +110,7 @@ On most systems the default entry in the hosts file is:
 
 ### ssh-config-file
 
-Example `ssh config`
+Example `.ssh/config`
 
 ```
 Host remote
