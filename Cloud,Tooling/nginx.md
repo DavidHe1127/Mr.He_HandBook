@@ -8,7 +8,7 @@
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 - Tips
-  - [Print more nginx infor](#print-more-nginx-info)
+  - [Print more nginx infor](#print-detailed-nginx-info)
 
 ### Directives
 
@@ -228,13 +228,14 @@ http {
 
 ---
 
-### Print more nginx infor
+### Print detailed nginx info
 
 ```sh
 $ sudo nginx -V
-
+...
 # tell u where all files can be found
---prefix=/usr/local/Cellar/nginx/1.17.3_1
+--prefix=/usr/local/Cellar/nginx/1.17.3_1 
+...
 ```
 
 
