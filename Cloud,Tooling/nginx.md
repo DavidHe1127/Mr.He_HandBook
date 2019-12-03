@@ -83,10 +83,10 @@ server {
 
 #### regex matching
 
-```txt
+```nginx
 # ~* regex+case-insensitive
 # will match /test/myapp/hello.php and /myapp/hello.php
-# $1 is /myapp while $2 is hello.php. parentheses denotes match group
+# $1 is /myapp while $2 is hello.php Parentheses denotes match group
 location ~* (.*/myapp)/(.+\.php)$ {
     #...
 }
