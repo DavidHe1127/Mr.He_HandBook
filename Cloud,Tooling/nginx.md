@@ -1,12 +1,12 @@
 ## NGINX
 
--   [Directives](#directives)
-    -   [try_files](#try_files)
-    -   [default_type](#default_type)
-    -   [rewrite last and break](#rewrite)
-    -   [server_name](#server-name)
--   [Debugging](#debugging)
--   [Sample config](#sample-config)
+- [Directives](#directives)
+  - [try_files](#try_files)
+    - [default_type](#default_type)
+    - [rewrite last and break](#rewrite)
+    - [server_name](#server_name)
+- [Debugging](#debugging)
+- [Sample config](#sample-config)
 
 ### Directives
 
@@ -25,10 +25,10 @@ location /fallback {
 
 if a request made to `/image.js`, `/` location will catch the request and follow rules defined in `try_files` to try to find the match:
 
--   \$uri - try to find `image.js` from inside `/var/www/main`.
--   \$uri.html - try to find `image.js.html` from inside `/var/www/main`.
--   \$uri/ - try to find `image.js` dir from inside `/var/www/main`.
--   /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
+- \$uri - try to find `image.js` from inside `/var/www/main`.
+- \$uri.html - try to find `image.js.html` from inside `/var/www/main`.
+- \$uri/ - try to find `image.js` dir from inside `/var/www/main`.
+- /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
 
 #### default_type
 
@@ -36,8 +36,8 @@ Default MIME type for response. The value will be set in the response header. Wh
 
 #### rewrite
 
--   `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any.
--   `break` will execute the remaining commands in the current block.
+- `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any.
+- `break` will execute the remaining commands in the current block.
 
 ```nginx
 server {
@@ -67,7 +67,7 @@ It prints `break page` when hitting `http://dcshi.com/break/foo` while prints `t
 
 Every HTTP/1.1 message needs to be sent with `Host` header to the endpoint. `Host` will be used by nginx to determine which virtual server is used to serve the request.
 
-```http
+```txt
 Host: cai:8080
 
 server {
