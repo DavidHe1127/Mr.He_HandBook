@@ -4,7 +4,7 @@
   * [try_files](#try_files)
   * [default_type](#default_type)
   * [rewrite last and break](#rewrite)
-  * [server_name](#server name)
+  * [server_name](#server-name)
 * [Debugging](#debugging)
 * [Sample config](#sample-config)
 
