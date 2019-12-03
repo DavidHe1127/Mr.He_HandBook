@@ -233,7 +233,7 @@ http {
 ```sh
 $ sudo nginx -V
 ...
-# tell u where all files can be found
+# tell u where all files can be found. i.e index.html under default root html
 --prefix=/usr/local/Cellar/nginx/1.17.3_1 
 ...
 ```
