@@ -11,7 +11,7 @@
 
 #### try_files
 
-```conf
+```apache_conf
 root /var/www/main;
 location / {
     try_files $uri $uri.html $uri/ /fallback/index.html;
@@ -73,7 +73,7 @@ Then var will be interpreted in response header.
 
 ### Sample config
 
-```conf
+```apache_conf
 #user  nobody;
 worker_processes  1;
 
