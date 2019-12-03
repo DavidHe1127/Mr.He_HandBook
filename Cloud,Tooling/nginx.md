@@ -9,6 +9,8 @@
 - [Sample config](#sample-config)
 - Tips
   - [Print more nginx infor](#print-detailed-nginx-info)
+- Learning Resources
+  - [nginx tutorial basics concepts](https://www.netguru.com/codestories/nginx-tutorial-basics-concepts)
 
 ### Directives
 
