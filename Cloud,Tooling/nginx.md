@@ -5,6 +5,7 @@
   - [default_type](#default_type)
   - [rewrite last and break](#rewrite)
   - [server_name](#server_name)
+  - [regex matching](#regex-matching)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 - Tips
@@ -77,6 +78,17 @@ Host: cai:8080
 server {
   listen         8080;
   server_name    cai;    # serve reqs hitting http://cai:8080
+}
+```
+
+#### regex matching
+
+```txt
+# ~* regex+case-insensitive
+# will match /test/myapp/hello.php and /myapp/hello.php
+# $1 is /myapp while $2 is hello.php. parentheses denotes match group
+location ~* (.*/myapp)/(.+\.php)$ {
+    #...
 }
 ```
 
