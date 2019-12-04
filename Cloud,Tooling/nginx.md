@@ -90,7 +90,8 @@ server {
 location ~* (.*/myapp)/(.+\.php)$ {
     #...
     
-    # /download/music/media/aoa -> download/music/mp3/aoa.mp3
+    # /download/music/media/aoa.aaaaa -> download/music/mp3/aoa.mp3
+    # $1 is /download/music $2 is aoa
     rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.mp3 last;
 }
 ```
