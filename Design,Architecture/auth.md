@@ -3,6 +3,8 @@
 It outlines different approaches of authenticating applications and their features.
 
 - [JWT](#jwt)
+- [Session(Cookie)](#session)
+- [More Readings](#more-readings)
 
 ### JWT
 
@@ -63,11 +65,21 @@ Never save it to `localStorage`. If any of the third-party scripts you include i
 
 ---
 
+### Session
 
+- Used to know user session state.
+- sessionId is created and stored on the server (db or cache). It's also being sent down the wire to client through cookie.
+- After authenticated, all subsequent requests will have sessionId attached automatically by browser.
 
+![session-based-auth](./session-based-auth.png)
 
+#### Downsides
 
+- Cookies normally work on a single domain or subdomains and they are normally disabled by browser if they work cross-domain (3rd party cookies)
+- Given the fact it's stored in server's memory, scaling becomes a problem since a different server than the original one who generates the sessionId would fail to know incoming request state.
 
+---
 
+### More readings
 
-
+[Microservices Authentication and Authorization Solutions](https://medium.com/tech-tajawal/microservice-authentication-and-authorization-solutions-e0e5e74b248a)
