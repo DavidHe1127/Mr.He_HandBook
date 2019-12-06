@@ -68,10 +68,20 @@ Never save it to `localStorage`. If any of the third-party scripts you include i
 ### Session
 
 - Used to know user session state.
+- stateful - both server and client needs to keep a copy
 - sessionId is created and stored on the server (db or cache). It's also being sent down the wire to client through cookie.
+- session data itself can be saved into db table.
 - After authenticated, all subsequent requests will have sessionId attached automatically by browser.
 
 ![session-based-auth](./session-based-auth.png)
+
+#### typical auth process
+
+1. User enters their login credentials.
+2. Server verifies the credentials are correct and creates a session which is then stored in a database.
+3. A cookie with the session ID is placed in the users browser.
+4. On subsequent requests, the session ID is verified against the database and if valid the request processed.
+5. Once a user logs out of the app, the session is destroyed both client-side and server-side.
 
 #### Downsides
 
