@@ -88,6 +88,18 @@ Never save it to `localStorage`. If any of the third-party scripts you include i
 - Cookies normally work on a single domain or subdomains and they are normally disabled by browser if they work cross-domain (3rd party cookies)
 - Given the fact it's stored in server's memory, scaling becomes a problem since a different server than the original one who generates the sessionId would fail to know incoming request state.
 
+#### FAQs
+
+- #### How to manage session in a distributed environment?
+
+A: Couple of ways:
+
+- Sticky session - Which ensures that all requests from a specific user will be sent to the same server who handled the first request corresponding to that user, thus ensuring that session data is always correct for a certain user. The problem is it will cause uneven load distribution across servers.
+
+- Centralized session storage - Means that when a user accesses a microservice, user data can be obtained from shared session storage, ensuring that all microservices can read the same session data
+
+Other approaches are discussed in the `Microservices Authentication and Authorization Solutions` below.
+
 ---
 
 ### More readings
