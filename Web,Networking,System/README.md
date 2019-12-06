@@ -11,10 +11,12 @@
 
 - [Premature Optimization](#premature_optimization)
 - [WebAssembly](#web-assembly)
-- [SSO](#sso)
 - [CORS](#cors)
-- [OAuth2](#oauth2)
 - [Service Worker](#service-worker)
+
+## Web
+
+- [Auth](./auth.md)
 
 ### premature_optimization
 
@@ -26,13 +28,6 @@ Any coding practice that makes your code harder to understand in the name of per
 
 - It's a new kind of code that can be compiled (ahead of time) down into a binary format that browsers can read. This means that high-level languages (C, C++) can be compiled down into a format that is legible to the browser. For developers that want to do some heavy computing on the web, this is a huge plus.
 - At the time of writing, it does not support `DOM access` - so JS is still needed.
-
----
-
-### SSO
-
-- [What is SSO and how it works](https://auth0.com/blog/what-is-and-how-does-single-sign-on-work/)
-- [keypoints](#keypoints)
 
 ---
 
@@ -108,26 +103,6 @@ Now, ajax calls to another domain is allowed.
 For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is 200, the actual request will then be issued.
 
 To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to its server (only serves up frontend code) which then forwards the requests to api server - backend. Because the communication is between two servers, preflight calls are completed avoided.
-
----
-
-### OAuth2
-
-- Four participants
-  - Resource Owner - User
-  - Resource Server - Google i.e Google Calendar
-  - Authorization Server - Authenticate user credentials and gain user **access_token**
-  - Client - 3rd party app i.e lendi
-- **Resource Server** and **Authorization Server** can be the same server
-- Full workflow
-  1. **Client** sends request to **Resource Owner** for authorization. The OAuth **Client** includes its identifier, requested scope, local state, and a redirection URI.
-  2. **Resource Owner** grants the access and sends the authorization code back to **Client**
-  3. **Client** passes the authorization code to **Authorization Server**
-  4. **Authorization Server** authenticates the code and sends **access_token** back to **Client**
-  5. **Client** can then use **access_token** to get access to resources on the **Resource Server**
-- In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
-
-![](./oauth_2.png)
 
 ---
 

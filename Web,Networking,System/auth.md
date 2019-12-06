@@ -4,6 +4,8 @@ It outlines different approaches of authenticating applications and their featur
 
 - [JWT](#jwt)
 - [Session(Cookie)](#session)
+- [SSO](#sso)
+- [OAuth2](#oauth2)
 - [More Readings](#more-readings)
 
 ### JWT
@@ -99,6 +101,32 @@ A: Couple of ways:
 - Centralized session storage - Means that when a user accesses a microservice, user data can be obtained from shared session storage, ensuring that all microservices can read the same session data
 
 Other approaches are discussed in the `Microservices Authentication and Authorization Solutions` below.
+
+---
+
+### SSO
+
+[What is SSO and how it works](https://auth0.com/blog/what-is-and-how-does-single-sign-on-work/)
+
+---
+
+### OAuth2
+
+- Four participants
+  - Resource Owner - User
+  - Resource Server - Google i.e Google Calendar
+  - Authorization Server - Authenticate user credentials and gain user **access_token**
+  - Client - 3rd party app i.e lendi
+- **Resource Server** and **Authorization Server** can be the same server
+- Full workflow
+  1. **Client** sends request to **Resource Owner** for authorization. The OAuth **Client** includes its identifier, requested scope, local state, and a redirection URI.
+  2. **Resource Owner** grants the access and sends the authorization code back to **Client**
+  3. **Client** passes the authorization code to **Authorization Server**
+  4. **Authorization Server** authenticates the code and sends **access_token** back to **Client**
+  5. **Client** can then use **access_token** to get access to resources on the **Resource Server**
+- In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
+
+![](./oauth_2.png)
 
 ---
 
