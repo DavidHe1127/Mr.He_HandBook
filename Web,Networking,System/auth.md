@@ -70,7 +70,7 @@ Never save it to `localStorage`. If any of the third-party scripts you include i
 ### Session
 
 - Used to know user session state.
-- stateful - both server and client needs to keep a copyz
+- stateful - both server and client needs to keep a copy.
 - sessionId is created and stored on the server (db or cache). It's also being sent down the wire to client through cookie.
 - session data itself can be saved into db table.
 - After authenticated, all subsequent requests will have sessionId attached automatically by browser.
