@@ -6,7 +6,7 @@ It outlines different approaches of authenticating applications and their featur
 
 ### JWT
 
-- comprised of 3 parts - **xxxx.yyyyy.zzzz** = **header**.**payload(claim)**.**signature**
+- comprised of 3 parts - **xxxx.yyyyy.zzzz** = **header**.**payload(claim)**.**signature**. Each bit is base64 encoded.
 - header is as follow. It shows the algorithm we use to generate the signature. It needs to be base64 encoded.
 
 ```js
@@ -36,7 +36,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 
 #### Important
 
-- Never ever put the senstive data in **header** and **payload** - they are encoded not encrypted!!!
+- Never ever put the senstive data in **header** and **payload** - they are `base64` encoded not encrypted!!!
 - Why do we need signature? - It prevents somebody modifying the data.
 - How does server do the authentication? - Server will use the specified algorithm in the header, secret stored on the server, **header** and **payload** to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
 - With JWT, you should NEVER EVER store token in db on server side. Instead it needs to be stored safely on client side.
@@ -47,6 +47,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 #### Downsides
 
 - JWT can be a sizeable piece of data in the header!
+- Not suitable for holding user sessions i.e shopping cart
 
 #### FAQs
 
