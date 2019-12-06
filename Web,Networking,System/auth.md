@@ -102,6 +102,13 @@ A: Couple of ways:
 
 Other approaches are discussed in the `Microservices Authentication and Authorization Solutions` below.
 
+- #### Where should I store session data?
+
+A: 2 possible ways:
+
+- Memory session store is going to be reset on every app re-lauch. Also it's fastest. i.e Redis
+- Database session store, is going to be safe with app re-lauch. And at some point you will have alot of session objects which you might want to clean up. And same session stored in database can be even accessed from different apps.
+
 ---
 
 ### SSO
