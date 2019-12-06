@@ -39,7 +39,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 - Never ever put the senstive data in **header** and **payload** - they are encoded not encrypted!!!
 - Why do we need signature? - It prevents somebody modifying the data.
 - How does server do the authentication? - Server will use the specified algorithm in the header, secret stored on the server, **header** and **payload** to generate another signature. Then, server will do the comparison with the sent one if they don't match it indicates the token has been tampered with.
-- With JWT, you should NEVER EVER store token in db on server side. Instead it needs to be stored safely on client side - i.e in `localStorage`
+- With JWT, you should NEVER EVER store token in db on server side. Instead it needs to be stored safely on client side.
 - It makes scaling easier since any server in a cluster can serve the request given no session is kept on the server side.
 - People use JWT to protect their APIs.
 ![jwt-based-auth](./jwt-based-auth.png)
@@ -47,4 +47,26 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 #### Downsides
 
 - JWT can be a sizeable piece of data in the header!
+
+#### FAQs
+
+- How to invalidate a token?
+
+A: Add a property to your user object in the server database, to reference the datetime the token was created at. To invalidate the token, just update its value, and if `iat` (holding the same value at the time of token creation) is older than updated value, you can reject the token.
+
+- Where should I save it on the client side?
+
+A: JWT needs to be stored inside an `httpOnly cookie` - a special kind of cookie that’s only sent in HTTP requests to the server, and it’s never accessible (both for reading or writing) from JavaScript running in the browser.
+
+Never save it to `localStorage`. If any of the third-party scripts you include in your page gets compromised, it can access all your users’ tokens.
+
+---
+
+
+
+
+
+
+
+
 
