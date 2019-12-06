@@ -106,7 +106,9 @@ Other approaches are discussed in the `Microservices Authentication and Authoriz
 
 ### SSO
 
-[What is SSO and how it works](https://auth0.com/blog/what-is-and-how-does-single-sign-on-work/)
+![](./sso_auth0.png)
+
+Read more about[what is SSO and how it works](https://auth0.com/blog/what-is-and-how-does-single-sign-on-work/)
 
 ---
 
