@@ -51,11 +51,11 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 
 #### FAQs
 
-- How to invalidate a token?
+- #### How to invalidate a token?
 
 A: Add a property to your user object in the server database, to reference the datetime the token was created at. To invalidate the token, just update its value, and if `iat` (holding the same value at the time of token creation) is older than updated value, you can reject the token.
 
-- Where should I save it on the client side?
+- #### Where should I save it on the client side?
 
 A: JWT needs to be stored inside an `httpOnly cookie` - a special kind of cookie that’s only sent in HTTP requests to the server, and it’s never accessible (both for reading or writing) from JavaScript running in the browser.
 
