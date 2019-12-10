@@ -7,6 +7,8 @@
   - [Cluster](#cluster)
   - [Container Instance](#container-instance)
 
+- [Run a service in cluster](#run-a-service-in-cluster)
+
 ### Core Concepts
 
 #### Task Definitions
@@ -25,3 +27,24 @@ A logic group of EC2 instances. When an instance launches the `ecs-agent` softwa
 This is just an EC2 instance that has docker and ecs-agent running on it. It's part of ECS cluster.
 
 ![ecs arch](ecs-arch.png)
+
+
+---
+
+### Run a service in cluster
+
+Prerequisites:
+
+- security group
+- ssh keypair for ssh into ec2 instance
+- ECS relevant IAM roles
+
+1. Create ECS cluster.
+2. Store container agent config file on s3. Config file will register a container instance to clusters.
+3. Create a container instance using ECS optimized AMIs (container agent & docker engine pre-baked in).
+  - Script logic to copy container agent config file over. Load script via ec2 instance user data
+4. Write up a task definition and register (upload) it to the cluster
+5. Create a service from registered task definition
+
+
+
