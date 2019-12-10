@@ -200,6 +200,16 @@ EOF
 ```
 The b.txt file contains bar and baz lines. The same output is printed to stdout.
 
+3. Run multi-line command through bash
+
+```shell
+$ bash <<EOF
+> ls
+> echo 'love this game'
+> printenv
+> EOF
+```
+
 ---
 
 ### Run command in history
