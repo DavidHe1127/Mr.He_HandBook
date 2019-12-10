@@ -12,6 +12,8 @@
 - [File Descriptor](#file-descriptor)
   - [Redirect app logs to stdout from static files](#log-redirection)
 - [Networking](#networking)
+- [Commands](#commands)
+  - [Tee](#tee)
 
 ### tty
 
@@ -108,7 +110,7 @@ On most systems the default entry in the hosts file is:
 
 ### ssh-config-file
 
-Example `ssh config`
+Example `~/.ssh/config`
 
 ```
 Host remote
@@ -134,6 +136,8 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   $ sudo node               # run node command as a root user
   $ sudo node -U p782199    # run node command as user p782199
   $ sudo -l -U p782191      # list all this user can do
+  $ sudo su                 # means run the command su as sudo which means as root. Here the system will ask you for your                               # password since you are a sudoer. After you enter your password, you now have root privilege
+                            # useful when you need to execute a number of commands as root. As opposed to sudo <command>
   ```
   - if you see something like this:
   ```
@@ -150,6 +154,9 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   $ su        # switch to root user or aka superuser. Keeps your existing env vars
   $ su -      # Same as above but with settings of your specified user. It's root in this case
   ```
+
+[Further reading](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used)
+
 
 ### sudoers-file
 ![sudoers file](./sudoers_file.png)
@@ -195,3 +202,21 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
   - It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
 - Virtual Ethernet Devices
   - A virtual ethernet device or veth is a Linux networking interface that acts as a connecting wire between two network namespaces. A veth is a full duplex link that has a single interface in each namespace. Traffic in one interface is directed out to the other interface.
+  
+### Commands
+
+#### Tee
+
+* Name after t-splitter in plumbing.
+* Write output to stdout as well as one or more files.
+* write to stdout and file simultaneously.
+```shell
+command -> tee → stdout
+            ↓
+           file  
+...
+$ ls|tee file1.txt
+```
+
+
+

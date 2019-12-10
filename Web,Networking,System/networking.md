@@ -11,6 +11,7 @@
 - [Ephemeral Ports](#ephemeral-ports)
 - [CNAME record](#cname)
 - [NAT](#nat)
+- [0.0.0.0](#wildcard-ip)
 
 ### dns-resolution-flow
 
@@ -74,3 +75,13 @@ One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au`
 ### NAT
 
 ![NAT Table](./nat_table.png)
+
+### wildcard ip
+In the context of servers, `0.0.0.0` means all IPv4 addresses on the local machine. If having a server running on a host listen for wildcard ip, it basically means the server can be accessible from any devices within the same network as the host.
+i.e
+```js
+$ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices on the network
+$ HOST=localhost react-scripts start // make app server only accessible from the host
+```
+
+

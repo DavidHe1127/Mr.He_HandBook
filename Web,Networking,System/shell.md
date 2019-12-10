@@ -12,6 +12,7 @@
 - [Find files](#find-files)
 - [Source a file](#source-a-file)
 - [Makefile](#makefile)
+- [HereDoc](#heredoc)
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
@@ -174,6 +175,30 @@ deploy-something:
   @echo "Deploy something..."
   ./scripts/deploy_something.sh ${env} ${tag}
 ```
+
+### HereDoc
+1. Pass multi-line string to a file in Bash
+```shell
+$ cat <<EOF > print.sh
+#!/bin/bash
+echo \$PWD
+echo $PWD
+EOF
+
+# The print.sh file now contains:
+#!/bin/bash
+echo $PWD
+echo /home/user
+```
+2. Pass multi-line string to a pipe in Bash
+```shell
+$ cat <<EOF | grep 'b' | tee b.txt
+foo
+bar
+baz
+EOF
+```
+The b.txt file contains bar and baz lines. The same output is printed to stdout.
 
 ---
 

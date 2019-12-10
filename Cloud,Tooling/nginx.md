@@ -1,17 +1,23 @@
 ## NGINX
 
-* [Directives](#directives)
-  * [try_files](#try_files)
-  * [default_type](#default_type)
-  * [rewrite last and break](#rewrite)
-* [Debugging](#debugging)
-* [Sample config](#sample-config)
+- [Directives](#directives)
+  - [try_files](#try_files)
+  - [default_type](#default_type)
+  - [rewrite last and break](#rewrite)
+  - [server_name](#server_name)
+  - [regex matching](#regex-matching)
+- [Debugging](#debugging)
+- [Sample config](#sample-config)
+- Tips
+  - [Print more nginx infor](#print-detailed-nginx-info)
+- Learning Resources
+  - [nginx tutorial basics concepts](https://www.netguru.com/codestories/nginx-tutorial-basics-concepts)
 
 ### Directives
 
 #### try_files
 
-```conf
+```nginx
 root /var/www/main;
 location / {
     try_files $uri $uri.html $uri/ /fallback/index.html;
@@ -21,14 +27,16 @@ location /fallback {
     root /var/www/another;
 }
 ```
+
 if a request made to `/image.js`, `/` location will catch the request and follow rules defined in `try_files` to try to find the match:
 
-* $uri - try to find `image.js` from inside `/var/www/main`.
-* $uri.html - try to find `image.js.html` from inside `/var/www/main`.
-* $uri/ - try to find `image.js` dir from inside `/var/www/main`.
-* /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
+- \$uri - try to find `image.js` from inside `/var/www/main`.
+- \$uri.html - try to find `image.js.html` from inside `/var/www/main`.
+- \$uri/ - try to find `image.js` dir from inside `/var/www/main`.
+- /fallback/index.html - request redirected to `/fallback/index.html` which triggers another location search that will be trapped by `/fallback` location block which will serve `/var/www/another/fallback/index.html.
 
 #### default_type
+
 Default MIME type for response. The value will be set in the response header. When NGINX serves a file, The file extension is matched against the known types declared within the `types` block. If the extension doesn't match any of the known MIME types, the value of the `default_type` directive is used.
 
 #### rewrite
@@ -36,29 +44,59 @@ Default MIME type for response. The value will be set in the response header. Wh
 - `last` will re-initiate another request which will then go through the subsequent locations and finds a match if there is any.
 - `break` will execute the remaining commands in the current block.
 
-```yml
-  server {
-    listen 80 default_server;
-    server_name dcshi.com;
-    root www;
+```nginx
+server {
+  listen 80 default_server;
+  server_name dcshi.com;
+  root www;
 
-    location /break/ {
-      rewrite ^/break/(.*) /test/$1 break;
-      echo "break page";
-    }
-
-    location /last/ {
-      rewrite ^/last/(.*) /test/$1 last;
-      echo "last page";
-    }
-
-    location /test/ {
-      echo "test page";
-    }
+  location /break/ {
+    rewrite ^/break/(.*) /test/$1 break;
+    echo "break page";
   }
+
+  location /last/ {
+    rewrite ^/last/(.*) /test/$1 last;
+    echo "last page";
+  }
+
+  location /test/ {
+    echo "test page";
+  }
+}
 ```
 
 It prints `break page` when hitting `http://dcshi.com/break/foo` while prints `test page` when hitting `http://dcshi.com/last/foo`.
+
+#### server_name
+
+Every HTTP/1.1 message needs to be sent with `Host` header to the endpoint. `Host` will be used by nginx to determine which virtual server is used to serve the request.
+
+```txt
+Host: cai:8080
+
+server {
+  listen         8080;
+  server_name    cai;    # serve reqs hitting http://cai:8080
+}
+```
+
+#### regex matching
+
+```nginx
+# ~* regex+case-insensitive
+# will match /test/myapp/hello.php and /myapp/hello.php
+# $1 is /myapp while $2 is hello.php Parentheses denotes match group
+location ~* (.*/myapp)/(.+\.php)$ {
+    #...
+    
+    # /download/music/media/aoa.aaaaa -> download/music/mp3/aoa.mp3
+    # $1 is /download/music $2 is aoa
+    rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.mp3 last;
+}
+```
+
+---
 
 ### Debugging
 
@@ -70,10 +108,9 @@ Then var will be interpreted in response header.
 
 `X-uri:/index.php`
 
-
 ### Sample config
 
-```conf
+```nginx
 #user  nobody;
 worker_processes  1;
 
@@ -89,7 +126,7 @@ http {
     log_format  main  '$remote_addr - $remote_user $time_local "$request" '
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for" ';
-                      
+
     # access_log allows nginx to write information in the access log regarding each request made by a client.
     # access_log log_file log_format;
     # here main is the name of log format
@@ -118,8 +155,8 @@ http {
     server {
         listen 80 default_server;
         # any requests made to http will be caught
-    	server_name _;
-    	return 301 https://$host$request_uri;
+        server_name _;
+        return 301 https://$host$request_uri;
     }
 
     server {
@@ -206,3 +243,17 @@ http {
     }
 }
 ```
+
+---
+
+### Print detailed nginx info
+
+```sh
+$ sudo nginx -V
+...
+# tell u where all files can be found. i.e index.html under default root html
+--prefix=/usr/local/Cellar/nginx/1.17.3_1 
+...
+```
+
+
