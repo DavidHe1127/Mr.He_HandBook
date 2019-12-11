@@ -24,10 +24,14 @@ In unix terminology, the short answer is `terminal = tty = text input/output env
 $PATH说简单点就是一个字符串变量，当输入命令的时候LINUX会去查找$PATH 里面记录的路径。比如在根目录/下可以输入命令 ls,在/usr 目录下也可以输入 ls,但其实 ls 这个命令根本不在这个两个目录下，事实上当你输入命令的时候 LINUX 会去/bin,/usr/bin,/sbin 等目录下面去找你此时输入的命令，而\$PATH 的值恰恰就是/bin:/sbin:/usr/bin:……。其中的冒号使目录与目录之间隔开.
 
 To edit it
-
-```js
-sudo vi /etc/paths
+```shell
+$ sudo vi /etc/paths
 ```
+or, append custom ones
+```shell
+export PATH=$PATH:/Users/xxx/homebrew/bin/gradle
+```
+
 
 ### Process
 
