@@ -16,6 +16,7 @@
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
+  - [Show real installation location of a binary](#show-real-installation-location-of-binary)
 - [Scripting](./shell_scripting.md)
 
 ### what is shell
@@ -251,3 +252,12 @@ But, consider the npm script below:
 ```
 
 As stated above, we export `VAR` from inside `go` script and its value is only available to program `node` being launched by `no`. As thus, the second case does the thing right.
+
+### show real installation location of binary
+
+```shell
+$ ls -l `which java`
+
+# output:
+lrwxr-xr-x  1 root  wheel  74 23 Oct 15:31 /usr/bin/java -> /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java
+```
