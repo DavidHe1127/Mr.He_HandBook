@@ -6,6 +6,8 @@
   - [rewrite last and break](#rewrite)
   - [server_name](#server_name)
   - [regex matching](#regex-matching)
+  - [upstream](#upstream)
+  - [named_location](#named_location)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 - Tips
@@ -89,10 +91,49 @@ server {
 # $1 is /myapp while $2 is hello.php Parentheses denotes match group
 location ~* (.*/myapp)/(.+\.php)$ {
     #...
-    
+
     # /download/music/media/aoa.aaaaa -> download/music/mp3/aoa.mp3
     # $1 is /download/music $2 is aoa
     rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.mp3 last;
+}
+```
+
+#### upstream
+
+it defines one a cluster of servers for serving requests. Load-balancing can also be configured inside it.
+
+```nginx
+upstream myproject {
+  server 127.0.0.1:8000 weight=3;
+  server 127.0.0.1:8001;
+  server 127.0.0.1:8002;
+  server 127.0.0.1:8003;
+}
+
+server {
+  listen 80;
+  server_name www.domain.com;
+  location / {
+    proxy_pass http://myproject;
+  }
+}
+```
+
+It means all requests for `/` will go to any one of the servers listed inside `myproject` upstream, with a preference for port 8000.
+
+#### named_location
+
+```nginx
+# @ specifies a named_location which will NEVER be used to match incoming request
+# Its purpose is to be used as a reference to determine the action
+# In this case, it is used for @PLACEHOLDER_BACKEND_NAME specified above in try_files
+# Once @PLACEHOLDER_BACKEND_NAME is reached as the last fallback option, named_location will be used to handle response
+try_files $uri $uri/index.html $uri.html @PLACEHOLDER_BACKEND_NAME;
+
+location @PLACEHOLDER_BACKEND_NAME {
+  ...
+  proxy_pass http://PLACEHOLDER_BACKEND_NAME;
+  ...
 }
 ```
 
@@ -252,7 +293,7 @@ http {
 $ sudo nginx -V
 ...
 # tell u where all files can be found. i.e index.html under default root html
---prefix=/usr/local/Cellar/nginx/1.17.3_1 
+--prefix=/usr/local/Cellar/nginx/1.17.3_1
 ...
 ```
 

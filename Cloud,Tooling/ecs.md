@@ -8,6 +8,7 @@
   - [Container Instance](#container-instance)
 
 - [Run a service in cluster](#run-a-service-in-cluster)
+- [Run a task in cluster](#run-a-task-in-cluster)
 
 ### Core Concepts
 
@@ -45,6 +46,40 @@ Prerequisites:
   - Script logic to copy container agent config file over. Load script via ec2 instance user data
 4. Write up a task definition and register (upload) it to the cluster
 5. Create a service from registered task definition
+
+```shell
+$ aws ecs create-service --cluster deepdive --service-name web --task-definition web --desired-count 1
+```
+
+### Run a task in cluster
+
+- Tasks are short-lived/1 off tasks that exit when done.
+- 2 ways of running a task
+  - RunTask: randomly distribute tasks on your cluster. But minimizes specific instances from getting overloaded
+  - StartTask: lets you pick where you want to run a task on cluster
+
+Run task is similar to what we see in run a service.
+
+```shell
+$ aws ecs run-task --cluster deepdive --task-definition web --count 1
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
