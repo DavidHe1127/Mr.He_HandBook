@@ -14,7 +14,7 @@
 - Docker Compose
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
-  - [links](#links)
+  - [Communication between containers](#communication-between-containers)
   - [Force Re-build image and re-create container](#force-rebuild)
 
 ### Architecture
@@ -156,9 +156,9 @@ services:
       - ./node_modules:/home/node/app/server/node_modules
 ```
 
-### Links
+### Communication between containers
 
-Deprecated!!! Able to access service by name out of box.
+Use `links` is deprecated!!! Able to access service by name out of box.
 
 ```yml
 web:
