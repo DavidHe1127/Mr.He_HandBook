@@ -173,17 +173,20 @@ Code inside web can access database using `db:5432`.
 Another way to let containers on the same network to communicate with each other via container name is done through custom network.
 
 ```shell
-# by default, a network with bridge as driver will be created
+# 1. create a custom bridge network
 $ docker network create mynet
-# run a container image mywebimage
-$ docker run -d -p "80:80" --name web mywebimage
-$ docker run -d --name my_service myapiimage
-$ docker network connect mynet web
-$ docker network connect mynet my_service
 
-# now make api calls from web http://my_service:8000/dosomething
+# 2. connect two containers to mynet and run them
+$ docker run -d --name server1 --net mynet networking:server1
+$ docker run -d --name server2 --net mynet networking:server2
+
+# 3. now you can curl server1 from server2 by container name
+$ curl http://server1:8080/
 ```
-
+To communicate via container name:
+- You must create a custom bridge network. Default bridge work only allows connection via ip.
+- Must specify a container name. Random name won't work.
+- Must specify connection port which is exposed by container unless `80` is exposed.
 
 ### Force rebuild
 
