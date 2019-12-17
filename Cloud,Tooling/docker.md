@@ -183,7 +183,7 @@ $ docker run -d --name server2 --net mynet networking:server2
 # 3. now you can curl server1 from server2 by container name
 $ curl http://server1:8080/
 ```
-To communicate via container name:
+Caveats:
 - You must create a custom bridge network. Default bridge work only allows connection via ip.
 - Must specify a container name. Random name won't work.
 - Must specify connection port which is exposed by container unless `80` is exposed.
