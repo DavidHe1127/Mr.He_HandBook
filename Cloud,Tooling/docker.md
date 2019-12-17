@@ -170,6 +170,19 @@ db:
 
 Code inside web can access database using `db:5432`.
 
+Another way to let containers on the same network to communicate with each other via container name is done through custom network.
+
+```shell
+# by default, a network with bridge as driver will be created
+$ docker network create mynet
+# run a container image mywebimage
+$ docker run -d -p "80:80" --name web mywebimage
+$ docker run -d --name my_service myapiimage
+
+# now make api calls from web http://my_service:8000/dosomething
+```
+
+
 ### Force rebuild
 
 `$ docker-compose up --force-recreate --build`
