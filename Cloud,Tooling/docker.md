@@ -187,6 +187,7 @@ Caveats:
 - You must create a custom bridge network. Default bridge work only allows connection via ip.
 - Must specify a container name. Random name won't work.
 - Must specify connection port which is exposed by container unless `80` is exposed.
+- Need set `HOST` on `server1` to `0.0.0.0` to enable it expose all interfaces.
 
 ### Force rebuild
 
