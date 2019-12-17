@@ -178,6 +178,8 @@ $ docker network create mynet
 # run a container image mywebimage
 $ docker run -d -p "80:80" --name web mywebimage
 $ docker run -d --name my_service myapiimage
+$ docker network connect mynet web
+$ docker network connect mynet my_service
 
 # now make api calls from web http://my_service:8000/dosomething
 ```
