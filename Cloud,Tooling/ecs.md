@@ -19,7 +19,31 @@ Blueprint describes how a container should launch. It contains settings like exp
 This is a running container with the settings defined in the Task Definition. It can be thought of as an `instance` of a Task Definition.
 
 #### Service
-Defines long running tasks of the same Task Definition i.e a web application. This can be 1 running container or multiple running containers all using the same Task Definition.
+Defines long running tasks of the same Task Definition i.e a web application. This can be 1 running container or multiple running containers all using the same Task Definition. Task here is the same as task mentioned above besides if any one task goes down, ecs service scheduler will replace it as per desired task(instance of task definition) count specified in input json.
+
+#### Input JSON
+Serves as defined operations being performed against a service.
+
+```json
+{
+    "cluster": "production",
+    "serviceName": "web",
+    "taskDefinition": "web",
+    "loadBalancers": [
+        {
+            "loadBalancerName": "dockerzon-web",
+            "containerName": "nginx",
+            "containerPort": 80
+        }
+    ],
+    "role": "arn:aws:iam::216659404274:role/ecs-deepdive-servicerole",
+    "desiredCount": 2,
+    "deploymentConfiguration": {
+        "maximumPercent": 100,
+        "minimumHealthyPercent": 50
+    }
+}
+```
 
 #### Cluster
 A logic group of EC2 instances. When an instance launches the `ecs-agent` software on the server it registers the instance to an ECS Cluster. This is easily configurable by setting the ECS_CLUSTER variable.
