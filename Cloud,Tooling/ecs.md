@@ -53,7 +53,7 @@ $ aws ecs create-service --cluster deepdive --service-name web --task-definition
 
 ### Run a task in cluster
 
-- Tasks are short-lived/1 off tasks that exit when done.
+- Tasks are short-lived/1 off tasks that exit when done. That means ecs will not replace a task when it dies.
 - 2 ways of running a task
   - RunTask: randomly distribute tasks on your cluster. But minimizes specific instances from getting overloaded
   - StartTask: lets you pick where you want to run a task on cluster
