@@ -7,6 +7,7 @@
   - [server_name](#server_name)
   - [regex matching](#regex-matching)
   - [upstream](#upstream)
+  - [reverse proxy](#reverse-proxy)
   - [named_location](#named_location)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
@@ -120,6 +121,38 @@ server {
 ```
 
 It means all requests for `/` will go to any one of the servers listed inside `myproject` upstream, with a preference for port 8000.
+
+#### reverse proxy
+
+When requesting `http://192.168.1.1/proxy/test.html`, different `proxy_pass` value could produce different results:
+
+```nginx
+# / denotes uri
+
+# with uri
+# proxied req - http://127.0.0.1/test.html
+location /proxy/ {
+    proxy_pass http://127.0.0.1/;
+}
+
+# proxied req - http://127.0.0.1/aaa/test.html
+location /proxy/ {
+    proxy_pass http://127.0.0.1/aaa/;
+}
+
+# without uri
+# proxied req - http://127.0.0.1/proxy/test.html
+location /proxy/ {
+    proxy_pass http://127.0.0.1;
+}
+
+# proxied req - http://127.0.0.1/aaatest.html
+location /proxy/ {
+    proxy_pass http://127.0.0.1/aaa;
+}
+```
+
+As you can see, when specifying uri in proxy_pass, path matching location parameter will be stripped out before forwarding the req to destination(upstream) server.
 
 #### named_location
 
