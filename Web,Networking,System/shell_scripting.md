@@ -11,10 +11,11 @@ set -xe
 set +x
 
 # evaluation & interpolation
-FOO=`whoami`
-EVAL_FOO=`echo Port no. is $FOO not good`
+FOO="$(whoami)"
+EVAL_FOO="echo Port no. is $FOO not good"
 echo $EVAL_FOO
 CommitShort=$(git  rev-parse --short HEAD) # execute cmd and assign output to CommitShort var
+eval "$(aws ecr get-login --no-include-email)" # execute returned value from calling ecr get-login
 
 # print 'Default to good if 2nd arg not provided'
 Build=${2:-Default to good if 2nd arg not provided}
