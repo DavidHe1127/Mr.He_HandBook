@@ -149,7 +149,11 @@ Use makefile as a build tool is a good idea!
 # Use tab as indentations
 
 # set value only if it's not set
-COLORTERM ?= "Bright"
+COLORTERM ?= Bright
+# make vars accessible from processes fired up by make
+export APPLICATION_NAME=dockerzon-ecs
+# use $() to eval var
+export APPLICATION_PATH=$(HOME)/lab/$(APPLICATION_NAME)
 
 task:
    # @ will suppress command name from being logged to terminal
@@ -161,7 +165,8 @@ thing:
     cal
     echo ${COLORTERM}
 
-# pass arg $ make test SOS='o yeah'
+# pass arg
+# $ make test SOS='o yeah'
 test:
    @echo ${SOS}
 
