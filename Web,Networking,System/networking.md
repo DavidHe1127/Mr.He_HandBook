@@ -93,4 +93,4 @@ Given `192.168.1.0/28`, it tells us the following:
 - 14 available ips - from `00000001` to `00001110` that is `192.168.1.1` as the first ip and `192.168.1.14` as the last ip.
 Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
 
-
+Another example - `172.16.0.0/12` will have `172.16.0.0` to `172.31.255.255` as the ip range considering reserved ones as well.
