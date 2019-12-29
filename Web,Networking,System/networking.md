@@ -11,6 +11,7 @@
 - [Ephemeral Ports](#ephemeral-ports)
 - [CNAME record](#cname)
 - [NAT](#nat)
+- [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
 
 ### dns-resolution-flow
@@ -83,5 +84,13 @@ i.e
 $ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices on the network
 $ HOST=localhost react-scripts start // make app server only accessible from the host
 ```
+
+### IP CIDR network-masking
+
+Given `192.168.1.0/28`, it tells us the following:
+
+- mask is `255.255.255.240` or `11111111 11111111 11111111 11110000` when represented in binary.
+- 14 available ips - from `00000001` to `00001110` that is `192.168.1.1` as the first ip and `192.168.1.14` as the last ip.
+Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
 
 
