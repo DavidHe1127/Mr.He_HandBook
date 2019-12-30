@@ -102,3 +102,6 @@ Another example - `172.16.0.0/12` will have `172.16.0.0` to `172.31.255.255` as 
 
 - tcp/udp port is at layer 4 (transport layer)
 - ping(icmp) is at network layer. It does not use port
+- A socket is the combination of IP address plus port
+
+
