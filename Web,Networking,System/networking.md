@@ -13,6 +13,7 @@
 - [NAT](#nat)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
+- [OSI model](#osi-model)
 
 ### dns-resolution-flow
 
@@ -78,8 +79,10 @@ One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au`
 ![NAT Table](./nat_table.png)
 
 ### wildcard ip
+
 In the context of servers, `0.0.0.0` means all IPv4 addresses on the local machine. If having a server running on a host listen for wildcard ip, it basically means the server can be accessible from any devices within the same network as the host.
 i.e
+
 ```js
 $ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices on the network
 $ HOST=localhost react-scripts start // make app server only accessible from the host
@@ -91,6 +94,11 @@ Given `192.168.1.0/28`, it tells us the following:
 
 - mask is `255.255.255.240` or `11111111 11111111 11111111 11110000` when represented in binary.
 - 14 available ips - from `00000001` to `00001110` that is `192.168.1.1` as the first ip and `192.168.1.14` as the last ip.
-Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
+  Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
 
 Another example - `172.16.0.0/12` will have `172.16.0.0` to `172.31.255.255` as the ip range considering reserved ones as well.
+
+### OSI model
+
+- tcp/udp port is at layer 4 (transport layer)
+- ping(icmp) is at network layer. It does not use port
