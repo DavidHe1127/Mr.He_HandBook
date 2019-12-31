@@ -23,6 +23,14 @@ Build=${2:-Default to good if 2nd arg not provided}
 # reset var to an empty string
 HTTP_PROXY=
 
+# if...else
+# fi closes of if statement
+if [ "$NODE_ENV" == "production" ]; then
+  let_us_do_it
+else
+  echo "fuck"
+fi
+
 # create dir recursively
 mkdir a/b/c/d # will fail
 mkdir -p a/b/c/d # will create a, b, c, d in the correct nested structure
