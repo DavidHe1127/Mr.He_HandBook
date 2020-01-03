@@ -1,6 +1,7 @@
 ## EC2
 
 - [Basics](#basics)
+  - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
 - [Best Practice](#best-practice)
@@ -9,6 +10,10 @@
 
 `Private/Public DNS` as shown on EC2 panel resolves to private/public ip of an instance.
 i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resolves to private ip `10.156.61.79`.
+
+### Internetwork traffic privacy in AWS VPC
+Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
+opening port on http.
 
 ### EC2 EBS Cost
 
