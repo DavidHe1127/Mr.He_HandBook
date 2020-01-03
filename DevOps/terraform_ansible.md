@@ -12,6 +12,8 @@ Think of `Terraform` as a tool to create a foundation, `Ansible` to put the hous
 
 ### Typical Config
 
+Below shows basic config. Please refer to `lab/terraform-aws` for more basics.
+
 ```tf
 provider "aws" {
   profile = "qq"
