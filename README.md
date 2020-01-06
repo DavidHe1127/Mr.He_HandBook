@@ -13,7 +13,7 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 
 - [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
 
-### Cool tools
+### Cool tools that help u be productive
 
 - [Mockaroo - Mock data generator & API](https://mockaroo.com/)
 - [Mailinator - Disposable temporary email](https://mailinator.com/)
@@ -25,3 +25,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [httpie - curl-like cli but for human beings](https://github.com/jakubroztocil/httpie)
 - [nginxconfig.io - generate the best config for your specific use-case](https://github.com/digitalocean/nginxconfig.io)
 - [Graphql Custom Scalars](https://github.com/urigo/graphql-scalars)
+- [Mock.io - generate mocked rest api in your favor](https://www.mocky.io/)
