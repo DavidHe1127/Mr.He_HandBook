@@ -74,7 +74,7 @@ What's happened when running ls in a shell?
 
 ### file
 
-![ls output](./ls-output.png)
+![ls output](./ls.jpg)
 
 `Group` permissions give any users in a particular group rights to perform `read/write/execute` on file or directory.
 
