@@ -176,7 +176,7 @@ $ docker network create mynet
 $ docker run -d --name server1 --net mynet networking:server1
 $ docker run -d --name server2 --net mynet networking:server2
 
-# 3. now you can curl server1 from server2 by container name
+# 3. now you can curl server1 from inside server2 by container name
 $ curl http://server1:8080/
 ```
 Caveats:
