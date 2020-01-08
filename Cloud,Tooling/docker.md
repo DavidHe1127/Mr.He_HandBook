@@ -4,6 +4,8 @@
   - [Architecture](#Architecture)
   - [Dockerfile](#dockerfile)
   - [Networking](#Networking)
+  - [Caching](#caching)
+  - [Security](#security)
   - [Disk space on daemon](#disk-space-on-daemon)
   - [Data persistence](#data-persistence)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
@@ -75,6 +77,50 @@ It determines where traffic should go if destination ip does not match any conta
 #### veths
 
 Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
+
+### Caching
+
+#### Caching for ADD and COPY
+The targeting files are examined and checksum is calculated for each of them. During cache lookup, every checksum is compared with the existing one individually (if there is any) and if a change is detected, cache will be invalidated and a new layer will be built. This also has the following lines of code rerun - new layer could be built.
+
+Consider the following sample
+
+```Dockerfile
+FROM node:8
+COPY . /app
+RUN npm install --production
+EXPOSE 3000
+CMD ["node", "app/index.js"]
+
+FROM node:8
+COPY package.json /app/package.json
+RUN cd /app; npm install --production
+COPY . /app
+EXPOSE 3000
+CMD ["node", "app/index.js"]
+```
+
+Second build example is better. Why? The only time we need to run `npm install` is when a change occurs to dependencies, in other words `package.json`. If a change is made to other source files, the first build will still run `npm install` while the second build won't.
+
+### Security
+
+#### Never run container as a root
+
+By default, docker run commands as user root and a lot of images don't give you `sudo` command.
+
+```shell
+drwxr-xr-x  1 root root  4096 Dec 17 04:03 ..
+-rw-r--r--  1 root root   265 Dec 25 10:54 package.json
+-rw-r--r--  1 root root 15624 Dec 25 10:54 package-lock.json
+-rw-r--r--  1 root root    27 Dec 25 10:54 .dockerignore
+-rw-r--r--  1 root root   498 Dec 31 03:54 Dockerfile
+-rwxr-xr-x  1 root root   176 Dec 31 04:40 start.sh
+-rw-r--r--  1 root root   864 Dec 31 04:40 server.js
+drwxr-xr-x 51 root root  4096 Dec 31 04:49 node_modules
+drwxr-xr-x  1 root root  4096 Dec 31 04:49 .
+```
+
+Use `root` user will pose potential security threats in case your container is hacked. The best way to avoid it is create and user a non-privileged user after you install dependencies.
 
 ### Disk space on daemon
 
