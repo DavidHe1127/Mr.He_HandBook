@@ -120,7 +120,7 @@ drwxr-xr-x 51 root root  4096 Dec 31 04:49 node_modules
 drwxr-xr-x  1 root root  4096 Dec 31 04:49 .
 ```
 
-Use `root` user will pose potential security threats in case your container is hacked. The best way to avoid it is create and user a non-privileged user after you install dependencies.
+Use `root` user will pose potential security threats in case your container is hacked. The best way to avoid it is create and use a non-privileged user after you install dependencies.
 
 ### Disk space on daemon
 
