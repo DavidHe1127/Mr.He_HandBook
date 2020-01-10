@@ -47,11 +47,13 @@ You can also search for text inside `less`. forward search `/word` and backward 
 ### copy
 
 ```shell
-scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
+$ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 
-# available on os x by default
-# copy pub key to clipboard
-pbcopy < ~/.ssh/id_rsa.pub
+# paste stuff to clipboard. available on os x by default
+# pbcopy < <FILE_PATH>
+$ pbcopy < ~/.ssh/id_rsa.pub
+# send output to clipboard
+$ la | pbcopy
 ```
 
 ### dotfiles
