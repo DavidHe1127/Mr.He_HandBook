@@ -4,7 +4,7 @@
 - [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 - [ls](#ls-output-explained)
 - [less](#less)
-- [scp](#scp)
+- [copy](#copy)
 - [Dot files](#dotfiles)
 - [Man page/help](#manpage-help)
 - [Input and Output](#input-output)
@@ -44,10 +44,14 @@ less file1.txt
 
 You can also search for text inside `less`. forward search `/word` and backward search `?word`.
 
-### scp
+### copy
 
-```
+```shell
 scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
+
+# available on os x by default
+# copy pub key to clipboard
+pbcopy < ~/.ssh/id_rsa.pub
 ```
 
 ### dotfiles
