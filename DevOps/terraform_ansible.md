@@ -1,6 +1,7 @@
 ## Terraform & Ansible
 
 - Core Concepts
+  - [attributes vs arguments](#attributes-vs-arguments)
   - [Typical config](#typical-config)
 - [Terraform vs Ansible](#terraform-vs-ansible)
 
@@ -9,6 +10,20 @@
 `Terraform` is primarily used for resource provisioning while `Ansible` is used to configure them.
 Think of `Terraform` as a tool to create a foundation, `Ansible` to put the house on top and then the application gets deployed however you wish (can be Ansible too).
 
+### Attributes vs Arguments
+
+```tf
+resource "aws_instance" "web" {
+  key_name        = aws_key_pair.terraform_key.key_name
+  ami             = "ami-00a54827eb7ffcd3c"
+  instance_type   = "t2.micro"
+  ...
+}
+
+# key_name, ami, instance_type are all arguments.
+# while attribute refers to resulting values upon creation of resource. 
+# You can reference them by aws_instance.web.public_id
+```
 
 ### Typical Config
 
