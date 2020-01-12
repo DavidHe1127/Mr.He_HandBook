@@ -9,6 +9,7 @@
 - [Man page/help](#manpage-help)
 - [Input and Output](#input-output)
 - [double dash in command](#double-dash)
+- [; vs &&](#;-&&)
 - [Find files](#find-files)
 - [Source a file](#source-a-file)
 - [Makefile](#makefile)
@@ -101,6 +102,16 @@ $ ls /fffffffffffffffff > f 2> e
 
 ```bash
 grep -- -v xxx
+```
+
+### ;-&&
+
+```bash
+# run 'echo "world"' regardless of status code being returned in the previous command
+$ echo "Hello " ; echo "world"
+
+# run 'echo "world"' only if previous command return exit code zero
+$ echo "Hello " && echo "world"
 ```
 
 ### find-kill-process
