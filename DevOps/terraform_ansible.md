@@ -3,6 +3,7 @@
 - Core Concepts
   - [attributes vs arguments](#attributes-vs-arguments)
   - [Typical config](#typical-config)
+  - [Play with built-in func](#play-with-built-in-func)
 - [Terraform vs Ansible](#terraform-vs-ansible)
 
 ### Terraform vs Ansible
@@ -21,7 +22,7 @@ resource "aws_instance" "web" {
 }
 
 # key_name, ami, instance_type are all arguments.
-# while attribute refers to resulting values upon creation of resource. 
+# while attribute refers to resulting values upon creation of resource.
 # You can reference them by aws_instance.web.public_id
 ```
 
@@ -86,4 +87,21 @@ resource "aws_instance" "web" {
 output "region" {
   value = var.region
 }
+```
+
+For more example codes, look for `dockerzon-ecs/infra`.
+
+---
+
+### Play with built-in func
+
+```shell
+$ terraform console
+
+> list("hello", "world")
+[
+  "hello",
+  "world",
+]
+>
 ```
