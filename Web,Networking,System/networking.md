@@ -102,8 +102,9 @@ Another example - `172.16.0.0/12` will have `172.16.0.0` to `172.31.255.255` as 
 ### Forward Proxy and Reverse Proxy
 
 Both setups aim to protect your servers/clients by enforcing security rules (firewall) on proxy servers.
-Reserve Proxy is used when you want to protect your fleet of servers which respond to clients' request.
-Forward Proxy is used when clients from inside internal network need to reach out to the servers on the internet. In other words, clients initiate the connections. Note the difference compared to Reverse Proxy where clients on the internet initiate the connection request.
+
+- Reserve Proxy is used when you want to protect your fleet of servers which respond to clients' request.
+- Forward Proxy is used when clients from inside internal network need to reach out to the servers on the internet. In other words, clients initiate the connections. Note the difference compared to Reverse Proxy where clients on the internet initiate the connection request.
 
 [Read more](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
