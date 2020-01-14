@@ -13,6 +13,7 @@
 - [NAT](#nat)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
+- [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
 - [OSI model](#osi-model)
 
 ### dns-resolution-flow
@@ -97,6 +98,14 @@ Given `192.168.1.0/28`, it tells us the following:
   Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
 
 Another example - `172.16.0.0/12` will have `172.16.0.0` to `172.31.255.255` as the ip range considering reserved ones as well.
+
+### Forward Proxy and Reverse Proxy
+
+Both setups aim to protect your servers/clients by enforcing security rules (firewall) on proxy servers.
+Reserve Proxy is used when you want to protect your fleet of servers which respond to clients' request.
+Forward Proxy is used when clients from inside internal network need to reach out to the servers on the internet. In other words, clients initiate the connections. Note the difference compared to Reverse Proxy where clients on the internet initiate the connection request.
+
+[Read more](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
 ### OSI model
 
