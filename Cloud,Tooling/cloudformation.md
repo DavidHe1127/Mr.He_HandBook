@@ -14,8 +14,7 @@
   - when specify resource's logical name, it returns a value that you can typically use to refer to that resource, such as physical ID. Sometimes, it can also be a identifier such as ip addr for an `AWS::EC2::EIP`.
 
 - Templates have to be uploaded to s3 before being referenced in CF.
-- To update a template, we cannot edit the earlier version directly. We have to re-upload a new version of the template and AWS will be able work out what's needed to be changed by comparing the two.
-- Deleting a stack deletes every single resource that's created by CF.
+- To update stack, we cannot edit the earlier version directly. We have to re-upload a new version of the template and AWS will be able work out **what's needed to be changed (change set)** by comparing the two. Change set will then be executed to apply the change.
 
 ```yml
 
