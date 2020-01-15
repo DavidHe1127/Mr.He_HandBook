@@ -2,7 +2,7 @@
 
 - [Basics](#basics)
 - Tools
- - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
+  - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 
 ### Basics
 
