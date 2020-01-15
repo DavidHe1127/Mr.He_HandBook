@@ -1,20 +1,21 @@
 ## CloudFormation
 
-* [Basics](#basics)
-
+- [Basics](#basics)
+- Tools
+ - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 
 ### Basics
 
-* logical ID - i.e MyEC2Instance
-* physical ID - i.e i-28f9ba55 (CF auto generates and assigns to the instance)
+- logical ID - i.e MyEC2Instance
+- physical ID - i.e i-28f9ba55 (CF auto generates and assigns to the instance)
 
-* Ref
-  * when specify parameter's logical name, it returns value of parameter.
-  * when specify resource's logical name, it returns a value that you can typically use to refer to that resource, such as physical ID. Sometimes, it can also be a identifier such as ip addr for an `AWS::EC2::EIP`.
+- Ref
+  - when specify parameter's logical name, it returns value of parameter.
+  - when specify resource's logical name, it returns a value that you can typically use to refer to that resource, such as physical ID. Sometimes, it can also be a identifier such as ip addr for an `AWS::EC2::EIP`.
 
-* Templates have to be uploaded to s3 before being referenced in CF.
-* To update a template, we cannot edit the earlier version directly. We have to re-upload a new version of the template and AWS will be able work out what's needed to be changed by comparing the two.
-* Deleting a stack deletes every single resource that's created by CF.
+- Templates have to be uploaded to s3 before being referenced in CF.
+- To update a template, we cannot edit the earlier version directly. We have to re-upload a new version of the template and AWS will be able work out what's needed to be changed by comparing the two.
+- Deleting a stack deletes every single resource that's created by CF.
 
 ```yml
 
