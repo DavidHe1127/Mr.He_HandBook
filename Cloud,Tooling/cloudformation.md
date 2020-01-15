@@ -45,10 +45,6 @@ Mappings:
       AMI: ami-655a0a20
     eu-west-1:
       AMI: ami-7fd4e10b
-    ap-southeast-1:
-      AMI: ami-72621c20
-    ap-northeast-1:
-      AMI: ami-8e08a38f
 
 Resources:
   Ec2Instance:
@@ -115,11 +111,7 @@ Resources:
       HealthCheck:
         # string concatenation. 1nd param is delimiter, 2nd param is an array of values
         # example belows produces HTTP:8888/
-        Target: !Join
-          - ''
-          - - 'HTTP:'
-            - !Ref WebServerPort
-            - /
+        Target: !Sub "HTTP:${WebServerPort}/xxx"
         HealthyThreshold: '3'
         UnhealthyThreshold: '5'
         Interval: '30'
