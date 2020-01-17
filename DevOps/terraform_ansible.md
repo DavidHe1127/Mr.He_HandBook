@@ -4,6 +4,7 @@
   - [attributes vs arguments](#attributes-vs-arguments)
   - [Typical config](#typical-config)
   - [Play with built-in func](#play-with-built-in-func)
+  - [Provider Plugins](#provider-plugins)
 - [Terraform vs Ansible](#terraform-vs-ansible)
 
 ### Terraform vs Ansible
@@ -105,3 +106,12 @@ $ terraform console
 ]
 >
 ```
+
+### Provider Plugins
+It powers Terraform with provider's functionalities. If you have difficulty fetching provider plugins remotely via `terraform init`, you can alternatively download provider plugin from their site and use either way to use it.
+
+- `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
+- Move plugins directory into `.terraform/`
+
+
+
