@@ -4,6 +4,7 @@
   - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
+- [Instance metadata](#instance-metadata)
 - [Best Practice](#best-practice)
 
 ### Basics
@@ -28,6 +29,11 @@ opening port on http.
 - A typical convention is to create an IAM Role and an Instance Profile of the same name for clarity.
 - An EC2 Instance cannot be assigned a Role directly, but it can be assigned an Instance Profile which contains a Role.
 - The benefits of using an Instance Profile is that you don't need to manage an `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. Your application no longer needs to worry about how to securely store and access that information.
+
+### Instance metadata
+
+The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
+
 
 ### Best Practice
 
