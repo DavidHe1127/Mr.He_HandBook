@@ -108,7 +108,7 @@ $ terraform console
 ```
 
 ### Provider Plugins
-It powers Terraform with provider's functionalities. If you have difficulty fetching provider plugins remotely via `terraform init`, you can alternatively download provider plugin from their site and use either way to use it.
+It powers Terraform with provider's functionalities. If you have difficulty fetching provider plugins remotely via `terraform init`, you can alternatively download provider plugin from their site and follow either way to use it.
 
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
