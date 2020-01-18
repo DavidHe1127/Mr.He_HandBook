@@ -12,6 +12,8 @@ ASG will auto-scale instances in that selected target group.
 [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 
 ### Load Balancer with HA
+Diagram below explains how load balancer distributes traffic to a target group of instances when being configured with 2 AZs/public subnets.
+
 ![lb-ha](./lb-vpc-2-tier.png)
 
 ### Reserved Headers
