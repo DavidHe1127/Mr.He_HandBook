@@ -1,6 +1,7 @@
 ## ASG/ALB
 
 - [Target Group](#target-group)
+- [Load balancer with HA](#load-balancer-with-ha)
 - Reserved headers
   - [X-Forwarded-For](#x-forwarded-for)
 
@@ -9,6 +10,9 @@ Instances are registered as targets with a target group. When you plan to use yo
 ASG will auto-scale instances in that selected target group.
 
 [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
+
+### Load Balancer with HA
+![lb-ha](./lb-ha.png)
 
 ### Reserved Headers
 
