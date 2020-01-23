@@ -184,6 +184,10 @@ Each container can now look up the hostname `web` or `db` and get back the appro
 
 Run `docker network ls` to find the desired network and run `docker network inspect <NETWORK_ID>` to see network configs.
 
+**Access docker host from inside the container**
+
+Use special DNS `host.docker.internal` when trying to access services runnong on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
+
 ### Mount src to volume
 
 Any time you make a change to your code, you need to rebuild your Docker image (which is a manual step and can be time consuming). To solve this issue, mount your code as a volume. Now manual rebuilds are no longer necessary when code is changed. It's because changes on host will also be replicated in the mounted volume inside the container.
