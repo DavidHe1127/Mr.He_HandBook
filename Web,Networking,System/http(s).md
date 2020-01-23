@@ -1,11 +1,12 @@
 ## HTTP, HTTP(S) with SSL/TLS
 
-- [How it works](#how-it-works)
+- [How SSL works](#how-ssl-works)
+- [Redirection](#redirection)
 - [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
 - [HTTP/2](#http/2)
 - [CA](#ca)
 
-### How it works
+### How SSL works
 
 `SSL/TLS` connection enforces data encryption during transmission over the network:
 
@@ -16,6 +17,17 @@
 5. `Server` and `Browser` now encrypt all transmitted data with the session key.
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
+
+### Redirection
+
+`302` - tells the browsers to not cache new url at all unless response header specifies `Cache-Control` or `Expires` with particular values. It's aka `temporary redirection`.
+`301` - tells the browsers to cache new url permanently. It's aka `permanent redirection`.
+In case you don't want browser to cache it, modify response headers:
+
+```
+Cache-Control: no-store, no-cache, must-revalidate
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+```
 
 ### Ssl cert with Let's encrypt
 
@@ -39,7 +51,7 @@ Certbot is a very popular agent.
   - With HTTP/2, it allows you to send off multiple requests on the **same** connection. The requested resources are fetched in parallel and received
     **in any order**.
   - Note, HTTP/1.1 has a concept of `pipelining` which also allows multiple requests to be sent off at once but they need to be returned **in the order they were requested**. This feature is nowhere near as good as HTTP/2 so it is hardly used.
-  
+
 ### CA
 
 - Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
