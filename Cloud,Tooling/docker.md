@@ -13,7 +13,6 @@
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [Communication between containers](#communication-between-containers)
-  - [Force Re-build image and re-create container](#force-rebuild)
 
 ### Architecture
 
@@ -234,9 +233,3 @@ Caveats:
 - Must specify a container name. Random name won't work.
 - Must specify connection port which is exposed by container unless `80` is exposed.
 - Need set `HOST` on `server1` to `0.0.0.0` to enable it expose all interfaces.
-
-### Force rebuild
-
-`$ docker-compose up --force-recreate --build`
-
-
