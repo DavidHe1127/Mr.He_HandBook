@@ -9,6 +9,7 @@
   - [upstream](#upstream)
   - [reverse proxy](#reverse-proxy)
   - [named_location](#named_location)
+  - [resolver](#resolver)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 - Tips
@@ -167,6 +168,32 @@ location @PLACEHOLDER_BACKEND_NAME {
   ...
   proxy_pass http://PLACEHOLDER_BACKEND_NAME;
   ...
+}
+```
+
+#### Resolver
+
+By default, Nginx will resolve DNS name **only once** at the time of start or config reload. It's looking at `/etc/resolv.conf` to pick a nameserver for resolution.
+
+```nginx
+# sample /etc/resolv.conf
+
+nameserver 127.0.0.53
+```
+
+The problem with this is if domain name cannot be resolved or DNS record Nginx caches becomes invalid, you have no option but restart Nginx or reload Nginx config to force DNS names re-resolution.
+
+To mitigate this, you **must** explicitely specify a resolver for Nginx to re-resolve DNS names at the runtime. `/etc/resolv.conf` will not be used.
+
+```nginx
+resolver 10.0.0.2 valid=10s;
+
+server {
+    location / {
+        # important! need to be done by assigning domain to a variable
+        set        $backend_servers backends.example.com;
+        proxy_pass http://$backend_servers:8080;
+    }
 }
 ```
 
