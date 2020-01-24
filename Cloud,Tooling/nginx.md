@@ -10,6 +10,7 @@
   - [reverse proxy](#reverse-proxy)
   - [named_location](#named_location)
   - [resolver](#resolver)
+  - [access custom header](#access-custom-header)
 - [Debugging](#debugging)
 - [Sample config](#sample-config)
 - Tips
@@ -171,7 +172,7 @@ location @PLACEHOLDER_BACKEND_NAME {
 }
 ```
 
-#### Resolver
+#### resolver
 
 By default, Nginx will resolve DNS name **only once** at the time of start or config reload. It's looking at `/etc/resolv.conf` to pick a nameserver for resolution.
 
@@ -195,6 +196,18 @@ server {
         proxy_pass http://$backend_servers:8080;
     }
 }
+```
+
+[Ref](https://www.nginx.com/blog/dns-service-discovery-nginx-plus/#domain-name-proxy_pass)
+
+#### Access Custom Header
+
+```nginx
+# for header 'upstream-host:www.baidu.com'
+
+# to access it
+
+echo $http_upstream_host
 ```
 
 ---
