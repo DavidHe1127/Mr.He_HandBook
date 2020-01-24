@@ -302,7 +302,7 @@ http {
             # rewrite and forward requests to http://express:5000/.well-known/apollo/server-health
             rewrite /private/health /.well-known/apollo/server-health break;
 
-            # dns server
+            # docker default dns server
             resolver 127.0.0.11 ipv6=off;
 
             proxy_ssl_verify off;
@@ -321,13 +321,6 @@ http {
             resolver 127.0.0.11 ipv6=off;
 
             # configure upstream parameters
-            proxy_read_timeout      60s;
-            client_max_body_size    0;
-            proxy_buffering         off;
-            proxy_redirect          off;
-            proxy_ssl_verify        off;
-            proxy_ssl_server_name   on;
-            proxy_ssl_ciphers       HIGH:!aNULL:!CAMELLIA:!SHA:!RSA;
             proxy_ssl_protocols     TLSv1.2;
 
             proxy_set_header Host $http_host;
@@ -337,14 +330,8 @@ http {
             proxy_hide_header   X-Powered-By;
             proxy_hide_header   Server;
 
-            # header control - note these are also enforced by gateway if not present here
-            proxy_hide_header       X-Powered-By;
-            proxy_hide_header       Server;
             add_header  Strict-Transport-Security "max-age=15768000;";
             add_header  X-Frame-Options "SAMEORIGIN";
-            add_header  X-Content-Type-Options "nosniff";
-            add_header  X-Xss-Protection "1; mode=block";
-            add_header  Referrer-Policy "no-referrer";
 
             # proxy to express container.
             proxy_pass http://express:5000;
