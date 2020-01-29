@@ -23,33 +23,22 @@ Mock your module when you need to:
 2) Change the original implementations
 
 ```js
-// code.js
-import Cookie from 'cookies-js';
+// Icon.js
 
-Cookie.get('key');
-Cookie.set('key');
+export { A };
+export default B;
 
-// code.spec.js
-let mockGetCookie = jest.fn();
-let mockSetCookie = jest.fn();
-
-jest.mock('cookies-js', () => ({
-  __esModule: true, // mock the exports
-  default: {
-    set: jest.fn().mockImplementation((...args) => {
-      mockSetCookie(...args);
-    }),
-    get: jest.fn().mockImplementation((...args) => {
-      mockGetCookie(...args);
-    })
-  }
-}));
-// ...
-it('should call Cookie.set', () => {
-  expect(mockSetCookie).toHaveBeenCalledWith('key');
+// test.js
+jest.mock("../src/Icon", () => {
+  return {
+    __esModule: true,
+    A: true,
+    default: () => {
+      return <div></div>;
+    },
+  };
 });
 ```
-
 Sometimes, you have your whole module mocked out automatically. This is good but you wish you can mock one of exported method manually. You can do:
 ```js
 const { init, warmer, PcsSurvey } = require('../../utils');
