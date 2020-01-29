@@ -9,6 +9,7 @@
   - [Mock large input](#mock-large-input)
   - [Partially mock a module/class](#partially-mock-a-module-or-class)
   - [Mock function](#mock-function)
+  - [Mock one given exported method from a 3rd module](#mock-one-given-exported-method-from-a-3rd-module)
   - [Use doMock to avoid hoisting](#use-domock)
   - [Correct Mocked data](#correct-mocked-data)
   - [Test rejected promise](#test-rejected-promise)
@@ -127,6 +128,14 @@ Call can be chained when needing access to mocked function returned by another m
 
 ```js
 someMockFunc.mock.results[1].value[1].mock.calls[0][0]
+```
+
+### Mock one given exported method from a 3rd module
+```js
+jest.mock('date-fns', () => {
+  const original = jest.requireActual('date-fns');
+  return { ...original, distanceInWordsToNow: jest.fn(() => 'some time ago') };
+});
 ```
 
 ### Use doMock
