@@ -24,7 +24,6 @@ Mock your module when you need to:
 
 ```js
 // Icon.js
-
 export { A };
 export default B;
 
