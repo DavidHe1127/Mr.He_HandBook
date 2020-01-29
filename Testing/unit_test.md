@@ -10,6 +10,7 @@
   - [Partially mock a module/class](#partially-mock-a-module-or-class)
   - [Mock function](#mock-function)
   - [Mock one given exported method from a 3rd module](#mock-one-given-exported-method-from-a-3rd-module)
+  - [Mock direct function reference](#mock-direct-function-reference)
   - [Use doMock to avoid hoisting](#use-domock)
   - [Correct Mocked data](#correct-mocked-data)
   - [Test rejected promise](#test-rejected-promise)
@@ -149,6 +150,19 @@ jest.mock('./code', () => {
 });
 ```
 Use `jest.doMock` can fix it. Change `jest.mock` to `jest.doMock` in the above example.
+
+### Mock direct function reference
+`foo` cannot be mocked since mock replaces `export foo` but `foo` is directly called by `bar` leaving `foo` with original implementation.
+```js
+export const foo = () => return 'original';
+
+function bar() {
+  return <div>{foo()}</div>
+}
+
+export default bar;
+```
+The solution would be move `foo` out to a separate helper module and mock that helper.
 
 ### Correct mocked data
 Ensure mocked data aligns with data produced in the real implementations when mocking out 3rd libraries. This is very crucial for writing correct tests.
