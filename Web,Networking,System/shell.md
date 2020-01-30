@@ -14,6 +14,7 @@
 - [Source a file](#source-a-file)
 - [Makefile](#makefile)
 - [HereDoc](#heredoc)
+- [Parameter Expansion](#parameter-expansion)
 - Tips
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
@@ -231,6 +232,41 @@ $ bash <<EOF
 > echo 'love this game'
 > printenv
 > EOF
+```
+
+### Parameter Expansion
+
+```shell
+#!/bin/bash
+
+res=${FOO-'default'}
+echo $res
+res=${FOO:-'default'}
+echo $res
+res=${FOO+'default'}
+echo $res
+res=${FOO:+'default'}
+echo $res
+
+# FOO='foo'
+# foo
+# foo
+# default
+# default
+
+# FOO=''
+# empty string
+# default
+# default
+# empty string
+
+# FOO unset
+# default
+# default
+# empty string
+# empty string
+
+so `:-` is more strict than `-`
 ```
 
 ---
