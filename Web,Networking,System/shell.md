@@ -326,9 +326,11 @@ Always add `set -euxo pipefail` to top of your shell scripts. `x` can be omitted
 set -euxo pipefail
 
 # e          - cause bash script to exit immediately when seeing non-zero exit code - an error
+
 # o pipefail - The bash shell normally only looks at the exit code of the last command of a pipeline.
 #              foo | echo 'a' will not exit which it should as foo command is not found. Turning flag e on will not help.
-#              that is why need set -o pipefail. This setting will check the if there is any error in any command run in the #              pipe and exit if there is
+#              that is why need set -o pipefail. This setting will check to see if there is any error in any command run in  #              the pipe and exit if there is
+
 # u          - treat unset variables as an error and exit immediately. i.e echo "$undefined". Note it's smart enough to not                exit when it is seeing undefined variable in a parameter expansion. i.e RESULT=${UNDEFINED:-$DEFAULT}
 ```
 [Safer bash scripts with 'set -euxo pipefail'](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/)
