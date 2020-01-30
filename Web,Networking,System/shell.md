@@ -317,7 +317,7 @@ $ ls -l `which java`
 lrwxr-xr-x  1 root  wheel  74 23 Oct 15:31 /usr/bin/java -> /System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands/java
 ```
 
-### safeguard shell script
+### Safeguard shell scripts
 Always add `set -euxo pipefail` to top of your shell scripts. `x` can be omitted if you don't need to print each command before it is executed.
 
 ```shell
@@ -334,7 +334,7 @@ set -euxo pipefail
 # that is why need set -o pipefail. This setting will check to see if there is any error in any command run in the pipe and exit if there is
 
 # u
-# treat unset variables as an error and exit immediately. i.e echo "$undefined". Note it's smart enough to not                exit when it is seeing undefined variable in a parameter expansion. i.e RESULT=${UNDEFINED:-$DEFAULT}
+# treat unset variables as an error and exit immediately. i.e echo "$undefined". Note it's smart enough to not exit when it is seeing undefined variable in a parameter expansion. i.e RESULT=${UNDEFINED:-$DEFAULT}
 ```
 [Safer bash scripts with 'set -euxo pipefail'](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/)
 
