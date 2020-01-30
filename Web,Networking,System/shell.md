@@ -240,13 +240,9 @@ $ bash <<EOF
 #!/bin/bash
 
 res=${FOO-'default'}
-echo $res
 res=${FOO:-'default'}
-echo $res
 res=${FOO+'default'}
-echo $res
 res=${FOO:+'default'}
-echo $res
 
 # FOO='foo'
 # foo
