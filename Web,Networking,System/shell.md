@@ -262,8 +262,8 @@ res=${FOO:+'default'}
 # empty string
 # empty string
 
-so `:-` is more strict than `-`
 ```
+`:-` is more strict than `-`.
 
 ---
 
