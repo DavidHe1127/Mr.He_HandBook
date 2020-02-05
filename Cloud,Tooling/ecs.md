@@ -10,6 +10,7 @@
 
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
+- [Troubleshooting guide](#troubleshooting-guide)
 
 ### Core Concepts
 
@@ -93,9 +94,9 @@ Run task is similar to what we see in run a service.
 $ aws ecs run-task --cluster deepdive --task-definition web --count 1
 ```
 
+### Troubleshooting Guide
 
-
-
+- If container instances failed to register to target group, it's most likely because they all fail health check. So make sure they pass it.
 
 
 
