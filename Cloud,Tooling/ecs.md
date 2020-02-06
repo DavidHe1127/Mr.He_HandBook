@@ -97,7 +97,7 @@ $ aws ecs run-task --cluster deepdive --task-definition web --count 1
 ### Troubleshooting Guide
 
 - If container instances failed to register to target group, it's most likely because they all fail health check. So make sure they pass it.
-
+- If container instances not shown in `Container Instances` tab in `service`, it's most likely due to wrong rules have been setup in security group.
 
 
 
