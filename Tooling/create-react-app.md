@@ -9,3 +9,5 @@ It can’t inject environment variables during content serving (like Next.js doe
 This means it can only be configured during build time.
 
 Therefore, injecting runtime envs via tools such as `docker-compose` will not work when running a CRA inside a container.
+
+[Practical way of setting envs](https://create-react-app.dev/docs/deployment#customizing-environment-variables-for-arbitrary-build-environments)
