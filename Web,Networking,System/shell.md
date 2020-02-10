@@ -48,7 +48,7 @@ less file1.txt
 You can also search for text inside `less`. forward search `/word` and backward search `?word`.
 
 ### copy
-
+Be super careful about the operator, you **MUST USE <** or you will risk losing target file content.
 ```shell
 $ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 
