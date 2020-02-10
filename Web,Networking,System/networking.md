@@ -15,6 +15,8 @@
 - [0.0.0.0](#wildcard-ip)
 - [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
 - [OSI model](#osi-model)
+- Debugging tips
+  - [Connection Problems](#connection-problem)
 
 ### dns-resolution-flow
 
@@ -118,3 +120,9 @@ Both setups aim to protect your servers/clients by enforcing security rules (fir
 - A socket is the combination of IP address plus port
 
 
+---
+
+### Connection Problem
+
+- `connection timeout` port not opened or blocked by firewall
+- `connection refused` port is reachable but service is down/not listening on that port
