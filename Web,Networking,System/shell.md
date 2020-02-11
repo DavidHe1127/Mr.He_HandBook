@@ -48,15 +48,22 @@ less file1.txt
 You can also search for text inside `less`. forward search `/word` and backward search `?word`.
 
 ### copy
-Be super careful about the operator, you **MUST USE <** or you will risk losing target file content.
-```shell
-$ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 
+Be super careful about the operator, you **MUST USE <** or you will risk losing target file content.
+
+```shell
 # paste stuff to clipboard. available on os x by default
 # pbcopy < <FILE_PATH>
 $ pbcopy < ~/.ssh/id_rsa.pub
 # send output to clipboard
 $ la | pbcopy
+```
+
+#### scp
+
+```shell
+# copy file from local to remote
+$ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```
 
 ### dotfiles
@@ -325,10 +332,10 @@ Always add `set -euxo pipefail` to top of your shell scripts. `x` can be omitted
 
 set -euxo pipefail
 
-# e         
+# e
 # cause bash script to exit immediately when seeing non-zero exit code - an error
 
-# o pipefail 
+# o pipefail
 # The bash shell normally only looks at the exit code of the last command of a pipeline.
 # foo | echo 'a' will not exit which it should as foo command is not found. Turning flag e on will not help.
 # that is why need set -o pipefail. This setting will check to see if there is any error in any command run in the pipe and exit if there is
