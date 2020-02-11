@@ -15,3 +15,4 @@
   - [Lambda & API Gateway](./lambda_apig.md)
   - [CloudFormation](./cloudformation.md)
   - [Cloudfront](./cloudfront.md)
+  - [Route53](./route53.md)
