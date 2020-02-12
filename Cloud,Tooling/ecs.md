@@ -56,7 +56,7 @@ This is just an EC2 instance that has docker and ecs-agent running on it. It's p
 ![ecs arch](ecs-arch.png)
 
 #### Desired Count
-Desired count of running tasks. Say your task definition defines two containers (nginx + express) and you create and run a service with desired count 2. Then you will see 2 running tasks and each one is deployed onto one container instance. On each container instance, you will see both nginx and express containers running on it.
+Desired count of running tasks. Say your task definition defines two containers (nginx + express) and you create and run a service with desired count 2. This will lead to 2 running tasks instantiated by the specified task definition are deployed onto each container instances respectively.
 
 ![run service](run-service.png)
 
