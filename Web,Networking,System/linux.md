@@ -11,7 +11,6 @@
 - [ssh config file](#ssh-config-file)
 - [File Descriptor](#file-descriptor)
   - [Redirect app logs to stdout from static files](#log-redirection)
-- [Networking](#networking)
 - [Commands](#commands)
   - [Tee](#tee)
 
@@ -201,14 +200,6 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
   $ ln -sf /dev/stdout /var/log/nginx/access.log
   ```
 
-
-### Networking
-
-- Network interface
-  - It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
-- Virtual Ethernet Devices
-  - A virtual ethernet device or veth is a Linux networking interface that acts as a connecting wire between two network namespaces. A veth is a full duplex link that has a single interface in each namespace. Traffic in one interface is directed out to the other interface.
-  
 ### Commands
 
 #### Tee
@@ -219,7 +210,7 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 ```shell
 command -> tee → stdout
             ↓
-           file  
+           file
 ...
 $ ls|tee file1.txt
 ```

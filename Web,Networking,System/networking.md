@@ -11,6 +11,7 @@
 - [Ephemeral Ports](#ephemeral-ports)
 - [CNAME record](#cname)
 - [NAT](#nat)
+- [Network interface and Virtual Network Interface](#network-interface)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
 - [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
@@ -90,6 +91,11 @@ i.e
 $ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices on the network
 $ HOST=localhost react-scripts start // make app server only accessible from the host
 ```
+
+### Network Interface
+
+- Network interface - It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
+- Virtual Ethernet Devices - A virtual ethernet device or veth is a Linux networking interface that acts as a connecting wire between two network namespaces. A veth is a full duplex link that has a single interface in each namespace. Traffic in one interface is directed out to the other interface.
 
 ### IP CIDR network-masking
 
