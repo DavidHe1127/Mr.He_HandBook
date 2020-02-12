@@ -92,6 +92,8 @@ $ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices 
 $ HOST=localhost react-scripts start // make app server only accessible from the host
 ```
 
+When considering wildcard ip in the context of security group and set `source` to wildcard ip in `inbound` rules, it means the instance is reachable by everyone or in other words instance accpets connection from everyone. Similarly, when set `destination` to wildcard ip in `outbound` rules, it means all traffic is allowed to go out.
+
 ### Network Interface
 
 - Network interface - It allows your host to connect to the network. **eth0** is the network interface name which can also be seen as your host IP address.
