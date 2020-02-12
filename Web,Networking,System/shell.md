@@ -5,8 +5,7 @@
 - [ls](#ls-output-explained)
 - [less](#less)
 - [copy](#copy)
-- [Dot files](#dotfiles)
-- [Man page/help](#manpage-help)
+- [Brace vs Bracket](#brace-vs-bracket)
 - [Input and Output](#input-output)
 - [double dash in command](#double-dash)
 - [; vs &&](#;-&&)
@@ -66,22 +65,20 @@ $ la | pbcopy
 $ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 ```
 
-### dotfiles
+### brace vs bracket
 
-Dot files such as `.babelrc` is a configuration file that is not displayed when you run `ls` unless with `-a`. Similarly, shell globs don't match dot files.
+```shell
+#!/bin/bash
 
-### manpage
+# execute command enclosed with () and assign output to var RES
+RES="$(curl https://www.lendi.com.au/) xxxxx"
 
-```js
-$ man ls
-$ man -k <KEYWORD>
+# interpolate RES value
+res="${RES} BBBBB"
+
+# but u cannot do $(RES) as RES will be interpreted as a command which results in RES command not found error
 ```
 
-Sometimes, you might need to run:
-
-```
-$ ls --help
-```
 
 ### input-output
 
