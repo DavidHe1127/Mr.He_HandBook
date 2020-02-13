@@ -120,7 +120,7 @@ $ yarn install --frozen-lockfile
 Key facts about `package.json` and lockfile.
 
 - If you have a `package.json` and you run `npm i` we generate a `package-lock.json` from it.
-- If you run `npm i` against that `package.json` and `package-lock.json`, the latter will never be updated, even if the `package.json` would be happy with newer versions.
-- If you manually edit your `package.json` to have different ranges and run `npm i` and those ranges aren't compatible with your `package-lock.json` then the latter will be updated with version that are compatible with your `package.json`. Further runs of `npm i` will follow the above 2.
+- If you run `npm i` with presence of `package.json` and `package-lock.json`, the latter will never be updated, even if the `package.json` would be happy with newer versions.
+- If you manually edit your `package.json` to have different version ranges for a dependency which aren't compatible with your `package-lock.json` then the latter will be updated with version ranges that are compatible with that in `package.json`. Further runs of `npm i` will follow the above 2.
 
 
