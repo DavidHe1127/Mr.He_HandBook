@@ -80,7 +80,7 @@ One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au`
 
 ### NAT
 
-![NAT Table](./nat_table.png)
+<img src="././nat_table.png" width="640" height="378"/>
 
 ### wildcard ip
 
