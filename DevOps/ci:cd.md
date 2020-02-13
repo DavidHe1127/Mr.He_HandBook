@@ -31,7 +31,7 @@ Read Deployment Best Practices!!
 
 ### Jenkins
 
-```jenkinsfile
+```groovy
 pipeline {
     agent any
     // env var values cannot be re-assigned once defined here!!!
