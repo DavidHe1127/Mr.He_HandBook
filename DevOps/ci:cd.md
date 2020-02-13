@@ -1,8 +1,10 @@
 ## CI/CD
 
-* [Blue & Green](#blue-n-green-deployment)
-* [Canary](#canary-deployment)
-* [How to Become a DevOps](https://medium.com/@devfire/how-to-become-a-devops-engineer-in-six-months-or-less-part-2-configure-a2dfc11f6f7d)
+- [Blue & Green](#blue-n-green-deployment)
+- [Canary](#canary-deployment)
+- [How to Become a DevOps](https://medium.com/@devfire/how-to-become-a-devops-engineer-in-six-months-or-less-part-2-configure-a2dfc11f6f7d)
+- [Tooling](#tooling)
+  - [Jenkins](#jenkins)
 
 ### Blue N Green Deployment
 It aims for zero downtime & risk safe deployment.
@@ -24,4 +26,23 @@ With no errors reported, the new version can gradually roll out to the rest of t
 
 Read Deployment Best Practices!!
 [Canary Deployment](https://dev.to/mostlyjason/intro-to-deployment-strategies-blue-green-canary-and-more-3a3)
+
+---
+
+### Jenkins
+
+```jenkinsfile
+pipeline {
+    agent any
+    // env var values cannot be re-assigned once defined here!!!
+    // to woraround this issue, rather than defining them in environment block
+    // put them inside stage block like so env.BUILD_TARGET = 'nginx'
+    environment {
+        BUILD_TARGET = "nginx"
+    }
+}
+
+
+```
+
 
