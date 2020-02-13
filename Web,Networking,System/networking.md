@@ -22,7 +22,7 @@
 ### dns-resolution-flow
 
 - <img src="./dns_resolution_process.png" width="480" height="327">
-- ![Root NS](./ns.png)
+- <img src="./ns.png" width="480" height="154">
 - [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
 - Given url `https://www.ABC.com`:
   - `com` is Top-level Domain aka (TLD)
