@@ -64,6 +64,7 @@ Desired count of running tasks. Say your task definition defines two containers 
 #### ECS Agent
 
 ![ecs-agent](./ecs-agent.png)
+<img src="./ecs-agent.png" width="50" height="50"/>
 
 ---
 
