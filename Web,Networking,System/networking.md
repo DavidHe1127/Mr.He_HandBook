@@ -21,7 +21,7 @@
 
 ### dns-resolution-flow
 
-- ![DNS Resolution process](./dns_resolution_process.png)
+- <img src="./dns_resolution_process.png" width="480" height="327">
 - ![Root NS](./ns.png)
 - [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
 - Given url `https://www.ABC.com`:
