@@ -59,12 +59,11 @@ This is just an EC2 instance that has docker and ecs-agent running on it. It's p
 #### Desired Count
 Desired count of running tasks. Say your task definition defines two containers (nginx + express) and you create and run a service with desired count 2. This will lead to 2 running tasks instantiated by the specified task definition are deployed onto each container instances respectively.
 
-![run service](run-service.png)
+<img src="./run-service.png" width="640" height="318"/>
 
 #### ECS Agent
 
 ![ecs-agent](./ecs-agent.png)
-<img src="./ecs-agent.png" width="50" height="50"/>
 
 ---
 
