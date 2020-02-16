@@ -27,7 +27,7 @@ arn:aws:lambda:aws-region:acct-id:function:helloworld
 
   - Lambda makes a snapshot copy of `$LATEST` version lambda code + config.
   - Suffix ARN with version number. i.e `arn:aws:lambda:aws-region:acct-id:function:helloworld:1`
-  - Version numbers are never used. If you want to reuse a qualifier, use aliases with your versions. Aliases can be deleted and re-created with the same name.
+  - Version numbers are never re-used. If you want to reuse a qualifier, use aliases with your versions. Aliases can be deleted and re-created with the same name.
   - Lambda only publishes a new version if the code hasn't yet been published or if the code has changed when compared against the $LATEST version. If there is no change, the $LATEST published version is returned.
   - AWS Lambda maintains your latest function code in the $LATEST version. When you update your function code, AWS Lambda replaces the code in the $LATEST version of the Lambda function
   - [See delete versions section for how to delete lambda versions](https://docs.aws.amazon.com/lambda/latest/dg/versioning-intro.html)
