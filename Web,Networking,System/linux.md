@@ -190,6 +190,7 @@ papi ALL=(root) NOPASSWD: /bin/chown,/usr/sbin/useradd
 ### File descriptor
 
 Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
+As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` from files named `1` or `2`.
 
 ![File Descriptors](./file-descriptor.png)
 
