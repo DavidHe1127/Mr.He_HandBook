@@ -190,16 +190,24 @@ papi ALL=(root) NOPASSWD: /bin/chown,/usr/sbin/useradd
 ### File descriptor
 
 Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
+
 As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` from files named `1` or `2`.
 
 ![File Descriptors](./file-descriptor.png)
 
   #### Log redirection
   Trick below will forward logs to `stdout` rather than `access.log`.
-
   ```shell
   $ ln -sf /dev/stdout /var/log/nginx/access.log
   ```
+  And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works as `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
+  
+  ```shell
+  $ CMD > /dev/null 2>&1
+  ```
+  
+  
+  
 
 ### Commands
 
