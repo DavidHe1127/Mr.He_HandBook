@@ -9,6 +9,7 @@
 - [Input and Output](#input-output)
 - [double dash in command](#double-dash)
 - [; vs &&](#;-&&)
+- [awk](#awk)
 - [Find files](#find-files)
 - [Source a file](#source-a-file)
 - [Makefile](#makefile)
@@ -28,7 +29,7 @@ We open a shell window via terminal.
 
 ### ctrld-ctrlc
 
-- `ctrl+d` on an empty line stops the current standard input entry from terminal.
+- `ctrl+d` on an empty line stops the current **standard input** entry from terminal.
 - `ctrl+c` terminates a program regardless of ites input or output.
 
 ### ls output explained
@@ -79,7 +80,6 @@ res="${RES} BBBBB"
 # but u cannot do $(RES) as RES will be interpreted as a command which results in RES command not found error
 ```
 
-
 ### input-output
 
 To send output of a command to a **file** rather than terminal:
@@ -120,13 +120,50 @@ $ echo "Hello " ; echo "world"
 $ echo "Hello " && echo "world"
 ```
 
+### awk
+It works by reading a file by line and apply `awk` against each of these lines.
+
+Say we have a file `log.txt` as follow:
+
+```txt
+root     pts/1   192.168.1.100  Tue Feb 10 11:21   still logged in
+root     pts/1   192.168.1.100  Tue Feb 10 00:46 - 02:28  (01:41)
+root     pts/1   192.168.1.100  Mon Feb  9 11:41 - 18:30  (06:48)
+dmtsai   pts/1   192.168.1.100  Mon Feb  9 11:41 - 11:41  (00:00)
+root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
+```
+
+`-F` specifies separator. By default separator is space.
+```shell
+$ awk -F: '{print $1}' log.txt
+root     pts/1   192.168.1.100  Tue Feb 10 11
+root     pts/1   192.168.1.100  Tue Feb 10 00
+root     pts/1   192.168.1.100  Mon Feb  9 11
+dmtsai   pts/1   192.168.1.100  Mon Feb  9 11
+root     tty1                   Fri Sep  5 14
+$ awk -F. '{print $1}' log.txt
+root     pts/1   192
+root     pts/1   192
+root     pts/1   192
+dmtsai   pts/1   192
+root     tty1                   Fri Sep  5 14:09 - 14:10  (00:01)
+$ awk -F. '{print $2}' awk-sample-input.txt
+168
+168
+168
+168
+```
+`${n}` denotes segments - a line divided by separator into multiple segments. Given last command, with `.` as separator, the first segment is `192` and second segment is `168`.
+
+[Read more about awk](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html)
+
 ### find-kill-process
 
 Works on OS X
 
 ```bash
-> lsof -i:8000
-> kill PID
+$ lsof -i:8000
+$ kill PID
 ```
 
 ### Find files
