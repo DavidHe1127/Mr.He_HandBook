@@ -53,6 +53,9 @@ Use [Stream JSON](https://www.npmjs.com/package/stream-json) when handling big j
 - Duplex Stream (Read and Write)
 - Transform Stream (Read, Write and modify)
 
+### Lab
+[Stream](https://github.com/DavidHe1127/lab/tree/master/node/stream)
+
 ### More readings
 
 - [Node Stream Handbook](https://github.com/substack/stream-handbook)
