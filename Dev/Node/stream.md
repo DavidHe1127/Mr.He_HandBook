@@ -60,7 +60,7 @@ Key points:
 - Readable Stream
   - Data is buffered in Readable streams when the implementation calls `stream.push(chunk)`. If the consumer of the Stream does not call `stream.read()`, the data will sit in the internal queue until it is consumed
   - Once the total size of the internal read buffer reaches the threshold specified by `highWaterMark`, the stream will temporarily stop reading data from the underlying resource until the data currently buffered can be consumed (that is, the stream will stop calling the internal `readable._read()` method that is used to fill the read buffer).
-  - In readable stream context, when buffer size limit is reached, `data` event will be fired and attached callback will be fired at which point you can start processing received data.
+  - When buffer size limit is reached, `data` event will be fired and attached callback will be fired at which point you can start processing received data.
 - Writable Stream
   - Data will be written to internal buffer of writable stream rather than to writable stream directly, `highWaterMark` controls how large the buffer needs to be for data storage.
   - Data will be written to writable stream once buffer is full to flush.
