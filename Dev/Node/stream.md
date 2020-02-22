@@ -33,6 +33,7 @@ var readStream = fs.createReadStream('./datainput.txt');
 // create a write stream to hold transferred data from read stream
 var writeStream = fs.createWriteStream('./dataOutput.txt');
 // pipe data comes into read stream into write streams
+// it has built-in backpressure
 readStream.pipe(writeStream);
 ```
 
@@ -64,8 +65,9 @@ Key points:
 - Writable Stream
   - Data will be written to internal buffer of writable stream rather than to writable stream directly, `highWaterMark` controls how large the buffer needs to be for data storage.
   - Buffered data will be continuously written to writable stream until buffer is full.
+  - If `highWaterMark` limit is never hit, `drain` event will not fire.
   - `writableStream.write('xxx')` will return `false` indicating buffer is full so that you should not continue to write
-  - If you continue to do so, data to be written will end up being held in memory - this could cause memory blow-up.
+  - If you continue to do so, data to be written will end up being held in memory (buffer) and won't get lost - this could cause memory blow-up.
 - Duplex Stream (Read and Write)
 - Transform Stream (Read, Write and modify)
 
