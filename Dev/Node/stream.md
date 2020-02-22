@@ -2,6 +2,8 @@
 
 - [What is stream and why we need it](#what-is-stream-why-we-need-it)
 - [Streams and Buffer](#stream-and-buffer)
+- [Lab](#lab)
+- [More readings](#more-readings)
 
 ### What is stream and why we need it
 
@@ -34,14 +36,26 @@ var writeStream = fs.createWriteStream('./dataOutput.txt');
 readStream.pipe(writeStream);
 ```
 
-File content will be read into chunks (chunk-sized buffer) and transferred to the client continuously.
+File content will be read into chunks (chunk-sized buffer) and transferred to the destination continuously. This allows us to read part of file i.e header in a csv while leaving remainder unprocessed whereas `readFile` has to process the entire file.
+
+```js
+const stream = fs.createReadStream(file, {encoding: 'utf8'});
+stream.on('data', data => {
+  header = data.split(/\n/)[0];
+  stream.destroy();
+});
+stream.on('close', () => {
+  console.log('read complete');
+});
+```
+
 Use [Stream JSON](https://www.npmjs.com/package/stream-json) when handling big json in node.
 
 All streams are instances of `EventEmitter`. They emit events that can be used to read and write data.
 
 ### Stream and Buffer
 
-Key points.
+Key points:
 
 - Readable Stream
   - Data is buffered in Readable streams when the implementation calls `stream.push(chunk)`. If the consumer of the Stream does not call `stream.read()`, the data will sit in the internal queue until it is consumed
@@ -54,6 +68,9 @@ Key points.
   - If you continue to do so, data to be written will end up being held in memory - this could cause memory blow-up.
 - Duplex Stream (Read and Write)
 - Transform Stream (Read, Write and modify)
+
+### Lab
+[Stream](https://github.com/DavidHe1127/lab/tree/master/node/stream)
 
 ### More readings
 
