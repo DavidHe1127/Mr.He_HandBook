@@ -63,7 +63,7 @@ Key points:
   - When buffer size limit is reached, `data` event will be fired and attached callback will be fired at which point you can start processing received data.
 - Writable Stream
   - Data will be written to internal buffer of writable stream rather than to writable stream directly, `highWaterMark` controls how large the buffer needs to be for data storage.
-  - Data will be written to writable stream once buffer is full to flush.
+  - Buffered data will be continuously written to writable stream until buffer is full.
   - `writableStream.write('xxx')` will return `false` indicating buffer is full so that you should not continue to write
   - If you continue to do so, data to be written will end up being held in memory - this could cause memory blow-up.
 - Duplex Stream (Read and Write)
