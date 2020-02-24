@@ -12,6 +12,7 @@
 - [Premature Optimization](#premature_optimization)
 - [WebAssembly](#web-assembly)
 - [Idempotent](#idempotent)
+- [Coarse-grained vs Fine-grained](#coarse-grained-vs-fine-grained)
 - [CORS](#cors)
 - [Service Worker](#service-worker)
 
@@ -34,6 +35,13 @@ Any coding practice that makes your code harder to understand in the name of per
 
 ### idempotent
 In the context of API server, idempotent means each request must be independent, produce the same outcome, and not related to the previous one. So, when it is multiple API instances, then it doesn’t matter to which server request is redirected.
+
+### Coarse-grained vs Fine-grained
+
+>>>
+**Coarse-grained**: A few ojects hold a lot of related data that's why services have broader scope in functionality. Example: A single "Account" object holds the customer name, address, account balance, opening date, last change date, etc. Thus: Increased design complexity, smaller number of cells to various operations
+
+**Fine-grained**: More objects each holding less data that's why services have more narrow scope in functionality. Example: An Account object holds balance, a Customer object holds name and address, a AccountOpenings object holds opening date, etc. Thus: Decreased design complexity , higher number of cells to various service operations. These are relationships defined between these objects.
 
 ---
 
