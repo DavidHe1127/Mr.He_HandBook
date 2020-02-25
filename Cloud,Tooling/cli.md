@@ -2,6 +2,7 @@
 
 - [Set default profile](#set-default-profile)
 - [Show lib caller identity](#show-lib-caller-identity)
+- [Use query to narrow down returned result](#use-query)
 
 ### Set Default profile
 
@@ -20,3 +21,10 @@ $ aws sts get-caller-identity
     "Arn": "arn:aws:iam::216659404274:user/david-adm"
 }
 ```
+
+### Use query
+
+```shell
+$ aws sts get-caller-identity --query Account --output text
+```
+[More infor](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-output.html#text-output)
