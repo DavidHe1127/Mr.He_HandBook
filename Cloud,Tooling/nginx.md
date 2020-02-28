@@ -191,7 +191,8 @@ resolver 10.0.0.2 valid=10s;
 
 server {
     location / {
-        # important! need to be done by assigning domain to a variable
+        # important! need to be done by assigning domain to a variable because
+        # Using a variable in proxy_pass forces re-resolution of the DNS names because NGINX treats variables differently to         # static configuration.
         set        $backend_servers backends.example.com;
         proxy_pass http://$backend_servers:8080;
     }
