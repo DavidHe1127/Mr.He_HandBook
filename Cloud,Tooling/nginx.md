@@ -193,6 +193,7 @@ server {
     location / {
         # important! need to be done by assigning domain to a variable because
         # Using a variable in proxy_pass forces re-resolution of the DNS names because NGINX treats variables differently to         # static configuration.
+        # Also note, /etc/hosts file won't used for lookup. That's why we must explicitly specify a resolver
         set        $backend_servers backends.example.com;
         proxy_pass http://$backend_servers:8080;
     }
@@ -200,6 +201,8 @@ server {
 ```
 
 [Ref](https://www.nginx.com/blog/dns-service-discovery-nginx-plus/#domain-name-proxy_pass)
+[Ref](https://serverfault.com/questions/240476/how-to-force-nginx-to-resolve-dns-of-a-dynamic-hostname-everytime-when-doing-p/593003#593003)
+
 
 #### Access Custom Header
 
