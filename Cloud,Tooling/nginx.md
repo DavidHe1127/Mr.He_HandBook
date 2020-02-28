@@ -201,7 +201,8 @@ server {
 ```
 
 [Ref](https://www.nginx.com/blog/dns-service-discovery-nginx-plus/#domain-name-proxy_pass)
-[Ref](https://serverfault.com/questions/240476/how-to-force-nginx-to-resolve-dns-of-a-dynamic-hostname-everytime-when-doing-p/593003#593003)
+
+[Ref from StackOverflow](https://serverfault.com/questions/240476/how-to-force-nginx-to-resolve-dns-of-a-dynamic-hostname-everytime-when-doing-p/593003#593003)
 
 
 #### Access Custom Header
