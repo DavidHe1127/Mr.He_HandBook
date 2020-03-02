@@ -4,6 +4,7 @@
 - [Supply event payload](#supply_event_payload)
 - [Use Terraform with Serverless](#terraform-with-serverless)
 - [Use WAF to protect your service](#use-waf-to-protect-your-service)
+- [Tag all taggable resources](#tag-all-taggable-resources)
 
 ### Thin handler
 
@@ -45,3 +46,14 @@ apns_platform: ${ssm:/${self:service}-${opt:stage, 'dev'}/sns/apns/platform}
 ### Use WAF to protect your service
 
 > AWS WAF gives you control over which traffic to allow or block to your web applications by defining customizable web security rules.
+
+### Tag all taggable resources
+
+Add `stackTags` under the `provider` section to tag all resources that are taggable.
+
+```yaml
+provider:
+  stackTags:
+    key1: value1
+    key2: value2
+```
