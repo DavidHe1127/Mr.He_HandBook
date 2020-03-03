@@ -142,9 +142,9 @@ Resources:
 
 ### Troubleshooting Tips
 
-- Error out when deploying lambda through serverless framework `[CREATE_FAILED [AWS::Lambda::Function - YourlambddLambdaFunction]`
+Q: Error out when deploying lambda through serverless framework `[CREATE_FAILED [AWS::Lambda::Function - YourlambddLambdaFunction]`
 
-Go to cf console and search for failed events of your cf. Events will review errors in detail.
+A: Go to cf console and search for failed events of your cf. Events will review errors in detail.
 
 
 
