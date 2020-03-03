@@ -3,6 +3,7 @@
 - [Basics](#basics)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
+- [Troubleshooting tips](#troubleshooting-tips)
 
 ### Basics
 
@@ -138,3 +139,13 @@ Resources:
             - DNSName
 
 ```
+
+### Troubleshooting Tips
+
+- Error out when deploying lambda through serverless framework `[CREATE_FAILED [AWS::Lambda::Function - YourlambddLambdaFunction]`
+Go to cf console and search for failed events of your cf. Events will review errors in detail.
+
+
+
+
+
