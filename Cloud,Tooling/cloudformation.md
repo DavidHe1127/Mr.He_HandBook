@@ -1,6 +1,7 @@
 ## CloudFormation
 
 - [Basics](#basics)
+- [cross-stack reference](#cross-stack-reference)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting tips](#troubleshooting-tips)
@@ -138,6 +139,59 @@ Resources:
             - ElasticLoadBalancer
             - DNSName
 
+```
+
+### cross-stack reference
+It allows you to share resources created in one stack with another stack.
+
+Source stack:
+
+```yaml
+Resources:
+  myVPC:
+    Type: 'AWS::EC2::VPC'
+    ...
+
+Outputs:
+  vpcID:
+    Value: !Ref myVPC
+      Export:
+        Name:
+          Fn::Sub: "${AWS::StackName}-VpcID"
+```
+
+Reference Stack
+
+```yaml
+Parameters:
+  SourceStackName:
+    Type: String
+Resources: 
+  mySUBNET:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: 
+        Fn::ImportValue:
+          Fn::Sub: "${SourceStackName}-VpcID" 
+      ...
+```
+
+```shell
+aws cloudformation create-stack \
+    --stack-name reference-stack \
+    --template-body file://reference-stack.yaml \
+    --parameters file://params.json
+```
+
+params.json
+
+```json
+[
+  {
+    "ParameterKey": "SourceStackName",
+    "ParameterValue": "source-stack"
+  }
+]
 ```
 
 ### Troubleshooting Tips
