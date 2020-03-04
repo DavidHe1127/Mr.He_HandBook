@@ -5,6 +5,7 @@
 - [Use Terraform with Serverless](#terraform-with-serverless)
 - [Use WAF to protect your service](#use-waf-to-protect-your-service)
 - [Tag all taggable resources](#tag-all-taggable-resources)
+- [Benefits of using webpack](#benefits-of-using-webpack)
 
 ### Thin handler
 
@@ -57,3 +58,10 @@ provider:
     key1: value1
     key2: value2
 ```
+
+### Benefits of using webpack
+
+[serverless-webpack](https://github.com/serverless-heaven/serverless-webpack)
+
+- Use typescript or Babel
+- Treeshake unused modules to reduce total bundle size. This will save cold start time as bundle to be loaded into lambda runtime is smaller.
