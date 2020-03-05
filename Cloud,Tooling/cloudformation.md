@@ -2,6 +2,7 @@
 
 - [Basics](#basics)
 - [cross-stack reference](#cross-stack-reference)
+- [Use deploy command](#use-deploy-command)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting tips](#troubleshooting-tips)
@@ -193,6 +194,18 @@ params.json
   }
 ]
 ```
+
+### use-deploy-command
+Use `deploy` over `create-stack` as the former not only does create a new stack but also updates an existing stack (by using a change set). However `create-stack` can only be used when you create a brand new/non-existent resource stack. In essence, `deploy` is a combination of `create-stack` and `update-stack`. 
+
+Change set is a way to inform users of proposed changes you will have when updating a stack. It helps users understand what's going to be changed and discover any unexpected changes adding more confidence to deployment.
+
+```shell
+$ aws cloudformation deploy
+
+$ aws cloudformation create-stack
+```
+
 
 ### Troubleshooting Tips
 
