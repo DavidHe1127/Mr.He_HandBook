@@ -213,6 +213,9 @@ $ aws cloudformation create-stack
 
 **A**: Go to cf console and search for failed events of your cf. They will review errors in detail.
 
+**Q** Error - When calling the CreateChangeSet operation ... stack XXX is in ROLLBACK_COMPLETE state and can not be updated
+
+**A** If a stack fails to be created for any reasons, cf will execute a rollback to delete all previously created resources. The stack itself remains in a `ROLLBACK_COMPLETE` state to enable users to inspect and debug the problems. It is not possible to retry with this stack again. Users have to delete the stack on their own.
 
 
 
