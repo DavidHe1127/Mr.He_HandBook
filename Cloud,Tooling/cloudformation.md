@@ -5,7 +5,7 @@
 - [Use deploy command](#use-deploy-command)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
-- [Troubleshooting tips](#troubleshooting-tips)
+- [Troubleshooting](#troubleshooting)
 
 ### Basics
 
@@ -206,8 +206,7 @@ $ aws cloudformation deploy
 $ aws cloudformation create-stack
 ```
 
-
-### Troubleshooting Tips
+### Troubleshooting
 
 **Q**: Error out when deploying lambda through serverless framework `[CREATE_FAILED [AWS::Lambda::Function - YourlambddLambdaFunction]`
 
