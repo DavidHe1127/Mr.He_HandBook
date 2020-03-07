@@ -60,7 +60,7 @@ Very much like `CNAME` except that `CNAME` only works on subdomain not root doma
 ### Troubleshooting
 
 #### server ip address could not be found
-This error could happen when you delete and recreate a hosted zone for your domain leading to mismatch between new ns records and old ns records.
+This error could happen when you delete and recreate a hosted zone for your domain leading to mismatch between new ns records and old ones.
 
 To confirm, from `registered domains` menu, note down `Name servers` your domain uses and compare with that of your domain `hosted zone`. If they are different, then it could be your problem cause.
 
