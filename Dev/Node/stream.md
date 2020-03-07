@@ -64,7 +64,11 @@ Key points:
   - When buffer size limit is reached, `data` event will be fired and attached callback will be fired at which point you can start processing received data.
   
 ```js
-// when buffered data chunks is available to read, `readable` event is fired and then you can call stream.read() to read hunked data out from internal readable stream buffer.
+// push data into stream (buffer)
+readableStream.push('hi!')
+
+// when buffered data chunks is available to read, readable event is fired
+// and then you can call stream.read() to read hunked data out from internal readable stream buffer.
 readStream
   .on('readable', function () {
     var chunk;
