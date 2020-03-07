@@ -5,6 +5,8 @@
 - [Alias Record](#alias-record)
 - Examples
   - [root domain and subdomain config](#root-domain-and-subdomain-config)
+- Troubleshooting
+  - [xxx server ip address could not be found](#server-ip-address-could-not-be-found)
 
 ### Public Hosted Zone
 
@@ -46,8 +48,23 @@ Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb12
 
 Very much like `CNAME` except that `CNAME` only works on subdomain not root domain (aka naked domain name or zone apex record). i.e cannot have a `CNAME` record for `example.com`.
 
---- 
+---
 
 ### Example
 
 #### [Root Domain and Subdomain Config](http://altitudelabs.com/blog/how-to-set-up-app-subdomain-route-53/)
+
+
+---
+
+### Troubleshooting
+
+#### server ip address could not be found
+This error could happen when you delete and recreate a hosted zone for your domain leading to mismatch between new ns records and old ns records.
+
+To confirm, from `registered domains` menu, note down `Name servers` your domain uses and compare with that of your domain `hosted zone`. If they are different, then it could be your problem cause.
+
+Solution is to update ns record in your domain in `registered domains`.
+
+[Reference](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-replace-hosted-zone.html)
+
