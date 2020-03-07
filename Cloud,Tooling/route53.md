@@ -1,6 +1,33 @@
 ## Route53
 
+- [Public hosted zone](#public-hosted-zone)
 - [Private hosted zone](#private-hosted-zone)
+- [Alias Record](#alias-record)
+
+### Public Hosted Zone
+
+Route53 automatically creates 2 records for you when you create a public hosted zone:
+
+- SOA (Start of Authority)
+- NS (name server)
+
+`SOA` shows information like
+
+- The name of the server that supplied data for the zone
+- The administrator of the zone
+- The current version of data file
+- Default number of seconds for the time-to-live. This value controls how long a DNS resolver or a web browser should cache the record set for.
+
+A `SOA` record example - `ns-2048.awsdns-64.net. hostmaster.example.com. 1 7200 900 1209600 86400`
+
+`NS` is used by TLD (Top Level Domain) servers to direct traffic to the Content DNS server which contains the authoritative DNS records.
+
+When an user visiting `theparrodise.com` the DNS resolution workflow is described as follow:
+
+1. Browser sends a query to `TLD` for authoritative dns records
+2. `TLD` returns NS server record i.e `ns.awsdns.com`
+3. Browser then query NS server
+4. NS server will return `SOA` which contains our dns record information. i.e `A` record
 
 ### Private Hosted Zone
 
@@ -10,4 +37,8 @@
 
 [More infor](https://www.bogotobogo.com/DevOps/AWS/aws-Route53-DNS-Private-Hosted-Zone.php)
 
+### Alias Record
+Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb1234.elb.amazonaws.com).
+
+Very much like `CNAME` except that `CNAME` only works on subdomain not root domain (aka naked domain name or zone apex record). i.e cannot have a `CNAME` record for `example.com`.
 
