@@ -3,6 +3,8 @@
 - [Public hosted zone](#public-hosted-zone)
 - [Private hosted zone](#private-hosted-zone)
 - [Alias Record](#alias-record)
+- Examples
+  - [root domain and subdomain config](#root-domain-and-subdomain-config)
 
 ### Public Hosted Zone
 
@@ -44,3 +46,8 @@ Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb12
 
 Very much like `CNAME` except that `CNAME` only works on subdomain not root domain (aka naked domain name or zone apex record). i.e cannot have a `CNAME` record for `example.com`.
 
+--- 
+
+### Example
+
+#### [Root Domain and Subdomain Config](http://altitudelabs.com/blog/how-to-set-up-app-subdomain-route-53/)
