@@ -18,7 +18,7 @@ Note, don't change them!
 - The name of the server that supplied data for the zone
 - The administrator of the zone
 - The current version of data file
-- Default number of seconds for the time-to-live. This value controls how long a DNS resolver or a web browser should cache the record set for.
+- Default number of seconds for the TTL. This value controls how long a DNS resolver or a web browser should cache the record set for. In other words, if this DNS record was changed on the authoritative name server, DNS servers around the world would still show the old value from their cache for up to TTL after the change
 
 A `SOA` record example - `ns-2048.awsdns-64.net. hostmaster.example.com. 1 7200 900 1209600 86400`
 
