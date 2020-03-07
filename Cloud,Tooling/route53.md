@@ -11,6 +11,8 @@ Route53 automatically creates 2 records for you when you create a public hosted 
 - SOA (Start of Authority)
 - NS (name server)
 
+Note, don't change them!
+
 `SOA` shows information like
 
 - The name of the server that supplied data for the zone
