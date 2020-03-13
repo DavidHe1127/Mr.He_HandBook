@@ -3,6 +3,7 @@
 - [Env Var](#env-var)
 - [Workspace](#workspace)
 - [Reference func in file](#reference-func-in-file)
+- [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
 
@@ -48,3 +49,25 @@ node {
     example.otherExampleMethod()
 }
 ```
+
+### Best practices
+
+#### Combine multiple steps into one
+
+```groovy
+// do this
+sh """
+  echo Installing foundational dependency...
+  ./batect install-foundational-dependency
+  echo Bootstraping
+  ./batect bootstrap
+"""
+
+// not this as it will require connections and resources on the agent and master to be created and cleaned up
+// echo "Installing foundational dependency..."
+// sh "./batect install-foundational-dependency"
+// echo "Bootstraping"
+// sh "./batect bootstrap"
+```
+
+
