@@ -63,7 +63,7 @@ As shown above, **docker0** bridge is virtual interface created by docker, it ra
 
 Bridge network provides isolations that containers sitting outside the default bridge network (custom one) cannot communicate with ones sitting inside.
 
-Containers connected to the default bridge network can communicate, but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
+Containers connected to the default bridge network can communicate and it doesn't need port mapping but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
 
 #### What happens when you run a container
 
