@@ -1,5 +1,4 @@
 ## Encoding
-
 - [ASCii](#ascii)
 - [Unicode](#unicode)
 - [UTF-8](#utf-8)
