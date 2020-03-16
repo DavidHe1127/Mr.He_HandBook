@@ -134,3 +134,8 @@ Both setups aim to protect your servers/clients by enforcing security rules (fir
 
 - `connection timeout` port not opened or blocked by firewall
 - `connection refused` port is reachable but service is down/not listening on that port
+
+```shell
+# will list what services listening on which port
+$ netstat -tulpn 
+```
