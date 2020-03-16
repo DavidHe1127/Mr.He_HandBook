@@ -89,6 +89,7 @@ i.e
 
 ```js
 $ HOST=0.0.0.0 react-scripts start // make app server accessible to any devices on the network
+// or another way of saying this is app server will listen on all network interfaces for coming traffic and handle them
 $ HOST=localhost react-scripts start // make app server only accessible from the host
 ```
 
