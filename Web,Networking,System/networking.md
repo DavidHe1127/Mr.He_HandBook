@@ -16,8 +16,9 @@
 - [0.0.0.0](#wildcard-ip)
 - [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
 - [OSI model](#osi-model)
-- Debugging tips
+- Tips
   - [Connection Problems](#connection-problem)
+  - [HTTPS or HTTP](#https-or-http)
 
 ### dns-resolution-flow
 
@@ -138,5 +139,9 @@ Both setups aim to protect your servers/clients by enforcing security rules (fir
 
 ```shell
 # will list what services listening on which port
-$ netstat -tulpn 
+$ netstat -tulpn
 ```
+
+### HTTPs or HTTP
+
+If all hosts involved are running within the same network trust boundary, it's ok to have http connections between any 2 of them. If it is not the case however, HTTPS must be used to prevent man-in-the-middle attacks. i.e communication between 2 instances on the same vpc can allow http whereas browser-n-server communication must take place over HTTPS.
