@@ -70,6 +70,13 @@ Since it's not easy to search for log messages in CloudWatch Logs, log aggregati
 2. CloudWatch forwards logs to another service (lambda) via subscription
 3. Lambda ships logs to log aggregation service
 
+#### Limitations
+
+- Cannot search across multiple log streams
+- While CW logs insight allow you to write DSL queries to filter across multiple log streams it does not work across multiple aws accounts
+
+The ultimate solution is use a log aggregator with analytics service. i.e Splunk, Data Dog
+
 ### Put lambdas inside vpc
 
 Think carefully before putting your lambdas inside a vpc because:
