@@ -240,6 +240,13 @@ clean:
 deploy-something:
   @echo "Deploy something..."
   ./scripts/deploy_something.sh ${env} ${tag}
+
+# call a func in a shell script
+# call function remove_fruits in destroy_something.sh
+# make sure you have $* in the script end or calling function won't work
+destroy-something:
+  @echo "Destroy something..."
+  ./scripts/destroy_something.sh remove_fruits ${env} ${tag}
 ```
 
 ### HereDoc
