@@ -7,7 +7,7 @@
   - [Provider Plugins](#provider-plugins)
 - [Terraform vs Ansible](#terraform-vs-ansible)
 - Notes
-  - [Escape quotes in variable](#escape-quotes-in-variable)
+  - [Proper escaping](#proper-escaping)
 
 ### Terraform vs Ansible
 
@@ -117,8 +117,8 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 
 ---
 
-### Escape quotes in variable
-Use 3 backslashes to escape double quotes in tf variables. Single backslash won't work!!!
+### Proper escaping
+Use 3 backslashes to escape double quotes in JSON field value when dealing with tf variables. Single backslash won't work!!!
 
 ```tf
 instance_attributes = {
