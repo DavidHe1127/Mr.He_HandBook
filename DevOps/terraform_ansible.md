@@ -6,6 +6,8 @@
   - [Play with built-in func](#play-with-built-in-func)
   - [Provider Plugins](#provider-plugins)
 - [Terraform vs Ansible](#terraform-vs-ansible)
+- Notes
+  - [Escape quotes in variable](#escape-quotes-in-variable)
 
 ### Terraform vs Ansible
 
@@ -113,5 +115,14 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
 
+--
 
+### Escape quotes in variable
+Use 3 backslashes to escape double quotes in tf variables. Single backslash won't work!!!
 
+```tf
+instance_attributes = {
+  "1" = "{\\\"location\\\": \\\"instanceOne\\\"}"
+  "2" = "{\\\"location\\\": \\\"instanceTwo\\\"}"
+}
+```
