@@ -115,7 +115,7 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
 
---
+---
 
 ### Escape quotes in variable
 Use 3 backslashes to escape double quotes in tf variables. Single backslash won't work!!!
