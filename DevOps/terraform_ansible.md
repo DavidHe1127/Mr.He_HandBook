@@ -126,3 +126,20 @@ instance_attributes = {
   "2" = "{\\\"location\\\": \\\"instanceTwo\\\"}"
 }
 ```
+
+Here is how it's parsed:
+
+When it sees the 1st backslash, it will look at the following character to determine the real purpose of the 1st one. As seen in this example, the following character is another backslash. So, the 1st one is treated as an escape character and the second one is a real backslash. `\\ -> \`.
+
+Next, it sees the 3rd backslash and this time, it looks at the next character again and found `"`. As per escape sequence rule, `\"` will be interpreted to just `"`. In the end, `\"` -> `"`.
+
+Considering all interpretations, `\\\"` will become just `\"`.
+
+
+
+
+
+
+
+
+
