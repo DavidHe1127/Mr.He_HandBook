@@ -115,7 +115,7 @@ exports.handler = main;
 
 ### Use SSM Parameter Store for env-vars
 
-Use SSM parameter store to keep env vars for your lambda. Remember fetch them at runtime or you will see them in plain text in lambda in AWS console.
+Env vars can be plaintext or encrypted in ssm param store. You can populate the value during build time:
 
 ```yml
 # fetch at build time leading to plain-text env in lambda console
@@ -123,10 +123,19 @@ functions
   withEnvVar-SSM
     handler: functions/withEnvVar.handler
     environment:
-      key: ${ssm:/dockerzon/ec2-key~true} # true = decrypt it plz!
+      key: ${ssm:/lab/lambda-envs-${self:provider.stage}~true} # true = decrypt it plz!
 ```
 
-Then access it via `process.env.key`.
+Then access it via `process.env.key`. The downside is env vars are visible to anyone who has access to lambda console. If env vars are non-sensitive values, it is fine to leave them in plain text. However, when it's sensitive and you want to restrict the access to those who have access to ssm rather than lambda you have to have values encrypted. Now new issue arises, encrypted value cannot be used without decryption...
+
+To fix this problem, you have to turn to fetch env vars at runtime using AWS SDK.
+
+```python
+response = ssm.get_parameter(
+    Name=parameter_name,
+    WithDecryption=True
+)
+```
 
 ### Share modules/libs
 
