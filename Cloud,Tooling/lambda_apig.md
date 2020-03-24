@@ -118,7 +118,7 @@ exports.handler = main;
 Use SSM parameter store to keep env vars for your lambda. Remember fetch them at runtime or you will see them in plain text in lambda in AWS console.
 
 ```yml
-# fetch at build time leading to plain text env in lambda console
+# fetch at build time leading to plain-text env in lambda console
 functions
   withEnvVar-SSM
     handler: functions/withEnvVar.handler
