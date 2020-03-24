@@ -115,14 +115,18 @@ exports.handler = main;
 
 ### Use SSM Parameter Store for env-vars
 
-- Use SSM parameter store to keep env vars for your lambda. Remember fetch them at runtime or you will see them in plain text in lambda in AWS console.
+Use SSM parameter store to keep env vars for your lambda. Remember fetch them at runtime or you will see them in plain text in lambda in AWS console.
 
 ```yml
+# fetch at build time leading to plain text env in lambda console
 functions
   withEnvVar-SSM
     handler: functions/withEnvVar.handler
-    bar: ${ssm:bar~true} # true = decrypt it plz!
+    environment:
+      key: ${ssm:/dockerzon/ec2-key~true} # true = decrypt it plz!
 ```
+
+Then access it via `process.env.key`.
 
 ### Share modules/libs
 
