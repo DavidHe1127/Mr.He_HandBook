@@ -118,7 +118,6 @@ exports.handler = main;
 Env vars can be plaintext or encrypted in ssm param store. You can populate the value during build time:
 
 ```yml
-# fetch at build time leading to plain-text env in lambda console
 functions
   withEnvVar-SSM
     handler: functions/withEnvVar.handler
