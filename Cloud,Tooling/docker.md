@@ -13,6 +13,8 @@
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [Communication between containers](#communication-between-containers)
+- Useful commands
+  - [Show Dockerfile from an image](#show-dockerfile-from-an-image)
 
 ### Architecture
 
@@ -233,3 +235,12 @@ Caveats:
 - Must specify a container name. Random name won't work.
 - Must specify connection port which is exposed by container unless `80` is exposed.
 - Need set `HOST` on `server1` to `0.0.0.0` to enable it expose all interfaces.
+
+---
+
+### Show Dockerfile from an image
+
+```
+$ docker history <IMAGE_ID>
+```
+
