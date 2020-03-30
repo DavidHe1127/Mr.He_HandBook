@@ -8,6 +8,7 @@
 - [Cli searching rule](#cli-searching-rule)
 - [Proxy](#Proxy)
 - [npm ci and lockfile](#npm-ci-and-lockfile)
+- [Unpublish a published package](#npm-unpublish)
 
 ## Yarn
 
@@ -104,3 +105,13 @@ Key facts about `package.json` and lockfile.
 
 - If dependencies are manually modified in a `package.json` file, yarn will only update the `yarn.lock` file the next time the yarn CLI is used to install or modify dependencies. So if modifying dependencies in `package.json`, be sure to run `yarn install` to update the `yarn.lock` file.
 - `yarn upgrade` allows to upgrade all the dependencies listed in a package.json to the latest versions specified by the version ranges. Or one can use `yarn upgrade --latest` will update dependencies to the latest version ignoring version range.
+
+### NPM unpublish
+Packages that are published less than 72 hours can be unpublished. See example below:
+
+```shell
+$ npm unpublish david-test-module@1.3.0-prerelease.1
+```
+
+Wait a couple of minutes before carrying out unpublish if you are faced this issue - `Cannot publish over previously published version "1.3.0-prerelease.2".`.
+
