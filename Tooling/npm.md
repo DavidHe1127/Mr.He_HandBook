@@ -9,6 +9,7 @@
 - [Proxy](#Proxy)
 - [npm ci and lockfile](#npm-ci-and-lockfile)
 - [Unpublish a published package](#npm-unpublish)
+- [npx](#npx)
 
 ## Yarn
 
@@ -115,3 +116,5 @@ $ npm unpublish david-test-module@1.3.0-prerelease.1
 
 Wait a couple of minutes before carrying out unpublish if you are faced this issue - `Cannot publish over previously published version "1.3.0-prerelease.2".`.
 
+### NPX
+`npx semantic-release` will first look to find binary file locally before it's trying to pull from remote if local instance not found.
