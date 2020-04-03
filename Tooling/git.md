@@ -4,6 +4,7 @@
 
 - Concepts
   - [Merge typs](#merge-types)
+  - [HEAD and refs](#head-and-refs)
 
 - Branch
 
@@ -83,6 +84,41 @@ Pros:
 Cons:
   - It is hard to tell who made what changes when rebasing into target branch from multiple source branches
   - Manual conflicts resolving is required and very often
+
+### HEAD and Refs
+
+Ref is a file that records a full sha-1 associated with a commit. i.e
+
+```sh
+# local branch reference
+# heads include all local branches
+
+A/.git/refs/heads
+$ cat master
+f2691475f70b511bb92f05d16a260b16bb9a3d2b
+
+# latest commit log
+# * f269147 - (HEAD -> master, origin/master, origin/HEAD) update git (13 minutes ago) <David He>
+
+# tag reference
+
+A/.git/refs/tags
+$ cat v1.0.0
+d4943b8be84d8e1a5f11ad4794028fe12aea0598
+
+# sha-1 corresponds to tag v1.0.0
+```
+
+`HEAD` is a pointer. It points to the latest commit on the current branch. So it can also be interpreted as it's pointing to the current branch.
+
+```shell
+$ cat .git/HEAD
+ref: refs/heads/master
+```
+
+[Read more](https://www.softwhy.com/article-8500-1.html)
+
+---
 
 ## create-branch
 
