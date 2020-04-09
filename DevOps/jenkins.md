@@ -55,7 +55,8 @@ node {
 
 ### Conditional build
 Any condition inside `when` needs to be evaluated `true` for `stage` block to run. Note `env.BRANCH_NAME` or `branch 'master'` will only work in `multi-branch` pipeline env.
-```
+
+```groovy
 stage('Deputy - build completed') {
     when {
         expression {
