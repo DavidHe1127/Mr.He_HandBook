@@ -3,6 +3,7 @@
 - [Env Var](#env-var)
 - [Workspace](#workspace)
 - [Reference func in file](#reference-func-in-file)
+- [Conditional build](#conditional-build)
 - [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
@@ -51,6 +52,38 @@ node {
     example.otherExampleMethod()
 }
 ```
+
+### Conditional build
+Any condition inside `when` needs to be evaluated `true` for `stage` block to run. Note `env.BRANCH_NAME` or `branch 'master'` will only work in `multi-branch` pipeline env.
+```
+stage('Deputy - build completed') {
+    when {
+        expression {
+            ifDoDeputy()
+        }
+    }
+    steps {
+        sh './batect deputy-complete-build'
+    }
+}
+...
+def ifDoDeputy() {
+    def isDeputyEnabled = env.DEPUTY_ENABLED == 'true'
+    def isRightBranch = env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'develop'
+    return isDeputyEnabled && isRightBranch
+}
+
+# OR
+
+when {
+  anyOf { branch 'master'; branch 'develop' }
+  expression {
+    env.DEPUTY_ENABLED == 'true'
+  }
+}
+```
+
+
 
 ### Best practices
 
