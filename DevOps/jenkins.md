@@ -8,7 +8,7 @@
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
 - Tips
-  - [Dynamic branch build](#dynamic-branch-build)
+  - [Skip whole build](#skip-whole-build)
 
 ### Env Var
 
@@ -110,15 +110,32 @@ sh """
 
 ## Tips
 
-### Dynamic Branch Build
-It is possible to dynamically specify which branch to build. Below shows an example of this when using `Pipeline` as item type.
+### Skip whole build
 
-First, add a string build param with `BRANCH` as name and `master` as default.
-Next, add another `branch specifier` valued `${BRANCH}`.
-
-To confirm it works, select `build with param` and you should be prompted for branch name.
-
-
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            when {
+                return SKIP_CI == 'true'
+            }
+            stages {
+                stage('install dependencies') {
+                    steps {
+                        //..
+                    }
+                }
+                stage('test') {
+                    steps {
+                        //...
+                    }
+                }
+            }
+        }
+    }
+}
+```
 
 
 
