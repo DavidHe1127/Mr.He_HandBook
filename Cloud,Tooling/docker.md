@@ -8,6 +8,7 @@
   - [Security](#security)
   - [Disk space on daemon](#disk-space-on-daemon)
   - [Data persistence](#data-persistence)
+  - [Behind a proxy server](#behind-a-proxy-server)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
 - Docker Compose
   - [Networking](#networking)
@@ -153,6 +154,23 @@ $ docker run -v /Users/david.he/Desktop/Jenkins_Home:/var/jenkins_home -p 8080:8
 ```
 
 - tmpfs - stored in host system's memory only. Never written to host filesystem.
+
+### Behind a proxy server
+By default, docker daemon will look for global environment variables on the host to use. i.e `http_proxy`, `https_proxy` and `no_proxy`. However, these values can be overwritten when specifying them in docker service file. This example shows docker service file on a linux distribution:
+
+```
+# /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://proxy.example.com:80/"
+```
+
+Config file can be modified at the runtime. Run these 2 commands below to apply changes afterwards:
+
+```shell
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+```
 
 ---
 
