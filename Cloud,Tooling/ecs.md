@@ -7,6 +7,7 @@
   - [Overview](#overview)
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
+- [Auto scaling](#asg)
 - [Troubleshooting guide](#troubleshooting-guide)
 
 ### Core Concepts
@@ -58,6 +59,21 @@ Run task is similar to what we see in run a service.
 ```shell
 $ aws ecs run-task --cluster deepdive --task-definition web --count 1
 ```
+
+### ASG
+
+#### Memory Reservation
+Defines how much of memory it requires (is reserved) to run a container/task. It's considered to be a soft limit. Along with `memory` aka memory hard limit, they work hand in hand to help ECS scheduler with decision-making on tasks placement into container instances.
+
+Example one, given `memoryReservation` and `memory` with value of `128MiB` and `300MiB` respectively, it means ECS will reserve `128MiB` of memory to ensure your container has enough resource to work. In the event of insufficient resources as required, your container is allowed to burst up to `300MiB` for short periods of time but not exceeds that particular amount. This would only happen when no other containers require resources from instance.
+
+Example two, if you reserve 1024 cpu units for a particular task and that amount is equal to entire cpu units a container instance has, then scheduler will not place anymore tasks into this instance when such requirement arises.
+
+Example three, a cluster has two active container instances registered: a `c4.4xlarge` instance and a `c4.large` instance. The c4.4xlarge instance registers into the cluster with `16,384` CPU units and `30,158 MiB` of memory. The `c4.large` instance registers with `2,048` CPU units and `3,768 MiB` of memory. The aggregate resources of this cluster are `18,432` CPU units and `33,926` MiB of memory.
+
+If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and ten tasks are started with this task definition on this cluster (and no other tasks are currently running), a total of `10,240` CPU units and `20,480` MiB of memory are reserved. This is reported to CloudWatch as `55%` CPU reservation and `60%` memory reservation for the cluster.
+
+![resources reservation](./resources_reservation.png)
 
 ### Troubleshooting Guide
 
