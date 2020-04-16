@@ -1,13 +1,16 @@
 ## Timestamp
 
-* [ISO](#iso)
-* [UTC](#utc)
+- [ISO](#iso)
+- [UTC](#utc)
 
 ### iso
 The ISO format is a simplification of the ISO 8601 extended format. See format as follow:
+
 ```js
-YYYY-MM-DDTHH:mm:ss.sssZ
+// convert a UTC time to ISO 8601 format
+moment.tz('2018-03-22T00:00:00Z','Asia/Kolkata').format() // 2018-03-22T05:30:00+05:30
 ```
+
 A few notes:
 * `T` specifies the start of a time
 * `Z` can be any values of:
