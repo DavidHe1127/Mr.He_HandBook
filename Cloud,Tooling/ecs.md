@@ -65,7 +65,7 @@ $ aws ecs run-task --cluster deepdive --task-definition web --count 1
 #### Memory Reservation
 Defines how much of memory it requires (is reserved) to run a container/task. It's considered to be a soft limit. Along with `memory` aka memory hard limit, they work hand in hand to help ECS scheduler with decision-making on tasks placement into container instances.
 
-Example one, given `memoryReservation` and `memory` with value of `128MiB` and `300MiB` respectively, it means ECS will reserve `128MiB` of memory to ensure your container has enough resource to work. In the event of insufficient resources as required, your container is allowed to burst up to `300MiB` for short periods of time but not exceeds that particular amount. This would only happen when no other containers require resources from instance.
+Example one, given `memoryReservation` and `memory` with value of `128MiB` and `300MiB` respectively, it tells ECS to reserve `128MiB` of memory to ensure your container has enough resource to work. In the event of insufficient resources as required, your container is allowed to burst up to `300MiB` for short periods of time but not exceeds that particular amount. This would only happen when no other containers require resources from instance.
 
 Example two, if you reserve 1024 cpu units for a particular task and that amount is equal to entire cpu units a container instance has, then scheduler will not place anymore tasks into this instance when such requirement arises.
 
