@@ -7,7 +7,7 @@
 The ISO format is a simplification of the ISO 8601 extended format. See format as follow:
 
 ```js
-// convert a UTC time to ISO 8601 format
+// format UTC time in ISO 8601 format
 moment.tz('2018-03-22T00:00:00Z','Asia/Kolkata').format() // 2018-03-22T05:30:00+05:30
 ```
 
