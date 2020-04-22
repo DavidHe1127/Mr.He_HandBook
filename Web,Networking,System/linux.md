@@ -201,11 +201,11 @@ As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` f
   $ ln -sf /dev/stdout /var/log/nginx/access.log
   ```
   And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
-  
+
   ```shell
   $ CMD > /dev/null 2>&1
   ```
-  
+
 ### Commands
 
 #### Tee

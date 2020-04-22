@@ -8,6 +8,7 @@
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
 - [Auto scaling](#asg)
+- [Various roles](#various-roles)
 - [Troubleshooting guide](#troubleshooting-guide)
 
 ### Core Concepts
@@ -74,6 +75,19 @@ Example three, a cluster has two active container instances registered: a `c4.4x
 If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and ten tasks are started with this task definition on this cluster (and no other tasks are currently running), a total of `10,240` CPU units and `20,480` MiB of memory are reserved. This is reported to CloudWatch as `55%` CPU reservation and `60%` memory reservation for the cluster.
 
 ![resources reservation](./resources_reservation.png)
+
+### Various Roles
+
+| Name | AWS Managed Role/Policy | Purpose | Note
+| --- | --- | --- | --- |
+| Container Instance Role | AmazonEC2ContainerServiceforEC2Role | allows container agent to make calls to ECS API on your behalf | EC2 launch type only
+| Service-Linked Role | AWSServiceRoleForECS | load-balancing, asg and more. [See this](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html) | 👍
+| Task Execution Role | AmazonECSTaskExecutionRolePolicy | this role is required when using AWS Fargate and replaces the Container Instance IAM role, which is unavailable for the FARGATE launch type. This role enables AWS Fargate to pull your container images from Amazon ECR and to forward your logs to Amazon CloudWatch Logs. This role is also used (on both the Fargate and the EC2 launch types) to enable private registry authentication and secrets from AWS Secrets Manager and AWS Systems Manager Parameter Store. |
+| Task Role           | N/A | Allows to associate fine-grained access control with a single task rather than the underlying instance that host those taks |
+| Service Scheduler Role | AmazonEC2ContainerServiceRole | grants ECS scheduler permissions to register/deregister container instances with load balancers | deprecated use service-linked role instead
+| Auto-Scaling Role | AmazonEC2ContainerServiceAutoscaleRole | used for service auto scaling | deprecated use service-linked role instead
+
+---
 
 ### Troubleshooting Guide
 
