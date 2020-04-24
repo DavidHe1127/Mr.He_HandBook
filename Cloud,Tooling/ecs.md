@@ -82,7 +82,7 @@ If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and t
 | --- | --- | --- | --- |
 | Container Instance Role | AmazonEC2ContainerServiceforEC2Role | Allows container agent to make calls to ECS API on your behalf | EC2 launch type only
 | Service-Linked Role | AWSServiceRoleForECS | Enable load-balancing, asg and more. [See this](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html) | 👍
-| Task Execution Role | AmazonECSTaskExecutionRolePolicy | Executes ECS actions such as pulling the image and storing the application logs in cloudwatch. |
+| Task Execution Role | AmazonECSTaskExecutionRolePolicy | Executes ECS actions such as pulling the image and storing the application logs in cloudwatch and even more i.e Private Registry authentication |
 | Task Role           | N/A | Allows to associate fine-grained access control with a single task rather than the underlying instance that host those taks |
 | Service Scheduler Role | AmazonEC2ContainerServiceRole | Grants ECS scheduler permissions to register/deregister container instances with load balancers | ❌ deprecated. Use service-linked role instead
 | Auto-Scaling Role | AmazonEC2ContainerServiceAutoscaleRole | Used for service auto scaling | ❌deprecated. Use service-linked role instead
