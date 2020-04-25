@@ -83,7 +83,7 @@ In essence, 2 scaling aspects need to be considered:
 - Cluster Scaling
 - Service Scaling (aka Application Auto Scaling)
 
-`Cluster Scaling` refers to auto scaling up/down by adding/removing container instances in your Cluster as per workload demand. Automation is achieved by setting a CW alarm which will go on/off when associated metric goes up/below threshold. i.e When alarm goes above 70% percent of `CPUReservation` allocated to run tasks in a particular service, we trigger the alarm. The scaling action that's tied to an alarm will be carried out for scaling operations. i.e Add 50% percent of instances in a scaling group.
+`Cluster Scaling` refers to auto scaling up/down by adding/removing container instances in your Cluster as per workload demand. Automation is achieved by setting a CW alarm which will go on/off when associated metric goes up/below threshold. i.e When alarm goes above 70% percent of `CPUReservation` allocated to run tasks in a particular service, we trigger the alarm. The scaling action that's tied to an alarm will be carried out as a response. i.e Add 50% percent of instances in a scaling group.
 
 `Service Scaling` on the other hand, refers to service-level auto-scaling by adding/removing tasks in a service. Automation is driven by CW alarm. This time, metric will be `CPUUtilization`. Application auto scaling will add/remove tasks as per scaling policy.
 
