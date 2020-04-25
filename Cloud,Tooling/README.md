@@ -17,5 +17,6 @@
   - [Lambda & API Gateway](./lambda_apig.md)
   - [CloudFormation](./cloudformation.md)
   - [Cloudfront](./cloudfront.md)
+  - [CoudWatch](./cloudwatch.md)
   - [Route53](./route53.md)
   - [Security](./security.md)
