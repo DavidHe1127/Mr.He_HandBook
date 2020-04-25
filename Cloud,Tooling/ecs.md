@@ -76,6 +76,25 @@ If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and t
 
 ![resources reservation](./resources_reservation.png)
 
+#### How Scaling works in ECS
+
+In essence, 2 scaling aspects need to be considered:
+
+- Cluster Scaling
+- Service Scaling (aka Application Auto Scaling)
+
+`Cluster Scaling` refers to auto scaling up/down by adding/removing container instances in your Cluster as per workload demand. Automation is achieved by setting a CW alarm which will go on/off when associated metric goes up/below threshold. i.e When alarm goes above 70% percent of `CPUReservation` allocated to run tasks in a particular service, we trigger the alarm. The scaling action that's tied to an alarm will be carried out for scaling operations. i.e Add 50% percent of instances in a scaling group.
+
+`Service Scaling` on the other hand, refers to service-level auto-scaling by adding/removing tasks in a service. Automation is driven by CW alarm. This time, metric will be `CPUUtilization`. Application auto scaling will add/remove tasks as per scaling policy.
+
+These 2 scaling operations work hand-in-hand to make your ECS service scalable.
+
+An example of this is: Massive workload will cause `CPUUtilisation` to go up and once monitored metric threshold breaches, ECS will add more tasks to deal with more traffic. This could lead to overwhelming needs in `CPUReservations`. When it's incremented, it might trigger the cluster alarm which will in turn bring up more container instances to suffice resources requirements.
+
+Note, both scaling will modify desired count of scaling target but the modified result will be contained within Min - Max range.
+
+i.e App has desired count 2, min 1 and max 5. When scaling in happens, desired count will drop down to `1` but it will not drop below min which is 1. Likewise, scaling up might bring more container instances up to 5 but not beyond it.
+
 ### Various Roles
 
 | Name | AWS Managed Role/Policy | Purpose | Note
