@@ -257,7 +257,7 @@ Caveats:
 
 ### Memory and CPU limit
 
-By default, containers specified in `docker-compose` file can consume as much as memory/cpu on the docker host as it needs. When this occurs, on Linux hosts, kernal will see insufficient memory to perform important system functions, it throws an `OOME`, or `Out Of Memory Exception`. This could potentially harm docker host as poorly written apps could overconsume memory causing processes to be killed by kernal. They might include critical processes or even Docker Daemon. That's why we sometimes need to constraint resources for our docker services down to certain limits. Now even resources over-consumption will not happen.
+By default, containers specified in `docker-compose` file can consume as much as memory/cpu on the docker host as it needs. This could potentially harm docker host when poorly written apps overconsume memory/cpu. When this occurs, on Linux hosts, kernal will see insufficient memory to perform important system functions, it throws an `OOME`, or `Out Of Memory Exception`. As a result, kernal will start killing processes. They might include critical ones or even Docker Daemon. That's why we sometimes need to constraint resources for our docker services down to certain limits. Now even resources over-consumption will not happen.
 
 Memory/CPU reservations on the other hand specify the least resources a service needs to run correctly.
 
