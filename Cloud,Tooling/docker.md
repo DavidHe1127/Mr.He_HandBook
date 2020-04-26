@@ -14,6 +14,7 @@
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [Communication between containers](#communication-between-containers)
+  - [Memory and CPU limit](#memory-and-cpu-limit)
 - Useful commands
   - [Show Dockerfile from an image](#show-dockerfile-from-an-image)
 
@@ -253,6 +254,27 @@ Caveats:
 - Must specify a container name. Random name won't work.
 - Must specify connection port which is exposed by container unless `80` is exposed.
 - Need set `HOST` on `server1` to `0.0.0.0` to enable it expose all interfaces.
+
+### Memory and CPU limit
+
+By default, containers specified in `docker-compose` file can consume as much as memory/cpu on the docker host as it needs. When this occurs, on Linux hosts, kernal will see insufficient memory to perform important system functions, it throws an `OOME`, or `Out Of Memory Exception`. This could potentially harm docker host as poorly written apps could overconsume memory causing processes to be killed by kernal. They might include critical processes or even Docker Daemon. That's why we sometimes need to constraint resources for our docker services down to certain limits. Now even resources over-consumption will not happen.
+
+Memory/CPU reservations on the other hand specify the least resources a service needs to run correctly.
+
+```yml
+version: "3.8"
+services:
+  redis:
+    image: redis:alpine
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 50M
+        reservations:
+          cpus: '0.25'
+          memory: 20M
+```
 
 ---
 
