@@ -15,6 +15,7 @@
 - [Coarse-grained vs Fine-grained](#coarse-grained-vs-fine-grained)
 - [CORS](#cors)
 - [Service Worker](#service-worker)
+- [Sockets API](#sockets-api)
 
 ## Web
 
@@ -129,6 +130,6 @@ The way it works is:
 - Checks whether the resource is already in cache
 - If not, send a request to fetch that image and save it in cache
 
+### Sockets API
 
-
-
+![socket-api](./socket-api.png)
