@@ -8,6 +8,7 @@
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
 - [Auto scaling](#asg)
+- [Rolling update](#rolling-update)
 - [Various roles](#various-roles)
 - [Troubleshooting guide](#troubleshooting-guide)
 
@@ -96,6 +97,13 @@ An example of this is: Massive workload will cause `CPUUtilisation` to go up and
 The ECS service scheduler respects the desired count at all times, but as long as you have active scaling policies and alarms on a service, Service Auto Scaling could change a desired count that was manually set by you.
 
 i.e App has desired count 2, min 1 and max 5. When scaling in happens, desired count will drop down to `1` but it will not drop below min which is 1. Likewise, scaling up might bring more container instances up to 5 but not beyond it.
+
+### Rolling Update
+
+Key notes
+
+- When set an instance to `draining`, tasks on it are still be able to serve incoming requests until the point they are drained and stopped by ECS task scheduler
+- Drained instances will finally be removed from asg if you have it configured
 
 ### Various Roles
 
