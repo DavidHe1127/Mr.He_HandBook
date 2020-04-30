@@ -288,6 +288,6 @@ $ docker history <IMAGE_ID>
 ### Overwrite ENTRYPOINT
 
 ```shell
-$ docker run --rm -it --entrypoint /bin/bash cd.artifactory.ext.national.com.au/terraform:v0.12.6 [flags to pass to cmd specified in entrypoint]
+$ docker run --rm -it --entrypoint /bin/bash terraform:v0.12.6 [flags to pass to cmd specified in entrypoint]
 ```
 
