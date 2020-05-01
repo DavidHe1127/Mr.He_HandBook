@@ -30,5 +30,6 @@ Diagram below explains how load balancer distributes traffic to a target group o
 - By default, ASG will consider an instance healthy if it passes instance status check
 - Change health check type to be `ELB` so an instance is seen as healthy ONLY if it passes both ALB and EC2 health check
 - Unhealthy instances will be killed and replaced by ASG
+- If you attach multiple load balancer target groups, all of them must report that the instance is healthy in order for it to consider the instance healthy. If any one of them reports an instance as unhealthy, the Auto Scaling group replaces the instance, even if other ones report it as healthy
 
 Use case scenario: In an ECS application fronted with ALB. ALB health check will fail when putting a container instance on `DRAINING` mode. However, instance is still seen as healthy by ASG since it passes status check. Therefore, ASG will do nothing. To fix it, set `health check type` to be `ELB` which will turn this instance to an unhealthy one as it fails ALB health check. Now, ASG will see and action to replace this unhealthy instance.
