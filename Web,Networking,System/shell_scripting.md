@@ -58,6 +58,13 @@ function string_replace {
 
 template=$(string_replace "$template" "$server")
 
+### regex
+STATUS=200
 
+OK_STATUS_REG='^2[0-9]{2}$'
 
+if [[ $STATUS =~ $OK_STATUS_REG ]]
+then
+  echo 'matched'
+fi
 ```
