@@ -195,16 +195,21 @@ As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` f
 
 ![File Descriptors](./file-descriptor.png)
 
-  #### Log redirection
-  Trick below will forward logs to `stdout` rather than `access.log`.
-  ```shell
-  $ ln -sf /dev/stdout /var/log/nginx/access.log
-  ```
-  And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
+#### Log redirection
+Trick below will forward logs to `stdout` rather than `access.log`.
+```shell
+$ ln -sf /dev/stdout /var/log/nginx/access.log
+```
 
-  ```shell
-  $ CMD > /dev/null 2>&1
-  ```
+```shell
+# And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
+$ CMD > /dev/null 2>&1
+$ 2>/dev/null # redirect STDERR to /dev/null
+$ &>/dev/null # redirect both STDERR and STDOUT to /dev/null (nothing will show up)
+$ >/dev/null  # redirect STDOUT to /dev/null (only STDERR shows up)
+```
+
+---
 
 ### Commands
 
