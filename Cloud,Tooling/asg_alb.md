@@ -3,6 +3,7 @@
 - [ASG](#asg)
   - [Scaling Policy](#scaling-policy)
   - [Health Check](#health-check)
+  - [Termination Policy](#termination-policy)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
@@ -33,3 +34,7 @@ Diagram below explains how load balancer distributes traffic to a target group o
 - If you attach multiple load balancer target groups, all of them must report that the instance is healthy in order for it to consider the instance healthy. If any one of them reports an instance as unhealthy, the Auto Scaling group replaces the instance, even if other ones report it as healthy
 
 Use case scenario: In an ECS application fronted with ALB. ALB health check will fail when putting a container instance on `DRAINING` mode. However, instance is still seen as healthy by ASG since it passes status check. Therefore, ASG will do nothing. To fix it, set `health check type` to be `ELB` which will turn this instance to an unhealthy one as it fails ALB health check. Now, ASG will see and action to replace this unhealthy instance.
+
+#### Termination Policy
+
+Use it to control which instances need to be terminated when scale in. i.e `OldestLaunchTemplate` tells ASG to terminate instances launched by the oldest launch template. Useful when phasing out old instances after updates.
