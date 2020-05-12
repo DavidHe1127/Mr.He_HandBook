@@ -4,6 +4,7 @@
 - [Workspace](#workspace)
 - [Reference func in file](#reference-func-in-file)
 - [Conditional build](#conditional-build)
+- [Retrieve branch name](#retrieve-branch-name)
 - [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
@@ -80,6 +81,24 @@ when {
   anyOf { branch 'master'; branch 'develop' }
   expression {
     env.DEPUTY_ENABLED == 'true'
+  }
+}
+```
+
+### Retrieve branch name
+
+Access your feature branch name through `BRANCH_NAME` var. However, it returns `PR-*` as soon as a branch has a PR made from it. Use `CHANGE_BRANCH` instead to get feature branch name if you still want it.
+
+```groovy
+stage('Set Build Name') {
+  steps {
+    script {
+      if (env.BRANCH_NAME.startsWith('PR')) {
+        currentBuild.displayName = "#${env.BUILD_NUMBER} - ${env.CHANGE_BRANCH}"
+      } else {
+        currentBuild.displayName = "#${env.BUILD_NUMBER} - ${env.BRANCH_NAME}"
+      }
+    }
   }
 }
 ```
