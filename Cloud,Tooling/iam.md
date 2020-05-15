@@ -1,6 +1,7 @@
 ## IAM
 
 ### IAM in a nutshell
+### Rules
 
 #### Policy
 In human understandable words, we use `IAM` to control who (Principal) can (Allow) or cannot (Deny) do what (Action) on which resource (Resource) and when (Condition).
@@ -90,3 +91,13 @@ aws iam put-role-policy --role-name CodePipelineExampleRole \
 ```
 
 [Reference](https://start.jcolemorrison.com/aws-iam-policies-in-a-nutshell/)
+
+---
+
+### Rules
+
+- If there is no `Principal` in the policy it means policy applies to whatever users/groups have been assigned this policy
+
+
+
+
