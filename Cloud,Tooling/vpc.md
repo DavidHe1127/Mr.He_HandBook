@@ -3,6 +3,7 @@
 - [NAT Gateway](#nat-gateway)
   - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
+- [Endpoint](#endpoint)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
 
 ### NAT Gateway
@@ -23,3 +24,20 @@ Attaching an IGW to a VPC allows instances with public IPs to access the interne
 VPC themselves are free but you need to pay for the services running within it. i.e NAT gateway, internet gateway, EC2s.
 
 - [Use vpc endpoint to save money](https://medium.com/nubego/how-to-save-money-with-aws-vpc-endpoints-9bac8ae1319c)
+
+### Endpoint
+
+VPC Policy explained. Below is a policy for S3 VPC endpoint. It allows all your aws resources within this particular VPC to access all resources under S3. i.e all buckets and objects
+
+```json
+{
+    "Statement": [
+        {
+            "Action": "*",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Principal": "*"
+        }
+    ]
+}
+```
