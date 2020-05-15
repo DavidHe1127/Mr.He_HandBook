@@ -1,7 +1,6 @@
 ## IAM
 
 ### IAM in a nutshell
-### Rules
 
 #### Policy
 In human understandable words, we use `IAM` to control who (Principal) can (Allow) or cannot (Deny) do what (Action) on which resource (Resource) and when (Condition).
