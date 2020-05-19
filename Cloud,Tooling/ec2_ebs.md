@@ -5,6 +5,7 @@
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
+- [EBS](#ebs)
 - [Best Practice](#best-practice)
 
 ### Basics
@@ -35,6 +36,11 @@ opening port on http.
 
 The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
+### EBS
+
+It's a 2-step process to use a non-root volume. It needs to be attached to your instance first during instance launch and then mount it from within that instance.
+
+See [Mount your attached ebs volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) for more details.
 
 ### Best Practice
 
