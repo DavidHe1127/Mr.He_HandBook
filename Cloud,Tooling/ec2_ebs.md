@@ -1,14 +1,14 @@
 ## EC2
 
-- [Basics](#basics)
-  - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
+- [IP and DNS](#ip-and-dns)
+- [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
 - [EBS](#ebs)
 - [Best Practice](#best-practice)
 
-### Basics
+### IP and DNS
 
 `Private/Public DNS` as shown on EC2 panel resolves to private/public ip of an instance.
 i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resolves to private ip `10.156.61.79`.
