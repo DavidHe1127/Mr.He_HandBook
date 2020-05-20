@@ -4,6 +4,7 @@
   - [Scaling Policy](#scaling-policy)
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
+  - [lifecycle hooks](#lifecycle-hooks)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
@@ -38,3 +39,8 @@ Use case scenario: In an ECS application fronted with ALB. ALB health check will
 #### Termination Policy
 
 Use it to control which instances need to be terminated when scale in. i.e `OldestLaunchTemplate` tells ASG to terminate instances launched by the oldest launch template. Useful when phasing out old instances after updates.
+
+#### Lifecycle Hooks
+
+Use it when you need to perform some custom tasks berfore launching/terminating instances in scale out/in respectively.
+
