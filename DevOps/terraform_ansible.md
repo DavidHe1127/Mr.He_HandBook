@@ -118,7 +118,7 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 ### Terraform Notes
 
 - Terraform will query metadata url - http://169.254.169.254:80/latest to find out credentials it needs when you run terraform on an EC2 Instance.
-- Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status.
+- Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status. So `refresh` might update state file but will not change actual infrastructure. `refresh` command can help you detect drift.
 
 ---
 
