@@ -5,7 +5,7 @@
 - [Play with built-in func](#play-with-built-in-func)
 - [Provider Plugins](#provider-plugins)
 - [Terraform vs Ansible](#terraform-vs-ansible)
-- [Credentials](#credentials)
+- [Terraform important notes](#terraform-notes)
 - Notes
   - [Proper escaping](#proper-escaping)
 
@@ -115,9 +115,10 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
 
-### Credentials
+### Notes
 
-Terraform will query metadata url - http://169.254.169.254:80/latest to find out credentials it needs when you run terraform on an EC2 Instance.
+- Terraform will query metadata url - http://169.254.169.254:80/latest to find out credentials it needs when you run terraform on an EC2 Instance.
+- Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status.
 
 ---
 
