@@ -43,4 +43,4 @@ Use it to control which instances need to be terminated when scale in. i.e `Olde
 #### Lifecycle Hooks
 
 Use it when you need to perform some custom tasks berfore launching/terminating instances in scale out/in respectively.
-
+See [this](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) for more details.
