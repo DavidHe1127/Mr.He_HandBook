@@ -5,6 +5,7 @@
 - [Play with built-in func](#play-with-built-in-func)
 - [Provider Plugins](#provider-plugins)
 - [Terraform vs Ansible](#terraform-vs-ansible)
+- [Terraform lifecycle hooks](#terraform-lifecycle-hooks)
 - [Terraform important notes](#terraform-notes)
 - Notes
   - [Proper escaping](#proper-escaping)
@@ -114,6 +115,25 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
+
+### Terraform lifecycle hooks
+
+- `create_before_destroy` useful when trying to have zero service down time.
+- `prevent_destroy` useful to stop terraform proceeding with making changes when it's seeing an attempt to delete a particular resource with this flag on.
+- `ignore_changes` useful when you want terraform to ignore planned changes to specified arguments
+
+```terraform
+resource "aws_instance" "example" {
+  ami           = "ami-656be372"
+  instance_type = "t1.micro"
+
+  lifecycle {
+    ignore_changes = ["ami"]
+    prevent_destroy = true
+  }  
+}
+```
+See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/resources.html#lifecycle)
 
 ### Terraform Notes
 
