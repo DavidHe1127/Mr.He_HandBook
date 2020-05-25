@@ -10,6 +10,7 @@
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
 - Tips
   - [Skip whole build](#skip-whole-build)
+  - [Make pipeline thin](#make-pipeline-thin)
 
 ### Env Var
 
@@ -152,6 +153,32 @@ pipeline {
                 }
             }
         }
+    }
+}
+```
+
+### Make pipeline thin
+
+```groovy
+stage('Prepare') {
+    steps {
+        script {
+            doDeputy('auth')
+        }
+    }
+}
+
+...
+
+def doDeputy(String action) {
+    boolean ifAllowed = env.BUILD_ENVIRONMENT == 'dev' && env.DEPUTY_ENABLED == 'true'
+
+    if (ifAllowed) {
+        if (action == 'auth') {
+            sh './batect deputy-auth'
+        }
+    } else {
+        echo "not good for deputy"
     }
 }
 ```
