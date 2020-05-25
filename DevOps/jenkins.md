@@ -8,9 +8,10 @@
 - [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
-- Tips
+- Code examples
   - [Skip whole build](#skip-whole-build)
   - [Make pipeline thin](#make-pipeline-thin)
+  - [Load a groovy file](#load-groovy-file)
 
 ### Env Var
 
@@ -128,7 +129,7 @@ sh """
 
 ---
 
-## Tips
+## Code examples
 
 ### Skip whole build
 
@@ -179,6 +180,37 @@ def doDeputy(String action) {
         }
     } else {
         echo "not good for deputy"
+    }
+}
+```
+
+### Load groovy file
+
+```groovy
+// func.groovy
+def doDeputy(String action) {
+    // do something
+}
+
+return this
+
+// Jenkinsfile
+def code
+
+node {
+    code = load("func.groovy")
+}
+
+pipeline {
+    agent any
+    stages {
+        stage('build') {
+            steps {
+                script {
+                    code.doDeputy('auth')
+                }
+            }
+        }
     }
 }
 ```
