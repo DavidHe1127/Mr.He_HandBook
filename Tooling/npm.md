@@ -24,7 +24,10 @@ package.json
 
 ```json
 {
-  "config": { "port": 3000 }
+  "config": { "port": 3000 },
+  "scripts": {
+    "start": "pm2 start --name accounts --port $npm_package_config_port index.js"
+  }
 }
 ```
 
