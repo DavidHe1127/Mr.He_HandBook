@@ -14,6 +14,7 @@
 ## Yarn
 
 - [Lock file and dependency update](#lock-file-and-dependency-update)
+- [yarn workspaces](#yarn-workspaces)
 
 ### scripts
 
@@ -100,13 +101,6 @@ Key facts about `package.json` and lockfile.
 - If you run `npm i` with presence of `package.json` and `package-lock.json`, the latter will never be updated, even if the `package.json` would be happy with newer versions.
 - If you manually edit your `package.json` to have different version ranges for a dependency which aren't compatible with your `package-lock.json` then the latter will be updated with version ranges that are compatible with that in `package.json` when run `npm i`. Further runs of `npm i` will follow the above 2.
 
----
-
-### Lock file and dependency update
-
-- If dependencies are manually modified in a `package.json` file, yarn will only update the `yarn.lock` file the next time the yarn CLI is used to install or modify dependencies. So if modifying dependencies in `package.json`, be sure to run `yarn install` to update the `yarn.lock` file.
-- `yarn upgrade` allows to upgrade all the dependencies listed in a package.json to the latest versions specified by the version ranges. Or one can use `yarn upgrade --latest` will update dependencies to the latest version ignoring version range.
-
 ### NPM unpublish
 Packages that are published less than 72 hours can be unpublished. See example below:
 
@@ -118,3 +112,17 @@ Wait a couple of minutes before carrying out unpublish if you are faced this iss
 
 ### NPX
 `npx semantic-release` will first look to find binary file locally before it's trying to pull from remote if local instance not found.
+
+---
+
+### Lock file and dependency update
+
+- If dependencies are manually modified in a `package.json` file, yarn will only update the `yarn.lock` file the next time the yarn CLI is used to install or modify dependencies. So if modifying dependencies in `package.json`, be sure to run `yarn install` to update the `yarn.lock` file.
+- `yarn upgrade` allows to upgrade all the dependencies listed in a package.json to the latest versions specified by the version ranges. Or one can use `yarn upgrade --latest` will update dependencies to the latest version ignoring version range.
+
+### Yarn Workspaces
+
+Use it when:
+
+- Link a local module for testing in place of `yarn link`.
+- Run one root command will run the same command in workspaces. i.e Run `yarn start` at the project root will run the same command in all workspaces.
