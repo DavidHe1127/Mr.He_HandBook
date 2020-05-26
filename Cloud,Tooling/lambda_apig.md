@@ -4,7 +4,7 @@
 - [cold vs warm start](#cold-vs-warm-start)
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
-- [Put lambdas inside a VPC](#put-lambdas-inside-vpc)
+- [Lambda placement](#lambda-placement)
 - [Reusable execution context](#reusable-execution-context)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
@@ -77,7 +77,11 @@ Since it's not easy to search for log messages in CloudWatch Logs, log aggregati
 
 The ultimate solution is use a log aggregator with analytics service. i.e Splunk, Data Dog
 
-### Put lambdas inside vpc
+### Lambda placement
+
+By default, Lambda functions are provisioned in a Service VPC, that is, a VPC managed by AWS over which you have no control. Any Lambda in this VPC would have Internet access, meaning your Lambda code could reach any public endpoint.
+
+On the other hand, you could also place your lambda function within a VPC when there is a demand for your lambda to access resources within your VPC. If you want to do this, then the most important thing to note is lambda function must be placed in private subnets. If you want to access internet resources or interact with other AWS services i.e SNS from Lambda, then you need to have the internet access for which you need to have a NAT Gateway setup for the VPC, where your lambda function resides and have the private subnet point to the NAT Gateway OR setup service VPC endpoints. When lambda functions are placed within public subnet ( with an IGW route), then the lambda function won't work.
 
 Think carefully before putting your lambdas inside a vpc because:
 
@@ -85,6 +89,8 @@ Think carefully before putting your lambdas inside a vpc because:
 - Increased cold start time!
 
 [AWS lambdas in VPC](https://levelup.gitconnected.com/lambda-vpc-cold-starts-a-latency-killer-5408323278dd)
+
+[Lambda VPC networking](https://www.ac3.com.au/resources/putting-vpc-networking-for-lambda-to-the-test)
 
 ### Reusable execution context
 
