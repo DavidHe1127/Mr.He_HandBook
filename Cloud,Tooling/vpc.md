@@ -27,17 +27,25 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 ### Endpoint
 
-VPC Policy explained. Below is a policy for S3 VPC endpoint. It allows all your aws resources within this particular VPC to access all resources under S3. i.e all buckets and objects
+![vpce](./vpce.png)
+
+#### Security Group
+
+It controls the traffic to the endpoint network interface from resources in your VPC.
+
+#### Policy
+
+Policy below allows lambda within your vpc to publish messages to SNS through a private link (vpc endpoint).
 
 ```json
 {
-    "Statement": [
-        {
-            "Action": "*",
-            "Effect": "Allow",
-            "Resource": "*",
-            "Principal": "*"
-        }
-    ]
+  "Statement": [{
+    "Action": ["sns:Publish"],
+    "Effect": "Allow",
+    "Resource": "arn:aws:sns:region:account:topic-name",
+    "Principal": {
+      "Service": "lambda.amazonaws.com"
+    }
+  }]
 }
 ```
