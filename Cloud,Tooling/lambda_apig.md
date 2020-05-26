@@ -92,6 +92,8 @@ Think carefully before putting your lambdas inside a vpc because:
 
 [Lambda VPC networking](https://www.ac3.com.au/resources/putting-vpc-networking-for-lambda-to-the-test)
 
+[Use Service VPCE with your lambda](https://www.alexdebrie.com/posts/aws-lambda-vpc/#set-up-a-vpc-endpoint-for-your-aws-service)
+
 ### Reusable execution context
 
 The execution context is a temporary runtime environment that initializes any external dependencies of your Lambda function.
