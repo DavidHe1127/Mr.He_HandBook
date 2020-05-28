@@ -41,4 +41,4 @@ Alarm status
 06:00 OK to ALARM
 ```
 
-When evaluating `06:00` period, CW will at two previous records `05:50:00: data: {Avg=58.390}` and `05:50:00: data: {Avg=58.390}`. Both of them breaches the threshold as well as `06:00` itself. So it satisfies the condition that 3 consecutive data points breaches the threshold.
+When evaluating `06:00` period, CW will look at two previous records `05:55:00: data: {Avg=57.846}` and `05:50:00: data: {Avg=58.390}`. Both of them breaches the threshold as well as `06:00` itself. So it satisfies the condition that 3 consecutive data points breaches the threshold.
