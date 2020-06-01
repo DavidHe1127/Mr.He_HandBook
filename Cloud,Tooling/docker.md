@@ -70,6 +70,23 @@ Bridge network provides isolations that containers sitting outside the default b
 
 Containers connected to the default bridge network can communicate and it doesn't need port mapping but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
 
+#### expose vs ports
+
+`expose` - The expose tag will let you expose ports without publishing them to the host machine, but they will be exposed to the containers networks. `ports` on the other hand will be mapping the host port with the container port `HOST:CONTAINER`.
+
+compose file
+```
+services
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile-redis
+    expose:
+      - "6379"
+```
+
+
+
 #### What happens when you run a container
 
 The `docker0` Ethernet bridge settings are used every time you create a new container. Docker selects a free IP address from the range available on the bridge each time you `docker run` a new container, and configures the container’s `eth0` interface with that IP address and the bridge’s netmask. The Docker host’s own IP address (randomly picked by docker from the private ip range that's not used on the host machine) on the bridge is used as the default gateway by which each container reaches the rest of the Internet.
