@@ -11,6 +11,7 @@
 - [Rolling update](#rolling-update)
 - [Various roles](#various-roles)
 - [Troubleshooting guide](#troubleshooting-guide)
+- [Dynamic port mapping](#dynamic-port-mapping)
 
 ### Core Concepts
 
@@ -115,6 +116,10 @@ Key notes
 | Task Role           | N/A | Allows to associate fine-grained access control with a single task rather than the underlying instance that host those taks |
 | Service Scheduler Role | AmazonEC2ContainerServiceRole | Grants ECS scheduler permissions to register/deregister container instances with load balancers | ❌ deprecated. Use service-linked role instead
 | Auto-Scaling Role | AmazonEC2ContainerServiceAutoscaleRole | Used for service auto scaling | ❌deprecated. Use service-linked role instead
+
+### Dynamic Port Mapping
+
+![dynamic-port-mapping](./dynamic-port-mapping.png)
 
 ---
 
