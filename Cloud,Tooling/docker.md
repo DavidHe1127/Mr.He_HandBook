@@ -18,6 +18,8 @@
 - Useful commands
   - [Show Dockerfile from an image](#show-dockerfile-from-an-image)
   - [Overwrite ENTRYPOINT at runtime](#overwrite-entrypoint)
+- Posts
+  - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
 ### Architecture
 
