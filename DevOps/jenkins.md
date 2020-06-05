@@ -5,6 +5,7 @@
 - [Reference func in file](#reference-func-in-file)
 - [Conditional build](#conditional-build)
 - [Retrieve branch name](#retrieve-branch-name)
+- [Decrypt concealed credentials](#decrypt-concealed-credentials)
 - [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
@@ -105,7 +106,11 @@ stage('Set Build Name') {
 }
 ```
 
-
+### Decrypt Concealed Credentials
+Go to `https://<JENKINS_SERVER>/script` and run the script below
+```groovy
+println(hudson.util.Secret.fromString("{....}").getPlainText())
+```
 
 ### Best practices
 
