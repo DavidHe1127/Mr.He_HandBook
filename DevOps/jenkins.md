@@ -107,7 +107,7 @@ stage('Set Build Name') {
 ```
 
 ### Decrypt Concealed Credentials
-Go to `https://<JENKINS_SERVER>/script` and run the script below
+Go to `https://<JENKINS_SERVER>/script` and run the script below with your substituted secret.
 ```groovy
 println(hudson.util.Secret.fromString("{....}").getPlainText())
 ```
