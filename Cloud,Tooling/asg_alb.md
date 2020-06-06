@@ -40,6 +40,8 @@ Use case scenario: In an ECS application fronted with ALB. ALB health check will
 
 Use it to control which instances need to be terminated when scale in. i.e `OldestLaunchTemplate` tells ASG to terminate instances launched by the oldest launch template. Useful when phasing out old instances after updates.
 
+**Heads-up**, termination policy will be applied to AZ with most instances first i.e imbalanced AZs before other balance AZs. For example, suppose you have 2 instances in `2a` and 1 instance in `2b`, termination policy will be applied to `2a` first to take one of two instances down. If desired count is 1, then ASG will not look further at `2b` even if you are expected to terminate the one in `2b` during a ami update process.
+
 #### Lifecycle Hooks
 
 Use it when you need to perform some custom tasks berfore launching/terminating instances in scale out/in respectively.
