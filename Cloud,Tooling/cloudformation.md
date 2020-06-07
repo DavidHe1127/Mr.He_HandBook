@@ -9,6 +9,7 @@
 
 ### Basics
 
+- Parameter name - Use Pascal case and begin with an uppercase letter. i.e VPCZoneIdentifier
 - logical ID - i.e MyEC2Instance
 - physical ID - i.e i-28f9ba55 (CF auto generates and assigns to the instance)
 
