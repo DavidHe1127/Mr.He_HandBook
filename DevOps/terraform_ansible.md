@@ -116,6 +116,8 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 - `$ terraform init -plugin-dir=<PLUGINS_BINARY_LOCATION>`
 - Move plugins directory into `.terraform/`
 
+Terraform talks to AWS by using the supplied AWS credentials with the Terraform AWS Provider Plugin, which under the hood utilises the AWS Go SDK.
+
 ### Terraform lifecycle hooks
 
 - `create_before_destroy` useful when trying to have zero service down time.
