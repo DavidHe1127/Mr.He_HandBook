@@ -5,6 +5,7 @@
 - [Serverless](./serverless.md)
 - [NGINX](./nginx.md)
 - AWS
+  - [QuickStart](https://aws-quickstart.github.io/index.html)
   - [CLI](./cli.md)
   - [ELB](./elb.md)
   - [ECS](./ecs.md)
