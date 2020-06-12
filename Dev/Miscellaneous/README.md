@@ -1,11 +1,13 @@
 ## Miscellaneous
 
-* [Traditional Pagination vs Cursor-based Pagination](#traditional-pagination-vs-cursor-based-pagination)
-* [Debounce vs Throttle](#debounce-vs-throttle)
-* [Cross-cutting concerns](#cross-cutting-concerns)
-* [Encoding](./char_encodings.md)
-* [Timestamp](./timestamp.md)
-* [Debugging](./debugging.md)
+- [Traditional Pagination vs Cursor-based Pagination](#traditional-pagination-vs-cursor-based-pagination)
+- [Debounce vs Throttle](#debounce-vs-throttle)
+- [Cross-cutting concerns](#cross-cutting-concerns)
+- [Encoding](./char_encodings.md)
+- [Timestamp](./timestamp.md)
+- [Debugging](./debugging.md)
+- [Memory leak and detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
+
 ## Traditional Pagination VS Cursor-based Pagination
 
 ### Problem with tradtional pagination (ONLY applicable to real time data)
