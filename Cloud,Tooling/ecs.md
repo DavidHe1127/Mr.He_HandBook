@@ -5,6 +5,7 @@
   - [Cluster](#cluster)
   - [Desired Count](#desired-count)
   - [Overview](#overview)
+  - [Networking](#networking)
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
 - [Auto scaling](#asg)
@@ -28,6 +29,19 @@ Desired count of running tasks. Say your task definition defines two containers 
 
 #### Overview
 ![overview](./ecs-overview.png)
+
+#### Networking
+
+- `awsvpc` - Lets you attach an ENI directly to a task. This simplifies network configuration, allowing you to treat each container just like an EC2 instance with full networking features, segmentation, and security controls in the VPC. It provides the below benefits:
+  - Run multiple copies of the container on the same instance using the same container port without needing to do any port mapping or translation, simplifying the application architecture.
+  - Extract higher network performance from your applications as they no longer contend for bandwidth on a shared bridge.
+  - Enforce finer-grained access controls for your containerized applications by associating security group rules for each Amazon ECS task, thus improving the security for your applications.
+
+- `bridge` - Containers on an instance are connected to each other using the `docker0` bridge - see [docker0 diagram](./docker.md#Networking). Containers also use this bridge to communicate with endpoints outside of the instance, using the primary ENI of the instance on which they are running. Containers share and rely on the networking properties of the primary ENI, including the firewall rules (security group subscription) and IP addressing. Given all containers share the same ENI from instance, you cannot address them by IP only but rather IP+Port.
+
+References: 
+- [ECS Networking](https://aws.amazon.com/blogs/compute/introducing-cloud-native-networking-for-ecs-containers/)
+- [ECS awsvpc](https://ufoships.com/docs/extras/ecs-network-mode/)
 
 ---
 
