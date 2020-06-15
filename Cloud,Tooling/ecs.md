@@ -13,6 +13,7 @@
 - [Various roles](#various-roles)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Dynamic port mapping](#dynamic-port-mapping)
+- [Tips and Caveats](#tips-and-caveats)
 
 ### Core Concepts
 
@@ -141,3 +142,9 @@ Key notes
 
 - If container instances failed to register to target group, it's most likely because they all fail health check. So make sure they pass it.
 - If container instances not shown in `Container Instances` tab in `service`, it's most likely due to wrong rules have been setup in security group.
+
+---
+
+### Tips and Caveats
+
+- When using task execution role, it will overwrite EC2 instance role you've defined. Therefore, if you use predefined `AmazonEC2ContainerServiceforEC2Role` as your instance profile role, which gives you permissions to do things like pull images from ECR, you need to make sure task execution role has the same permissions as well.
