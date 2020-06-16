@@ -46,6 +46,19 @@ An EBS snapshot is a backup of a single EBS volume. The EBS snapshot contains al
 
 An AMI image is a backup of an entire EC2 instance. Associated with an AMI image are EBS snapshots. Those EBS snapshots are the backups of the individual EBS volumes attached to the EC2 instance at the time the AMI image was created.
 
+```
+EC2  <-- EBS Volume (Boot) + EBS Volume 
+                           ^
+                           |
+         EBS (only of specific volume)       
+                           ^
+                           |
+         AMI (Combined snapshots of all volumes, AMI snapshot must have boot volume) 
+                           ^
+                           | 
+        Launch a new Instance (same installed softwares and configs, different specs) 
+```
+
 #### Mount backup EBS Volume
 
 It's a 2-step process to use a non-root volume. It needs to be attached to your instance first during instance launch and then mount it from within that instance.
