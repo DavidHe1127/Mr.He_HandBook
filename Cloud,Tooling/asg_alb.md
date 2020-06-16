@@ -5,6 +5,7 @@
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
   - [lifecycle hooks](#lifecycle-hooks)
+  - [Tear down ASG](#tear-down-asg)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
@@ -46,3 +47,7 @@ Use it to control which instances need to be terminated when scale in. i.e `Olde
 
 Use it when you need to perform some custom tasks berfore launching/terminating instances in scale out/in respectively.
 See [this](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) for more details.
+
+#### Tear down ASG
+
+When you delete an Auto Scaling group, its `desired, minimum, and maximum` values are set to 0. As a result, the instances are terminated.
