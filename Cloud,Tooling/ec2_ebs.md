@@ -6,6 +6,8 @@
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
 - [EBS](#ebs)
+    - [Snapshots](#snapshots)
+    - [Use back-up EBS volume](#mount-backup-ebs-volume)
 - [Best Practice](#best-practice)
 
 ### IP and DNS
@@ -37,6 +39,14 @@ opening port on http.
 The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
 ### EBS
+
+#### Snapshots
+
+An EBS snapshot is a backup of a single EBS volume. The EBS snapshot contains all the data stored on the EBS volume at the time the EBS snapshot was created.
+
+An AMI image is a backup of an entire EC2 instance. Associated with an AMI image are EBS snapshots. Those EBS snapshots are the backups of the individual EBS volumes attached to the EC2 instance at the time the AMI image was created.
+
+#### Mount backup EBS Volume
 
 It's a 2-step process to use a non-root volume. It needs to be attached to your instance first during instance launch and then mount it from within that instance.
 
