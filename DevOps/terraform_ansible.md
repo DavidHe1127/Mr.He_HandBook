@@ -141,7 +141,7 @@ See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/res
 
 - Terraform will query metadata url - http://169.254.169.254:80/latest to find out credentials it needs when you run terraform on an EC2 Instance.
 - Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status. So `refresh` might update state file but will not change actual infrastructure. `refresh` command can help you detect drift.
-- Change value in resource `name` field will incur resource replacement!
+- Change value in resource `name` field is likely to incur resource replacement! When an AWS resource's name immutable, change in terraform will cause resource replacement.
 
 ---
 
