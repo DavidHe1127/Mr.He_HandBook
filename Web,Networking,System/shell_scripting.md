@@ -67,4 +67,15 @@ if [[ $STATUS =~ $OK_STATUS_REG ]]
 then
   echo 'matched'
 fi
+
+### check if a var is unset
+
+# if parameter is set, replaced by x
+# has no special meaning and could be replaced with any non-null string. 
+# It is there primarily because just [ -z $parameter ] would also return true if parameter were set to null
+if [ -z ${parameter+x} ]
+then
+  echo 'parameter is unset'
+fi
 ```
+
