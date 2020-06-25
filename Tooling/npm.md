@@ -6,6 +6,7 @@
 - [Scoped Packages](#scoped-packages)
 - [Show pkg latest version](#show-pkg-latest-version)
 - [Cli searching rule](#cli-searching-rule)
+- [Hooks](#hooks)
 - [Proxy](#Proxy)
 - [npm ci and lockfile](#npm-ci-and-lockfile)
 - [Unpublish a published package](#npm-unpublish)
@@ -73,6 +74,19 @@ In a mono repo (managed by lerna) case, `yarn` will look up in the locations as 
 1. `packages/pkgA/node_modules/.bin`
 2. `<projectRoot>/node_modules/.bin`
 3. Global bin folder
+
+### Hooks
+
+custom hooks
+```json
+{
+  "scripts": {
+    "such-custom-script": "echo custom-script",
+    "presuch-custom-script": "echo pre-custom-script",
+    "postsuch-custom-script": "echo post-custom-script"
+  }
+}
+```
 
 ### Proxy
 
