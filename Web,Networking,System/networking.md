@@ -5,11 +5,12 @@
 - [SSH](./ssh.md)
 - [DNS](#dns)
   - [DNS Resolution workflow](#dns-resolution-flow)
+  - [DNS TTL](#dns-ttl)
   - [www domain and naked domain](#www-vs-naked)
   - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [nc(telnet) on Mac](#nc)
 - [Ephemeral Ports](#ephemeral-ports)
-- [CNAME record](#cname)
+- [DNS records](#dns-records)
 - [NAT](#nat)
 - [Network interface and Virtual Network Interface](#network-interface)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
@@ -30,6 +31,13 @@
   - `ABC` is Root(Second-level) Domain aka (SLD)
   - `www` is Subdomain(third-level domain)
   - `http` is the protocol with TLS/SSL
+
+
+### DNS TTL
+
+```
+简单的说，TTL就是一条域名解析记录在DNS服务器中的存留时间。当各地的DNS服务器接受到解析请求时，就会向域名指定的NS服务器发出解析请求从而获得解析记录；在获得这个记录之后，记录会在DNS服务器中保存一段时间，这段时间内如果再接到这个域名的解析请求，DNS服务器将不再向NS服务器发出请求，而是直接返回刚才获得的记录，而这个记录在DNS服务器上保留的时间，就是TTL值
+```
 
 ### www-vs-naked
 
@@ -66,7 +74,9 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 
 `37852` is the randomly-picked port number by your OS for communications. Since it's random, that's why you need to specify ephemeral port range when defining inbound/outbound traffic rules in NACL. i.e in order for your server to respond to connected client (Windows XP Client) on random ports between `1025-5000`, you must have to enable outbound traffic destined for ports `1025-5000`.
 
-### cname
+### dns-records
+
+#### CNAME
 
 | (sub)Domain/Hostname | Record Type | Target/Destination |
 | -------------------- | :---------: | -----------------: |
@@ -78,6 +88,12 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
 
 One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+
+### MX
+
+```
+MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给user@mydomain.com 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上
+```
 
 ### NAT
 
