@@ -9,6 +9,7 @@
   - [Disk space on daemon](#disk-space-on-daemon)
   - [Data persistence](#data-persistence)
   - [Behind a proxy server](#behind-a-proxy-server)
+  - [Dangling images](#dangling-images)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
 - Docker Compose
   - [Networking](#networking)
@@ -86,8 +87,6 @@ services
     expose:
       - "6379"
 ```
-
-
 
 #### What happens when you run a container
 
@@ -192,6 +191,16 @@ Config file can be modified at the runtime. Run these 2 commands below to apply 
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
+
+### Dangling images
+
+Dangling images can be produced
+
+-  Intermediate images (different layers) and can be seen using `docker images -a`. They don’t result into a disk space problem but it is definitely a screen real estate problem (good)
+- When a new image is built due to changes but use the same tag from previous build.
+i.e In your first build, you tag built image as `1.0`. Then you make changes to codebase and build it again using the same tag `1.0`. A new image will be built with different id as a result of new build. However, given it's using the same tag `1.0`, the previous built image will become dangling since Docker takes tag from previous build and attach it to the current one. (bad)
+
+Run `docker image prune -f` to remove them.
 
 ---
 
