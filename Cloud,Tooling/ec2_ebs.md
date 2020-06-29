@@ -8,6 +8,7 @@
 - [EBS](#ebs)
     - [Snapshots](#snapshots)
     - [Use back-up EBS volume](#mount-backup-ebs-volume)
+    - [Block devices infor](#block-devices-infor)
 - [Best Practice](#best-practice)
 
 ### IP and DNS
@@ -64,6 +65,29 @@ EC2  <-- EBS Volume (Boot) + EBS Volume
 It's a 2-step process to use a non-root volume. It needs to be attached to your instance first during instance launch and then mount it from within that instance.
 
 See [Mount your attached ebs volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) for more details.
+
+#### List block devices information
+
+Use `lsblk`. Note, it removes `/dev/` in front of all device names.
+`part` indicate it's a partition.
+
+```shell
+NAME        MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+nvme0n1     259:1    0  20G  0 disk 
+└─nvme0n1p1 259:2    0  20G  0 part /
+nvme1n1     259:0    0  40G  0 disk /home/ec2-user/workspace
+```
+
+We have 2 devices `/dev/nvme0n1` and `/dev/nvme1n1` with `/dev/nvme0n1` mounted as root device (/) and `/dev/nvme1n1` mounted to `/home/ec2-user/workspace`.
+
+Another example
+```shell
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+xvda    202:0    0    8G  0 disk
+-xvda1  202:1    0    8G  0 part /
+xvdf    202:80   0   10G  0 disk
+```
+This shows `/dev/xvdf` is attached but not mounted.
 
 ### Best Practice
 
