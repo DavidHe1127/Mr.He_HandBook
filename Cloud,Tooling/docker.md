@@ -31,9 +31,12 @@ When people say `docker` they typically refer to `docker engine` whose architect
 
 ### Image and Container
 
-Base image is read-only while container layer allows read/write that is where we make changes to container file system. In addition, it's not allowed to modify history image, you can only modify container.
-
 ![image-layers](image-layers.png)
+
+- Base image is read-only while container layer allows read/write
+- Any changes only occur in container layer without touching base image
+- Container layer is added on top when a new container is started
+- Not allowed to change history image
 
 ### dockerfile
 
