@@ -216,7 +216,7 @@ Use `docker system df` to give you an overview of
 
 Header `RECLAIMABLE` means the space docker doesn't need and therefore is able to be given back to host. Note, an image is not reclaimable if it's used by a running or stopped container. It turns into reclaimable resource only if container is removed
 
-[For more information](https://medium.com/better-programming/docker-tips-clean-up-your-local-machine-35f370a01a78)
+For more information, [See this post](https://medium.com/better-programming/docker-tips-clean-up-your-local-machine-35f370a01a78)
 
 
 ---
