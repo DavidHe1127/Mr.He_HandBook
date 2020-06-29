@@ -2,6 +2,7 @@
 
 - Docker
   - [Architecture](#Architecture)
+  - [Image and Container](#image-and-container)
   - [Dockerfile](#dockerfile)
   - [Networking](#Networking)
   - [Caching](#caching)
@@ -27,6 +28,12 @@
 
 When people say `docker` they typically refer to `docker engine` whose architecture is below:
 ![docker-arch](./docker-arch.png)
+
+### Image and Container
+
+Base image is read-only while container layer allows read/write that is where we make changes to container file system. In addition, it's not allowed to modify history image, you can only modify container.
+
+![image-layers](image-layers.png)
 
 ### dockerfile
 
