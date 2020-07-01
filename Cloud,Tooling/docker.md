@@ -12,6 +12,7 @@
   - [Behind a proxy server](#behind-a-proxy-server)
   - [Dangling images](#dangling-images)
   - [Clean-up](#clean-up)
+  - [Docker-in-Docker](#docker-in-docker)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
 - Docker Compose
   - [Networking](#networking)
@@ -241,6 +242,35 @@ Header `RECLAIMABLE` means the space docker doesn't need and therefore is able t
 
 For more information, [See this post](https://medium.com/better-programming/docker-tips-clean-up-your-local-machine-35f370a01a78)
 
+### Docker-in-Docker
+
+Docker-in-docker is useful when considering 2 cases below:
+
+- Continuous Integration (CI) pipeline
+  - In a Jenkins pipeline, the agent may be a Docker container tasked with building or running other Docker containers.
+- Sandboxed Docker environments
+  - Developers that want to play around with Docker containers in a sandboxed environment, isolated from their host environment
+
+Two approaches:
+
+#### Docker-in-Docker
+
+- Running the Docker daemon inside a container, using Docker’s DinD container image
+- Lead to security concerns and hence generally not recommended
+
+#### Docker-out-of-Docker
+
+- Only the Docker CLI runs in a container and connects to the Docker daemon on the host through a socket - When the Docker platform is installed on a host, the Docker daemon listens on the `/var/run/docker.sock` Unix socket by default.
+```shell
+$ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker
+```
+- Containers being created by agent will be on the host machine.
+- Potential naming conflict - agent container builds a container that has the same name as an existing container on the host.
+- port mapping conflict - if the container running the Docker CLI creates a container with a port mapping, the port mapping occurs at the host level, potentially colliding with other port mappings.
+
+#### References:
+- [docker.sock explained](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock/35110344#:~:text=125-,docker.,defaults%20to%20use%20UNIX%20socket.&text=There%20might%20be%20different%20reasons,Docker%20socket%20inside%20a%20container.)
+- [Secure Docker-in-Docker with System Containers](https://blog.nestybox.com/2019/09/14/dind.html)
 
 ---
 
@@ -353,9 +383,4 @@ services:
 $ docker history <IMAGE_ID>
 ```
 
-### Overwrite ENTRYPOINT
-
-```shell
-$ docker run --rm -it --entrypoint /bin/bash terraform:v0.12.6 [flags to pass to cmd specified in entrypoint]
-```
 
