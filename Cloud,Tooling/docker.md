@@ -63,6 +63,19 @@ Docker images are layered. When you build a new image, Docker does this for each
 The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 The CMD specifies arguments that will be fed to the ENTRYPOINT.
 
+Given example docker file below:
+
+```dockerfile
+ENTRYPOINT ["/bin/chamber", "exec", "production", "--"]
+CMD ["/bin/service", "-d"]
+```
+if we run `docker run myservice`, container will be created with below arguments:
+`["/bin/chamber", "exec", "production", "--", "/bin/service", "-d"]`. It looks similar to `/bin/chamber exec production -- /bin/service -d` which is the command container is run on start-up.
+
+We can override `CMD` by doing `docker run myservice /bin/debug`. In this case, command `["/bin/chamber", "exec", "production", "--", "/bin/debug"]` will be executed.
+
+We can also override `ENTRYPOINT` by doing `docker run --entrypoint /bin/logwrap myservice`. In this case, command `["/bin/logwrap", "/bin/service", "-d"]` will be executed.
+
 If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
 
 ### Networking
