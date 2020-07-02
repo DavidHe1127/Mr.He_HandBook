@@ -3,6 +3,7 @@
 - [Logging](#logging)
 - [Datapoint](#datapoint)
 - [Alarm](#alarm)
+- [Subscription Filter](#subscription-filter)
 
 ### Logging
 
@@ -10,7 +11,7 @@
 
 ### Datapoint
 
-A datapoint is the value of a metric for a given metric aggregation period i.e. if you use one minute as an aggregation period for a metric, then there will be one datapoint every minute. With this feature, you can now create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval. 
+A datapoint is the value of a metric for a given metric aggregation period i.e. if you use one minute as an aggregation period for a metric, then there will be one datapoint every minute. With this feature, you can now create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval.
 
 ### Alarm
 
@@ -47,3 +48,17 @@ Alarm status
 ```
 
 When evaluating `06:00` period, CW will look at two previous records `05:55:00: data: {Avg=57.846}` and `05:50:00: data: {Avg=58.390}`. Both of them breaches the threshold as well as `06:00` itself. So it satisfies the condition that 3 consecutive data points breaches the threshold.
+
+### Subscription Filter
+
+With filter pattern, it can control what log events will be sent across to subscriber service like lambda. Below serverless example shows how we can configure log events to be the trigger for subscribing lambda. With filter pattern enabled, log events having `ERROR` and targeting `subscription-filter` log group will be forwarded to the `HelloWorld` lambda.
+
+```yml
+functions:
+  HelloWorld:
+    handler: handler.endpoint
+    events:
+      - cloudwatchLog:
+          logGroup: 'subscription-filter'
+          filter: 'ERROR'
+```
