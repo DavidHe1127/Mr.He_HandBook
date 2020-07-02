@@ -115,8 +115,8 @@ println(hudson.util.Secret.fromString("{....}").getPlainText())
 
 ### Manual Restart
 
-- (jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
-- (jenkins_url)/restart - Forces a restart without waiting for builds to complete.
+- `(jenkins_url)/safeRestart` - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
+- `(jenkins_url)/restart` - Forces a restart without waiting for builds to complete.
 
 ### Best practices
 
