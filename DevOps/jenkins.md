@@ -6,6 +6,7 @@
 - [Conditional build](#conditional-build)
 - [Retrieve branch name](#retrieve-branch-name)
 - [Decrypt concealed credentials](#decrypt-concealed-credentials)
+- [Manual restart](#manual-restart)
 - [Best practices](#best-practices)
 - Read more
   - [Jenkins CheatSheet — Know The Top Best Practices of Jenkins](https://medium.com/edureka/jenkins-cheat-sheet-e0f7e25558a3)
@@ -111,6 +112,11 @@ Go to `https://<JENKINS_SERVER>/script` and run the script below with your subst
 ```groovy
 println(hudson.util.Secret.fromString("{....}").getPlainText())
 ```
+
+### Manual Restart
+
+- (jenkins_url)/safeRestart - Allows all running jobs to complete. New jobs will remain in the queue to run after the restart is complete.
+- (jenkins_url)/restart - Forces a restart without waiting for builds to complete.
 
 ### Best practices
 
