@@ -2,12 +2,17 @@
 
 - [Logging](#logging)
 - [Datapoint](#datapoint)
+- [Event](#event)
 - [Alarm](#alarm)
 - [Subscription Filter](#subscription-filter)
 
 ### Logging
 
 ![logging](./cloudwatch-logs-concepts.png)
+
+### Event
+
+aka EventBridge Event, allows you to react in response to aws events being emitted by AWS services/3rd party services. i.e Add an event message to SQS (target) when a log group (source) is created.
 
 ### Datapoint
 
