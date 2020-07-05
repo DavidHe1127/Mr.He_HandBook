@@ -40,7 +40,7 @@ Desired count of running tasks. Say your task definition defines two containers 
 
 - `bridge` - Containers on an instance are connected to each other using the `docker0` bridge - see [docker0 diagram](./docker.md#Networking). Containers also use this bridge to communicate with endpoints outside of the instance, using the primary ENI of the instance on which they are running. Containers share and rely on the networking properties of the primary ENI, including the firewall rules (security group subscription) and IP addressing. Given all containers share the same ENI from instance, you cannot address them by IP only but rather IP+Port.
 
-References: 
+References:
 - [ECS Networking](https://aws.amazon.com/blogs/compute/introducing-cloud-native-networking-for-ecs-containers/)
 - [ECS awsvpc](https://ufoships.com/docs/extras/ecs-network-mode/)
 
@@ -92,6 +92,8 @@ Example three, a cluster has two active container instances registered: a `c4.4x
 If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and ten tasks are started with this task definition on this cluster (and no other tasks are currently running), a total of `10,240` CPU units and `20,480` MiB of memory are reserved. This is reported to CloudWatch as `55%` CPU reservation and `60%` memory reservation for the cluster.
 
 ![resources reservation](./resources_reservation.png)
+
+#### [CPU Utilization Explained](https://stackoverflow.com/questions/48529434/what-is-the-impact-if-my-service-exceeds-100-service-cpu-utilization)
 
 #### How Scaling works in ECS
 
