@@ -14,6 +14,9 @@
 - [Tools](#tooling)
   - [Dedupe repeating query results - graphql-deduplicator](https://github.com/gajus/graphql-deduplicator)
 
+- Articles
+  - [Advice from a graphql expert](https://www.netlify.com/blog/2020/01/21/advice-from-a-graphql-expert/)
+
 ### Graphql-unfriendly use cases
 
 Weigh up the usage of graphql when dealing with below use cases:
