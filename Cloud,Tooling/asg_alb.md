@@ -6,6 +6,7 @@
   - [Termination Policy](#termination-policy)
   - [lifecycle hooks](#lifecycle-hooks)
   - [Tear down ASG](#tear-down-asg)
+  - [Cooldown period](#cooldown-period)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
@@ -51,3 +52,12 @@ See [this](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks
 #### Tear down ASG
 
 When you delete an Auto Scaling group, its `desired, minimum, and maximum` values are set to 0. As a result, the instances are terminated.
+
+#### Cooldown period
+
+No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch alarms. In an event of scaling out activity, ASG will add a new instance to the group and instance takes 3 mins to come up and become ready to serve traffic. During this period of time, alarm is likely to be triggered again which is causing ASG to add more instances. It's a big waste as we might only need one additional instance but not 2!!!.
+
+Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
+
+
+
