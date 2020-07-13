@@ -6,6 +6,7 @@
 - [Encoding](./char_encodings.md)
 - [Timestamp](./timestamp.md)
 - [Debugging](./debugging.md)
+- [SSR](./ssr.md)
 - [Memory leak and detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
 
 ## Traditional Pagination VS Cursor-based Pagination
