@@ -58,7 +58,7 @@ Next is permission policy:
 
 #### Pass role
 
-It allows users to determine which role (instance profile) needs to assigned to instance when launching a new instance.
+It allows users to determine which role (instance profile) needs to be assigned to instance when launching a new instance.
 
 ```json
 {
