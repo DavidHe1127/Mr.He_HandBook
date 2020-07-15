@@ -1,6 +1,7 @@
 ## IAM
 
 - [Role](#role)
+  - [Pass role](#pass-role)
 - [Policy](#policy)
 - [Reference](#reference)
 
@@ -54,6 +55,30 @@ Next is permission policy:
   ]
 }
 ```
+
+#### Pass role
+
+It allows users to determine which role (instance profile) needs to assigned to instance when launching a new instance.
+
+```json
+{
+   "Version": "2012-10-17",
+   "Statement": [{
+      "Effect":"Allow",
+      "Action":["ec2:*"],
+      "Resource":"*"
+    },
+    {
+      "Effect":"Allow",
+      "Action":"iam:PassRole",
+      "Resource":"arn:aws:iam::123456789012:role/S3Access"
+    }]
+}
+```
+
+Above example means when the user launches an EC2 instance, that user is allowed to associate only the `S3Access` role with the instance. When an application is running in the instances that are launched by this user, that application can perform only the actions that are permitted by whatever is defined in the `S3Access` role.
+
+[pass role](https://aws.amazon.com/blogs/security/granting-permission-to-launch-ec2-instances-with-iam-roles-passrole-permission/)
 
 ### Policy
 
