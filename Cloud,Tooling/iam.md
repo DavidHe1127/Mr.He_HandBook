@@ -2,6 +2,7 @@
 
 - [Role](#role)
   - [Pass role](#pass-role)
+  - [service-linked role](#service-linked-role)
 - [Policy](#policy)
 - [Reference](#reference)
 
@@ -79,6 +80,11 @@ It allows users to determine which role (instance profile) needs to be assigned 
 Above example means when the user launches an EC2 instance, that user is allowed to associate only the `S3Access` role with the instance. When an application is running in the instances that are launched by this user, that application can perform only the actions that are permitted by whatever is defined in the `S3Access` role.
 
 [pass role](https://aws.amazon.com/blogs/security/granting-permission-to-launch-ec2-instances-with-iam-roles-passrole-permission/)
+
+#### Service-linked Role
+
+- Only specific services (trust entities) can assume such role
+- Name cannot be changed
 
 ### Policy
 
