@@ -13,6 +13,7 @@
   - [Redirect app logs to stdout from static files](#log-redirection)
 - [Commands](#commands)
   - [Tee](#tee)
+  - [watch](#watch)
 
 ### tty
 
@@ -225,6 +226,11 @@ command -> tee → stdout
 ...
 $ ls|tee file1.txt
 ```
+#### Watch
 
+Continuously watch a command execution and print result.
 
-
+```shell
+$ watch -n 1 -b "curl https://api.theparrodise.com/weather"
+```
+Call api server every 1 second and `b`eep when a non-zero exit code emits.
