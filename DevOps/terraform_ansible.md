@@ -9,6 +9,8 @@
 - [Terraform important notes](#terraform-notes)
 - Notes
   - [Proper escaping](#proper-escaping)
+- Tricks
+  - [workaround to destroy non-existent resource](#workaround-to-destroy-nonexistent-resource)
 
 ### Terraform vs Ansible
 
@@ -164,6 +166,15 @@ Next, it sees the 3rd backslash and this time, it looks at the next character ag
 
 Considering all interpretations, `\\\"` will become just `\"`.
 
+### Workaround to Destroy nonexistent resource
+
+In case you get stuck when trying to destroy non-existent resource which typically happens if target resource is deleted manually, try the following trick to get out of such situation.
+
+```tf
+terraform state rm 'module.nabx-miniapp.aws_kms_key.kms-key'
+```
+
+This will remove target resource managed by tf in state file. Following this operation, you should now be able to run destroy command again successfully. Note, underlying resource will not be blown up when running `terraform state rm`.
 
 
 
