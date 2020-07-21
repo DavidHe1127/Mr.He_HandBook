@@ -134,7 +134,7 @@ resource "aws_instance" "example" {
   lifecycle {
     ignore_changes = ["ami"]
     prevent_destroy = true
-  }  
+  }
 }
 ```
 See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/resources.html#lifecycle)
@@ -145,6 +145,7 @@ See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/res
 - Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status. So `refresh` might update state file but will not change actual infrastructure. `refresh` command can help you detect drift.
 - Change value in resource `name` field is likely to incur resource replacement! i.e When an AWS resource's name immutable, change in terraform will cause resource replacement.
 - Comment resources out will instruct terraform to tear down provisioned resource. However, deleting the file containing resource lets terraform do nothing as it cannot this change.
+- Terraform defers the read action (data block) until the `apply` phase as thus resource that depends on data block will always be marked as `changed` during tf `plan`.
 
 ---
 
