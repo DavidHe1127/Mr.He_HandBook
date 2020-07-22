@@ -8,7 +8,6 @@
 - [Instance metadata](#instance-metadata)
 - [EBS](#ebs)
     - [Snapshots](#snapshots)
-    - [Use back-up EBS volume](#mount-backup-ebs-volume)
     - [Block devices infor](#block-devices-infor)
 - [Best Practice](#best-practice)
 
@@ -20,6 +19,8 @@ i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resol
 ### Reboot
 
 Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot other than monitoring messages in system log.
+
+One thing to note is after instance reboots, vol other than root one will be unmounted!!! You need to mount it back.
 
 ### Internetwork traffic privacy in AWS VPC
 Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
@@ -65,12 +66,6 @@ EC2  <-- EBS Volume (Boot) + EBS Volume
         Launch a new Instance (same installed softwares and configs, different specs)
 ```
 
-#### Mount backup EBS Volume
-
-It's a 2-step process to use a non-root volume. It needs to be attached to your instance first during instance launch and then mount it from within that instance.
-
-See [Mount your attached ebs volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html) for more details.
-
 #### List block devices information
 
 Use `lsblk`. Note, it removes `/dev/` in front of all device names.
@@ -97,4 +92,3 @@ This shows `/dev/xvdf` is attached but not mounted.
 See more about [mounting](https://gist.github.com/DavidHe1127/7b038d9901ac285af1486f9cc3485ecd)
 
 ### Best Practice
-
