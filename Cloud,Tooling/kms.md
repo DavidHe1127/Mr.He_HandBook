@@ -1,7 +1,7 @@
 ## KMS
 
 - [Key concepts](#key-concepts)
-
+- [Useful write-ups](#useful-write-ups)
 
 ### Key Concepts
 
@@ -14,4 +14,7 @@
 - KMS gives you both plain-text and encrypted key. Encryption is done by a specific CMK - specified in the api call.
 - Use Data Key to encrypt/decrypt application data. i.e objects on s3
 
-See [this](https://security.stackexchange.com/questions/146330/how-to-use-aws-kms-securely) for more details
+
+### Useful write-ups
+
+[how-to-use-aws-kms-securely](https://security.stackexchange.com/questions/146330/how-to-use-aws-kms-securely)

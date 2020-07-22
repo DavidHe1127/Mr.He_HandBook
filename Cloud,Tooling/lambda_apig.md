@@ -9,7 +9,7 @@
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
   - [Share modules/libs](#share-modules/libs)
-- [Lambda/serverless nice write-ups](#lambda-nice-writeups)
+- [Useful write-ups](#useful-writeups)
 
 ### versioning-alias
 
@@ -158,7 +158,7 @@ response = ssm.get_parameter(
 
 ---
 
-### lambda nice writeups
+### Useful write-ups
 
 [All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
 

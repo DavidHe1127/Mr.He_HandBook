@@ -7,25 +7,18 @@
   - [lifecycle hooks](#lifecycle-hooks)
   - [Tear down ASG](#tear-down-asg)
   - [Cooldown period](#cooldown-period)
+  - [Useful write-ups](#useful-write-ups)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
-Instances are registered as targets with a target group. When you plan to use your load balancer with an ASG, you select the target group created from load balancers and
-ASG will auto-scale instances in that selected target group.
-
-[Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 
 #### Scaling Policy
 
-- `Desired Capacity` tells the number of instances auto scaling need to provision
-- `Min/Max Capacity` tells the minimum/maximum number of instances ASG needs to have at any given time
-
-`Scaling Policies` tell auto scaling to change the `Desired Capacity` within the `min/max` boundary.
-
-For example, an Amazon CloudWatch alarm triggered by CPU exceeding a given threshold could be configured to trigger a Scaling Policy. The Scaling Policy could be configured with a rule of Add 1 instance, which would cause the Desired Capacity to increment by 1. (Note: Desired Capacity will always stay within the boundaries of the Min and Max, so a scaling policy might not actually change the Desired Capacity.)
+- Scale in/out within the boundary of Min/Max capacity
+- Desired capacity is subject to change over time but is always between Min/Max capacity range
 
 ### Load Balancer with HA
-Diagram below explains how load balancer distributes traffic to a target group of instances when being configured with 2 AZs/public subnets.
+Diagram below explains how load balancer distributes traffic to a target group of instances when being configured with **2** AZs/public subnets.
 
 ![lb-ha](./lb-vpc-2-tier.png)
 
@@ -60,5 +53,9 @@ No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch ala
 Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
+
+#### Useful write-ups
+
+- [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 
 

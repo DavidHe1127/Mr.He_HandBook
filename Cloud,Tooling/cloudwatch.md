@@ -18,7 +18,9 @@ aka EventBridge Event, allows you to react in response to aws events being emitt
 
 ### Datapoint
 
-A datapoint is the value of a metric for a given metric aggregation period i.e. if you use one minute as an aggregation period for a metric, then there will be one datapoint every minute. With this feature, you can now create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval.
+Represents the value for a metric for a given metric aggregation period. i.e if you use one min as an aggregation period for instance CPU utilization (metric), then there will be one datapoint. And its value can be something like 25%
+
+This feature allows to create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval.
 
 ### Alarm
 
