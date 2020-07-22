@@ -89,5 +89,7 @@ xvdf    202:80   0   10G  0 disk
 ```
 This shows `/dev/xvdf` is attached but not mounted.
 
+See more about [mounting](https://gist.github.com/DavidHe1127/7b038d9901ac285af1486f9cc3485ecd)
+
 ### Best Practice
 
