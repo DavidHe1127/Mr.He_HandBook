@@ -18,7 +18,7 @@ i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resol
 
 ### Reboot
 
-Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot other than monitoring messages in system log.
+Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot.
 
 One thing to note is after instance reboots, vol other than root one will be unmounted!!! You need to mount it back.
 
