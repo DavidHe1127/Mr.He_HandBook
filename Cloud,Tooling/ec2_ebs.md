@@ -1,6 +1,7 @@
 ## EC2
 
 - [IP and DNS](#ip-and-dns)
+- [Reboot](#reboot)
 - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
@@ -15,6 +16,10 @@
 
 `Private/Public DNS` as shown on EC2 panel resolves to private/public ip of an instance.
 i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resolves to private ip `10.156.61.79`.
+
+### Reboot
+
+Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot other than monitoring messages in system log.
 
 ### Internetwork traffic privacy in AWS VPC
 Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
@@ -48,16 +53,16 @@ An EBS snapshot is a backup of a single EBS volume. The EBS snapshot contains al
 An AMI image is a backup of an entire EC2 instance. Associated with an AMI image are EBS snapshots. Those EBS snapshots are the backups of the individual EBS volumes attached to the EC2 instance at the time the AMI image was created.
 
 ```
-EC2  <-- EBS Volume (Boot) + EBS Volume 
+EC2  <-- EBS Volume (Boot) + EBS Volume
                            ^
                            |
-         EBS (only of specific volume)       
+         EBS (only of specific volume)
                            ^
                            |
-         AMI (Combined snapshots of all volumes, AMI snapshot must have boot volume) 
+         AMI (Combined snapshots of all volumes, AMI snapshot must have boot volume)
                            ^
-                           | 
-        Launch a new Instance (same installed softwares and configs, different specs) 
+                           |
+        Launch a new Instance (same installed softwares and configs, different specs)
 ```
 
 #### Mount backup EBS Volume
@@ -73,7 +78,7 @@ Use `lsblk`. Note, it removes `/dev/` in front of all device names.
 
 ```shell
 NAME        MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
-nvme0n1     259:1    0  20G  0 disk 
+nvme0n1     259:1    0  20G  0 disk
 └─nvme0n1p1 259:2    0  20G  0 part /
 nvme1n1     259:0    0  40G  0 disk /home/ec2-user/workspace
 ```
