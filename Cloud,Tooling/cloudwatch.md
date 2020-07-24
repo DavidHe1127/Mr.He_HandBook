@@ -22,6 +22,8 @@ Represents the value for a metric for a given metric aggregation period. i.e if 
 
 This feature allows to create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval.
 
+![datapoint](datapoint.png)
+
 ### Alarm
 
 Define the number of `datapoints` within the `evaluation period` that must be breaching to cause the alarm to go to `ALARM` state.
