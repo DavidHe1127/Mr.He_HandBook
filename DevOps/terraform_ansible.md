@@ -9,6 +9,7 @@
 - [Terraform important notes](#terraform-notes)
 - Notes
   - [Proper escaping](#proper-escaping)
+  - [Variable default value](#variable-default-value)
 - Tricks
   - [workaround to destroy non-existent resource](#workaround-to-destroy-nonexistent-resource)
 
@@ -166,6 +167,15 @@ When it sees the 1st backslash, it will look at the following character to deter
 Next, it sees the 3rd backslash and this time, it looks at the next character again and found `"`. As per escape sequence rule, `\"` will be interpreted to just `"`. In the end, `\"` -> `"`.
 
 Considering all interpretations, `\\\"` will become just `\"`.
+
+### Variable default value
+
+A worth noting caveat in terraform, default value for a variable will only be used when this variable it's not set during operations such as `apply` or `plan`. If it's set, terraform will ignore default value even if it's a falsy value like null!!!
+
+```tf
+terraform apply -var="vpc_name=${VPC_NAME}"
+```
+As explained above, `vpc_name` default value will not be used as it's set in apply.
 
 ### Workaround to Destroy nonexistent resource
 
