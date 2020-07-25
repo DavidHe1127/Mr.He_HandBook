@@ -203,7 +203,7 @@ $ ln -sf /dev/stdout /var/log/nginx/access.log
 ```
 
 ```shell
-# And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
+# And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout` by using `>&`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
 $ CMD > /dev/null 2>&1
 $ 2>/dev/null # redirect STDERR to /dev/null
 $ &>/dev/null # redirect both STDERR and STDOUT to /dev/null (nothing will show up)

@@ -6,6 +6,7 @@
 
 - [Linux](./linux.md)
   - [shell](./shell.md)
+- [How linux works](./how_linux_works_book.md)
 
 ## Miscellaneous
 
