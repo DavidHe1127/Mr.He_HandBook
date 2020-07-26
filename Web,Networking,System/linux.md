@@ -159,7 +159,7 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   ```shell
   $ su bob    # switch to user bob
   $ su        # switch to root user or aka superuser. Keeps your existing env vars
-  $ su -      # Same as above but with settings of your specified user. It's root in this case
+  $ su -      # Same as above but with settings of your specified user. In this case, it's root user's settings
   ```
 
 [Further reading](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used)
