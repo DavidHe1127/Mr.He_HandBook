@@ -328,7 +328,7 @@ Run `docker network ls` to find the desired network and run `docker network insp
 
 **Access docker host from inside the container**
 
-Use special DNS `host.docker.internal` when trying to access services runnong on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
+Use special DNS `host.docker.internal` when trying to access services running on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
 
 ### Mount src to volume
 
