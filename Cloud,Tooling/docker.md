@@ -135,7 +135,7 @@ This DNS server provides name resolution to all of the containers on the custom 
 
 #### DNS resolution process
 
-![dns](./dns.png)
+![dns](./docker-dns.png)
 
 In this example there is a service of two containers called `myservice`. A second service (client) exists on the same network. The client executes two curl operations for `docker.com` and `myservice`. These are the resulting actions:
 
