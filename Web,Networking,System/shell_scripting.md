@@ -71,11 +71,54 @@ fi
 ### check if a var is unset
 
 # if parameter is set, replaced by x
-# has no special meaning and could be replaced with any non-null string. 
+# has no special meaning and could be replaced with any non-null string.
 # It is there primarily because just [ -z $parameter ] would also return true if parameter were set to null (empty string)
+# If parameter contains spaces in between different parts of string, then use [ ! "${#parameter}" == 0 ]
 if [ -z ${parameter+x} ]
 then
   echo 'parameter is unset'
 fi
-```
 
+### named param implementations via using switch/case and while loop
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -d|--deploy) deploy="$2"; shift ;;
+        -u|--uglify) uglify=1 ;;
+        -x|--xx) xx="$2"; shift ;;
+        *) echo "Unknown parameter passed: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+echo "$deploy, $uglify, $xx"
+
+# flow explained
+# $ ./case.sh --deploy yes -u -x files
+# 1st loop - captured by -d|--deploy and assign yes to deploy. Followed by 2 shifts, this will make -u become $1
+# 2nd loop - captured by -u|--uglify and assign 1 to uglify. Given -u flag does not require value so no need to add shift. After required shift, -x becomes $1
+# 3nd loop - captured by -x|--xx and assign files to xx. Followed by 2 shifts, this will make arg length 0 which exits loop
+# ; means irrespective of resulting status code for command before it, always execute command after it.
+
+### switch/case
+
+# note "" around case value is optional
+var=devss
+
+case $var in
+    "test")
+        echo "this is ${var}"
+        ;;
+    "dev")
+        echo "this is ${var}"
+        ;;
+    "sit")
+        echo "this is ${var}"
+        ;;
+    "ppte")
+        echo "this is ${var}"
+        ;;
+    *)
+        echo "no match found"
+        ;;
+esac
+```

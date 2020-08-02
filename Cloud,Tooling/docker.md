@@ -27,7 +27,8 @@
 
 ### Architecture
 
-When people say `docker` they typically refer to `docker engine` whose architecture is below:
+Docker Engine aka Docker Daemon/Docker is architected as follow:
+
 ![docker-arch](./docker-arch.png)
 
 ### Image and Container
@@ -124,6 +125,28 @@ It determines where traffic should go if destination ip does not match any conta
 #### veths
 
 Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
+
+#### DNS
+
+- By default, containers on default `bridge` network has a copy of `/etc/resolv.conf` from host.
+- Containers using `user-defined` network (aka custom network) including bridge, overlay and MACVLAN use Docker's embedded DNS server addressed at `127.0.0.11`.
+This DNS server provides name resolution to all of the containers on the custom network.
+- If containers cannot reach any of the IP addresses you specify - i.e --dns xxx.xxx.xx.xx then it will use Google's public DNS server `8.8.8.8`.
+
+#### DNS resolution process
+
+![dns](./docker-dns.png)
+
+In this example there is a service of two containers called `myservice`. A second service (client) exists on the same network. The client executes two curl operations for `docker.com` and `myservice`. These are the resulting actions:
+
+- DNS queries are initiated by client for `docker.com` and `myservice`.
+- The container's built-in resolver intercepts the DNS queries on `127.0.0.11:53` and sends them to Docker Engine's DNS server.
+- Docker Engine then checks if the DNS query belongs to a container or service on network(s) that the requesting container belongs to. If it does, then Docker Engine looks up the IP address that matches a container or service's name in its key-value store and returns that IP or service Virtual IP (VIP) back to the requester. In this example, `myservice` does exist on the network so internal DNS resolve its name and return associated IP to the client.
+- `docker.com` does not exist as a service name in the `mynet` network and so the request is forwarded to the configured default DNS server.
+
+#### [Between-container communication](https://www.jianshu.com/p/710f4bb5a1a6)
+
+---
 
 ### Caching
 
@@ -305,7 +328,7 @@ Run `docker network ls` to find the desired network and run `docker network insp
 
 **Access docker host from inside the container**
 
-Use special DNS `host.docker.internal` when trying to access services runnong on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
+Use special DNS `host.docker.internal` when trying to access services running on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
 
 ### Mount src to volume
 
