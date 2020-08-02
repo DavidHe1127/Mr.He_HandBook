@@ -22,7 +22,13 @@
   - [Connection Problems](#connection-problem)
   - [HTTPS or HTTP](#https-or-http)
 
-### dns-resolution-flow
+### DNS
+
+2 kinds of DNS servers: recursive DNS servers aka DNS resolver AND authoritative DNS servers aka nameservers.
+
+[DNS explained in detail](https://jvns.ca/blog/how-updating-dns-works/)
+
+#### dns-resolution-flow
 
 - <img src="./dns_resolution_process.png" width="480" height="327">
 - <img src="./ns.png" width="480" height="154">
@@ -33,16 +39,16 @@
   - `www` is Subdomain(third-level domain)
   - `http` is the protocol with TLS/SSL
 
+#### DNS TTL
 
-### DNS TTL
+- 简单的说，TTL就是一条域名解析记录在DNS服务器(aka recursive DNS servers or DNS resolver)中的存留时间。当各地的DNS服务器接受到解析请求时，就会向域名指定的NS服务器发出解析请求从而获得解析记录；在获得这个记录之后，记录会在DNS服务器中保存一段时间，这段时间内如果再接到这个域名的解析请求，DNS服务器将不再向NS服务器发出请求，而是直接返回刚才获得的记录，而这个记录在DNS服务器上保留的时间，就是TTL值.
+- Some recursive DNS servers definitely don’t respect TTLs, even if the major ones like 8.8.8.8 do.
 
->>>简单的说，TTL就是一条域名解析记录在DNS服务器中的存留时间。当各地的DNS服务器接受到解析请求时，就会向域名指定的NS服务器发出解析请求从而获得解析记录；在获得这个记录之后，记录会在DNS服务器中保存一段时间，这段时间内如果再接到这个域名的解析请求，DNS服务器将不再向NS服务器发出请求，而是直接返回刚才获得的记录，而这个记录在DNS服务器上保留的时间，就是TTL值
-
-### www-vs-naked
+#### www-vs-naked
 
 - From SEO point of view, some search engine recognize `www` and `non-www` as two different web sites and this cause to penalize the domain considering website has duplicate contents.
 
-### alias-record-vs-cname-record
+#### alias-record-vs-cname-record
 
 `alias` record is similar to a `CNAME` record, except you can create an alias record both for the `root domain - example.com` and for `subdomains - www.example.com` whereas you can create `CNAME` records only for subdomains.
 
