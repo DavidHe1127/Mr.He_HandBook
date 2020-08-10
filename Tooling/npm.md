@@ -11,6 +11,7 @@
 - [npm ci and lockfile](#npm-ci-and-lockfile)
 - [Unpublish a published package](#npm-unpublish)
 - [npx](#npx)
+- [unsafe-perm](#unsafe-perm)
 
 ## Yarn
 
@@ -144,3 +145,13 @@ Use it when:
 
 - Link a local module for testing in place of `yarn link`.
 - Run one root command will run the same command in workspaces. i.e Run `yarn start` at the project root will run the same command in all workspaces.
+
+### unsafe-perm
+
+npm will not run command as `root` user for security reasons. It will use `nobody` user to run commands even if you specify `root`. However, some operations such as write files to `/root/.node-gyp` would fail as `nodbody` does not have privilege to do it. `--unsafe-perm` comes to the rescue, it will tell `npm` not to switch to use `nobody` and use whatever user that is running the command even though it's `root` user.
+
+```shell
+$ npm config set unsafe-perm true
+# if current user is root then command below will be run as root
+$ npm install -g sonar-scanner@"^3.1.0"  
+```
