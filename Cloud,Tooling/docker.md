@@ -266,6 +266,8 @@ Header `RECLAIMABLE` means the space docker doesn't need and therefore is able t
 
 For more information, [See this post](https://medium.com/better-programming/docker-tips-clean-up-your-local-machine-35f370a01a78)
 
+A bit more about `docker system prune`. In terms of images and containers, it removes **dangling images** and **stopped containers**. However, it **DOES NOT** remove **unused images** - images not referenced by any running/stopped containers. Flag it with `-a` to remove them. But you should be extra careful!!!
+
 ### Docker-in-Docker
 
 Docker-in-docker is useful when considering 2 cases below:
