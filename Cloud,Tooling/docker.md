@@ -38,6 +38,7 @@ Docker Engine aka Docker Daemon/Docker is architected as follow:
 - Base image is read-only while container layer allows read/write
 - Any changes only occur in container layer without touching base image
 - Container layer is added on top when a new container is started
+- One can overwrite pre-baked contents with custom contents by means of volume
 - Not allowed to change history image
 
 ### dockerfile
