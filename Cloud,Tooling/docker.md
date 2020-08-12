@@ -7,11 +7,11 @@
   - [Networking](#Networking)
   - [Caching](#caching)
   - [Security](#security)
-  - [Disk space on daemon](#disk-space-on-daemon)
   - [Data persistence](#data-persistence)
   - [Behind a proxy server](#behind-a-proxy-server)
   - [Dangling images](#dangling-images)
   - [Clean-up](#clean-up)
+    - [docker system prune](#docker-system-prune)
   - [Docker-in-Docker](#docker-in-docker)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
 - Docker Compose
@@ -193,13 +193,6 @@ drwxr-xr-x  1 root root  4096 Dec 31 04:49 .
 
 Use `root` user will pose potential security threats in case your container is hacked. The best way to avoid it is create and use a non-privileged user after you install dependencies.
 
-### Disk space on daemon
-
-```shell
-$ docker system df // to see space usage status
-$ docker system prune // remove build cache, dangling images, stopped containers networks not used by any one container
-```
-
 ### Data Persistence
 
 Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
@@ -265,6 +258,8 @@ Use `docker system df` to give you an overview of
 Header `RECLAIMABLE` means the space docker doesn't need and therefore is able to be given back to host. Note, an image is not reclaimable if it's used by a running or stopped container. It turns into reclaimable resource only if container is removed
 
 For more information, [See this post](https://medium.com/better-programming/docker-tips-clean-up-your-local-machine-35f370a01a78)
+
+#### docker system prune
 
 A bit more about `docker system prune`. In terms of images and containers, it removes **dangling images** and **stopped containers**. However, it **DOES NOT** remove **unused images** - images not referenced by any running/stopped containers. Flag it with `-a` to remove them. But you should be extra careful!!!
 
