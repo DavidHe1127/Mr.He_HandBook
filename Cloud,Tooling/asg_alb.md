@@ -59,6 +59,8 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 
 ![spot-fleet](how-spot-fleet-works.png)
 
+Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
+
 
 #### Useful write-ups
 
