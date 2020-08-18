@@ -7,6 +7,7 @@
   - [lifecycle hooks](#lifecycle-hooks)
   - [Tear down ASG](#tear-down-asg)
   - [Cooldown period](#cooldown-period)
+  - [Spot Fleet](#spot-fleet)
   - [Useful write-ups](#useful-write-ups)
 - [Load balancer with HA](#load-balancer-with-ha)
 
@@ -53,6 +54,13 @@ No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch ala
 Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
+
+#### Spot Fleet
+
+![spot-fleet](how-spot-fleet-works.png)
+
+Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
+
 
 #### Useful write-ups
 
