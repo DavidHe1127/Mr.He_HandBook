@@ -5,6 +5,7 @@
 - [Scaling applications in the cloud](#scaling-applications)
 - [Best practices for Developing a Node server](#best-practice-for-developing-node-server)
 - [Single source of truth](#single-source-of-truth)
+- [Federation Architecture](#federation-architecture)
 
 ### Microsoft Architecture Design Pattern
 
@@ -136,3 +137,7 @@ function filteredProductIds(state, filter) {
 }
 ```
 Use [normalizr](https://github.com/paularmstrong/normalizr)
+
+### Federation Architecture
+
+In software engineering context, a federation architecture means allowing interoperability and information sharing among each autonomous system or application in the whole landscape. A example of this is [Apollo Federation Graphql](https://www.apollographql.com/docs/apollo-server/federation/introduction/)
