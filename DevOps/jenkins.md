@@ -6,6 +6,7 @@
 - [Conditional build](#conditional-build)
 - [Retrieve branch name](#retrieve-branch-name)
 - [Decrypt concealed credentials](#decrypt-concealed-credentials)
+- [Call another build job](#call-another-build-job)
 - [Manual restart](#manual-restart)
 - [Best practices](#best-practices)
 - Read more
@@ -112,6 +113,15 @@ Go to `https://<JENKINS_SERVER>/script` and run the script below with your subst
 ```groovy
 println(hudson.util.Secret.fromString("{....}").getPlainText())
 ```
+
+### Call another build job
+In your Jenkinsfile, you can call another job that's setup as a pipeline project like this
+
+```groovy
+build job: 'myjob/master', parameters: [string(name: 'param1', value:'val1')], wait: false
+```
+
+Although, it works, it's **NOT** recommended as it make your pipeline coupled with another pipeline.
 
 ### Manual Restart
 
