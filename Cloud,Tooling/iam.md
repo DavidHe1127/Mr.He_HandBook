@@ -113,7 +113,7 @@ KeyPolicy:
 
 #### Resource-based Policy vs Identity-based Policy
 
-Resource-based Policy
+Identity-based Policy
 
 - Attached to an IAM user, group, or role.
 - It defines **who** is **allowed/denied** to do **what** on which **resources**.
