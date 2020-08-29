@@ -6,6 +6,8 @@ It outlines different approaches of authenticating applications and their featur
 - [Session(Cookie)](#session)
 - [SSO](#sso)
 - [OAuth2](#oauth2)
+- [SAML](#saml)
+- [SAML vs OAuth](#saml-vs-oauth)
 - [More Readings](#more-readings)
 
 ### JWT
@@ -142,6 +144,23 @@ Read more about [what is SSO and how it works](https://auth0.com/blog/what-is-an
 - In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
 
 ![](./oauth_2.png)
+
+### SAML
+
+Saml is a protocol for authentication. i.e Authenticating a client through IdP that's compatible with SAML so the client can access your application which it does not provide authentication but rather actual services/functionalities.
+
+![saml](saml.png)
+
+### SAML vs OAuth
+
+They are two different security protocols often used to implement SSO. The major difference is OAuth is primarily used for authorization whilst SAML is for authentication.
+
+References
+
+- [OAuth-vs-SAML](https://www.cloudflare.com/learning/access-management/what-is-oauth/)
+- [SAML-vs-OAuth-vs-OPENID](https://juejin.im/post/6844903634094784520)
+- [Use JumpCloud as IDP to authenticate users to access AWS](https://www.youtube.com/watch?v=JlX4pyQBecM)
+- [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)
 
 ---
 

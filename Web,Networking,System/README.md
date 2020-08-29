@@ -18,7 +18,7 @@
 - [Service Worker](#service-worker)
 - [Sockets API](#sockets-api)
 
-## Web
+## Security
 
 - [Auth](./auth.md)
 
