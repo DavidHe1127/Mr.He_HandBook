@@ -29,7 +29,7 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 2 types - Interface Endpoint and Gateway Endpoints
 
-![vpc_endpoints.png]
+![vpce](vpc_endpoints.png)
 ![vpce](./vpce.png)
 
 #### Security Group
