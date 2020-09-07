@@ -6,6 +6,7 @@
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
+- [Bastion Host](#bastion-host)
 - [EBS](#ebs)
     - [Snapshots](#snapshots)
     - [Block devices infor](#block-devices-infor)
@@ -41,6 +42,10 @@ opening port on http.
 - An EC2 Instance cannot be assigned a Role directly, but it can be assigned an Instance Profile which contains a Role.
 - The benefits of using an Instance Profile is that you don't need to manage an `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. Your application no longer needs to worry about how to securely store and access that information.
 - To obtain more information about instance profile, you can grab instance profile name first by using `ec2 describe-instance` command and then feed it to `aws iam get-instance-profile --instance-profile-name <name here>`.
+
+### Bastion Host
+
+[Bastion Host setup walkthrough](https://vaughanj10.github.io/creating-a-bastion-host-for-aws/)
 
 ### Instance metadata
 
