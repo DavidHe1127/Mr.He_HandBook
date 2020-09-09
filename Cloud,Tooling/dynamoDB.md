@@ -5,6 +5,7 @@
 - [Streams](#streams)
 - [Caveats](#caveats)
 - [Design pattern](#design-pattern)
+- [Multi-region architecture](#multi-region-architecture)
 - [Backup](#backup)
 
 ### Partition
@@ -76,3 +77,12 @@ To solve the above concerns, one database per microservice must be designed; it 
 ### Backup
 
 [Backup](https://serverless-stack.com/chapters/backups-in-dynamodb.html)
+
+### Multi-region Architecture
+
+- Use global table which consists of multiple replica tables
+- Global table uses global network backbone that provides lower cost and more consistent cross-region network latency when compared with the public internet
+- Active-active config meaning read/write to all replica tables in all regions
+- DynamoDB automatically propagates these writes to the other replica tables in the AWS Regions you choose
+
+[DynamoDB Global Table](https://aws.amazon.com/blogs/database/how-to-use-amazon-dynamodb-global-tables-to-power-multiregion-architectures/)

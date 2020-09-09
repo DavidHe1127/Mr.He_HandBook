@@ -19,4 +19,6 @@
   - [Cloudfront](./cloudfront.md)
   - [CoudWatch](./cloudwatch.md)
   - [Route53](./route53.md)
+
   - [Security](./security.md)
+  - [Service Continuity](./service_continuity.md)
