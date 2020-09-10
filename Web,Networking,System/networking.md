@@ -17,13 +17,17 @@
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
 - [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
-- [OSI model](#osi-model)
+  - [Load Balancing](#load-balancing)
 - [Server Name Indication](#sni)
 - Tips
   - [Connection Problems](#connection-problem)
   - [HTTPS or HTTP](#https-or-http)
 
 ### OSI
+
+- tcp/udp port is at layer 4 (transport layer)
+- ping(icmp) is at network layer. It does not use port
+- A socket is the combination of IP address plus port
 
 ![](./osi-model.png)
 
@@ -149,11 +153,20 @@ Both setups aim to protect your servers/clients by enforcing security rules (fir
 
 [Read more](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
-### OSI model
+#### Load Balancing
 
-- tcp/udp port is at layer 4 (transport layer)
-- ping(icmp) is at network layer. It does not use port
-- A socket is the combination of IP address plus port
+L7-LB
+  - Implemented as software. Frequent updates
+  - Packets manipulations i.e HTTP HEADERs/logging/SSL termination. they all cause overhead
+  - CA can be installed on it for SSL termination
+  - Sticky session capability
+  
+L4-LB
+  - Little manipulation to packets
+  - Fast
+  - Inability to decode packets. So unable to distinguish between HTTP/HTTPS/FTP
+
+[TCP VS HTTP(S) Load Balancing](https://medium.com/martinomburajr/distributed-computing-tcp-vs-http-s-load-balancing-7b3e9efc6167)
 
 ### SNI
 
