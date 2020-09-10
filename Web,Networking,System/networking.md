@@ -1,6 +1,7 @@
 ## Networking
 
 - [HTTP, SSL/TLS](<./http(s).md>)
+- [OSI](#osi)
 - [Web Caching](./web_caching.md)
 - [SSH](./ssh.md)
 - [DNS](#dns)
@@ -21,6 +22,10 @@
 - Tips
   - [Connection Problems](#connection-problem)
   - [HTTPS or HTTP](#https-or-http)
+
+### OSI
+
+![](./osi-model.png)
 
 ### DNS
 
