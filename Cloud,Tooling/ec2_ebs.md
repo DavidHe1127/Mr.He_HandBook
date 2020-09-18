@@ -7,6 +7,7 @@
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
 - [Bastion Host](#bastion-host)
+- [AMI](#ami)
 - [EBS](#ebs)
     - [Snapshots](#snapshots)
     - [Block devices infor](#block-devices-infor)
@@ -50,6 +51,30 @@ opening port on http.
 ### Instance metadata
 
 The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
+
+### AMI
+
+AMI in one account can be shared with another account by modifying its permissions. If EBS volumes within AMI are encrypted, they can only be shared if encryption is done by Custom CMK NOT AWS managed CMK! Also, make sure you grant proper permissions of encryption CMK to the number of target aws account. This is a required step!
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:DescribeKey",
+                "kms:ReEncrypt*",
+                "kms:CreateGrant",
+                "kms:Decrypt"
+            ],
+            "Resource": [
+                "arn:aws:kms:us-east-1:<111111111111>:key/<key-id of cmkSource>"
+            ]                                                    
+        }
+    ]
+}
+```
 
 ### EBS
 
