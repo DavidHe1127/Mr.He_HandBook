@@ -25,6 +25,8 @@ Since a reboot happens within the EC2 instance hardware, the state of the EC2 in
 
 One thing to note is after instance reboots, vol other than root one will be unmounted!!! You need to mount it back.
 
+[How to mount ebs during boot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
+
 ### Internetwork traffic privacy in AWS VPC
 Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
 opening port on http.
