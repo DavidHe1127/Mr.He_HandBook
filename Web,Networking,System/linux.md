@@ -32,7 +32,6 @@ or, append custom ones
 export PATH=$PATH:/Users/xxx/homebrew/bin/gradle
 ```
 
-
 ### Process
 
 - Application stored in the disk will be loaded into memory when it's running. This process will turn the application into a running process with an id (pid). Also, process has state.
@@ -59,6 +58,16 @@ What's happened when running ls in a shell?
 
 > Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
 > ![](./fork-and-exec.png)
+
+#### ps
+
+Run `ps` without any flags will return only the process running under the logged in user account from the current terminal. A more commonly-used way is to run with `aux`. i.e `ps aux|grep jenkins`.
+
+```
+a = show processes for all users
+u = display the process's user/owner
+x = also show processes not attached to a terminal
+```
 
 ### Signal
 
