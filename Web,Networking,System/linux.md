@@ -14,6 +14,7 @@
 - [Commands](#commands)
   - [Tee](#tee)
   - [watch](#watch)
+  - [Show process listening ports](#show-process-listening-ports)
 
 ### tty
 
@@ -244,3 +245,10 @@ Continuously watch a command execution and print result.
 $ watch -n 1 -b "curl https://api.theparrodise.com/weather"
 ```
 Call api server every 1 second and `b`eep when a non-zero exit code emits.
+
+#### Show process listening ports
+
+```shell
+$ lsof -Pan -p PID -i
+```
+
