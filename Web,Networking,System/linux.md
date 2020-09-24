@@ -14,6 +14,7 @@
 - [Commands](#commands)
   - [Tee](#tee)
   - [watch](#watch)
+  - [dig](dig.md)
   - [Show process listening ports](#show-process-listening-ports)
 
 ### tty
@@ -152,7 +153,7 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   $ sudo node               # run node command as a root user
   $ sudo node -U p782199    # run node command as user p782199
   $ sudo -l -U p782191      # list all this user can do
-  $ sudo su                 # means run the command su as sudo which means as root. Here the system will ask you for your                               
+  $ sudo su                 # means run the command su as sudo which means as root. Here the system will ask you for your
                             # password since you are a sudoer. After you enter your password, you now have root privilege
                             # useful when you need to execute a number of commands as root. As opposed to sudo <command>
   ```
