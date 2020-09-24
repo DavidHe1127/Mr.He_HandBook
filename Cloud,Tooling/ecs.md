@@ -110,6 +110,8 @@ These 2 scaling operations work hand-in-hand to make your ECS service scalable.
 
 An example of this is: Massive workload will cause `CPUUtilisation` to go up and once monitored metric threshold breaches, ECS will add more tasks to deal with more traffic. This could lead to overwhelming needs in `CPUReservations`. When it's incremented, it might trigger the cluster alarm which will in turn bring up more container instances to suffice resources requirements.
 
+**Metrics are collected by ECS agent on each deployed container instance. The metrics are then sent over to CloudWatch**.
+
 #### Desired count, min and max
 
 The ECS service scheduler respects the desired count at all times, but as long as you have active scaling policies and alarms on a service, Service Auto Scaling could change a desired count that was manually set by you.
