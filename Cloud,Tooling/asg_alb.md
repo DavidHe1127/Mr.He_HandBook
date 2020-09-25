@@ -61,6 +61,7 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 
 Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
 
+[Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
 
 #### Useful write-ups
 
