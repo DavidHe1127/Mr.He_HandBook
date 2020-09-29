@@ -26,3 +26,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [nginxconfig.io - generate the best config for your specific use-case](https://github.com/digitalocean/nginxconfig.io)
 - [Graphql Custom Scalars](https://github.com/urigo/graphql-scalars)
 - [Mock.io - generate mocked rest api in your favor](https://www.mocky.io/)
+- [Patch buggy npm modules that you don't own. Alternative to fork](https://www.npmjs.com/package/patch-package)
