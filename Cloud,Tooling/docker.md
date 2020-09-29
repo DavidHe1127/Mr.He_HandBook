@@ -14,6 +14,7 @@
     - [docker system prune](#docker-system-prune)
   - [Docker-in-Docker](#docker-in-docker)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
+  - [Anti-pattern and Best Practices](#anti-pattern-and-best-practices)
 - Docker Compose
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
@@ -21,8 +22,7 @@
   - [Memory and CPU limit](#memory-and-cpu-limit)
 - Useful commands
   - [Show Dockerfile from an image](#show-dockerfile-from-an-image)
-  - [Overwrite ENTRYPOINT at runtime](#overwrite-entrypoint)
-- Posts
+- References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
 ### Architecture
@@ -292,6 +292,36 @@ $ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker
 #### References:
 - [docker.sock explained](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock/35110344#:~:text=125-,docker.,defaults%20to%20use%20UNIX%20socket.&text=There%20might%20be%20different%20reasons,Docker%20socket%20inside%20a%20container.)
 - [Secure Docker-in-Docker with System Containers](https://blog.nestybox.com/2019/09/14/dind.html)
+
+### Anti-pattern and Best Practices
+
+- Tag your image and follow semantic versioning. This will ensure your Dockerfile remains immutable.
+- Run every different service which composes your app in its own container.
+- Use `LABEL` to add as much metadata as possible for better traceability, visibility, and maintainability.
+
+```docerfile
+LABEL vendor=ACME\ Incorporated \
+      com.example.is-beta= \
+      com.example.is-production="" \
+      com.example.version="0.0.1-beta" \
+      com.example.release-date="2015-02-12"
+```
+- Don't tag images as `dev,test,staging and production` as this voids the principle of a single source of truth.
+- By default, Docker containers run as `root`. A Docker container running as `root` has full control of the host system. This is not desirable due to security concerns. Docker containers images that run with non-root add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. You need to do some context switching if leveraging the USER instruction to specify a non-root user, as illustrated in the example below, is required.
+
+```docerfile
+USER 1001
+
+# to switch back to root to perform privileged tasks
+FROM <namespace>/<image>:<tag_version>
+USER root
+```
+- Keep each image as lean as possible. Only include things required. This maximizes performance and minimizes security risks. Consider to use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/).
+- Use twistlock/clair to scan images for security holes.
+- Don't store sensitive data. In case, developers inadvertently push images to public registry.
+- Make sure your containers only write data to volumes. Use `tmpfs` for small temp files.
+- Pin down package version in Dockerfile.
+- Lint your Dockerfile. i.e [hadolint](https://github.com/hadolint/hadolint).
 
 ---
 
