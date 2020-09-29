@@ -310,7 +310,14 @@ LABEL vendor=ACME\ Incorporated \
 - By default, Docker containers run as `root`. A Docker container running as `root` has full control of the host system. This is not desirable due to security concerns. Docker containers images that run with non-root add an extra layer of security and are generally recommended for production environments. However, because they run as a non-root user, privileged tasks are typically off-limits. You need to do some context switching if leveraging the USER instruction to specify a non-root user, as illustrated in the example below, is required.
 
 ```docerfile
-USER 1001
+# -m, --create-home
+# Create the user's home directory if it does not exist
+# -s, --shell SHELL
+# The name of the user's login shell.
+# RUN useradd -ms /bin/bash david
+
+# add user david first as shown in previous step
+USER david
 
 # to switch back to root to perform privileged tasks
 FROM <namespace>/<image>:<tag_version>
