@@ -6,6 +6,7 @@
 - [Signal](#signal)
 - [File](#file)
 - [host file under etc](#host-file-purpose)
+- [Add users](https://www.tecmint.com/add-users-in-linux/)
 - [sudo vs su](#sudo-vs-su)
   - [sudoers file](#sudoers-file)
 - [ssh config file](#ssh-config-file)
