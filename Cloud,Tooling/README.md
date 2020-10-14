@@ -20,6 +20,7 @@
 - [Cloudfront](./cloudfront.md)
 - [CoudWatch](./cloudwatch.md)
 - [Route53](./route53.md)
+- [KMS](./kms.md)
 
 ### AWS Hot Topics
 - [Security](./security.md)
