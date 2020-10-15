@@ -1,4 +1,4 @@
-## CI/CD
+## Concepts
 
 - [Blue & Green](#blue-n-green-deployment)
 - [Canary](#canary-deployment)
