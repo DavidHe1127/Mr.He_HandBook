@@ -10,6 +10,7 @@
   - Use an `Exporter` that is a binary running alongside the application you want to obtain metrics from. The exporter exposes Prometheus metrics, commonly by converting metrics that are exposed in a non-Prometheus format into a format that Prometheus supports.
   - Use `Pushgateway`. Occasionally you will need to monitor components which cannot be scraped. The Prometheus `Pushgateway` allows you to push time series from short-lived service-level batch jobs to an intermediary job which Prometheus can scrape.
 
-
+![prometheus-metrics-scraping](prometheus-metrics-scraping.png)
+![ways-gather-metrics](ways-gather-metrics.png)
 
 
