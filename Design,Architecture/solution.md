@@ -4,7 +4,7 @@
 
 #### Grafana
 
-When Grafana has access to an aggregated data set, it makes it relatively easy to visualize multiple metrics across multiple application stacks on the same screen, in a dashboard that you can save and refer back to often. Prometheus can visualize individual metrics as graphs, but does not have the same flexibility or extendability as Grafana. Prometheus even links to Grafana in its documentation around visualization, as it knows it has limitations.
+When Grafana has access to an aggregated data set, it makes it relatively easy to visualize multiple metrics across multiple application stacks on the same screen, in a dashboard that you can save and refer back to often. Prometheus can visualize individual metrics as graphs, but does not have the same flexibility or extendability as Grafana. Prometheus even links to Grafana in its documentation around visualization, as it knows it has limitations. Kibana has a limitation that it can only use ElasticSearch as data source.
 
 #### Prometheus
 
