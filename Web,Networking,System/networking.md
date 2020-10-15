@@ -190,7 +190,7 @@ Specifically, SNI includes the hostname in the Client Hello message, or the very
 ### Connection Problem
 
 - `connection timeout` port not opened or blocked by firewall
-- `connection refused` port is reachable but service is down/not listening on that port
+- `connection refused` port is reachable (open) but service is down/not listening on that port
 
 ```shell
 # will list what services listening on which port
