@@ -15,11 +15,12 @@
 - [Makefile](#makefile)
 - [HereDoc](#heredoc)
 - [Parameter Expansion](#parameter-expansion)
-- Tips
+- Tips/Notes
   - [Run command in history](#run-command-in-history)
   - [Define and use Variables](#define-n-use-variables)
   - [Show real installation location of a binary](#show-real-installation-location-of-binary)
   - [Safeguard shell scripts](#safeguard-shell-scripts)
+  - [Alias](#alias)
 - [Scripting](./shell_scripting.md)
 
 ### what is shell
@@ -388,4 +389,8 @@ set -euxo pipefail
 # treat unset variables as an error and exit immediately. i.e echo "$undefined". Note it's smart enough to not exit when it is seeing undefined variable in a parameter expansion. i.e RESULT=${UNDEFINED:-$DEFAULT}
 ```
 [Safer bash scripts with 'set -euxo pipefail'](https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/)
+
+### Alias
+
+`alias` command will only work for that specific instance of the shell meaning once shell exits, effect will disappear.
 
