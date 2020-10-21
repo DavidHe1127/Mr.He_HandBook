@@ -15,10 +15,6 @@
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
 
-### Client certificate
-
-Server requests clients to prove they are who they claim to be by asking for a client cert. The process is the same to server authentication but happens in a reverse way.
-
 ### How SSL works
 
 `SSL/TLS` connection enforces data encryption during transmission over the network:
@@ -30,6 +26,10 @@ Server requests clients to prove they are who they claim to be by asking for a c
 5. `Server` and `Browser` now encrypt all transmitted data with the session key - (symmetric encryption).
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
+
+### Client certificate
+
+Server requests clients to prove they are who they claim to be by asking for a client cert. The process is the same to server authentication but happens in a reverse way.
 
 ### Ssl cert with Let's encrypt
 
