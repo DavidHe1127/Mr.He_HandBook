@@ -1,10 +1,23 @@
 ## HTTP, HTTP(S) with SSL/TLS
 
 - [How SSL works](#how-ssl-works)
-- [Redirection](#redirection)
 - [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
-- [HTTP/2](#http/2)
 - [CA](#ca)
+
+- [HTTP/2](#http/2)
+- [Redirection](#redirection)
+
+### Key points
+
+- Key pair is used to encrypt/decrypt data (session key) in HTTPS context
+- Certificate verifies that an entity is the owner of a particular public key
+- Private key stays with owner while public key can be distributed
+- Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
+- Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
+
+### Client certificate
+
+Server requests clients to prove they are who they claim to be by asking for a client cert. The process is the same to server authentication but happens in a reverse way.
 
 ### How SSL works
 
@@ -14,20 +27,9 @@
 2. `Server` sends a copy of its `SSL Certificate`, including the `Server's` public key.
 3. `Browser` checks the certificate root against a list of trusted CAs (comes with Browsers) and that the certificate is unexpired, unrevoked and that its common name is valid for the website that it is connecting to. If the `Browser` trusts the certificate, it creates, encrypts and sends back a symmetric session key using the `Server's` public key.
 4. `Server` decrypts the symmetric session key using its private key and sends back an acknowledgement encrypted with the session key to start the encrypted session.
-5. `Server` and `Browser` now encrypt all transmitted data with the session key.
+5. `Server` and `Browser` now encrypt all transmitted data with the session key - (symmetric encryption).
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
-
-### Redirection
-
-`302` - tells the browsers to not cache new url at all unless response header specifies `Cache-Control` or `Expires` with particular values. It's aka `temporary redirection`.
-`301` - tells the browsers to cache new url permanently. It's aka `permanent redirection`.
-In case you don't want browser to cache it, modify response headers:
-
-```
-Cache-Control: no-store, no-cache, must-revalidate
-Expires: Thu, 01 Jan 1970 00:00:00 GMT
-```
 
 ### Ssl cert with Let's encrypt
 
@@ -39,6 +41,12 @@ Expires: Thu, 01 Jan 1970 00:00:00 GMT
 Certbot is a very popular agent.
 
 ![How Https work](./how_https_work.png)
+
+### CA
+
+- Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
+- Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
+- CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than obtaining it from CAs.
 
 ---
 
@@ -52,16 +60,13 @@ Certbot is a very popular agent.
     **in any order**.
   - Note, HTTP/1.1 has a concept of `pipelining` which also allows multiple requests to be sent off at once but they need to be returned **in the order they were requested**. This feature is nowhere near as good as HTTP/2 so it is hardly used.
 
-### CA
+### Redirection
 
-- Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
-- Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
-- CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than obtaining it from CAs.
+`302` - tells the browsers to not cache new url at all unless response header specifies `Cache-Control` or `Expires` with particular values. It's aka `temporary redirection`.
+`301` - tells the browsers to cache new url permanently. It's aka `permanent redirection`.
+In case you don't want browser to cache it, modify response headers:
 
-
-
-
-
-
-
-
+```
+Cache-Control: no-store, no-cache, must-revalidate
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+```
