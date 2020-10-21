@@ -7,6 +7,7 @@
 - [Timestamp](./timestamp.md)
 - [Debugging](./debugging.md)
 - [SSR](./ssr.md)
+- [Marshall vs Unmarshall](#marshall-vs-unmarshall)
 - [Memory leak and detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
 
 ## Traditional Pagination VS Cursor-based Pagination
@@ -95,3 +96,7 @@ The response from the server would be:
 
 ### cross-cutting concerns
 ![./cross-cutting-concerns](./cross-cutting-concerns.png)
+
+### marshall-vs-unmarshall
+
+Go's terminology calls `marshal` the process of generating a JSON string from a data structure, and unmarshal the act of parsing JSON string back to a data structur.
