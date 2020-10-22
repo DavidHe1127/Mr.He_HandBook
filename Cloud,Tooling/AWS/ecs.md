@@ -33,8 +33,9 @@ Desired count of running tasks. Say your task definition defines two containers 
 
 #### Networking
 
-- `awsvpc` - Lets you attach an ENI directly to a task. This simplifies network configuration, allowing you to treat each container just like an EC2 instance with full networking features, segmentation, and security controls in the VPC. It provides the below benefits:
+- `awsvpc` - Lets you attach an ENI directly to a task. This simplifies network configuration, allowing you to treat each task just like an EC2 instance with full networking features, segmentation, and security controls in the VPC. It provides the below benefits:
   - Run multiple copies of the container on the same instance using the same container port without needing to do any port mapping or translation, simplifying the application architecture.
+  - Containers that belong to the same task can communicate over the `localhost` interface
   - Extract higher network performance from your applications as they no longer contend for bandwidth on a shared bridge.
   - Enforce finer-grained access controls for your containerized applications by associating security group rules for each Amazon ECS task, thus improving the security for your applications.
 
