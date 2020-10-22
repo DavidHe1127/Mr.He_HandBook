@@ -3,7 +3,7 @@
 - [NAT Gateway](#nat-gateway)
   - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
-- [Endpoint](#endpoint)
+- [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
 
 ### NAT Gateway
@@ -25,21 +25,23 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 - [Use vpc endpoint to save money](https://medium.com/nubego/how-to-save-money-with-aws-vpc-endpoints-9bac8ae1319c)
 
-### Endpoint
+### VPC Endpoint and Endpoint Service
 
-- It allows your services in your VPC to talk to AWS services through their endpoints without the need for traffic to go through public internet. Hence, public ip is not required
-- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly
-available Amazon VPC components that allow communication between instances in an
-Amazon VPC and services without imposing availability risks or bandwidth constraints
-on network traffic
-- It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
+#### VPC Endpoint
 
-![vpce-service](vpce-service.png)
-
-2 types - Interface Endpoint and Gateway Endpoints
+- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
+- Two types - `Interface Endpoint` and `Gateway Endpoint`
+- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic
 
 ![vpce](vpc_endpoints.png)
 ![vpce](./vpce.png)
+
+#### VPC Endpoint Service
+
+- Endpoint service — Your own application in your VPC. Other AWS principals can create a connection from their VPC to your endpoint service
+- It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
+
+![vpce-service](vpce-service.png)
 
 #### Security Group
 
