@@ -23,7 +23,7 @@
 Procedure below describes how s3 uses KMS for data encryption/decryption.
 
 Encryption:
-- S3 requests a plaintext data key and a copy of the key encrypted under the specified CMK.
+- S3 requests a plaintext data key and a copy of the key encrypted by the specified CMK.
 - AWS KMS generates a data key, encrypts it under the CMK, and sends both the plaintext data key and the encrypted data key to S3.
 - S3 encrypts the data using the data key and removes the plaintext key from memory as soon as possible after use.
 - S3 stores the encrypted data key as metadata with the encrypted data.
