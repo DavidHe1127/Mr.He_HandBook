@@ -28,6 +28,10 @@ VPC themselves are free but you need to pay for the services running within it. 
 ### Endpoint
 
 - It allows your services in your VPC to talk to AWS services through their endpoints without the need for traffic to go through public internet. Hence, public ip is not required
+- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly
+available Amazon VPC components that allow communication between instances in an
+Amazon VPC and services without imposing availability risks or bandwidth constraints
+on network traffic
 - It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
 
 ![vpce-service](vpce-service.png)
