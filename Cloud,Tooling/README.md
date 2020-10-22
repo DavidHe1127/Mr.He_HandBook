@@ -1,8 +1,8 @@
 ## System & Cloud
 
-- [Docker](./docker.md)
+- [Docker](Docker)
 - [K8S](./k8s.md)
-- [Serverless](./serverless.md)
+- [Serverless](Serverless)
 - [NGINX](./nginx.md)
 
 ### AWS
