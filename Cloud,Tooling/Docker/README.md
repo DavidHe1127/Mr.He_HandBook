@@ -21,7 +21,7 @@
   - [Communication between containers](#communication-between-containers)
   - [Memory and CPU limit](#memory-and-cpu-limit)
 - Useful commands
-  - [Show Dockerfile from an image](#show-dockerfile-from-an-image)
+  - [Copy assets from image to host](#copy-assets-from-image-to-host)
 - References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
@@ -435,10 +435,16 @@ services:
 
 ---
 
-### Show Dockerfile from an image
+### Copy assets from image to host
 
 ```shell
-$ docker history <IMAGE_ID>
+IMAGE_NAME="something-image"
+
+docker create -it \
+  --name adhoc \
+  "$IMAGE_NAME" \
+  bash
+
+docker cp adhoc:"/opt/platy/apps/lambda" "$(pwd)/build/"
+docker rm -f adhoc
 ```
-
-
