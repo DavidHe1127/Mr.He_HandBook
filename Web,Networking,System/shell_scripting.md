@@ -121,4 +121,8 @@ case $var in
         echo "no match found"
         ;;
 esac
+
+### Temp switch folder context to run a command.
+(cd build && zip -r "../$ZIP_FILE" .)
+
 ```
