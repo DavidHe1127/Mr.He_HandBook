@@ -442,7 +442,6 @@ IMAGE_NAME="something-image"
 
 # The docker create command creates a writeable container layer over the specified image and prepares it for running the specified command. 
 # The container ID is then printed to STDOUT. This is similar to docker run -d except the container is never started. 
-
 docker create -it \
   --name adhoc \
   "$IMAGE_NAME" \
