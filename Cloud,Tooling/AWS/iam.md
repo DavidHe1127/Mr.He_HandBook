@@ -128,4 +128,4 @@ Resource-based Policy
 ### Reference
 
 - [Role Policy in a nutshell](https://start.jcolemorrison.com/aws-iam-policies-in-a-nutshell/)
-
+- [Setup federated SSO AWS using google apps](https://aws.amazon.com/blogs/security/how-to-set-up-federated-single-sign-on-to-aws-using-google-apps/)
