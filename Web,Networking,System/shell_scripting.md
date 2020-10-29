@@ -12,6 +12,9 @@ set +x
 ### Call echo "INTERRUPTED!" as long as program exits - think of it as finally in try/catch. Place it at the top after non-comment line
 trap 'echo "INTERRUPTED!"' EXIT
 
+### Define read-only var. later change to its value will lead to error
+declare -r abc="abc"
+
 ### evaluation & interpolation
 # (command)
 FOO="$(whoami)"
