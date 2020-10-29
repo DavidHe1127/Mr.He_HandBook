@@ -129,7 +129,7 @@ exports.handler = main;
 
 #### Sync
 
-Invoke the func and wait for the response to come back. i.e APIG triggers lambda. Caveat! In case of lambda triggering another service i.e RDS that's not configured to be as scalable as lambda, it can potentially cause connection exhaustion issue on RDS end. i.e `Socket: too many file descriptors are opened`. To get around this, one way is to buffer your client requests using Kinesis Stream.
+Invoke the func and wait for the response to come back. i.e APIG triggers lambda. Caveat! In case of lambda triggering another service i.e RDS that's not configured to be as scalable as lambda, huge workload can potentially cause connection exhaustion issue on RDS end. i.e `Socket: too many file descriptors are opened`. To get around this, one way is to buffer your client requests using Kinesis Stream.
 
 ```
 reqs ---> APIG ---> Kinesis <--- lambda auto-poll-for-events
