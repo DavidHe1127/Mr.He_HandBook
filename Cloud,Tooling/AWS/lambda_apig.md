@@ -6,6 +6,8 @@
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Lambda placement](#lambda-placement)
 - [Reusable execution context](#reusable-execution-context)
+- [Invocation model](#invocation-model)
+- [Error handling](#error-handling)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
   - [Share modules/libs](#share-modules/libs)
@@ -122,6 +124,38 @@ async function main() {
 
 exports.handler = main;
 ```
+
+### Invocation Model
+
+#### Sync
+
+Invoke the func and wait for the response to come back. i.e APIG triggers lambda. Caveat! In case of lambda triggering another service i.e RDS that's not configured to be as scalable as lambda, it can potentially cause connection exhaustion issue on RDS end. i.e `Socket: too many file descriptors are opened`. To get around this, one way is to buffer your client requests using Kinesis Stream.
+
+```
+reqs ---> APIG ---> Kinesis <--- lambda auto-poll-for-events
+```
+
+#### Async
+
+Lambda places the triggering event in a queue and returns a success response without additional information. A separate process reads events from the queue and sends them to your function. i.e S3, SNS, SES trigger lambda
+
+#### Poll-based
+
+Lambda will automatically poll the following services on your behalf, retrieve records, and invoke your functions
+
+- Kinesis Firehose
+- SQS
+- DynamoDB Streams
+
+#### Retry
+
+- Sync offers no retry
+- Async offers 2 retries on first failed attempt. i.e waits `1 min` before 2nd retry and `2 mins` before 3nd retry
+- Poll-based offers a data-expiration-based retry i.e Kinesis Data Streams store record for 24 hours by default. Meaning `24 hours of retry`
+
+### Error Handling
+
+Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY)
 
 ### Use SSM Parameter Store for env-vars
 
