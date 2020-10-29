@@ -88,7 +88,7 @@ Likewise, you will see `This site cannot be reached` when trying to access your 
 - A single ip/port tuple is theoretically allowed to make 64k (1024-65535) socket conns to a particular ip/port on server
 - Each socket conn is a file descriptor. Total number of allowed concurrent socket conns depends on system config. i.e through sysctl
 
-#### Ephemeral Ports
+#### Ephemeral Port
 
 It is a range of ports your clients randomly choose one from for a connection with the server. By using this, client will listen on that port for any traffic coming back from connected servers.
 
