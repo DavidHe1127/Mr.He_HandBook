@@ -9,7 +9,7 @@ set -x
 ### turn off debugging
 set +x
 
-### Call echo "INTERRUPTED!" regardless. Place it at the top after non-comment line
+### Call echo "INTERRUPTED!" as long as program exits - think of it as finally in try/catch. Place it at the top after non-comment line
 trap 'echo "INTERRUPTED!"' EXIT
 
 ### evaluation & interpolation
