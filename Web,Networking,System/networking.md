@@ -11,7 +11,8 @@
   - [Common DNS records overview](#common-dns-records-overview)
   - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [nc(telnet) on Mac](#nc)
-- [Ephemeral Ports](#ephemeral-ports)
+- [TCP Connections](#tcp-connections)
+  - [Ephemeral Port](#ephemeral-port)
 - [DNS records](#dns-records)
 - [NAT](#nat)
 - [Network interface and Virtual Network Interface](#network-interface)
@@ -72,7 +73,7 @@ Note, `CNAME` only points the source domain to the destination domain, which the
 
 Use `nc` as you would with `telnet`:
 
-```js
+```shell
 $ nc -v https://xyz.com 443
 ```
 
@@ -81,7 +82,13 @@ Here are some troubleshooting tips:
 if you receive `Connection refused` as the response, chances are your EC2 instance does not have a web server running.
 Likewise, you will see `This site cannot be reached` when trying to access your EC2 instance from `chrome` via EC2 public ip.
 
-### ephemeral-ports
+### TCP Connections
+
+- A single listening port on server can accept more than one conn simultaneously
+- A single ip/port tuple is theoretically allowed to make 64k (1024-65535) socket conns to a particular ip/port on server
+- Each socket conn is a file descriptor. Total number of allowed concurrent socket conns depends on system config. i.e through sysctl
+
+#### Ephemeral Ports
 
 It is a range of ports your clients randomly choose one from for a connection with the server. By using this, client will listen on that port for any traffic coming back from connected servers.
 
