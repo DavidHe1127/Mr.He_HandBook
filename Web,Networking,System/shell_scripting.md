@@ -3,14 +3,17 @@
 ```sh
 #!/bin/bash
 
-# e - exit immediately if a command exits with a non-zero status
-# x - print commands and their arguments as they are executed
-set -xe
+### x - print commands and their arguments as they are executed
+set -x
 
 ### turn off debugging
 set +x
 
+### Call echo "INTERRUPTED!" regardless. Place it at the top after non-comment line
+trap 'echo "INTERRUPTED!"' EXIT
+
 ### evaluation & interpolation
+# (command)
 FOO="$(whoami)"
 EVAL_FOO="echo Port no. is $FOO not good"
 echo $EVAL_FOO
