@@ -1,4 +1,4 @@
-## DynamoDB key points
+## DynamoDB
 
 - [Primary Key](#primary-key)
 - [Secondary Indexs](#secondary-index)
