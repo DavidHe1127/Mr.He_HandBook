@@ -4,15 +4,15 @@
 - [Reboot](#reboot)
 - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
-- [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
 - [Metrics](#metrics)
+- [Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
 - [EBS](#ebs)
-    - [Snapshots](#snapshots)
-    - [Block devices infor](#block-devices-infor)
-    - [IOPS and throughput](#iops-and-throughput)
+  - [Snapshots](#snapshots)
+  - [Block devices infor](#block-devices-infor)
+  - [IOPS and throughput](#iops-and-throughput)
 - [Best Practice](#best-practice)
 
 ### IP and DNS
@@ -39,13 +39,9 @@ opening port on http.
 - To avoid any charges to `EBS`, make sure have them deleted as well as `snapshots` created from them.
 - `EBS snapshots` are billed at a lower rate than active `EBS volumes` are. So for cost effectiveness, you can create `EBS` snapshots from `EBS` volumes and delete active `EBS` volumes. Later, you can restore the `EBS` volumes from the snapshots when needed.
 
-### Instance Profile
+### Instance Metadata
 
-- An Instance Profile is a container for a single IAM Role.
-- A typical convention is to create an IAM Role and an Instance Profile of the same name for clarity.
-- An EC2 Instance cannot be assigned a Role directly, but it can be assigned an Instance Profile which contains a Role.
-- The benefits of using an Instance Profile is that you don't need to manage an `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`. Your application no longer needs to worry about how to securely store and access that information.
-- To obtain more information about instance profile, you can grab instance profile name first by using `ec2 describe-instance` command and then feed it to `aws iam get-instance-profile --instance-profile-name <name here>`.
+The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
 ### Bastion Host
 
@@ -147,10 +143,3 @@ EBS operations is network-based traffic. Enable EBS optimization for optimal I/O
 Throughput limit - For example, a gp2 volume under 1000 GiB with burst credits available has an IOPS limit of 3,000 and a volume throughput limit of 250 MiB/s. If you are using a 256 KiB I/O size, your volume reaches its throughput limit at 1000 IOPS (1000 x 256 KiB = 250 MiB). For smaller I/O sizes (such as 16 KiB), this same volume can sustain 3,000 IOPS because the throughput is well below 250 MiB/s. (These examples assume that your volume's I/O is not hitting the throughput limits of the instance.)
 
 [EBS IO characteristics](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html)
-
-
-
-
-
-
-

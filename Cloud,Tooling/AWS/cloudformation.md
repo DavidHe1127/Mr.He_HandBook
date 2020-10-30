@@ -6,6 +6,8 @@
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
+- References
+  - [Use !Sub not !Join](https://theburningmonk.com/2019/05/cloudformation-protip-use-fnsub-instead-of-fnjoin/)
 
 ### Basics
 

@@ -3,14 +3,20 @@
 ```sh
 #!/bin/bash
 
-# e - exit immediately if a command exits with a non-zero status
-# x - print commands and their arguments as they are executed
-set -xe
+### x - print commands and their arguments as they are executed
+set -x
 
 ### turn off debugging
 set +x
 
+### Call echo "INTERRUPTED!" as long as program exits - think of it as finally in try/catch. Place it at the top after non-comment line
+trap 'echo "INTERRUPTED!"' EXIT
+
+### Define read-only var. later change to its value will lead to error
+declare -r abc="abc"
+
 ### evaluation & interpolation
+# (command)
 FOO="$(whoami)"
 EVAL_FOO="echo Port no. is $FOO not good"
 echo $EVAL_FOO
@@ -121,4 +127,8 @@ case $var in
         echo "no match found"
         ;;
 esac
+
+### Temp switch folder context to run a command.
+(cd build && zip -r "../$ZIP_FILE" .)
+
 ```
