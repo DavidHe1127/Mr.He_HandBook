@@ -62,7 +62,7 @@ As more events come in, Lambda routes them to available instances and creates ne
 
 Whenever you write to `stdout`, those outputs are captured by the Lambda services and sent to `CloudWatch` Logs as logs.
 
-![cloudwatch-logging-in-lambda](cloudwatch-lambda.png)
+![cloudwatch-logging-in-lambda](lambda-cloudwatch-logs.png)
 
 One log group per function and one log stream for each concurrent invocation. Another entry of log stream will be created when a new instance is created and sends output to `stdout`. This occurs when all concurrent instance(s) are busy with processing requests - see `Concurrency` as above.
 
