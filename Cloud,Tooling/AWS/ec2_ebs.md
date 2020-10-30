@@ -6,6 +6,7 @@
 - [EC2 & EBS cost](#ec2_ebs_cost)
 - [Instance Profile](#instance-profile)
 - [Instance metadata](#instance-metadata)
+- [Metrics](#metrics)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
 - [EBS](#ebs)
@@ -54,6 +55,13 @@ opening port on http.
 
 The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
+### Metrics
+
+Stats on EC2s pulled out by CloudWatch by default. Data is sent every 5 minutes by default, or every minute if detailed monitoring is enabled.
+
+- `CPUUtilization` - Recorded as a percentage value that is the amount of allocated EC2 compute units that are currently in use on the instance.
+
+
 ### AMI
 
 AMI in one account can be shared with another account by modifying its permissions. If EBS volumes within AMI are encrypted, they can only be shared if encryption is done by Custom CMK NOT AWS managed CMK! Also, make sure you grant proper permissions of encryption CMK to the number of target aws account. This is a required step!
@@ -72,7 +80,7 @@ AMI in one account can be shared with another account by modifying its permissio
             ],
             "Resource": [
                 "arn:aws:kms:us-east-1:<111111111111>:key/<key-id of cmkSource>"
-            ]                                                    
+            ]
         }
     ]
 }
