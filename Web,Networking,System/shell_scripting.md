@@ -34,7 +34,7 @@ HTTP_PROXY=
 if [ "$NODE_ENV" == "production" ]; then
   let_us_do_it
 else
-  echo "fuck"
+  echo "yup"
 fi
 
 ### create dir recursively
