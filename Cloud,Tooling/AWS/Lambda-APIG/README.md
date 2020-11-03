@@ -72,6 +72,8 @@ Since it's not easy to search for log messages in CloudWatch Logs, log aggregati
 2. CloudWatch forwards logs to another service (lambda) via subscription
 3. Lambda ships logs to log aggregation service
 
+Note, log group will automatically created as part of lambda creation but it will not be created until lambda is triggered for the very first time.
+
 #### Limitations
 
 - Cannot search across multiple log streams
