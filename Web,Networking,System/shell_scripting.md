@@ -131,4 +131,6 @@ esac
 ### Temp switch folder context to run a command.
 (cd build && zip -r "../$ZIP_FILE" .)
 
+### Compress folder contents excluding folder itself
+cd "build" && zip -r "../compressed" *)
 ```
