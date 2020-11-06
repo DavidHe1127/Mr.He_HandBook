@@ -14,6 +14,7 @@
   - [Block devices infor](#block-devices-infor)
   - [IOPS and throughput](#iops-and-throughput)
 - [AutoScaling](#asg)
+  - [Cooldown](#cooldown)
 
 ### IP and DNS
 
@@ -158,7 +159,7 @@ The scaling policy then acts.
 
 THRESHOLD - add 1 instance when CPUUtilization is between 40% and 50%
 
-NOTE: This is the ONLY Threshold
+NOTE: This is the ONLY Threshold. Plus the main issue with simple scaling is that after a scaling activity is started, the policy must wait for the scaling activity or health check replacement to complete and the cooldown period to expire before responding to additional alarms. While Step/target tracking Scaling policy can continue to react to additional alarms.
 
 #### Step Scaling
 
@@ -176,3 +177,12 @@ NOTE: There are multiple thresholds
 #### Target Tracking:
 
 Set and Forget and you don't want to have to make so many decisions. Makes the experience simple as compared to the previous 2 scaling options. It’s automatic. All you need to do is pick a metric, set the value and that’s it. Auto scaling does the rest adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
+
+#### Cooldown
+
+- Simple Scaling Policy has 300 secs cooldown by default
+- Without cooldown, ASG will continue to add/remove ec2s as per triggering alarm even when an scaling activity is still in progress. i.e ec2 not in `InService` yet.
+- With cooldown, ASG will block scaling activities meaning further scaling request will be dropped until cooldown period is expired. After that, new scaling requests can be processed again.
+- When multiple
+- Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown i.e lesser wait time in scale-in activity. EC2 termination process is faster than launch one so it might not need to wait 5 mins before next ec2 needs to be killed. This leads to faster scale-in experience
+- When multiple instances involved in a single scaling activity, cooldown starts when the last instance finishes launching/terminating. i.e Once 1st instance is launched, cooldown steps in.

@@ -17,6 +17,7 @@
   - [watch](#watch)
   - [dig](dig.md)
   - [Show process listening ports](#show-process-listening-ports)
+  - [Scheduled tmp folder clean-up service](#scheduled-tmp-folder-cleanup)
 
 ### tty
 
@@ -254,3 +255,6 @@ Call api server every 1 second and `b`eep when a non-zero exit code emits.
 $ lsof -Pan -p PID -i
 ```
 
+#### Scheduled tmp Folder Cleanup
+
+Use `systemd-tmpfiles-clean` service for this purpose.

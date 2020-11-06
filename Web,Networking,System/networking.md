@@ -13,6 +13,7 @@
 - [nc(telnet) on Mac](#nc)
 - [TCP Connections](#tcp-connections)
   - [Ephemeral Port](#ephemeral-port)
+  - [TCP Timeout](#tcp-timeout)
 - [DNS records](#dns-records)
 - [NAT](#nat)
 - [Network interface and Virtual Network Interface](#network-interface)
@@ -24,6 +25,10 @@
 - Tips
   - [Connection Problems](#connection-problem)
   - [HTTPS or HTTP](#https-or-http)
+
+- References
+  - [http/tcp/conn-pool](https://developpaper.com/understanding-tcp-http-socket-socket-connection-pool/)
+
 
 ### OSI
 
@@ -84,9 +89,39 @@ Likewise, you will see `This site cannot be reached` when trying to access your 
 
 ### TCP Connections
 
+```
++-------------------------------------------------------+
+|     client           network            server        |
++-----------------+                +--------------------|
+|    (connect)    | ---- SYN ----> |                    |
+|                 | <-- SYN,ACK -- |     (accepted)     |
+|   (connected)   | ---- ACK ----> |                    |
+\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
+
+when client sends...
+\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
+|                 |                |                    |
+|     (send)      | ---- data ---> |                    |
+|                 | <---- ACK ---- |  (data received)   |
+\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
+
+when server sends...
+\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
+|                 |                |                    |
+|                 | <--- data ---- |       (send)       |
+| (data received) | ---- ACK ----> |                    |
+\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/\_/
+```
+
 - A single listening port on server can accept more than one conn simultaneously
 - A single ip/port tuple is theoretically allowed to make 64k (1024-65535) socket conns to a particular ip/port on server
 - Each socket conn is a file descriptor. Total number of allowed concurrent socket conns depends on system config. i.e through sysctl
+
+#### TCP Timeout
+
+TCP is a connection-oriented protocol. That means that, unlike UDP which doesn’t really know or care whether the receiver gets anything, TCP needs to know that the packet was received. It finds out because the receiver sends an Acknowledgement (or ACK) packet. But what happens if the receiver doesn’t send an ACK, or if the ACK gets lost in transit? The session doesn’t know what to do, so the sender re-transmits the packet, and again waits for an ACK. Okay, so what happens if the connection was cut off, and the receiving machine never receives anything, or if there’s some sort of problem and it can’t send the ACK? What happens if the application hangs up? What’s the sending application supposed to do - keep re-transmitting indefinitely?
+
+Enter the `TCP Connection Timeout`. At a certain point, the TCP session is deemed dead, and the session is closed, and no more re-transmissions are sent.
 
 #### Ephemeral Port
 
