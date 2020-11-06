@@ -148,9 +148,7 @@ Throughput limit - For example, a gp2 volume under 1000 GiB with burst credits a
 
 - EC2 is considered to be `unhealthy` if its state is in any state of `stopping`, `stopped`, `terminating`, `terminated` other than `running`.
 
-#### Scaling Polices
-
-Simple Scaling:
+#### Simple Scaling
 
 You pick ANY CW metric i.e `CPUUtilization`. You specify a SINGLE THRESHOLD beyond which you define how you want to scale accordingly.
 
@@ -162,17 +160,19 @@ THRESHOLD - add 1 instance when CPUUtilization is between 40% and 50%
 
 NOTE: This is the ONLY Threshold
 
-Step Scaling:
+#### Step Scaling
 
 You specify MULTIPLE thresholds along with different scaling strategies.
 
+```
 EXAMPLE:
 Threshold A - add 1 instance when CPU Utilization is between 40% and 50%
 Threshold B - add 2 instances when CPU Utilization is between 50% and 70%
 Threshold C - add 3 instances when CPU Utilization is between 70% and 90%
+```
 
 NOTE: There are multiple thresholds
 
-Target Tracking:
+#### Target Tracking:
 
 Set and Forget and you don't want to have to make so many decisions. Makes the experience simple as compared to the previous 2 scaling options. It’s automatic. All you need to do is pick a metric, set the value and that’s it. Auto scaling does the rest adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
