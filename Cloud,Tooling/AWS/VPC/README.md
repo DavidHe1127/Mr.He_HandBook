@@ -27,6 +27,8 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 ### VPC Endpoint and Endpoint Service
 
+Basically, you setup an endpoint in your VPC which will receive vpc traffic and forward them through to either your own `VPCE service` or `AWS VPCE services` through AWS PrivateLink without going through public network.
+
 #### VPC Endpoint
 
 - Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
@@ -35,6 +37,7 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 ![vpce](vpc_endpoints.png)
 ![vpce](./vpce.png)
+![vpce](./vpce.png)
 
 #### VPC Endpoint Service
 
@@ -42,6 +45,10 @@ VPC themselves are free but you need to pay for the services running within it. 
 - It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
 
 ![vpce-service](vpce-service.png)
+
+#### AWS VPC Endpoint services
+
+![aws-vpce-services](aws-vpce-services.png)
 
 #### Security Group
 
