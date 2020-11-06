@@ -37,7 +37,6 @@ Basically, you setup an endpoint in your VPC which will receive vpc traffic and 
 
 ![vpce](vpc_endpoints.png)
 ![vpce](./vpce.png)
-![vpce](./vpce.png)
 
 #### VPC Endpoint Service
 
