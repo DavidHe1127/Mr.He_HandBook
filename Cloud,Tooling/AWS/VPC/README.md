@@ -35,7 +35,6 @@ Basically, you setup an endpoint in your VPC which will receive vpc traffic and 
 - Two types - `Interface Endpoint` and `Gateway Endpoint`
 - VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic
 
-![vpce](vpc_endpoints.png)
 ![vpce](./vpce.png)
 
 #### VPC Endpoint Service
