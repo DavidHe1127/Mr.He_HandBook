@@ -1,3 +1,3 @@
 ## ElasticSearch
 
-![elastic-search-arch](./elastic-search-arch.svg)
+![elastic-search-arch](./elastic-search-arc.svg)
