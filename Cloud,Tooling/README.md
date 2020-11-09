@@ -10,6 +10,7 @@
 - [CLI](AWS/CLI)
 - [ELB](AWS/ELB)
 - [ECS](AWS/ECS)
+- [ElasticSearch](AWS/ElasticSearch)
 - [IAM](AWS/IAM)
 - [EC2 & EBS](AWS/EC2)
 - [VPC](AWS/VPC)
