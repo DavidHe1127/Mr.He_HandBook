@@ -9,6 +9,13 @@ set -x
 ### turn off debugging
 set +x
 
+### $* $# "$@" $0,1
+./command -yes -no /home/username
+# $# = 3
+# $* = -yes -no /home/username
+# $@ = array: {"-yes", "-no", "/home/username"}
+# $0 = ./command, $1 = -yes etc
+
 ### Call echo "INTERRUPTED!" as long as program exits - think of it as finally in try/catch. Place it at the top after non-comment line
 trap 'echo "INTERRUPTED!"' EXIT
 
@@ -133,4 +140,11 @@ esac
 
 ### Compress folder contents excluding folder itself
 cd "build" && zip -r "../compressed" *)
+
+### Run commands in subshell. All vars inside subshell are not visible/accessible from outside and vice versa
+
+(
+  LOCAL_VAR=1
+  echo $LOCAL_VAR
+)
 ```
