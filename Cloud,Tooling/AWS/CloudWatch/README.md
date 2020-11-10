@@ -30,6 +30,36 @@ Define the number of `datapoints` within the `evaluation period` that must be br
 
 `Period` defines the smallest unit of each time period.
 
+`Statistics` are are metric data aggregations over specified periods of time. i.e `Average` CPUUtilization value over a certain period.
+
+```
+aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization \
+--dimensions Name=InstanceId,Value=i-1234567890abcdef0 --statistics Maximum \
+--start-time 2016-10-18T23:18:00 --end-time 2016-10-19T23:18:00 --period 360
+
+{
+  "Datapoints": [
+    {
+      "Timestamp": "2016-10-19T00:18:00Z",
+      "Maximum": 0.33000000000000002,
+      "Unit": "Percent"
+    },
+    {
+      "Timestamp": "2016-10-19T03:18:00Z",
+      "Maximum": 99.670000000000002,
+      "Unit": "Percent"
+    },
+    {
+      "Timestamp": "2016-10-19T07:18:00Z",
+      "Maximum": 0.34000000000000002,
+      "Unit": "Percent"
+    },
+    ...
+  ],
+  "Label": "CPUUtilization"
+}
+```
+
 i.e Given Period being 6 hours, Evaluation Period being 8 and Datapoints being 7, it means when alarm threshold has been hit 7 times during 8 * 6 hours, the alarm state will be changed to `IN ALARM`.
 
 Likewise, given Period being 1 minute, Evaluation Period being 3 and Datapoints being 3, it means when alarm threshold has been reached in 3 consecutive periods during 3 * 1 minutes, the alarm state will be changed to `IN ALARM`.

@@ -157,7 +157,7 @@ Lambda will automatically poll the following services on your behalf, retrieve r
 
 ### Error Handling
 
-Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY)
+Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY). Note DLQ only works for lambda Async invocation model.
 
 ### Use SSM Parameter Store for env-vars
 
