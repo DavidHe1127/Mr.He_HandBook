@@ -61,7 +61,7 @@ function validate_art_creds {
   fi
 }
 
-### string interpolation
+### string interpolation. code yields myliveappserver
 template='my*appserver'
 server='live'
 
@@ -147,4 +147,24 @@ cd "build" && zip -r "../compressed" *)
   LOCAL_VAR=1
   echo $LOCAL_VAR
 )
+
+### replace placeholders with actual values in config using envsubst
+# config.yaml
+steps:
+  - label: "something"
+    timeout: 30
+    branches: "*"
+    env:
+      NGINX_HOST: ${NGINX_HOST}
+      NGINX_PORT: ${NGINX_PORT}
+
+# config source. Ensure source the file if they are in a config file
+export NGINX_PORT=9090
+export NGINX_HOST=dave.com
+
+# print replaced result to tty. Note config.yaml stay intact!
+$ envsubst < config.yaml
+
+# direct replaced result to another file
+$ envsubst < config.yaml > /etc/nginx/conf.d/default.conf
 ```
