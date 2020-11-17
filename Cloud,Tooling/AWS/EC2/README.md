@@ -148,6 +148,7 @@ Throughput limit - For example, a gp2 volume under 1000 GiB with burst credits a
 ### AutoScaling
 
 - EC2 is considered to be `unhealthy` if its state is in any state of `stopping`, `stopped`, `terminating`, `terminated` other than `running`.
+- When each instance is fully configured and passes the Amazon EC2 health checks, it is attached to the Auto Scaling group and it enters the `InService` state. The instance is counted against the desired capacity of the Auto Scaling group.
 
 #### Simple Scaling
 
@@ -183,6 +184,7 @@ Set and Forget and you don't want to have to make so many decisions. Makes the e
 - Simple Scaling Policy has 300 secs cooldown by default
 - Without cooldown, ASG will continue to add/remove ec2s as per triggering alarm even when an scaling activity is still in progress. i.e ec2 not in `InService` yet.
 - With cooldown, ASG will block scaling activities meaning further scaling request will be dropped until cooldown period is expired. After that, new scaling requests can be processed again.
-- When multiple
-- Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown i.e lesser wait time in scale-in activity. EC2 termination process is faster than launch one so it might not need to wait 5 mins before next ec2 needs to be killed. This leads to faster scale-in experience
+- When the instance enters the `InService` state, the cooldown period starts to count. IMPORTANT! User data might not finish executing at this point!!!
+- When multiple:
+Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown. Scaling-specific cooldown is useful. i.e lesser wait time in scale-in activity. EC2 termination process is faster than launch one so it might not need to wait 5 mins before next ec2 needs to be killed. This leads to faster scale-in experience
 - When multiple instances involved in a single scaling activity, cooldown starts when the last instance finishes launching/terminating. i.e Once 1st instance is launched, cooldown steps in.
