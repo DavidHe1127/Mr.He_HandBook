@@ -69,6 +69,7 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 - If there is no healthy instances for ELB to forward traffic to, it will report `5xx` error straight away
 
 ELB used as health check type in ASG
+
 ![asg-elb](asg-elb.svg)
 
 #### Connection Draining
