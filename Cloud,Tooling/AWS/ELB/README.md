@@ -66,7 +66,6 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 - ELB marks an instance `Out of Service` if it fails health check. At this point, ELB will stop sending traffic to it. If ASG is used, it will shut the instance down after health check grace period, replacing it with a new one.
 - `In Service` state exists for ELB as well (besides EC2) - as long as one registered target is considered healthy, ELB enters `InService` state.
 - When an instance is fully configured and passes the Amazon EC2 health checks, it is attached to the ASG and it enters the `InService` state. The instance is counted against the desired capacity of the ASG.
-- If there is no healthy instances for ELB to forward traffic to, it will report `5xx` error straight away
 
 ELB used as health check type in ASG
 
