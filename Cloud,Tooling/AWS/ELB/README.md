@@ -7,6 +7,7 @@
   - [lifecycle hooks](#lifecycle-hooks)
   - [Tear down ASG](#tear-down-asg)
   - [Cooldown period](#cooldown-period)
+  - [Connection Draining](#connection-draining)
   - [Spot Fleet](#spot-fleet)
   - [Useful write-ups](#useful-write-ups)
 - [Load balancer with HA](#load-balancer-with-ha)
@@ -54,6 +55,25 @@ No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch ala
 Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
+
+---
+
+### ELB
+
+#### Key facts
+
+- ELB marks an instance `InService` once it passes health check. ELB sends traffic to instance in `InService` status.
+- ELB marks an instance `Out of Service` if it fails health check. At this point, ELB will stop sending traffic to it. If ASG is used, it will shut the instance down after health check grace period, replacing it with a new one.
+- `In Service` state exists for ELB as well (besides EC2) - as long as one registered target is considered healthy, ELB enters `InService` state.
+- When an instance is fully configured and passes the Amazon EC2 health checks, it is attached to the ASG and it enters the `InService` state. The instance is counted against the desired capacity of the ASG.
+- If there is no healthy instances for ELB to forward traffic to, it will report `5xx` error straight away
+
+ELB used as health check type in ASG
+![asg-elb](asg-elb.svg)
+
+#### Connection Draining
+
+When you enable `Connection Draining` on a load balancer, any back-end instances that you deregister will complete requests that are in progress before deregistration. Likewise, if a back-end instance fails health checks, the load balancer will not send any new requests to the unhealthy instance but will allow existing requests to complete.
 
 #### Spot Fleet
 

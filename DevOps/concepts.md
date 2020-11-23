@@ -2,6 +2,7 @@
 
 - [Blue & Green](#blue-n-green-deployment)
 - [Canary](#canary-deployment)
+- [Parallel Builds/Tests](https://circleci.com/docs/2.0/parallelism-faster-jobs/)
 - [How to Become a DevOps](https://medium.com/@devfire/how-to-become-a-devops-engineer-in-six-months-or-less-part-2-configure-a2dfc11f6f7d)
 
 ### Blue N Green Deployment

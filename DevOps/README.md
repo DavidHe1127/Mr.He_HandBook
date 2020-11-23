@@ -2,5 +2,5 @@
 
 - [Prometheus](./prometheus)
 - [Concepts](./concepts.md)
-- [Jenkins](./jenkins.md)
+- [CI/CD toolings](./cicd-tooling)
 - [Terraform/Ansible](./terraform_ansible.md)

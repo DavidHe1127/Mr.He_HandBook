@@ -5,6 +5,7 @@
 - [Event](#event)
 - [Alarm](#alarm)
 - [Subscription Filter](#subscription-filter)
+- [Notes](#notes)
 
 ### Logging
 
@@ -28,41 +29,60 @@ This feature allows to create a CloudWatch alarm that alerts you when M out of N
 
 Define the number of `datapoints` within the `evaluation period` that must be breaching to cause the alarm to go to `ALARM` state.
 
-`Period` defines the smallest unit of each time period.
-
-`Statistics` are are metric data aggregations over specified periods of time. i.e `Average` CPUUtilization value over a certain period.
-
-```
-aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization \
---dimensions Name=InstanceId,Value=i-1234567890abcdef0 --statistics Maximum \
---start-time 2016-10-18T23:18:00 --end-time 2016-10-19T23:18:00 --period 360
-
-{
-  "Datapoints": [
-    {
-      "Timestamp": "2016-10-19T00:18:00Z",
-      "Maximum": 0.33000000000000002,
-      "Unit": "Percent"
-    },
-    {
-      "Timestamp": "2016-10-19T03:18:00Z",
-      "Maximum": 99.670000000000002,
-      "Unit": "Percent"
-    },
-    {
-      "Timestamp": "2016-10-19T07:18:00Z",
-      "Maximum": 0.34000000000000002,
-      "Unit": "Percent"
-    },
-    ...
-  ],
-  "Label": "CPUUtilization"
-}
-```
+`Period` aka `Aggregation Period` defines the smallest unit of each time period.
 
 i.e Given Period being 6 hours, Evaluation Period being 8 and Datapoints being 7, it means when alarm threshold has been hit 7 times during 8 * 6 hours, the alarm state will be changed to `IN ALARM`.
 
 Likewise, given Period being 1 minute, Evaluation Period being 3 and Datapoints being 3, it means when alarm threshold has been reached in 3 consecutive periods during 3 * 1 minutes, the alarm state will be changed to `IN ALARM`.
+
+`Statistics` are metric data aggregations over specified periods of time. i.e `Average` CPUUtilization value over a certain period.
+
+```
+aws cloudwatch get-metric-statistics \
+  --namespace AWS/EC2 \
+  --metric-name CPUUtilization \
+  --dimensions Name=InstanceId,Value=i-0f5413ccdc642caca \
+  --statistics Average \
+  --start-time 2020-11-8T23:00:00 \
+  --end-time 2020-11-10T23:00:00 \
+  --period 14400
+
+{
+    "Label": "CPUUtilization",
+    "Datapoints": [
+        {
+            "Timestamp": "2020-11-10T11:00:00+00:00",
+            "Average": 44.755102040816325,
+            "Unit": "Percent"
+        },
+        {
+            "Timestamp": "2020-11-09T19:00:00+00:00",
+            "Average": 49.15833333333333,
+            "Unit": "Percent"
+        },
+        {
+            "Timestamp": "2020-11-10T07:00:00+00:00",
+            "Average": 26.691666666666666,
+            "Unit": "Percent"
+        },
+        {
+            "Timestamp": "2020-11-09T15:00:00+00:00",
+            "Average": 54.38157894736842,
+            "Unit": "Percent"
+        },
+        {
+            "Timestamp": "2020-11-10T03:00:00+00:00",
+            "Average": 24.708333333333332,
+            "Unit": "Percent"
+        },
+        {
+            "Timestamp": "2020-11-09T23:00:00+00:00",
+            "Average": 33.645833333333336,
+            "Unit": "Percent"
+        }
+    ]
+}
+```
 
 A practical example below: Alarm is based on average (can also be min/max, see [statistics](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html#Statistic)) CPUUtilisation with a threshold > 45% for 3 data points out of 3 evaluation periods and a period of 300 seconds.
 
@@ -103,3 +123,7 @@ functions:
           logGroup: 'subscription-filter'
           filter: 'ERROR'
 ```
+
+### Notes
+
+- Use `Metrics` to access aggregated data. i.e ELB request counts of all ELBs
