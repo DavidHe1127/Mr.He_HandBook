@@ -2,12 +2,13 @@
 
 - [Basics](#basics)
 - [cross-stack reference](#cross-stack-reference)
-- [Use deploy command](#use-deploy-command)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
-- References
+- Tips
+  - [Use deploy command](#use-deploy-command)
   - [Use !Sub not !Join](https://theburningmonk.com/2019/05/cloudformation-protip-use-fnsub-instead-of-fnjoin/)
+  - [Practical way to debug user data](#debug-user-data)
 
 ### Basics
 
@@ -170,13 +171,13 @@ Reference Stack
 Parameters:
   SourceStackName:
     Type: String
-Resources: 
+Resources:
   mySUBNET:
     Type: 'AWS::EC2::Subnet'
     Properties:
-      VpcId: 
+      VpcId:
         Fn::ImportValue:
-          Fn::Sub: "${SourceStackName}-VpcID" 
+          Fn::Sub: "${SourceStackName}-VpcID"
       ...
 ```
 
@@ -198,17 +199,6 @@ params.json
 ]
 ```
 
-### use-deploy-command
-Use `deploy` over `create-stack` as the former not only does create a new stack but also updates an existing stack (by using a change set). However `create-stack` can only be used when you create a brand new/non-existent resource stack. In essence, `deploy` is a combination of `create-stack` and `update-stack`. 
-
-Change set is a way to inform users of proposed changes they will have when updating a stack. It helps them understand what's going to be changed and discover any unexpected changes adding more confidence to deployment.
-
-```shell
-$ aws cloudformation deploy
-
-$ aws cloudformation create-stack
-```
-
 ### Troubleshooting
 
 **Q**: Error out when deploying lambda through serverless framework `[CREATE_FAILED [AWS::Lambda::Function - YourlambddLambdaFunction]`
@@ -219,6 +209,20 @@ $ aws cloudformation create-stack
 
 **A** If a stack fails to be created for any reasons, cf will execute a rollback to delete all previously created resources. The stack itself remains in a `ROLLBACK_COMPLETE` state to enable users to inspect and debug the problems. It is not possible to retry with this stack again. Users have to delete the stack on their own.
 
+### Tips
 
+#### Use Deploy Command
+Use `deploy` over `create-stack` as the former not only does create a new stack but also updates an existing stack (by using a change set). However `create-stack` can only be used when you create a brand new/non-existent resource stack. In essence, `deploy` is a combination of `create-stack` and `update-stack`.
 
+Change set is a way to inform users of proposed changes they will have when updating a stack. It helps them understand what's going to be changed and discover any unexpected changes adding more confidence to deployment.
 
+```shell
+$ aws cloudformation deploy
+
+$ aws cloudformation create-stack
+```
+
+#### Debug user data
+Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
+
+The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once completes editing, download the updated template and replace current template with downloaded one. Bonus, keep using downloaded file for more editing and upload it to replace current template.

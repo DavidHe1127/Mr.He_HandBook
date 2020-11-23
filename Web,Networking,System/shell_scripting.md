@@ -167,4 +167,15 @@ $ envsubst < config.yaml
 
 # direct replaced result to another file
 $ envsubst < config.yaml > /etc/nginx/conf.d/default.conf
+
+### print current timestamp to stdout
+date +%c" - Not ready yet. Check later in 1s..."
+
+### dedupe slashes in url
+# URL="localhost:80abc/xyz"
+# URL="localhost:80//abc/xyz"
+# URL="localhost:80/abc/xyz"
+
+res=$(echo $URL | sed 's/80\/*/80\//g')
+echo $res # all result in localhost:80/abc/xyz
 ```
