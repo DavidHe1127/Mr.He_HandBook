@@ -226,3 +226,14 @@ $ aws cloudformation create-stack
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
 
 The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once completes editing, download the updated template and replace current template with downloaded one. Bonus, keep using downloaded file for more editing and upload it to replace current template.
+
+When inline editing, ensure to leave blank line between comments and code:
+
+```shell
+
+# this is comment
+
+set +e
+```
+
+Otherwise, code will be merged into comment as so `# this is comment set +e`
