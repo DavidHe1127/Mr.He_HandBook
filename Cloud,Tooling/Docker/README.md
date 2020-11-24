@@ -13,6 +13,7 @@
   - [Clean-up](#clean-up)
     - [docker system prune](#docker-system-prune)
   - [Docker-in-Docker](#docker-in-docker)
+  - [User namespace remapping](#user-namespace-remapping)
   - [Docker cheatsheet](https://www.linode.com/docs/applications/containers/docker-commands-quick-reference-cheat-sheet/)
   - [Anti-pattern and Best Practices](#anti-pattern-and-best-practices)
 - Docker Compose
@@ -293,6 +294,30 @@ $ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker
 - [docker.sock explained](https://stackoverflow.com/questions/35110146/can-anyone-explain-docker-sock/35110344#:~:text=125-,docker.,defaults%20to%20use%20UNIX%20socket.&text=There%20might%20be%20different%20reasons,Docker%20socket%20inside%20a%20container.)
 - [Secure Docker-in-Docker with System Containers](https://blog.nestybox.com/2019/09/14/dind.html)
 
+### User Namespace Remapping
+By default, container is run as `root` which has the same level of access as `root` on host. This is unsecure. While you could specify an unprivileged user to run container, however, some apps are required to be run as `root`. Another downside is artifacts generated onto host via bind mounting are owned by root causing permission issues during cleanup. i.e jenkins is unable to delete them.
+
+Solution is to use user namespace remapping. Basically, it lets you to continue to run app as `root` however, `root` is re-mapped to a less privileged user on host. As a result, files generated on host via mounting is owned by an user with restricted access. This way, files can be deleted by CI/CD agent.
+
+when bootstrapping agent host:
+```shell
+# /etc/docker/daemon.json
+{
+  "userns-remap": "jenkins"
+}
+
+echo 'jenkins:231072:1' >> /etc/subuid
+echo 'jenkins:231073:65536' >> /etc/subuid
+
+echo 'jenkins:231072:1' >> /etc/subgid
+echo 'jenkins:231073:65536' >> /etc/subgid
+```
+
+#### References:
+- [docker uid and gid](https://www.cnblogs.com/sparkdev/p/9614164.html)
+- [docker user namespace isolation](https://www.cnblogs.com/sparkdev/p/9614326.html)
+- [user namespace remapping](https://dreamlab.net/en/blog/post/user-namespace-remapping-an-advanced-feature-to-protect-your-docker-environments/)
+
 ### Anti-pattern and Best Practices
 
 - Tag your image and follow semantic versioning. This will ensure your Dockerfile remains immutable.
@@ -440,8 +465,8 @@ services:
 ```shell
 IMAGE_NAME="something-image"
 
-# The docker create command creates a writeable container layer over the specified image and prepares it for running the specified command. 
-# The container ID is then printed to STDOUT. This is similar to docker run -d except the container is never started. 
+# The docker create command creates a writeable container layer over the specified image and prepares it for running the specified command.
+# The container ID is then printed to STDOUT. This is similar to docker run -d except the container is never started.
 docker create -it \
   --name adhoc \
   "$IMAGE_NAME" \
