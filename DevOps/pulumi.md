@@ -33,3 +33,25 @@ export const provider = new aws.Provider('provider', {
   profile: queueProfile,
 });
 ```
+
+#### Config
+
+Reads stack infor from `Pulumi.xxx.yaml`. Below example shows how you can use it.
+
+```
+// specify stack to use
+pulumi up --stack david-test --non-interactive --yes
+
+// Pulumi.david-test.yaml
+encryptionsalt: v1:B81Mi6D2s7M=:v1:ZTQVujaJ5Lft2r8K:Ni6SJqmKCeqNdcPmPD2fZP4f7JJJ3A==
+config:
+  aws:profile: david-dev
+  aws:region: ap-southeast-2
+
+// get docker-version
+const config = new Config('aws');
+// get profile and throw error if not found
+config.require('profile');
+// get region
+config.get('region');
+```
