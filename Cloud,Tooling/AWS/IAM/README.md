@@ -4,6 +4,7 @@
   - [Pass role](#pass-role)
   - [service-linked role](#service-linked-role)
 - [Policy](#policy)
+- [Federated Users](#federated-users)
 - [Reference](#reference)
 
 ### Role
@@ -124,6 +125,12 @@ Resource-based Policy
 - Attached to a resource.
 - It defines **what** actions is **allowed/denied** on which **resource** by **who** or which **resource**
 - Can have `Principal`.
+
+### Federated Users
+
+External identities are users you manage outside of AWS in your corporate directory, but to whom you grant access to your AWS account using temporary security credentials. They differ from IAM users, which are created and maintained in your AWS account.
+
+Read more around this on [IAM Q&A](https://aws.amazon.com/iam/faqs/)
 
 ### Reference
 

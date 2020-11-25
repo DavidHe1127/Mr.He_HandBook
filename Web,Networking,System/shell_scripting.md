@@ -178,4 +178,12 @@ date +%c" - Not ready yet. Check later in 1s..."
 
 res=$(echo $URL | sed 's/80\/*/80\//g')
 echo $res # all result in localhost:80/abc/xyz
+
+### Use :
+
+# : is just a "do-nothing" place holder. This is useful to prevent program exiting on non-zero return code - i.e set -e
+CODE=$(curl 'http://abc.com/xz' || :)
+
+# reuse CODE
+echo "code is $CODE"
 ```

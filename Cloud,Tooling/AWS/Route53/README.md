@@ -30,10 +30,10 @@ A `SOA` record example - `ns-2048.awsdns-64.net. hostmaster.example.com. 1 7200 
 
 When an user visiting `theparrodise.com` the DNS resolution workflow is described as follow:
 
-1. Browser sends a query to `TLD` for authoritative dns records
+1. Browser sends a query to `TLD` for authoritative DNS server aka NS server records
 2. `TLD` returns NS server record i.e `ns.awsdns.com`
 3. Browser then query NS server
-4. NS server will return `SOA` which contains our dns record information. i.e `A` record
+4. NS server will return `SOA` which includes name server to use to find all records about the domain. i.e A record
 
 ### Private Hosted Zone
 

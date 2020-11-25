@@ -5,10 +5,11 @@
 - [Web Caching](./web_caching.md)
 - [SSH](./ssh.md)
 - [DNS](#dns)
+  - [DNS Zones](#dns-zones)
   - [DNS Resolution workflow](#dns-resolution-flow)
   - [DNS TTL](#dns-ttl)
   - [www domain and naked domain](#www-vs-naked)
-  - [Common DNS records overview](#common-dns-records-overview)
+  - [DNS Zone file](#dns-zone-file)
   - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [nc(telnet) on Mac](#nc)
 - [TCP Connections](#tcp-connections)
@@ -44,7 +45,11 @@
 
 [DNS explained in detail](https://jvns.ca/blog/how-updating-dns-works/)
 
-#### dns-resolution-flow
+#### DNS zones
+
+It is an administrative space within the DNS
+
+#### DNS Resolution Flow
 
 - <img src="./dns_resolution_process.png" width="480" height="327">
 - <img src="./ns.png" width="480" height="154">
@@ -60,7 +65,9 @@
 - 简单的说，TTL就是一条域名解析记录在DNS服务器(aka recursive DNS servers or DNS resolver)中的存留时间。当各地的DNS服务器接受到解析请求时，就会向域名指定的NS服务器发出解析请求从而获得解析记录；在获得这个记录之后，记录会在DNS服务器中保存一段时间，这段时间内如果再接到这个域名的解析请求，DNS服务器将不再向NS服务器发出请求，而是直接返回刚才获得的记录，而这个记录在DNS服务器上保留的时间，就是TTL值.
 - Some recursive DNS servers definitely don’t respect TTLs, even if the major ones like 8.8.8.8 do.
 
-#### Common DNS Records Overview
+#### DNS Zone File
+
+A DNS zone file is a text file stored on a server. It contains all the records for every domain within that zone.
 
 ![dns-records-overview](dns-records-overview.png)
 
