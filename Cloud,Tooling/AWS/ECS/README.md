@@ -15,6 +15,9 @@
 - [Dynamic port mapping](#dynamic-port-mapping)
 - [Tips and Caveats](#tips-and-caveats)
 
+- ECR
+  - [Repo Owner](#repo-owner)
+
 ### Core Concepts
 
 #### Task Definitions
@@ -195,3 +198,9 @@ Key notes
 ### Tips and Caveats
 
 - When using task execution role, it will overwrite EC2 instance role you've defined. Therefore, if you use predefined `AmazonEC2ContainerServiceforEC2Role` as your instance profile role, which gives you permissions to do things like pull images from ECR, you need to make sure task execution role has the same permissions as well.
+
+---
+
+### Repo Owner
+
+When a repo is created through an IAM role, the AWS account owning this role becomes repo owner. This means, all roles under that account will have full access to the repo unless explicitly denied.
