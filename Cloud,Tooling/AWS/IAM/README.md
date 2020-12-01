@@ -5,6 +5,7 @@
   - [service-linked role](#service-linked-role)
 - [Policy](#policy)
 - [Federated Users](#federated-users)
+- [Credentials lookup](#credentials-lookup)
 - [Reference](#reference)
 
 ### Role
@@ -57,6 +58,8 @@ Next is permission policy:
   ]
 }
 ```
+
+For all identities under an account to assume a role, simply specify like this `arn:aws:iam::123456789012:root` in principal field.
 
 #### Pass role
 
@@ -131,6 +134,20 @@ Resource-based Policy
 External identities are users you manage outside of AWS in your corporate directory, but to whom you grant access to your AWS account using temporary security credentials. They differ from IAM users, which are created and maintained in your AWS account.
 
 Read more around this on [IAM Q&A](https://aws.amazon.com/iam/faqs/)
+
+### Credentials lookup
+
+When used in EC2 instances or containers, it instructs SDK/development tool how to find credentials they need to be able to assume a role specified in `role_arn`. i.e
+
+```
+[david-dev]
+credential_source = Ec2InstanceMetadata
+role_arn = arn:aws:iam::123456789012:role/david-admin
+[david-sandbox]
+credential_source = Ec2InstanceMetadata
+role_arn = arn:aws:iam::123456789012:role/david-sandbox
+```
+This uses metadata service to retrieve credentials which will be used to assume `david-admin` role. Use case would be dynamically assign role to a build agent to use as per profile in use.
 
 ### Reference
 
