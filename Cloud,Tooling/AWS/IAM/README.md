@@ -149,6 +149,16 @@ role_arn = arn:aws:iam::123456789012:role/david-sandbox
 ```
 This uses metadata service to retrieve credentials which will be used to assume `david-admin` role. Use case would be dynamically assign role to a build agent to use as per profile in use.
 
+Similarly, you can also get temp credentials through a source profile:
+
+```
+[profile marketingadmin]
+role_arn = arn:aws:iam::123456789012:role/marketingadminrole
+source_profile = user1
+```
+When using `marketingadmin` in CLI, CLI automatically looks up the credentials for the linked `user1` profile and uses them to request temporary credentials for the specified `marketingadminrole`. The CLI uses the `sts:AssumeRole` operation in the background to accomplish this.
+
+
 ### Reference
 
 - [Role Policy in a nutshell](https://start.jcolemorrison.com/aws-iam-policies-in-a-nutshell/)
