@@ -21,8 +21,9 @@
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [Communication between containers](#communication-between-containers)
   - [Memory and CPU limit](#memory-and-cpu-limit)
-- Useful commands
-  - [Copy assets from image to host](#copy-assets-from-image-to-host)
+- Recipes
+  - [Copy assets from container to host](#copy-assets-from-container-to-host)
+  - [Enter stopped containers](#enter-stopped-containers)
 - References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
@@ -460,7 +461,7 @@ services:
 
 ---
 
-### Copy assets from image to host
+### Copy assets from container to host
 
 ```shell
 IMAGE_NAME="something-image"
@@ -475,3 +476,11 @@ docker create -it \
 docker cp adhoc:"/opt/platy/apps/lambda" "$(pwd)/build/"
 docker rm -f adhoc
 ```
+
+### Enter stopped containers
+Create an image from stopped container with **same** state.
+
+```shell
+$ docker commit <CONTAINER_ID> <REPO>/<TAG>
+```
+Then you can run it as you would normally.
