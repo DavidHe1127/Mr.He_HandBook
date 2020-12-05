@@ -1,6 +1,7 @@
 ## Pulumi
 
 - [Key Concepts](#key-concepts)
+- [Facts](#facts)
 
 ### Key Concepts
 
@@ -16,7 +17,7 @@ Typically, a folder that contains `Pulumi.yaml` where you will have definitions 
 
 It enables you to isolate resources to different contexts/environments.
 
-```js
+```javascript
 export const commonProvider = new aws.Provider('dev-ap-southeast-2', {
   region: 'ap-southeast-2',
   profile: 'dev',
@@ -38,7 +39,7 @@ export const provider = new aws.Provider('provider', {
 
 Reads stack infor from `Pulumi.xxx.yaml`. Below example shows how you can use it.
 
-```
+```javascript
 // specify stack to use
 pulumi up --stack david-test --non-interactive --yes
 
@@ -55,3 +56,11 @@ config.require('profile');
 // get region
 config.get('region');
 ```
+
+---
+
+## Facts
+
+- `pulumi login` is used for state management. i.e `pulumi login s3://kasada-pulumi-state-mgmt` lets you sync your stack state to remote s3 bucket.
+- Stacks will be synced back to your configured state management service like s3. i.e `stack ls`will return all stacks managed by s3.
+- Provider plugins will be installed into `.pulumi/plugins` folder upon installing deps like `@pulumi/aws`. In case run into plugin related error, i.e version mismatch simply delete `plugins` folder and reinstall it.
