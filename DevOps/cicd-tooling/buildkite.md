@@ -2,6 +2,7 @@
 
 - [Key facts](#key-facts)
 - [Concurrency](#concurrency)
+- [Metrics to monitor](#metrics)
 
 ### Key Facts
 
@@ -32,3 +33,7 @@ Controls how many of jobs can run at any given time. Example below shows preview
 ```
 
 `concurrency_group` is a global thing that's accessible to all pipelines in your organisation.
+
+### Metrics
+
+[Link](https://github.com/buildkite/buildkite-agent-metrics/blob/master/README.md) shows available metrics you can monitor. Use case - query and visualize them on Grafana.
