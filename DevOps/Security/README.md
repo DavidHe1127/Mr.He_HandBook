@@ -8,6 +8,8 @@ It outlines different approaches of authenticating applications and their featur
 - [OAuth2](#oauth2)
 - [SAML](#saml)
 - [SAML vs OAuth](#saml-vs-oauth)
+- [CORS](./cors.md)
+- [DDos](#ddos)
 - [More Readings](#more-readings)
 
 ### JWT
@@ -161,6 +163,12 @@ References
 - [SAML-vs-OAuth-vs-OPENID](https://juejin.im/post/6844903634094784520)
 - [Use JumpCloud as IDP to authenticate users to access AWS](https://www.youtube.com/watch?v=JlX4pyQBecM)
 - [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)
+
+### DDos
+
+A distributed denial-of-service (DDoS) attack requires an attacker to gain control of a network of online machines in order to carry out an attack. Computers and other machines (such as IoT devices) are infected with malware, turning each one into a bot (or zombie). The attacker then has remote control over the group of bots, which is called a botnet.
+
+Once a botnet has been established, the attacker is able to direct the machines by sending updated instructions to each bot via a method of remote control. When the IP address of a victim is targeted by the botnet, each bot will respond by sending requests to the target, potentially causing the targeted server or network to overflow capacity, resulting in a denial-of-service to normal traffic. Because each bot is a legitimate Internet device, separating the attack traffic from normal traffic can be difficult.
 
 ---
 

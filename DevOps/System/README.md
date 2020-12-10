@@ -1,45 +1,39 @@
 ## Linux
 
-- [What does tty refer to today](#tty)
-- [Environment Variable](#env-var)
+### Key Points
+
+- [tty](#tty)
 - [Process](#process)
 - [Signal](#signal)
-- [File](#file)
-- [host file under etc](#host-file-purpose)
-- [Add users](https://www.tecmint.com/add-users-in-linux/)
-- [sudo vs su](#sudo-vs-su)
-  - [sudoers file](#sudoers-file)
+- [File and Permissions](#file-and-permissions)
+- [Host file](#host-file)
+- [SSH](#ssh)
+- [Add Users](https://www.tecmint.com/add-users-in-linux/)
+- [sudo and sudoers File](#sudo-and-sudoers-file)
 - [ssh config file](#ssh-config-file)
 - [File Descriptor](#file-descriptor)
-  - [Redirect app logs to stdout from static files](#log-redirection)
+
 - [Commands](#commands)
   - [Tee](#tee)
   - [watch](#watch)
   - [dig](dig.md)
+  - [Redirect app logs to stdout from static files](#log-redirection)
   - [Show process listening ports](#show-process-listening-ports)
   - [Scheduled tmp folder clean-up service](#scheduled-tmp-folder-cleanup)
+
+### Shell
+
+- [Shell](./shell.md)
+- [Example script](./shell_scripting.md)
 
 ### tty
 
 In unix terminology, the short answer is `terminal = tty = text input/output environment`
 
-### env-var
-
-$PATH说简单点就是一个字符串变量，当输入命令的时候LINUX会去查找$PATH 里面记录的路径。比如在根目录/下可以输入命令 ls,在/usr 目录下也可以输入 ls,但其实 ls 这个命令根本不在这个两个目录下，事实上当你输入命令的时候 LINUX 会去/bin,/usr/bin,/sbin 等目录下面去找你此时输入的命令，而\$PATH 的值恰恰就是/bin:/sbin:/usr/bin:……。其中的冒号使目录与目录之间隔开.
-
-To edit it
-```shell
-$ sudo vi /etc/paths
-```
-or, append custom ones
-```shell
-export PATH=$PATH:/Users/xxx/homebrew/bin/gradle
-```
-
 ### Process
 
 - Application stored in the disk will be loaded into memory when it's running. This process will turn the application into a running process with an id (pid). Also, process has state.
-- The system libs are shared - i.e there is only one copy of `printf` in the memory so it can be accessed by different processes.
+- The system `libs` are shared - i.e there is only one copy of `printf` in the memory so it can be accessed by different processes.
 - When system is being booted, kernel creates a special process called `init` - the parent of all processes which is derived from the file `/sbin/init`. It is never killed until the system shuts down.
 
 To run a process and put it in the background (using &) which then gives you prompt back:
@@ -48,7 +42,7 @@ To run a process and put it in the background (using &) which then gives you pro
 $ gunzip file.gz &
 ```
 
-What's happened when pressing `ctrl+c`?
+#### What's happened when pressing `ctrl+c`?
 
 > We ask the kernal to send the interrupt (SIGINT) to the process. Say it's a NodeJS process, then a signal event will be emitted by EventEmitter:
 
@@ -58,10 +52,9 @@ process.on('SIGINT', () => {
 });
 ```
 
-What's happened when running ls in a shell?
+#### What's happened when running ls in a shell?
 
 > Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
-> ![](./fork-and-exec.png)
 
 #### ps
 
@@ -85,7 +78,7 @@ x = also show processes not attached to a terminal
    1. Ignored signals are silently dropped.
    2. Handled signals cause the execution of a user-supplied signal handler function. The program jumps to this function as soon as the signal is received, and the control of the program resumes at the previously interrupted instructions
 
-### file
+### File and Permissions
 
 ![ls output](./ls.jpg)
 
@@ -105,20 +98,18 @@ To modify permissions (user: read/write & group, other: read):
 $ chmod 644 file
 ```
 
-### chmod
-
 ![chmod](./linux_permissions_chmod.jpg)
 
-### host-file-purpose
+### host-file
 
 Hosts file is a simple txt file situated at `/etc/hosts` on Linux and Mac OS.
-Given `host` file below
+Given `host` file below:
 
 ```
 127.0.x.x  mydomain
 ```
 
-It means system will not do a DNS lookup for `mydomain`, it will be automatically redirected to the IP address you specified in your hosts file.
+It means system will not do a DNS lookup for `mydomain` but rather direct traffic to the IP address you specified in your hosts file.
 On most systems the default entry in the hosts file is:
 
 ```
@@ -127,7 +118,7 @@ On most systems the default entry in the hosts file is:
 
 `127.0.0.1` is always the address of the computer you're on. For example, if you run a web server on your pc, you can access it from the web browser via `http://localhost:port` instead of typing the whole IP address `http://127.0.0.1:port`.
 
-### ssh-config-file
+### ssh
 
 Example `~/.ssh/config`
 
@@ -141,7 +132,7 @@ Host remote
 
 With this configuration, you ssh into another ec2 instance by typing `ssh remote`.
 
-### sudo-vs-su
+### sudo and sudoers file
 
 - sudo (super user do)
   - lets you use your own password to execute commands
@@ -166,7 +157,7 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   it basically means the command you are trying to run is not a whitelisted command you can run on behalf of root.
 
 - su (switch user)
-  - lets you switch to that user by entering his password. Once auth is passed, a new shell prompt will be opened with target user's privileges.
+  - lets you switch to other users by entering their password. Once auth is passed, a new shell prompt will be opened with target user's privileges.
 
   - i.e
   ```shell
@@ -177,8 +168,6 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
 
 [Further reading](https://askubuntu.com/questions/376199/sudo-su-vs-sudo-i-vs-sudo-bin-bash-when-does-it-matter-which-is-used)
 
-
-### sudoers-file
 ![sudoers file](./sudoers_file.png)
 Anything enclosed by [] is optional
 
@@ -209,12 +198,6 @@ Difference between `2>&1` and `2>1` is the previous one will redirect the `stder
 As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` from files named `1` or `2`.
 
 ![File Descriptors](./file-descriptor.png)
-
-#### Log redirection
-Trick below will forward logs to `stdout` rather than `access.log`.
-```shell
-$ ln -sf /dev/stdout /var/log/nginx/access.log
-```
 
 ```shell
 # And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout` by using `>&`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
@@ -258,3 +241,9 @@ $ lsof -Pan -p PID -i
 #### Scheduled tmp Folder Cleanup
 
 Use `systemd-tmpfiles-clean` service for this purpose.
+
+#### Log redirection
+Trick below will forward logs to `stdout` rather than `access.log`.
+```shell
+$ ln -sf /dev/stdout /var/log/nginx/access.log
+```

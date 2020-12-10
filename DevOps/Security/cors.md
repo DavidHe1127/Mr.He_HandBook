@@ -1,53 +1,4 @@
-## Networking
-
-- [Networking](./networking.md)
-
-## System
-
-- [Linux](./linux.md)
-  - [shell](./shell.md)
-- [How linux works](./how_linux_works_book.md)
-
-## Miscellaneous
-
-- [Premature Optimization](#premature_optimization)
-- [WebAssembly](#web-assembly)
-- [Idempotent](#idempotent)
-- [Coarse-grained vs Fine-grained](#coarse-grained-vs-fine-grained)
-- [CORS](#cors)
-- [Service Worker](#service-worker)
-- [Sockets API](#sockets-api)
-
-## Security
-
-- [Auth](./auth.md)
-
-### premature_optimization
-
-Any coding practice that makes your code harder to understand in the name of performance is a `premature optimization`.
-
----
-
-### Web Assembly
-
-- It's a new kind of code that can be compiled (ahead of time) down into a binary format that browsers can read. This means that high-level languages (C, C++) can be compiled down into a format that is legible to the browser. For developers that want to do some heavy computing on the web, this is a huge plus.
-- At the time of writing, it does not support `DOM access` - so JS is still needed.
-
----
-
-### idempotent
-In the context of API server, idempotent means each request must be independent, produce the same outcome, and not related to the previous one. So, when it is multiple API instances, then it doesn’t matter to which server request is redirected.
-
-### Coarse-grained vs Fine-grained
-
->>>
-**Coarse-grained**: A few ojects hold a lot of related data that's why services have broader scope in functionality. Example: A single "Account" object holds the customer name, address, account balance, opening date, last change date, etc. Thus: Increased design complexity, smaller number of cells to various operations
-
-**Fine-grained**: More objects each holding less data that's why services have more narrow scope in functionality. Example: An Account object holds balance, a Customer object holds name and address, a AccountOpenings object holds opening date, etc. Thus: Decreased design complexity , higher number of cells to various service operations. These are relationships defined between these objects.
-
----
-
-### CORS
+## CORS
 
 - [What is it?](#what-is-it)
 - [Why do we need it?](#why-do-we-need-it)
@@ -55,7 +6,7 @@ In the context of API server, idempotent means each request must be independent,
 - [How to enable it?](#how-to-enable-it)
 - [Preflight](#preflight)
 
-#### What is it
+### What is it
 
 Stands for cross-origin resource sharing. i.e ajax calls can only access resources on your domain not some other domains.
 
@@ -63,7 +14,7 @@ Note, client's request still hits the server and gets the response, but HTTP cli
 
 [Useful link](https://stackoverflow.com/questions/43871637/no-access-control-allow-origin-header-is-present-on-the-requested-resource-whe/43881141#43881141)
 
-#### Why do we need it
+### Why do we need it
 
 Security reasons. Protect your websites from CSRF or XSRF. The way CSRF works is as follow:
 
@@ -73,7 +24,7 @@ Security reasons. Protect your websites from CSRF or XSRF. The way CSRF works is
 - website B then takes **cookie** to forge a request to website A saying `buy pizza 100000+ pieces`
   CSRF can be prevented by **same-origin policy**
 
-#### jsonp
+### jsonp
 
 Altough ajax requests are restricted, remote scripts loaded via `src tags` are free to go.
 
@@ -88,7 +39,7 @@ Altough ajax requests are restricted, remote scripts loaded via `src tags` are f
 
 Downside of jsonp is - it only works for http `GET`.
 
-#### How to enable it
+### How to enable it
 
 **Origin** header specifies where this request is being sent from.
 
@@ -114,23 +65,8 @@ Content-Type: text/html; charset=utf-8
 
 Now, ajax calls to another domain is allowed.
 
-#### preflight
+### preflight
 
 For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is 200, the actual request will then be issued.
 
 To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to its server (only serves up frontend code) which then forwards the requests to api server - backend. Because the communication is between two servers, preflight calls are completed avoided.
-
----
-
-### Service Worker
-It enables your site to still work when users are offline after first load.
-
-The way it works is:
-
-- Intercept the http request browser sends to server for fetching resources
-- Checks whether the resource is already in cache
-- If not, send a request to fetch that image and save it in cache
-
-### Sockets API
-
-![socket-api](./socket-api.png)

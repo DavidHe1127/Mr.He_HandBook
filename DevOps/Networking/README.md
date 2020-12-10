@@ -1,6 +1,6 @@
 ## Networking
 
-- [HTTP, SSL/TLS](<./http(s).md>)
+- [Http(s)](./http(s).md)
 - [OSI](#osi)
 - [Web Caching](./web_caching.md)
 - [SSH](./ssh.md)
@@ -246,6 +246,6 @@ Specifically, SNI includes the hostname in the Client Hello message, or the very
 $ netstat -tulpn
 ```
 
-### HTTPs or HTTP
+### Sockets API
 
-If all hosts involved are running within the same network trust boundary, it's ok to have http connections between any 2 of them. If it is not the case however, HTTPS must be used to prevent man-in-the-middle attacks. i.e communication between 2 instances on the same vpc can allow http whereas browser-n-server communication must take place over HTTPS.
+![socket-api](./socket-api.png)

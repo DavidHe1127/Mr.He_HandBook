@@ -1,4 +1,4 @@
-## Miscellaneous
+## General
 
 - [Traditional Pagination vs Cursor-based Pagination](#traditional-pagination-vs-cursor-based-pagination)
 - [Debounce vs Throttle](#debounce-vs-throttle)
@@ -6,11 +6,18 @@
 - [Encoding](./char_encodings.md)
 - [Timestamp](./timestamp.md)
 - [Debugging](./debugging.md)
+- [Font Icon](./font-icon.md)
 - [SSR](./ssr.md)
 - [Marshall vs Unmarshall](#marshall-vs-unmarshall)
 - [Memory leak and detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
+- [Premature optimization](#premature-optimization)
+- [Idempotent](#idempotent)
+- [Coarse-grained-vs-fine-grained](#coarse-grained-vs-fine-grained)
+- [Service worker](#service-worker)
 
-## Traditional Pagination VS Cursor-based Pagination
+- [Dev Tricks](./tricks.md)
+
+### Traditional Pagination VS Cursor-based Pagination
 
 ### Problem with tradtional pagination (ONLY applicable to real time data)
 Let's say we have 20 comments in total and want to display them in two pages so 10 for each.
@@ -100,3 +107,27 @@ The response from the server would be:
 ### marshall-vs-unmarshall
 
 Go's terminology calls `marshal` the process of generating a JSON string from a data structure, and unmarshal the act of parsing JSON string back to a data structur.
+
+### Premature Optimization
+
+Any coding practice that makes your code harder to understand in the name of performance is a `premature optimization`.
+
+### Idempotent
+
+In the context of API server, idempotent means each request must be independent, produce the same outcome, and not related to the previous one. So, when it is multiple API instances, then it doesn’t matter to which server request is redirected.
+
+### Coarse-grained vs Fine-grained
+
+**Coarse-grained**: A few ojects hold a lot of related data that's why services have broader scope in functionality. Example: A single "Account" object holds the customer name, address, account balance, opening date, last change date, etc. Thus: Increased design complexity, smaller number of cells to various operations
+
+**Fine-grained**: More objects each holding less data that's why services have more narrow scope in functionality. Example: An Account object holds balance, a Customer object holds name and address, a AccountOpenings object holds opening date, etc. Thus: Decreased design complexity , higher number of cells to various service operations. These are relationships defined between these objects.
+
+### Service Worker
+
+It enables your site to still work when users are offline after first load.
+
+The way it works is:
+
+- Intercept the http request browser sends to server for fetching resources
+- Checks whether the resource is already in cache
+- If not, send a request to fetch that image and save it in cache

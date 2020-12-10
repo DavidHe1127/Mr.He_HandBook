@@ -2,6 +2,7 @@
 
 - [How SSL works](#how-ssl-works)
 - [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
+- [HTTP or HTTPS](#http-or-https)
 - [CA](#ca)
 
 - [HTTP/2](#http/2)
@@ -47,6 +48,10 @@ Certbot is a very popular agent.
 - Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
 - Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
 - CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than obtaining it from CAs.
+
+### HTTP or HTTPs
+
+If all hosts involved are running within the same network trust boundary, it's ok to have http connections between any 2 of them. If it is not the case however, HTTPS must be used to prevent man-in-the-middle attacks. i.e communication between 2 instances on the same vpc can allow http whereas browser-n-server communication must take place over HTTPS.
 
 ---
 
