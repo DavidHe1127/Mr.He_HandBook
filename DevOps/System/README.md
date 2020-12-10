@@ -12,7 +12,6 @@
 - [sudo and sudoers File](#sudo-and-sudoers-file)
 - [ssh config file](#ssh-config-file)
 - [File Descriptor](#file-descriptor)
-
 - [Commands](#commands)
   - [Tee](#tee)
   - [watch](#watch)
@@ -135,13 +134,16 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
 ### sudo and sudoers file
 
 - sudo (super user do)
+
   - lets you use your own password to execute commands
   - When sudoing, things below will happen:
+
     1. System does a look-up in `/etc/sudoers` file to find out if the user has privilege to execute `sudo`.
     2. If yes, the users will be prompted for their own password.
     3. If authed, system will execute command specified by `sudo`.
 
   - i.e
+
   ```shell
   $ sudo node               # run node command as a root user
   $ sudo node -U p782199    # run node command as user p782199
@@ -150,16 +152,21 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
                             # password since you are a sudoer. After you enter your password, you now have root privilege
                             # useful when you need to execute a number of commands as root. As opposed to sudo <command>
   ```
+
   - if you see something like this:
+
   ```
   Sorry, user P782199 is not allowed to execute '/Users/P782199/.nvm/versions/node/v8.16.1/bin/node -u p782199' as root on C02X1KJSJG5H (host).
   ```
+
   it basically means the command you are trying to run is not a whitelisted command you can run on behalf of root.
 
 - su (switch user)
+
   - lets you switch to other users by entering their password. Once auth is passed, a new shell prompt will be opened with target user's privileges.
 
   - i.e
+
   ```shell
   $ su bob    # switch to user bob
   $ su        # switch to root user or aka superuser. Keeps your existing env vars
@@ -213,9 +220,10 @@ $ >/dev/null  # redirect STDOUT to /dev/null (only STDERR shows up)
 
 #### Tee
 
-* Name after t-splitter in plumbing.
-* Write output to stdout as well as one or more files.
-* write to stdout and file simultaneously.
+- Name after t-splitter in plumbing.
+- Write output to stdout as well as one or more files.
+- write to stdout and file simultaneously.
+
 ```shell
 command -> tee → stdout
             ↓
@@ -223,6 +231,7 @@ command -> tee → stdout
 ...
 $ ls|tee file1.txt
 ```
+
 #### Watch
 
 Continuously watch a command execution and print result.
@@ -230,6 +239,7 @@ Continuously watch a command execution and print result.
 ```shell
 $ watch -n 1 -b "curl https://api.theparrodise.com/weather"
 ```
+
 Call api server every 1 second and `b`eep when a non-zero exit code emits.
 
 #### Show process listening ports
@@ -243,7 +253,9 @@ $ lsof -Pan -p PID -i
 Use `systemd-tmpfiles-clean` service for this purpose.
 
 #### Log redirection
+
 Trick below will forward logs to `stdout` rather than `access.log`.
+
 ```shell
 $ ln -sf /dev/stdout /var/log/nginx/access.log
 ```
