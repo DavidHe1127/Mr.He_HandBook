@@ -25,7 +25,7 @@
 - [Server Name Indication](#sni)
 - Tips
   - [Connection Problems](#connection-problem)
-  - [HTTPS or HTTP](#https-or-http)
+  - [Socket API](#socket-api)
 
 - References
   - [http/tcp/conn-pool](https://developpaper.com/understanding-tcp-http-socket-socket-connection-pool/)
