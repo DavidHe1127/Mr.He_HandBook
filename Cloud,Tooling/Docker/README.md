@@ -195,6 +195,20 @@ drwxr-xr-x  1 root root  4096 Dec 31 04:49 .
 
 Use `root` user will pose potential security threats in case your container is hacked. The best way to avoid it is create and use a non-privileged user after you install dependencies.
 
+#### Specify loopback ip in port binding
+
+If you ever need to make sure contents are only accessible from host. i.e
+
+```
+http://{server_ip}:1234  # ❌
+http://localhost:1234  # ✅
+```
+You can do this:
+```yml
+ports:
+  - "127.0.0.1:8001:8001"
+```
+
 ### Data Persistence
 
 Volume is independent of container lifecycle. This means data stored in volume will not be gone when the running container stopped or deleted.
