@@ -9,7 +9,8 @@
   - [Cooldown period](#cooldown-period)
   - [Connection Draining](#connection-draining)
   - [Spot Fleet](#spot-fleet)
-  - [Useful write-ups](#useful-write-ups)
+  - [Cost reduction methods](#cost-reduction-methods)
+  - [References](#references)
 - [Load balancer with HA](#load-balancer-with-ha)
 
 ### ASG
@@ -83,8 +84,28 @@ Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree
 
 [Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
 
-#### Useful write-ups
+#### Cost Reduction Methods
+
+Data Transfer In is free whilst Data Transfer Out is charged. So the key is to cut response in size.
+
+- Remove unnecessary HTTP response headers:
+
+  Before 333 Bytes
+  ```
+  HTTP/1.1 200 OK Connection: Keep-Alive Content-Length: 15 Content-Type: application/json accept-encoding: gzip Access-Control-Allow-Origin: * X-GA-Service: collect Access-Control-Allow-Methods: GET, POST, OPTIONS Access-Control-Allow-Headers: Authorization, X-Requested-With, Content-Type, Content-Encoding {"status":"ok"}
+  ```
+
+  After 109 Bytes
+  ```
+  HTTP/1.1 200 OK Connection: Keep-Alive Content-Length: 15 Content-Type: application/json {"status":"ok"}
+  ```
+  Saving can add up to a big amount!
+- Use smaller TLS cert. AWS ACM produces relatively larger cert! Typically, browser will cache and reuse cert being sent by server in the initial HTTPs connection for subsequent communication. However, if large number of new clients are there, cert will be transferred through ALB millions of times!
+- Increase idle timeout i.e 10 mins to make the most of connection reuse - ALB will reuse established session without opening new one. Also, enable `keep-alive` on the server making it greater than idle timeout such that ALB will close connections
+- Use ALB over Classic Load Balancer as ALB supports HTTP/2 while Classic one doesn't. HTTP/2 enables http header compression.
+
+#### References
 
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
-
+- [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
 

@@ -12,9 +12,10 @@
 - Keys are accessed and managed in KMS console.
 
 #### Data Key
-- KMS gives you both plain-text and encrypted key. Encryption is done by a specific CMK - specified in the api call.
+- Use KMS CMK to create both plain-text and encrypted key. Encryption is done by a specific CMK - specified in the api call.
 - Use Data Key to encrypt/decrypt application data. i.e objects on s3
 - AWS KMS does not store, manage, or track your data keys, or perform cryptographic operations with data keys. You must use and manage data keys outside of AWS KMS.
+- Using Data key saves you network bandwidth as content doesn't need to be travelled to AWS for encryption/decryption. Instead, use data key sent by AWS for these purposes. It's aka `envelope encryption`.
 
 ![data key](data-key.png)
 
