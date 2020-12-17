@@ -1,4 +1,4 @@
-## ECS
+## ECS/ECR
 
 - [Core concepts](#core-concepts)
   - [Task Definition](#task-definition)
@@ -11,6 +11,7 @@
 - [Auto scaling](#asg)
 - [Rolling update](#rolling-update)
 - [Various roles](#various-roles)
+- [Logging](#logging)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Dynamic port mapping](#dynamic-port-mapping)
 - [Tips and Caveats](#tips-and-caveats)
@@ -185,6 +186,16 @@ Key notes
 ### Dynamic Port Mapping
 
 ![dynamic-port-mapping](./dynamic-port-mapping.png)
+
+### Logging
+
+Use `Firelens` to send logs to either AWS services like CloudWatch OR other logging storage/analytics solution - i.e ElasticSearch + Kibana. Opt for `fluentbit` rather than `fluentd` as the former one consumes less resources than the latter one.
+
+- [Firelens - a new way to manage container logs](https://aws.amazon.com/blogs/aws/announcing-firelens-a-new-way-to-manage-container-logs/)
+- [Centralized container logging with fluentbit](https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/)
+- [Fargate container logs collection/analysis with firelens/sumologic](https://aws.amazon.com/blogs/opensource/fargate-container-logs-collection-analysis-firelens-sumo-logic/)
+- [How to set fluentd/fluentbit input params with firelens](https://aws.amazon.com/blogs/containers/how-to-set-fluentd-and-fluent-bit-input-parameters-in-firelens/)
+- [Build log solution aggregator](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/)
 
 ---
 
