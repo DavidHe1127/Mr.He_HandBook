@@ -64,3 +64,12 @@ config.get('region');
 - `pulumi login` is used for state management. i.e `pulumi login s3://kasada-pulumi-state-mgmt` lets you sync your stack state to remote s3 bucket.
 - Stacks will be synced back to your configured state management service like s3. i.e `stack ls`will return all stacks managed by s3.
 - Provider plugins will be installed into `.pulumi/plugins` folder upon installing deps like `@pulumi/aws`. In case run into plugin related error, i.e version mismatch simply delete `plugins` folder and reinstall it.
+- Unless `name` is specified in `Resource Args`, Pulumi will suffix resource with an unique UUID to identify each resource.
+```js
+new aws.ecr.Repository(
+  `david-repository`, // will generate something like david-repository-e0cdd77
+  {
+    name: 'ecr-repo' // this will prevent uuid generation
+  })
+```
+
