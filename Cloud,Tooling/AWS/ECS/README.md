@@ -191,6 +191,12 @@ Key notes
 
 Use `Firelens` to send logs to either AWS services like CloudWatch OR other logging storage/analytics solution - i.e ElasticSearch + Kibana. Opt for `fluentbit` rather than `fluentd` as the former one consumes less resources than the latter one.
 
+The `awslogs` log driver simply passes these logs from Docker to CloudWatch Logs.
+
+![ecs-logging](logging-internal-workings.svg)
+
+References:
+
 - [Firelens - a new way to manage container logs](https://aws.amazon.com/blogs/aws/announcing-firelens-a-new-way-to-manage-container-logs/)
 - [Centralized container logging with fluentbit](https://aws.amazon.com/blogs/opensource/centralized-container-logging-fluent-bit/)
 - [Fargate container logs collection/analysis with firelens/sumologic](https://aws.amazon.com/blogs/opensource/fargate-container-logs-collection-analysis-firelens-sumo-logic/)
