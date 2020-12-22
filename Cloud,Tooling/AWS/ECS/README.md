@@ -215,6 +215,21 @@ The `awslogs` log driver simply passes these logs from Docker to CloudWatch Logs
 
 ![ecs-logging](logging-internal-workings.svg)
 
+Notes: Logs are sent from app to `firelens` container with fluent logger library. `FLUENT_HOST` and `FLUENT_PORT` are injected into app container.
+
+```python
+from fluent import sender
+# connect to FireLens log router
+# container name is 'app'
+logger = sender.FluentSender('app-firelens', host=os.environ['FLUENT_HOST'], port=int(os.environ['FLUENT_PORT']))
+
+# send a debug message with tag app-firelens.debug
+logger.emit('debug', {'log': 'debug info'})
+
+# send an error message with tag app-firelens.error
+logger.emit('error', {'log': 'Error: Something went wrong'})
+```
+
 References:
 
 - [Firelens - a new way to manage container logs](https://aws.amazon.com/blogs/aws/announcing-firelens-a-new-way-to-manage-container-logs/)
@@ -222,6 +237,7 @@ References:
 - [Fargate container logs collection/analysis with firelens/sumologic](https://aws.amazon.com/blogs/opensource/fargate-container-logs-collection-analysis-firelens-sumo-logic/)
 - [How to set fluentd/fluentbit input params with firelens](https://aws.amazon.com/blogs/containers/how-to-set-fluentd-and-fluent-bit-input-parameters-in-firelens/)
 - [Build log solution aggregator](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/)
+- [Under the hood firelens for amazon ecs tasks](https://aws.amazon.com/blogs/containers/under-the-hood-firelens-for-amazon-ecs-tasks/)
 
 ---
 
