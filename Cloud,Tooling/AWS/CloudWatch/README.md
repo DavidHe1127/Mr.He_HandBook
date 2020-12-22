@@ -35,7 +35,7 @@ i.e Given Period being 6 hours, Evaluation Period being 8 and Datapoints being 7
 
 Likewise, given Period being 1 minute, Evaluation Period being 3 and Datapoints being 3, it means when alarm threshold has been reached in 3 consecutive periods during 3 * 1 minutes, the alarm state will be changed to `IN ALARM`.
 
-`Statistics` are metric data aggregations over specified periods of time. i.e `Average` CPUUtilization value over a certain period.
+`Statistics` are metric data aggregations over specified periods of time. i.e `Average` CPUUtilization value on an instance over a certain period OR average CPUUtilization for a ASG is 50% - i.e ASG with two instances where one instance is at 60 percent CPU and the other is at 40 percent CPU. On average, they are at 50 percent.
 
 ```
 aws cloudwatch get-metric-statistics \

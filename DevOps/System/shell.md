@@ -22,6 +22,7 @@
   - [Safeguard shell scripts](#safeguard-shell-scripts)
   - [Alias](#alias)
 - [Scripting](./shell_scripting.md)
+- [Bash Template](./bash_template.md)
 
 ### what is shell
 
