@@ -189,7 +189,27 @@ Key notes
 
 ### Logging
 
-Use `Firelens` to send logs to either AWS services like CloudWatch OR other logging storage/analytics solution - i.e ElasticSearch + Kibana. Opt for `fluentbit` rather than `fluentd` as the former one consumes less resources than the latter one.
+`firelens` is no more than a Syntactic Sugar allowing you to put `fluentd` or `fluentbit` config in task definition from which these params will then be transformed into a config file being mounted into `fluentbit/fluentd` container.
+
+```txt
+ "logConfiguration": {
+   "logDriver":"awsfirelens",
+   "options": {
+    "Name": "firehose",
+    "region": "us-west-2",
+    "delivery_stream": "my-stream"
+  }
+}
+
+becomes...
+
+[OUTPUT]
+  Name   firehose
+  Match  app-firelens*
+  region us-west-2
+  delivery_stream my-stream
+```
+Use `fluentbit` rather than `fluentd` as the former one consumes less resources than the latter one.
 
 The `awslogs` log driver simply passes these logs from Docker to CloudWatch Logs.
 
