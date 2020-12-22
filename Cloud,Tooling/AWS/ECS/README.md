@@ -125,6 +125,7 @@ i.e App has desired count 2, min 1 and max 5. When scaling in happens, desired c
 
 #### Cluster Auto Scaling
 
+- With capacity provider, tasks drive the scaling activity which means you determine total number of tasks to run and capacity provider will work out the compute capacity needed to serve those tasks. Using EC2 capacity provider as an example, you can just set the max number of instances while leaving min and desired to be 0 and capacity provider will help set min and desired on your behalf.
 - CAS relies on ECS capacity providers, which provide the link between your ECS cluster and the ASGs you want to use.
 - Previously, tasks that cannot be placed due to insufficient compute resources will fail immediately. Now with managed scaling policy enabled in capacity provider, tasks will go into provisioning state instead and later be deployed when more instances come up as result of scale out. Currently, it allows 100 tasks in provisioning state to be queued.
 
@@ -161,9 +162,10 @@ Likewise, scaling policy will add 1 more instance to meet target value that is 5
 Also to note, setting target to value below 100 means spare capacity. In the above example, we will always make sure 50% instances are idle and not running any tasks on them. Besides, below-100 value makes scaling to zero impossible.
 ```
 
-#### Reference
+Reference
 
-[Deep dive on CAS](https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/)
+- [Deep dive on CAS](https://aws.amazon.com/blogs/containers/deep-dive-on-amazon-ecs-cluster-auto-scaling/)
+- [Deep dive on Amazon ECS Capacity Provider](https://www.youtube.com/watch?v=Vb_4wAEcfpQ)
 
 ### Rolling Update
 
