@@ -43,6 +43,7 @@ record: {"event":"data"}
 
 #### Use labels to break top-to-bottom processing rule
 
+```config
 <source>
   @type http
   bind 0.0.0.0
@@ -72,6 +73,7 @@ record: {"event":"data"}
     @type stdout
   </match>
 </label>
+```
 
 This instructs routing engine to process events on label section and hence skips non-labelled filter section.
 
