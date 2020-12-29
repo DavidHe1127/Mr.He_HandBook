@@ -31,9 +31,10 @@ Basically, you setup an endpoint in your VPC which will receive vpc traffic and 
 
 #### VPC Endpoint
 
-- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
-- Two types - `Interface Endpoint` and `Gateway Endpoint`
-- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic
+- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+- Two types - `Interface Endpoint` and `Gateway Endpoint`.
+- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic.
+- Private DNS - a private hosted zone for the endpoint is only supported in AWS services and AWS Marketplace Partner services.
 
 ![vpce](./vpce.png)
 
