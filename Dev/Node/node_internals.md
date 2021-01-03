@@ -24,7 +24,7 @@ With code below:
 setTimeout(myCallback, 1000);
 ```
 
-That doesn’t mean that myCallback will be executed in 1,000 ms but rather that, in 1,000 ms, myCallback will be added to the queue. The queue, however, might have other events that have been added earlier — your callback will have to wait.
+That doesn’t mean that `myCallback` will be executed in 1,000 ms but rather that, in 1,000 ms, `myCallback` will be added to the queue. The queue, however, might have other events that have been added earlier — your callback will have to wait.
 
 ### References
 
