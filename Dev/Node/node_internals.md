@@ -1,6 +1,7 @@
 ## Event Loop and V8 Engine
 
 - [Event Loop and Process](#event-loop-and-process)
+- [References](#references)
 
 ![](./event_loop_phases.png)
 ![](./v8_engine.png)
@@ -17,6 +18,15 @@
 - A tick in event loop refers to one cycle. i.e from one timers phase to the next timers phase.
 
 - Event loop basic job is to look both at the stack and the task queue, pushing the first thing on the queue to the stack when it see stack as empty.
+
+With code below:
+```js
+setTimeout(myCallback, 1000);
+```
+
+That doesn’t mean that myCallback will be executed in 1,000 ms but rather that, in 1,000 ms, myCallback will be added to the queue. The queue, however, might have other events that have been added earlier — your callback will have to wait.
+
+### References
 
 [Event Loop/Task Queue](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec)
 [Complete guide to event loop](https://blog.logrocket.com/a-complete-guide-to-the-node-js-event-loop/)
