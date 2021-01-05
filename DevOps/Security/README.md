@@ -10,7 +10,9 @@ It outlines different approaches of authenticating applications and their featur
 - [SAML vs OAuth](#saml-vs-oauth)
 - [CORS](./cors.md)
 - [DDos](#ddos)
-- [More Readings](#more-readings)
+- [SSL Cert](#ssl-cert)
+
+- [References](#references)
 
 ### JWT
 
@@ -170,8 +172,30 @@ A distributed denial-of-service (DDoS) attack requires an attacker to gain contr
 
 Once a botnet has been established, the attacker is able to direct the machines by sending updated instructions to each bot via a method of remote control. When the IP address of a victim is targeted by the botnet, each bot will respond by sending requests to the target, potentially causing the targeted server or network to overflow capacity, resulting in a denial-of-service to normal traffic. Because each bot is a legitimate Internet device, separating the attack traffic from normal traffic can be difficult.
 
+### SSL Cert
+
+`subject` shows CN (common name) that is the DNS you wish to secure. This value needs to match request hostname i.e domain in your browser's address bar. If not, you will get `Common Name Mismatch` error.
+
+The above check is aka Hostname Verification that involves a server identity check to ensure that the client is talking to the correct server and has not been redirected by a man in the middle attack.
+
+The check involves looking at the certificate sent by the server, and verifying that the `dnsName` in the `subjectAltName` field of the certificate matches the host portion of the URL used to make the request.
+
+```
+-----BEGIN CERTIFICATE-----
+...
+-----END CERTIFICATE-----
+subject=/CN=fluentbit.ap-southeast-2.dev.kasada.dev
+issuer=/C=US/O=Amazon/OU=Server CA 1B/CN=Amazon
+```
+
+Use `openssl` to establish a TLS connection to the remote. This command will return more connection details which really helps with connection issues troubleshooting.
+
+```shell
+$ openssl s_client -connect some-domain.com.au:24223
+```
+
 ---
 
-### More readings
+### References
 
 [Microservices Authentication and Authorization Solutions](https://medium.com/tech-tajawal/microservice-authentication-and-authorization-solutions-e0e5e74b248a)
