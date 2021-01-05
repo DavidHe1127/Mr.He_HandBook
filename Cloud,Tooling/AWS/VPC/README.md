@@ -1,10 +1,15 @@
 ## VPC
 
+- [ENI](#eni)
 - [NAT Gateway](#nat-gateway)
   - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
+
+### ENI
+
+- ENI cannot be detached when it's associated and used by a resource - i.e VPCE. To remove ENI, you need to delete parent service.
 
 ### NAT Gateway
 
