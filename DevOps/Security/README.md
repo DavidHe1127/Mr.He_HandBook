@@ -194,6 +194,10 @@ Use `openssl` to establish a TLS connection to the remote. This command will ret
 $ openssl s_client -connect some-domain.com.au:24223
 ```
 
+References
+
+- [Understand ssl cert](https://www.cnblogs.com/iiiiher/p/8085698.html)
+
 ---
 
 ### References
