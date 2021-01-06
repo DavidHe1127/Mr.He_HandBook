@@ -14,7 +14,7 @@
 A logging driver enables application containers to send their logs to the logging service running as a sidecar container on the same host. For example, you can use `fluentd` as a logging driver:
 
 ```shell
-docker run --log-driver=fluentd --log-opt tag={{.Name}} ubuntu echo "..."
+docker run --name david-test-fluentd --log-driver=fluentd --log-opt tag={{.Name}} ubuntu echo "..."
 ```
 This will tag all log output with container name such that you can identify and route them to preferred destinations.
 
