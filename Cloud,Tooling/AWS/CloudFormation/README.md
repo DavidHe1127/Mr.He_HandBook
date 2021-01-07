@@ -99,8 +99,15 @@ Resources:
             - 'Used by ${VPC}'
             - { VPC: !Ref VPC }
 Outputs:
-  LoggingServiceVPCEId:
-    Value: !Ref LoggingServiceVPCE
+  LoggingServiceVPCERegionalDNS:
+    Value: !Select
+      - "1"
+      - !Split
+        - ":"
+        - !Select
+          - "0"
+          - !GetAtt LoggingServiceVPCE.DnsEntries
+    Condition: CreateLoggingServiceVPCE
 ```
 
 ### cross-stack reference
