@@ -1,10 +1,16 @@
 ## VPC
 
+- [ENI](#eni)
 - [NAT Gateway](#nat-gateway)
   - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
+
+### ENI
+
+- Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC.
+- ENI cannot be detached when it's associated and used by a resource - i.e VPCE. To remove ENI, you need to delete parent service.
 
 ### NAT Gateway
 
@@ -31,15 +37,16 @@ Basically, you setup an endpoint in your VPC which will receive vpc traffic and 
 
 #### VPC Endpoint
 
-- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection
-- Two types - `Interface Endpoint` and `Gateway Endpoint`
-- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic
+- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+- Two types - `Interface Endpoint` and `Gateway Endpoint`.
+- VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic.
+- Private DNS - a private hosted zone for the endpoint is only supported in AWS services and AWS Marketplace Partner services.
 
 ![vpce](./vpce.png)
 
-#### VPC Endpoint Service
+#### Custom VPC Endpoint Service
 
-- Endpoint service — Your own application in your VPC. Other AWS principals can create a connection from their VPC to your endpoint service
+- You can also turn your own application in a VPC into a VPCEs powered by AWS PrivateLink. That way, other AWS principals can create a connection from their VPC to your endpoint service using an interface VPC endpoint. You are service provider while others are service consumers.
 - It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
 
 ![vpce-service](vpce-service.png)

@@ -31,4 +31,4 @@ Infra As Code
 ### Logging & Monitoring
 
 - [Prometheus](./Tooling/prometheus)
-
+- [Fluentd](./Tooling/fluent.md)
