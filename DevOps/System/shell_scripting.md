@@ -186,4 +186,9 @@ CODE=$(curl 'http://abc.com/xz' || :)
 
 # reuse CODE
 echo "code is $CODE"
+
+### Use install over cp
+# two commands have the same result. -D will create directories if they don't exist
+install -D x a/b/c
+mkdir -p a/b && cp x a/b/c
 ```
