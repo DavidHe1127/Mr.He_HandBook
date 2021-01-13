@@ -2,7 +2,10 @@
 
 - [Basics](#basics)
   - [Tagging](#tagging)
-- [cross-stack reference](#cross-stack-reference)
+  - [User Data Property](#user-data-property)
+  - [Typical example](#typical-example)
+  - [cross-stack reference](#cross-stack-reference)
+  - [Cloud init output file](#cloud-init-output-file)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
@@ -35,6 +38,19 @@ aws:cloudformation:stack-name
 ```
 
 All stack-level tags, including automatically created tags, are propagated to resources that CF supports.
+
+#### User Data Property
+
+```
+UserData:
+  Fn::Base64: !Sub
+    - |
+      #!/bin/bash -xe
+      foo=${foo}
+      baz=${baz}
+    - foo: !Ref Foo
+      baz: !Ref Baz
+```
 
 #### Typical Example
 
@@ -162,6 +178,14 @@ params.json
   }
 ]
 ```
+
+One noticeable caveat is `You can't modify or remove an output value that is referenced by another stack.`. So use it with caution!
+
+### Cloud-init output file
+
+`/var/log/cloud-init-output.log`
+
+---
 
 ### Troubleshooting
 
