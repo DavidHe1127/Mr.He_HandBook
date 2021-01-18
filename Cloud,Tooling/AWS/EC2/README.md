@@ -48,6 +48,7 @@ opening port on http.
 - Use v2 over v1 due to security concerns v1 has [Why v2 more secure?](https://medium.com/@shurmajee/aws-enhances-metadata-service-security-with-imdsv2-b5d4b238454b). i.e IMDSv2 will always reject requests with an `X-Forwarded-For` header that is seeable in requests passed through by reverse proxy services. This layer of protection prevents users from accessing IMDS endpoint from outside EC2 such as via ELB or reverse proxy server that's open to public.
 
 ![imds](imds.svg)
+
 Note, AWS CLI will automatically query sts service for temp credentials retrieval.
 
 ### Bastion Host
