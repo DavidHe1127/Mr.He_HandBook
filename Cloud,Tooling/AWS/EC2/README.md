@@ -9,6 +9,7 @@
 - [Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
+- [UserData](#user-data)
 - [EBS](#ebs)
   - [Snapshots](#snapshots)
   - [Block devices infor](#block-devices-infor)
@@ -84,6 +85,23 @@ AMI in one account can be shared with another account by modifying its permissio
         }
     ]
 }
+```
+
+### User Data
+
+Scripting UserData with [cloud-config](https://www.digitalocean.com/community/tutorials/an-introduction-to-cloud-config-scripting) is supported in CloudFormation.
+
+```yml
+UserData:
+  Fn::Base64: !Sub
+    - |-
+        #cloud-config
+        write_files:
+        - path: /opt/test/cloudformation/env
+          content: |
+            STACK_NAME=${AWS::StackName}
+            STACK_RESOURCE=Dashboard
+            STACK_REGION=${AWS::Region}
 ```
 
 ### EBS
@@ -196,5 +214,3 @@ Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown. Scaling
 #### Launch Configuration
 
 - One remarkable issue with it is once Launch Configuration is created, you cannot change it i.e cannot change AMI with it. You have to create a new Launch Configuration based on the existing one with changed AMI and then update ASG to point to the new one.
-
-
