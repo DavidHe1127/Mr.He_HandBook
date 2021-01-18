@@ -26,6 +26,7 @@ EOF
 }
 
 cleanup() {
+  # reset signal handling to the default by specifying a "-" as the command
   trap - SIGINT SIGTERM ERR EXIT
   # script cleanup here
 }
