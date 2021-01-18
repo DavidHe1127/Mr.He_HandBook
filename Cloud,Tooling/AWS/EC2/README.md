@@ -44,12 +44,13 @@ opening port on http.
 ### IMDS
 
 - Allow app running on EC2 to access AWS resources. Without it, we would have to use hard-coded API keys to enable comm between AWS services and resources. IMDS solves this problem via “temporary security credentials”. These credentials are rotated on a regular basis and managed by the AWS STS service.
+- AWS STS enables you to request temporary, limited-privilege credentials for IAM users or for users that you authenticate (federated users).
 - IMDS does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 - Use v2 over v1 due to security concerns v1 has [Why v2 more secure?](https://medium.com/@shurmajee/aws-enhances-metadata-service-security-with-imdsv2-b5d4b238454b). i.e IMDSv2 will always reject requests with an `X-Forwarded-For` header that is seeable in requests passed through by reverse proxy services. This layer of protection prevents users from accessing IMDS endpoint from outside EC2 such as via ELB or reverse proxy server that's open to public.
 
-![imds](imds.svg)
+![imds](how-imds-work.svg)
 
-Note, AWS CLI will automatically query sts service for temp credentials retrieval.
+Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will automatically retrieve credentials for you. You do not need to configure any credentials.
 
 ### Bastion Host
 
