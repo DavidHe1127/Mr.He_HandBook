@@ -1,5 +1,4 @@
-
-[bash template](https://betterdev.blog/minimal-safe-bash-script-template/)
+From [bash template](https://betterdev.blog/minimal-safe-bash-script-template/)
 
 ```sh
 #!/usr/bin/env bash

@@ -24,6 +24,7 @@
 
 - [Shell](./shell.md)
 - [Example script](./shell_scripting.md)
+- [Bash Template](./bash_template.md)
 
 ### tty
 
