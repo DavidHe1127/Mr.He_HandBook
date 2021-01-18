@@ -4,7 +4,7 @@
 - [Reboot](#reboot)
 - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
-- [Instance metadata](#instance-metadata)
+- [IMDS(Instance Metadata service)](#IMDS)
 - [Metrics](#metrics)
 - [Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html)
 - [Bastion Host](#bastion-host)
@@ -40,17 +40,14 @@ opening port on http.
 - To avoid any charges to `EBS`, make sure have them deleted as well as `snapshots` created from them.
 - `EBS snapshots` are billed at a lower rate than active `EBS volumes` are. So for cost effectiveness, you can create `EBS` snapshots from `EBS` volumes and delete active `EBS` volumes. Later, you can restore the `EBS` volumes from the snapshots when needed.
 
-### Instance Metadata
+### IMDS
 
-The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
+- Allow app running on EC2 to access AWS resources. Without it, we would have to use hard-coded API keys to enable comm between AWS services and resources. IMDS solves this problem via “temporary security credentials”. These credentials are rotated on a regular basis and managed by the AWS STS service.
+- IMDS does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
 ### Bastion Host
 
 [Bastion Host setup walkthrough](https://vaughanj10.github.io/creating-a-bastion-host-for-aws/)
-
-### Instance metadata
-
-The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
 ### Metrics
 
