@@ -138,11 +138,10 @@ esac
 ### Temp switch folder context to run a command.
 (cd build && zip -r "../$ZIP_FILE" .)
 
-### Compress folder contents excluding folder itself
+### Compress build folder contents as compressed.zip excluding folder itself
 cd "build" && zip -r "../compressed" *)
 
 ### Run commands in subshell. All vars inside subshell are not visible/accessible from outside and vice versa
-
 (
   LOCAL_VAR=1
   echo $LOCAL_VAR
