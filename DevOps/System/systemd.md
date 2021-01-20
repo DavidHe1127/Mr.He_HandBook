@@ -1,6 +1,7 @@
 ## Systemd
 
 - [systemctl](#systemctl)
+  - [Debugging tips](#debugging-tips)
 
 ### systemctl
 
@@ -70,3 +71,11 @@ systemctl list-dependencies sshd.service
 
 todo
 - A target is a group of units. All units in this group will
+
+### Debugging Tips
+
+`journalctl -u <SERVICE>` to see more infor around services failing to start.
+
+```shell
+journalctl -u cadvisor.template
+```
