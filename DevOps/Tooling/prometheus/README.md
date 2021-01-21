@@ -19,6 +19,20 @@
 
 ![jobs-instances](jobs-instances.png)
 
+### Tools
+
+Use `promtool` to validate config file. Install it with wget first.
+
+```
+./promtool check config prometheus.yml
+```
+
+### Example PromQLs
+
+```
+rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
+```
+
 ### References
 
 [The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)

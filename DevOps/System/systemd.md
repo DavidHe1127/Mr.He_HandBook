@@ -2,6 +2,7 @@
 
 - [systemctl](#systemctl)
   - [Debugging tips](#debugging-tips)
+- [Unit Files](#unit-files)
 
 ### systemctl
 
@@ -50,6 +51,22 @@ systemctl list-units OR systemctl
 sudo systemctl daemon-reload
 ```
 
+### Debugging Tips
+
+`journalctl -u <SERVICE>` to see more infor around services failing to start. Use `-f` to show logs in follow mode.
+
+```shell
+journalctl -u cadvisor.template -f
+```
+
+---
+
+### Unit Files
+
+#### Path
+
+
+
 #### Unit file state
 
 - `static` - doesn’t have an install section that is used to enable a unit. As such, these units cannot be enabled. Usually, this means that the unit performs a one-off action or is used only as a dependency of another unit and should not be run by itself.
@@ -71,11 +88,3 @@ systemctl list-dependencies sshd.service
 
 todo
 - A target is a group of units. All units in this group will
-
-### Debugging Tips
-
-`journalctl -u <SERVICE>` to see more infor around services failing to start.
-
-```shell
-journalctl -u cadvisor.template
-```
