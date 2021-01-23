@@ -8,6 +8,7 @@
 - [Reusable execution context](#reusable-execution-context)
 - [Invocation model](#invocation-model)
 - [Error handling](#error-handling)
+- [Custom Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
   - [Share modules/libs](#share-modules/libs)

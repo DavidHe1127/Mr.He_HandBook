@@ -65,7 +65,49 @@ journalctl -u cadvisor.template -f
 
 #### Path
 
+Watch for changes to files or paths and trigger specified actions when changes being detected. It's paired with a `.service` file with the same name.
 
+```shell
+# foo.path
+[Unit]
+Description = monitor some files
+
+[Path]
+PathChanged = /tmp/foo
+PathModified = /tmp/a.log
+PathExists = /tmp/file.lock
+MakeDirectory = yes
+Unit = foo.service
+
+# how this service is enabled - auto start on boot
+# this service is enabled as part of multi-user.target target
+[Install]
+WantedBy = multi-user.target
+
+# foo.service
+[Unit]
+Description = foo.service
+
+[Service]
+ExecStart = /bin/bash -c 'echo file changed >>/tmp/path.log'
+```
+
+#### Target
+
+A group of units.
+
+```shell
+# /etc/systemd/system/foo.target
+[Unit]
+Description=Foobar boot target
+Requires=multi-user.target
+# this will a) create a dir in /etc/systemd/system/foo.target.wants
+# b) softlink /etc/systemd/system/foobar.service to /etc/systemd/system/foo.target.wants/foobar.service
+Wants=foobar.service
+Conflicts=rescue.service rescue.target
+After=multi-user.target rescue.service rescue.target
+AllowIsolate=yes
+```
 
 #### Unit file state
 

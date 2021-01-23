@@ -21,6 +21,8 @@
   - [Show real installation location of a binary](#show-real-installation-location-of-binary)
   - [Safeguard shell scripts](#safeguard-shell-scripts)
   - [Alias](#alias)
+  - [Use mktemp to create temp file/directory](#use-mktemp)
+
 - [Scripting](./shell_scripting.md)
 - [Bash Template](./bash_template.md)
 
@@ -394,4 +396,11 @@ set -euxo pipefail
 ### Alias
 
 `alias` command will only work for that specific instance of the shell meaning once shell exits, effect will disappear.
+
+### Use mktemp
+
+It allows you to create temp file a) with random name b) with permissions locked down to current user. Safer! See [more details](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
+
+
+
 
