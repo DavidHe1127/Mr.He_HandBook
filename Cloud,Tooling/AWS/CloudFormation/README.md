@@ -5,7 +5,6 @@
   - [User Data Property](#user-data-property)
   - [Typical example](#typical-example)
   - [cross-stack reference](#cross-stack-reference)
-  - [Cloud init output file](#cloud-init-output-file)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
@@ -40,6 +39,10 @@ aws:cloudformation:stack-name
 All stack-level tags, including automatically created tags, are propagated to resources that CF supports.
 
 #### User Data Property
+
+- Scripts entered in UserData are run by `root` so `sudo` is not required. In case files are created and needed to be accessed by non-root users, modify permissions accordingly.
+- Check `/var/log/cloud-init-output.log` for `cloud-init` output.
+- To update instance user data, instance MUST stop first.
 
 ```
 UserData:
@@ -180,10 +183,6 @@ params.json
 ```
 
 One noticeable caveat is `You can't modify or remove an output value that is referenced by another stack.`. So use it with caution!
-
-### Cloud-init output file
-
-`/var/log/cloud-init-output.log`
 
 ---
 

@@ -48,7 +48,8 @@ opening port on http.
 - AWS STS enables you to request temporary, limited-privilege credentials for IAM users or for users that you authenticate (federated users).
 - IMDS does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 - Use v2 over v1 due to security concerns v1 has [Why v2 more secure?](https://medium.com/@shurmajee/aws-enhances-metadata-service-security-with-imdsv2-b5d4b238454b). i.e IMDSv2 will always reject requests with an `X-Forwarded-For` header that is seeable in requests passed through by reverse proxy services. This layer of protection prevents users from accessing IMDS endpoint from outside EC2 such as via ELB or reverse proxy server that's open to public.
-- The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay. In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container is considered an additional network hop. To avoid the process of falling back to IMDSv1 and the resultant delay, **in a container environment we recommend that you set the hop limit to 2**.
+- The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay. 
+- In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container (bridge network other than host network) is considered an additional network hop. To avoid the process of falling back to IMDSv1 and the resultant delay, **in a container environment we recommend that you set the hop limit to 2**.
 
 ![imds](how-imds-work.svg)
 

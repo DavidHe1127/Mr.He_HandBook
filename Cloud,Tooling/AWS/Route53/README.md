@@ -37,6 +37,7 @@ When an user visiting `theparrodise.com` the DNS resolution workflow is describe
 
 ### Private Hosted Zone
 
+- It must be associated with a particular VPC
 - A set of DNS records to determine how the traffic should be routed within and among your VPCs. i.e traffic hitting `example.com` will be routed to your web server.
 - A private hosted zone only responds to queries coming from within the associated VPC and it is not used for hosting a website that need to be publicly accessed.
 - Use hosted zone to manage the internal DNS names for our application resources (web servers, application servers, databases, and so forth) without exposing this information to the public Internet.

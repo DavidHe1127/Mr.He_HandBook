@@ -48,6 +48,9 @@ Basically, you setup an endpoint in your VPC which will receive vpc traffic and 
 
 - You can also turn your own application in a VPC into a VPCEs powered by AWS PrivateLink. That way, other AWS principals can create a connection from their VPC to your endpoint service using an interface VPC endpoint. You are service provider while others are service consumers.
 - It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
+- The service provider can configure a private DNS name so consumers can access the service using an existing DNS name. This practice also requires providers to prove they have control over the domain.
+See [Private DNS names for endpoint services
+](https://docs.aws.amazon.com/vpc/latest/userguide/verify-domains.html).
 
 ![vpce-service](vpce-service.png)
 

@@ -12,6 +12,7 @@
 - [Rolling update](#rolling-update)
 - [Various roles](#various-roles)
 - [Logging](#logging)
+- [Monitoring](#monitoring)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Dynamic port mapping](#dynamic-port-mapping)
 - [Tips and Caveats](#tips-and-caveats)
@@ -231,6 +232,11 @@ logger.emit('debug', {'log': 'debug info'})
 # send an error message with tag app-firelens.error
 logger.emit('error', {'log': 'Error: Something went wrong'})
 ```
+
+### Monitoring
+
+- [Using Prometheus metrics in AWS CloudWatch](https://aws.amazon.com/blogs/containers/using-prometheus-metrics-in-amazon-cloudwatch/)
+- [Container Insights with Prom walkthrough](https://docs.amazonaws.cn/en_us/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-memcached-ecs.html)
 
 References:
 
