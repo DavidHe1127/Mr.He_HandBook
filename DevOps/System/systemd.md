@@ -3,6 +3,7 @@
 - [systemctl](#systemctl)
   - [Debugging tips](#debugging-tips)
 - [Unit Files](#unit-files)
+- [References](#references)
 
 ### systemctl
 
@@ -130,3 +131,7 @@ systemctl list-dependencies sshd.service
 
 todo
 - A target is a group of units. All units in this group will
+
+### References
+
+- [Systemd guide](https://cloud.tencent.com/developer/article/1516125)

@@ -21,6 +21,7 @@
 - [CoudWatch](AWS/CloudWatch)
 - [Route53](AWS/Route53)
 - [KMS](AWS/KMS)
+- [Org](AWS/Org)
 
 ### AWS General Topics
 - [Security](AWS/security.md)
