@@ -162,6 +162,24 @@ $ awk -F. '{print $2}' awk-sample-input.txt
 ```
 `${n}` denotes segments - a line divided by separator into multiple segments. Given last command, with `.` as separator, the first segment is `192` and second segment is `168`.
 
+#### env var value populating
+
+```shell
+# .env.template
+FOO
+BAR
+
+# export values
+export FOO=foo
+export BAR=bar
+
+awk -F'\n' '{var=$1; val=ENVIRON[$1]; print var"="val}' .env.template > .env
+
+# .env
+FOO=bar
+BAR=bar
+```
+
 [Read more about awk](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html)
 
 ### find-kill-process
