@@ -142,7 +142,7 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 
 `37852` is the randomly-picked port number by your OS for communications. Since it's random, that's why you need to specify ephemeral port range when defining inbound/outbound traffic rules in NACL. i.e in order for your server to respond to connected client (Windows XP Client) on random ports between `1025-5000`, you must have to enable outbound traffic destined for ports `1025-5000`.
 
-### dns-records
+### DNS Records
 
 #### CNAME
 
@@ -156,6 +156,16 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
 
 One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+
+#### NS Record
+
+It tells your browser where all DNS records for your domain can be found. In other words, it shows your browser the IP address of the server that holds your DNS records. Think of it as a library assistant who you need to ask first before knowing where to find your book.
+
+NS
+
+```
+mydomainname.com      NS      ns1.mydomainname.com
+```
 
 ### MX
 
