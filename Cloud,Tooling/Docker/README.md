@@ -22,6 +22,7 @@
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
   - [Communication between containers](#communication-between-containers)
   - [Memory and CPU limit](#memory-and-cpu-limit)
+  - [Env vars](#env-vars)
 - Recipes
   - [Copy assets from container to host](#copy-assets-from-container-to-host)
   - [Enter stopped containers](#enter-stopped-containers)
@@ -472,6 +473,31 @@ services:
         reservations:
           cpus: '0.25'
           memory: 20M
+```
+
+### Env Vars
+
+Value for `DEBUG` will be supplied by the variable with the same name in the shell from which `docker-compose` is run.
+
+```yaml
+web:
+  environment:
+    # same as DEBUG=${DEBUG} where DEBUG is set on the host
+    - DEBUG
+```
+
+This works the same when `env_file` is specified:
+
+```shell
+# .envfile
+FOO
+BAZ
+```
+
+```
+web:
+  # FOO and BAZ will be correctly populated with right values
+  env_file: .envfile
 ```
 
 ---
