@@ -6,6 +6,7 @@
 - [Policy](#policy)
 - [Federated Users](#federated-users)
 - [Credentials lookup](#credentials-lookup)
+- [Permission Boundary](#permission-boundary)
 - [Reference](#reference)
 
 ### Role
@@ -157,6 +158,31 @@ role_arn = arn:aws:iam::123456789012:role/marketingadminrole
 source_profile = user1
 ```
 When using `marketingadmin` in CLI, CLI automatically looks up the credentials for the linked `user1` profile and uses them to request temporary credentials for the specified `marketingadminrole`. The CLI uses the `sts:AssumeRole` operation in the background to accomplish this.
+
+
+### Permission Boundary
+
+Set the maximum permissions that an identity-based policy can grant to an IAM entity. A typical use case scenario: You designate user A to create users for you. You can create a permission boundary that sets the max permissions new users will have and mandate the attachment of permission boundary to new users. Such that, A can only create new users if permission boundary is attached to users role policy.
+
+```json
+...
+{
+    "Sid": "CreateOrChangeOnlyWithBoundary",
+    "Effect": "Allow",
+    "Action": [
+        "iam:CreateUser",
+        "iam:DeleteUserPolicy",
+        "iam:AttachUserPolicy",
+        "iam:DetachUserPolicy",
+        "iam:PutUserPermissionsBoundary",
+        "iam:PutUserPolicy"
+    ],
+    "Resource": "*",
+    "Condition": {"StringEquals":
+        {"iam:PermissionsBoundary": "arn:aws:iam::123456789012:policy/XCompanyBoundaries"}}
+}
+...
+```
 
 
 ### Reference

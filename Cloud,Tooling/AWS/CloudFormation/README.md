@@ -2,7 +2,9 @@
 
 - [Basics](#basics)
   - [Tagging](#tagging)
-- [cross-stack reference](#cross-stack-reference)
+  - [User Data Property](#user-data-property)
+  - [Typical example](#typical-example)
+  - [cross-stack reference](#cross-stack-reference)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
@@ -35,6 +37,23 @@ aws:cloudformation:stack-name
 ```
 
 All stack-level tags, including automatically created tags, are propagated to resources that CF supports.
+
+#### User Data Property
+
+- Scripts entered in UserData are run by `root` so `sudo` is not required. In case files are created and needed to be accessed by non-root users, modify permissions accordingly.
+- Check `/var/log/cloud-init-output.log` for `cloud-init` output.
+- To update instance user data, instance MUST stop first.
+
+```
+UserData:
+  Fn::Base64: !Sub
+    - |
+      #!/bin/bash -xe
+      foo=${foo}
+      baz=${baz}
+    - foo: !Ref Foo
+      baz: !Ref Baz
+```
 
 #### Typical Example
 
@@ -163,6 +182,10 @@ params.json
 ]
 ```
 
+One noticeable caveat is `You can't modify or remove an output value that is referenced by another stack.`. So use it with caution!
+
+---
+
 ### Troubleshooting
 
 **Q** Error - When calling the CreateChangeSet operation ... stack XXX is in ROLLBACK_COMPLETE state and can not be updated
@@ -185,7 +208,7 @@ $ aws cloudformation create-stack
 #### Debug user data
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
 
-The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once completes editing, download the updated template and replace current template with downloaded one. Bonus, keep using downloaded file for more editing and upload it to replace current template.
+The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once completes editing, hit create stack - cloud icon with a up arrow to update changed stack.
 
 When inline editing, ensure to leave blank line between comments and code:
 

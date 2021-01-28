@@ -4,17 +4,19 @@
 - [Reboot](#reboot)
 - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
-- [Instance metadata](#instance-metadata)
+- [IMDS(Instance Metadata service)](#IMDS)
 - [Metrics](#metrics)
 - [Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
+- [UserData](#user-data)
 - [EBS](#ebs)
   - [Snapshots](#snapshots)
   - [Block devices infor](#block-devices-infor)
   - [IOPS and throughput](#iops-and-throughput)
 - [AutoScaling](#asg)
   - [Cooldown](#cooldown)
+  - [LaunchConfiguration](#launch-configuration)
 
 ### IP and DNS
 
@@ -40,24 +42,28 @@ opening port on http.
 - To avoid any charges to `EBS`, make sure have them deleted as well as `snapshots` created from them.
 - `EBS snapshots` are billed at a lower rate than active `EBS volumes` are. So for cost effectiveness, you can create `EBS` snapshots from `EBS` volumes and delete active `EBS` volumes. Later, you can restore the `EBS` volumes from the snapshots when needed.
 
-### Instance Metadata
+### IMDS
 
-The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
+- Allow app running on EC2 to access AWS resources. Without it, we would have to use hard-coded API keys to enable comm between AWS services and resources. IMDS solves this problem via “temporary security credentials”. These credentials are rotated on a regular basis and managed by the AWS STS service.
+- AWS STS enables you to request temporary, limited-privilege credentials for IAM users or for users that you authenticate (federated users).
+- IMDS does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
+- Use v2 over v1 due to security concerns v1 has [Why v2 more secure?](https://medium.com/@shurmajee/aws-enhances-metadata-service-security-with-imdsv2-b5d4b238454b). i.e IMDSv2 will always reject requests with an `X-Forwarded-For` header that is seeable in requests passed through by reverse proxy services. This layer of protection prevents users from accessing IMDS endpoint from outside EC2 such as via ELB or reverse proxy server that's open to public.
+- The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay. 
+- In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container (bridge network other than host network) is considered an additional network hop. To avoid the process of falling back to IMDSv1 and the resultant delay, **in a container environment we recommend that you set the hop limit to 2**.
+
+![imds](how-imds-work.svg)
+
+Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will automatically retrieve credentials for you. You do not need to configure any credentials.
 
 ### Bastion Host
 
 [Bastion Host setup walkthrough](https://vaughanj10.github.io/creating-a-bastion-host-for-aws/)
-
-### Instance metadata
-
-The instance metadata service does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 
 ### Metrics
 
 Stats on EC2s pulled out by CloudWatch by default. Data is sent every 5 minutes by default, or every minute if detailed monitoring is enabled.
 
 - `CPUUtilization` - Recorded as a percentage value that is the amount of allocated EC2 compute units that are currently in use on the instance.
-
 
 ### AMI
 
@@ -81,6 +87,23 @@ AMI in one account can be shared with another account by modifying its permissio
         }
     ]
 }
+```
+
+### User Data
+
+Scripting UserData with [cloud-config](https://www.digitalocean.com/community/tutorials/an-introduction-to-cloud-config-scripting) is supported in CloudFormation.
+
+```yml
+UserData:
+  Fn::Base64: !Sub
+    - |-
+        #cloud-config
+        write_files:
+        - path: /opt/test/cloudformation/env
+          content: |
+            STACK_NAME=${AWS::StackName}
+            STACK_RESOURCE=Dashboard
+            STACK_REGION=${AWS::Region}
 ```
 
 ### EBS
@@ -189,3 +212,7 @@ Set and Forget and you don't want to have to make so many decisions. Makes the e
 - When multiple:
 Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown. Scaling-specific cooldown is useful. i.e lesser wait time in scale-in activity. EC2 termination process is faster than launch one so it might not need to wait 5 mins before next ec2 needs to be killed. This leads to faster scale-in experience
 - When multiple instances involved in a single scaling activity, cooldown starts when the last instance finishes launching/terminating. i.e Once 1st instance is launched, cooldown steps in.
+
+#### Launch Configuration
+
+- One remarkable issue with it is once Launch Configuration is created, you cannot change it i.e cannot change AMI with it. You have to create a new Launch Configuration based on the existing one with changed AMI and then update ASG to point to the new one.

@@ -21,6 +21,8 @@
   - [Show real installation location of a binary](#show-real-installation-location-of-binary)
   - [Safeguard shell scripts](#safeguard-shell-scripts)
   - [Alias](#alias)
+  - [Use mktemp to create temp file/directory](#use-mktemp)
+
 - [Scripting](./shell_scripting.md)
 - [Bash Template](./bash_template.md)
 
@@ -159,6 +161,24 @@ $ awk -F. '{print $2}' awk-sample-input.txt
 168
 ```
 `${n}` denotes segments - a line divided by separator into multiple segments. Given last command, with `.` as separator, the first segment is `192` and second segment is `168`.
+
+#### env var value populating
+
+```shell
+# .env.template
+FOO
+BAR
+
+# export values
+export FOO=foo
+export BAR=bar
+
+awk -F'\n' '{var=$1; val=ENVIRON[$1]; print var"="val}' .env.template > .env
+
+# .env
+FOO=bar
+BAR=bar
+```
 
 [Read more about awk](https://www.cnblogs.com/ggjucheng/archive/2013/01/13/2858470.html)
 
@@ -394,4 +414,11 @@ set -euxo pipefail
 ### Alias
 
 `alias` command will only work for that specific instance of the shell meaning once shell exits, effect will disappear.
+
+### Use mktemp
+
+It allows you to create temp file a) with random name b) with permissions locked down to current user. Safer! See [more details](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
+
+
+
 
