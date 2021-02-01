@@ -192,7 +192,7 @@ Key notes
 
 ### Logging
 
-`firelens` is no more than a Syntactic Sugar allowing you to put `fluentd` or `fluentbit` config in task definition from which these params will then be transformed into a config file being mounted into `fluentbit/fluentd` container.
+`firelens` is no more than a Syntactic Sugar allowing you to put `fluentd` or `fluentbit` config in task definition from which these params will then be transformed into a config file being mounted into `fluentbit/fluentd` container. It's not a log driver rather it uses `fluentd` docker log driver under the hood.
 
 ```txt
  "logConfiguration": {
