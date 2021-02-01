@@ -11,11 +11,11 @@
   - [www domain and naked domain](#www-vs-naked)
   - [DNS Zone file](#dns-zone-file)
   - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
+  - [DNS records](#dns-records)
 - [nc(telnet) on Mac](#nc)
 - [TCP Connections](#tcp-connections)
   - [Ephemeral Port](#ephemeral-port)
   - [TCP Timeout](#tcp-timeout)
-- [DNS records](#dns-records)
 - [NAT](#nat)
 - [Network interface and Virtual Network Interface](#network-interface)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
@@ -81,6 +81,37 @@ A DNS zone file is a text file stored on a server. It contains all the records f
 
 Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
 
+#### DNS Records
+
+#### CNAME
+
+| (sub)Domain/Hostname | Record Type | Target/Destination |
+| -------------------- | :---------: | -----------------: |
+| mydomain.com         |      A      |    111.222.333.444 | mydomain.com |
+| www.mydomain.com     |    CNAME    |       mydomain.com |
+| ftp.mydomain.com     |    CNAME    |       mydomain.com |
+| mail.mydomain.com    |    CNAME    |       mydomain.com |
+
+Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
+
+One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+
+#### NS Record
+
+It tells your browser where all DNS records for your domain can be found. In other words, it shows your browser the IP address of the server that holds your DNS records. Think of it as a library assistant who you need to ask first before knowing where to find your book.
+
+NS
+
+```
+mydomainname.com      NS      ns1.mydomainname.com
+```
+
+### MX
+
+>>>
+MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给user@mydomain.com 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上
+
+
 ### nc
 
 Use `nc` as you would with `telnet`:
@@ -141,37 +172,6 @@ Let's say your client (your machine) initiates a `ssh` connection with a remote 
 `192.168.1.102:37852 ---> 233.200.177.122:22`
 
 `37852` is the randomly-picked port number by your OS for communications. Since it's random, that's why you need to specify ephemeral port range when defining inbound/outbound traffic rules in NACL. i.e in order for your server to respond to connected client (Windows XP Client) on random ports between `1025-5000`, you must have to enable outbound traffic destined for ports `1025-5000`.
-
-### DNS Records
-
-#### CNAME
-
-| (sub)Domain/Hostname | Record Type | Target/Destination |
-| -------------------- | :---------: | -----------------: |
-| mydomain.com         |      A      |    111.222.333.444 | mydomain.com |
-| www.mydomain.com     |    CNAME    |       mydomain.com |
-| ftp.mydomain.com     |    CNAME    |       mydomain.com |
-| mail.mydomain.com    |    CNAME    |       mydomain.com |
-
-Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
-
-One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
-
-#### NS Record
-
-It tells your browser where all DNS records for your domain can be found. In other words, it shows your browser the IP address of the server that holds your DNS records. Think of it as a library assistant who you need to ask first before knowing where to find your book.
-
-NS
-
-```
-mydomainname.com      NS      ns1.mydomainname.com
-```
-
-### MX
-
->>>
-MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给user@mydomain.com 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上
-
 
 ### NAT
 
