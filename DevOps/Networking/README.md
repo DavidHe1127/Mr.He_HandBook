@@ -51,14 +51,15 @@ It is an administrative space within the DNS
 
 #### DNS Resolution Flow
 
-- <img src="./dns_resolution_process.png" width="480" height="327">
-- <img src="./ns.png" width="480" height="154">
-- [DNS Resolution explained in Chinese](https://blog.csdn.net/crazw/article/details/8986504)
-- Given url `https://www.ABC.com`:
-  - `com` is Top-level Domain aka (TLD)
-  - `ABC` is Root(Second-level) Domain aka (SLD)
-  - `www` is Subdomain(third-level domain)
-  - `http` is the protocol with TLS/SSL
+Given url `https://www.ABC.com.`:
+
+- You query the `.` name servers (aka root name servers) to ask where the `com` DNS servers are.
+- You query the `com` DNS servers (aka TLD name servers) to ask where the `ABC` DNS servers are.
+- You query the `ABC` DNS servers (ask for NS records) to ask where `www` is.
+
+One more subdomain might simply makes one more DNS server. i.e `https://www.test.ABC.com.` would mean a presence of `test` DNS server.
+
+<img src="./dns_resolution_process.png" width="480" height="327">
 
 #### DNS TTL
 
