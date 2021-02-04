@@ -5,16 +5,15 @@
 - Concepts
   - [Merge typs](#merge-types)
   - [HEAD and refs](#head-and-refs)
+  - [origin/master, master, origin, origin/HEAD](#origin-master)
 
 - Branch
 
-  - [Create Branch](#create-branch)
   - [Rename Branch](#rename-branch)
   - [Check Branch presence](#check-branch)
   - [Remove branch](#remove-branch)
   - [Check Branch merge status](#if-merge-into-master)
   - [Remove local branches that their remote counterparts no longer exist](#remove-non-tracking-local-branches)
-  - [Quickly switch back to previous branch](#go-back-to-previous-branch)
 
 - Changes
 
@@ -22,11 +21,8 @@
   - [Reset Commit](#reset-commit)
   - [Cherry-pick Commit](#cherry-pick)
   - [Stash Changes](#stash-change)
-  - [Unstage Changed files](#unstage)
-  - [Unstage all staged files](#unstage-all-staged-files)
   - [View change details after pull](#view-change-detail-after-pull)
   - [Unreset changes](#unreset-change)
-  - [Amend commit message](#amend-commit-message)
   - [See all commits in one file](#see-all-changes)
   - [Show branches containing a commit](#show-branch-has-commit)
   - [Sync with remote, overwrite local changes](#sync-remote-kill-local)
@@ -118,16 +114,13 @@ ref: refs/heads/master
 
 [Read more](https://www.softwhy.com/article-8500-1.html)
 
+## Origin Master
+
+- `origin/master` is a remote branch (which is a local copy of the branch named `master` on the remote named `origin`)
+- `master` is a local branch
+- `origin` is remote
+- `origin/HEAD` identifies default branch on remote (origin)
 ---
-
-## create-branch
-
-Create a new branch based on `yyy` and push it to remote
-
-```Javascript
-git co -b xxx yyy
-git push -u origin xxx // u - set up-stream channel
-```
 
 ## rename-branch
 
@@ -167,12 +160,6 @@ Command below will remove your local `remote tracking` branches that are no long
 
 ```shell
 git remote prune origin
-```
-
-## go-back-to-previous-branch
-
-```shell
-git checkout -
 ```
 
 ## remove-commit
@@ -229,18 +216,6 @@ git stash push <FILE_PATH> # stash a single file only
 git stash push -m '<YOUR_MESSAGE>'  -- <FILE_PATH> # stash a single file with messages
 ```
 
-## unstage
-
-```shell
-git reset <FILE_PATH>
-```
-
-## unstage-all-staged-files
-
-```shell
-git checkout .
-```
-
 ## view-change-detail-after-pull
 
 Specify `filename` if you want to see changes in a specific file. `master@{1}` means the immediate prior value of master.
@@ -260,14 +235,6 @@ Whenver you did a `reset HEAD^` and want to undo it, you need to run the followi
 ```shell
 git reflog # shows log list which guides you which point you need to go back to
 git reset HEAD@{N} # undo reset to N
-```
-
-## amend-commit-message
-
-Whenver you have committed a wrong message, use this command to modify the message. The modified message will overwrite the old one.
-
-```shell
-git commit --amend
 ```
 
 ## see-all-changes

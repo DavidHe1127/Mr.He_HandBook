@@ -1,12 +1,16 @@
 ## SSH(connection)
 
 - [Port](#port)
+- [SSH VS TLS](#ssh-vs-tls)
 - [ssh connection](#ssh-connection)
 
 ### port
 
-In a web context, a custom port can be specified for `https` other than conventional one `443` like:
-`https://www.example.com:7342/foobar.html`. If omitted, `443` will be used as default.
+`ssh` uses port `22`.
+
+### SSH vs TLS
+
+`SSL` is designed to secure the transmission of data. While `SSH` (Secure Shell) is designed to execute remote commands. i.e `git push` uses `ssh` to do its job via the key that's issued by an user.
 
 ### SSH connection
 

@@ -3,6 +3,7 @@
 - [systemctl](#systemctl)
   - [Debugging tips](#debugging-tips)
 - [Unit Files](#unit-files)
+- [Unit status](#unit-status)
 - [References](#references)
 
 ### systemctl
@@ -131,6 +132,11 @@ systemctl list-dependencies sshd.service
 
 todo
 - A target is a group of units. All units in this group will
+
+
+### Unit Status
+
+- `loaded active exited` run once unit. In other words, service is not run as a daemon.
 
 ### References
 
