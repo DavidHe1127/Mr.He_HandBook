@@ -6,6 +6,7 @@
   - [Merge typs](#merge-types)
   - [HEAD and refs](#head-and-refs)
   - [origin/master, master, origin, origin/HEAD](#origin-master)
+  - [refspec](#refspec)
 
 - Branch
 
@@ -115,11 +116,27 @@ ref: refs/heads/master
 [Read more](https://www.softwhy.com/article-8500-1.html)
 
 ## Origin Master
+`HEAD` is a pointer always pointing to the current branch (latest commit).
 
 - `origin/master` is a remote branch (which is a local copy of the branch named `master` on the remote named `origin`)
 - `master` is a local branch
 - `origin` is remote
-- `origin/HEAD` identifies default branch on remote (origin)
+- `origin/HEAD` in git logs identifies default branch on remote (origin)
+
+## Refspec
+
+```
+[remote "origin"]
+  url = git@github.com:schacon/simplegit-progit.git
+  # <src>:<dst>
+  # Fetch all branches under .git/refs/heads folder from remote and put them in .git/refs/remotes/origin/
+  # + means force fetch even if ff is impossible
+  fetch = +refs/heads/*:refs/remotes/origin/*
+
+  # fetch only master branch can also be done like - git fetch origin master:refs/remotes/origin/mymaster
+  fetch = +refs/heads/master:refs/remotes/origin/master
+```
+
 ---
 
 ## rename-branch
