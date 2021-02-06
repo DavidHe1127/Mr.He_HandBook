@@ -5,7 +5,7 @@
   - [Image and Container](#image-and-container)
   - [Dockerfile](#dockerfile)
   - [Networking](#Networking)
-  - [Caching](#caching)
+  - [Caching](./caching.md)
   - [Security](#security)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
@@ -152,30 +152,6 @@ In this example there is a service of two containers called `myservice`. A secon
 #### [Between-container communication](https://www.jianshu.com/p/710f4bb5a1a6)
 
 ---
-
-### Caching
-
-#### Caching for ADD and COPY
-The targeting files are examined and checksum is calculated for each of them. During cache lookup, every checksum is compared with the existing one individually (if there is any) and if a change is detected, cache will be invalidated and a new layer will be built. This also has the following lines of code rerun - new layer could be built.
-
-Consider the following sample
-
-```Dockerfile
-FROM node:8
-COPY . /app
-RUN npm install --production
-EXPOSE 3000
-CMD ["node", "app/index.js"]
-
-FROM node:8
-COPY package.json /app/package.json
-RUN cd /app; npm install --production
-COPY . /app
-EXPOSE 3000
-CMD ["node", "app/index.js"]
-```
-
-Second build example is better. Why? The only time we need to run `npm install` is when a change occurs to dependencies, in other words `package.json`. If a change is made to other source files, the first build will still run `npm install` while the second build won't.
 
 ### Security
 
