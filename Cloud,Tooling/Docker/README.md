@@ -277,6 +277,7 @@ Two approaches:
 
 - Only the Docker CLI runs in a container and connects to the Docker daemon on the host through a socket - When the Docker platform is installed on a host, the Docker daemon listens on the `/var/run/docker.sock` Unix socket by default.
 ```shell
+# still need to install docker cli inside the container
 $ docker run -it -v /var/run/docker.sock:/var/run/docker.sock docker
 ```
 - Containers being created by agent will be on the host machine.
