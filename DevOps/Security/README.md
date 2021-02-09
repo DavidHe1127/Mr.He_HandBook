@@ -153,6 +153,8 @@ Read more about [what is SSO and how it works](https://auth0.com/blog/what-is-an
 
 Saml is a protocol for authentication. i.e Authenticating a client through IdP that's compatible with SAML so the client can access your application which it does not provide authentication but rather actual services/functionalities.
 
+One use case scenario: Github redirects you to Google for authentication and once done bring you back to Github to provide resources to you. Google supports SAML 2.0 authentication strategy. See [SSO with SAML](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on)
+
 ![saml](saml.png)
 
 ### SAML vs OAuth
