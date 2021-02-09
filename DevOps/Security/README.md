@@ -157,7 +157,7 @@ Saml is a protocol for authentication. i.e Authenticating a client through IdP t
 
 ### SAML vs OAuth
 
-They are two different security protocols often used to implement SSO. The major difference is OAuth is primarily used for authorization whilst SAML is for authentication.
+They are two different security protocols often used to implement SSO. In other words, SSO is kinda feature while SAML/OAuth are 2 different implementation strategies. The major difference is OAuth is primarily used for authorization whilst SAML is for authentication.
 
 References
 

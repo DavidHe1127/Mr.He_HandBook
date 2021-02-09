@@ -1,6 +1,7 @@
 ## EC2
 
 - [IP and DNS](#ip-and-dns)
+- [EIP and Public IPv4](#eip-and-public-ipv4)
 - [Reboot](#reboot)
 - [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
 - [EC2 & EBS cost](#ec2_ebs_cost)
@@ -22,6 +23,13 @@
 
 `Private/Public DNS` as shown on EC2 panel resolves to private/public ip of an instance.
 i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resolves to private ip `10.156.61.79`.
+
+### EIP and Public IPv4
+
+- `EIP` is basically a public and static IPv4.
+- `EIP` will remain yours until you explicitly release it. If it's not attached to any instance, you will be charged.
+- When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address (if it had one) is released back into Amazon's pool of public IPv4 addresses. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address.
+- You cannot auto-assign a public IP address if you specify more than one network interface in your instance. Use `EIP` in this case.
 
 ### Reboot
 
@@ -48,7 +56,7 @@ opening port on http.
 - AWS STS enables you to request temporary, limited-privilege credentials for IAM users or for users that you authenticate (federated users).
 - IMDS does not require internet access. `169.254.0.0/16` is a reserved ip block and it is used for local, internal communication.
 - Use v2 over v1 due to security concerns v1 has [Why v2 more secure?](https://medium.com/@shurmajee/aws-enhances-metadata-service-security-with-imdsv2-b5d4b238454b). i.e IMDSv2 will always reject requests with an `X-Forwarded-For` header that is seeable in requests passed through by reverse proxy services. This layer of protection prevents users from accessing IMDS endpoint from outside EC2 such as via ELB or reverse proxy server that's open to public.
-- The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay. 
+- The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay.
 - In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container (bridge network other than host network) is considered an additional network hop. To avoid the process of falling back to IMDSv1 and the resultant delay, **in a container environment we recommend that you set the hop limit to 2**.
 
 ![imds](how-imds-work.svg)
