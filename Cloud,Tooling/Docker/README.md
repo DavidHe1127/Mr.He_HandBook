@@ -4,7 +4,7 @@
   - [Architecture](#Architecture)
   - [Image and Container](#image-and-container)
   - [Dockerfile](#dockerfile)
-  - [Networking](#Networking)
+  - [Networking](./networking.md)
   - [Caching](./caching.md)
   - [Security](#security)
   - [Logging](./logging.md)
@@ -84,72 +84,6 @@ We can override `CMD` by doing `docker run myservice /bin/debug`. In this case, 
 We can also override `ENTRYPOINT` by doing `docker run --entrypoint /bin/logwrap myservice`. In this case, command `["/bin/logwrap", "/bin/service", "-d"]` will be executed.
 
 If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
-
-### Networking
-
-#### Bridge network
-
-The Docker server creates and configures the host system’s **docker0** interface as an Ethernet bridge inside the Linux kernel that could be used by the docker containers to communicate with each other and with the outside world.
-
-When docker engine is started, the default bridge network named **docker0** is created - not visible on Mac via ifconfig since it’s in VM (on OS X docker host is a linux virtual machine called docker machine). You can run `docker-machine ssh default` to ssh into docker machine.
-
-Docker bridge network:
-
-![docker-bridge-network-01](./docker-bridge-network-01.png)
-![docker-bridge-network-02](./docker-bridge-network-02.png)
-
-As shown above, **docker0** bridge is virtual interface created by docker, it randomly chooses an address and subnet from the private range that are not in use on the host machine, and assigns it to **docker0**. By default, all the docker containers will be connected to the **docker0 bridge**, the docker containers connnected to the **docker0 bridge** could use the **iptables NAT rules** created by docker to communicate with the outside world.
-
-Bridge network provides isolations that containers sitting outside the default bridge network (custom one) cannot communicate with ones sitting inside.
-
-Containers connected to the default bridge network can communicate and it doesn't need port mapping but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
-
-#### expose vs ports
-
-`expose` - The expose tag will let you expose ports without publishing them to the host machine, but they will be exposed to the containers networks. `ports` on the other hand will be mapping the host port with the container port `HOST:CONTAINER`.
-
-compose file
-```
-services
-  redis:
-    build:
-      context: .
-      dockerfile: Dockerfile-redis
-    expose:
-      - "6379"
-```
-
-#### What happens when you run a container
-
-The `docker0` Ethernet bridge settings are used every time you create a new container. Docker selects a free IP address from the range available on the bridge each time you `docker run` a new container, and configures the container’s `eth0` interface with that IP address and the bridge’s netmask. The Docker host’s own IP address (randomly picked by docker from the private ip range that's not used on the host machine) on the bridge is used as the default gateway by which each container reaches the rest of the Internet.
-
-#### Bridge network gateway
-
-It determines where traffic should go if destination ip does not match any container's ip in the network.
-
-#### veths
-
-Docker network drivers utilize **veths** to provide explicit connections between namespaces when Docker networks are created. When a container is attached to a Docker network, one end of the veth is placed inside the container (usually seen as the ethX interface) while the other is attached to the Docker network (bridge network). See [Virtual Ethernet Devices](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/cloud/linux.md#networking)
-
-#### DNS
-
-- By default, containers on default `bridge` network has a copy of `/etc/resolv.conf` from host.
-- Containers using `user-defined` network (aka custom network) including bridge, overlay and MACVLAN use Docker's embedded DNS server addressed at `127.0.0.11`.
-This DNS server provides name resolution to all of the containers on the custom network.
-- If containers cannot reach any of the IP addresses you specify - i.e --dns xxx.xxx.xx.xx then it will use Google's public DNS server `8.8.8.8`.
-
-#### DNS resolution process
-
-![dns](./docker-dns.png)
-
-In this example there is a service of two containers called `myservice`. A second service (client) exists on the same network. The client executes two curl operations for `docker.com` and `myservice`. These are the resulting actions:
-
-- DNS queries are initiated by client for `docker.com` and `myservice`.
-- The container's built-in resolver intercepts the DNS queries on `127.0.0.11:53` and sends them to Docker Engine's DNS server.
-- Docker Engine then checks if the DNS query belongs to a container or service on network(s) that the requesting container belongs to. If it does, then Docker Engine looks up the IP address that matches a container or service's name in its key-value store and returns that IP or service Virtual IP (VIP) back to the requester. In this example, `myservice` does exist on the network so internal DNS resolve its name and return associated IP to the client.
-- `docker.com` does not exist as a service name in the `mynet` network and so the request is forwarded to the configured default DNS server.
-
-#### [Between-container communication](https://www.jianshu.com/p/710f4bb5a1a6)
 
 ---
 
@@ -383,6 +317,21 @@ Run `docker network ls` to find the desired network and run `docker network insp
 **Access docker host from inside the container**
 
 Use special DNS `host.docker.internal` when trying to access services running on docker host on OS X/windoes. i.e instead of `http://localhost:4000` try `http://host.docker.internal:4000`.
+
+#### expose vs ports
+
+`expose` - The expose tag will let you expose ports without publishing them to the host machine, but they will be exposed to the containers networks. `ports` on the other hand will be mapping the host port with the container port `HOST:CONTAINER`.
+
+compose file
+```
+services
+  redis:
+    build:
+      context: .
+      dockerfile: Dockerfile-redis
+    expose:
+      - "6379"
+```
 
 ### Mount src to volume
 

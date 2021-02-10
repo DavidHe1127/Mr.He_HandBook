@@ -7,6 +7,7 @@
   - [HEAD and refs](#head-and-refs)
   - [origin/master, master, origin, origin/HEAD](#origin-master)
   - [refspec](#refspec)
+  - [Detached](#detached)
 
 - Branch
 
@@ -136,6 +137,10 @@ ref: refs/heads/master
   # fetch only master branch can also be done like - git fetch origin master:refs/remotes/origin/mymaster
   fetch = +refs/heads/master:refs/remotes/origin/master
 ```
+
+## Detached
+
+Detached `HEAD` means you are no longer on a branch, you have checked out a single commit in the history (in this case the commit previous to `HEAD`, i.e. `HEAD^`).
 
 ---
 
