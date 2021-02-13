@@ -1,5 +1,6 @@
 ## DNS
 
+- [DNS Servers](#dns-servers)
 - [DNS Zones](#dns-zones)
 - [DNS Zone file](#dns-zone-file)
 - [hostname vs domain](#hostname-vs-domain)
@@ -8,6 +9,8 @@
 - [www domain and naked domain](#www-vs-naked)
 - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [DNS records](#dns-records)
+
+### DNS Servers
 
 2 kinds of DNS servers: recursive DNS servers aka DNS resolver AND authoritative DNS servers aka nameservers.
 
