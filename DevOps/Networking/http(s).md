@@ -21,7 +21,7 @@
 ### Digital Signature and Digital Certificate
 
 - Bob creates a cert including his public key and other information to `CA`.
-- `CA` uses its private key to sign(encrypt) provided cert which results in a new cert - Digital Certificate, aka `X.509 Cert`.
+- `CA` uses its private key to sign(encrypt) provided cert which results in a new cert - Digital Certificate in `X.509` format - a standard format for public key cert.
 - Bob sends the digital cert to Alice who then tries to decrypt it using the public key distributed by the **same** `CA`.
 - If it can be decrypted with no errors, it means the cert is from Bob.
 - Signature is the result of encryption. `Message - hash -> Digest - encrypt with private key -> Signature`.
