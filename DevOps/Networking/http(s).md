@@ -1,7 +1,9 @@
-## HTTP, HTTP(S) with SSL/TLS
+## HTTP, HTTP(S) with SSL/TLS and Cert
 
-- [How SSL works](#how-ssl-works)
+- [Key points](#key-points)
 - [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
+- [How SSL works](#how-ssl-works)
+- [Digital Signature and Digital Certificate](#digital-signature-and-digital-certificate)
 - [HTTP or HTTPS](#http-or-https)
 - [CA](#ca)
 
@@ -15,6 +17,14 @@
 - Private key stays with owner while public key can be distributed
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
+
+### Digital Signature and Digital Certificate
+
+- Bob creates a cert including his public key and other information to `CA`.
+- `CA` uses its private key to sign(encrypt) provided cert which results in a new cert - Digital Certificate, aka `X.509 Cert`.
+- Bob sends the digital cert to Alice who then tries to decrypt it using the public key distributed by the **same** `CA`.
+- If it can be decrypted with no errors, it means the cert is from Bob.
+- Signature is the result of encryption. `Message - hash -> Digest - encrypt with private key -> Signature`.
 
 ### How SSL works
 
