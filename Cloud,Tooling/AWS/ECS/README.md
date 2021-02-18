@@ -8,9 +8,9 @@
   - [Networking](#networking)
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
-- [Auto scaling](#asg)
+- [Resource Allocation and Utilization](#resource-allocation-utilization)
 - [Rolling update](#rolling-update)
-- [Various roles](#various-roles)
+- [Roles comparison](#roles-comparison)
 - [Logging](#logging)
 - [Monitoring](#monitoring)
 - [Troubleshooting guide](#troubleshooting-guide)
@@ -84,14 +84,14 @@ Run task is similar to what we see in run a service.
 $ aws ecs run-task --cluster deepdive --task-definition web --count 1
 ```
 
-### ASG
+### Resource Allocation and Utilization
 
 #### Memory Reservation
 Defines how much of memory it requires (is reserved) to run a container/task. It's considered to be a soft limit. Along with `memory` aka memory hard limit, they work hand in hand to help ECS scheduler with decision-making on tasks placement into container instances.
 
 Example one, given `memoryReservation` and `memory` with value of `128MiB` and `300MiB` respectively, it tells ECS to reserve `128MiB` of memory to ensure your container has enough resource to work. In the event of insufficient resources as required, your container is allowed to burst up to `300MiB` for short periods of time but not exceeds that particular amount. This would only happen when no other containers require resources from instance.
 
-Example two, if you reserve 1024 cpu units for a particular task and that amount is equal to entire cpu units a container instance has, then scheduler will not place anymore tasks into this instance when such requirement arises.
+Example two, if you reserve 1024 cpu units (or 1 vCPU) for a particular task and that amount is equal to entire cpu units a container instance has, then scheduler will not place anymore tasks into this instance when such requirement arises.
 
 Example three, a cluster has two active container instances registered: a `c4.4xlarge` instance and a `c4.large` instance. The `c4.4xlarge` instance registers into the cluster with `16,384` CPU units and `30,158 MiB` of memory. The `c4.large` instance registers with `2,048` CPU units and `3,768 MiB` of memory. The aggregate resources of this cluster are `18,432` CPU units and `33,926` MiB of memory.
 
@@ -182,11 +182,13 @@ Key notes
 | Container Instance Role | AmazonEC2ContainerServiceforEC2Role | Allows container agent to make calls to ECS API on your behalf | EC2 launch type only
 | Service-Linked Role | AWSServiceRoleForECS | Enable load-balancing, asg and more. [See this](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using-service-linked-roles.html) | 👍
 | Task Execution Role | AmazonECSTaskExecutionRolePolicy | Executes ECS actions such as pulling the image and storing the application logs in cloudwatch and even more i.e Private Registry authentication |
-| Task Role           | N/A | Allows to associate fine-grained access control with a single task rather than the underlying instance that host those taks |
+| Task Role           | N/A | Defines what aws services your task have access to. i.e call s3 from your task | Allows to associate fine-grained access control with a single task rather than the underlying instance that host those taks
 | Service Scheduler Role | AmazonEC2ContainerServiceRole | Grants ECS scheduler permissions to register/deregister container instances with load balancers | ❌ deprecated. Use service-linked role instead
 | Auto-Scaling Role | AmazonEC2ContainerServiceAutoscaleRole | Used for service auto scaling | ❌deprecated. Use service-linked role instead
 
 ### Dynamic Port Mapping
+
+Used to resolve ports conflict. Only available for `EC2` launch type since it uses `bridge` networking. However, for `fargate` launch type, each task will be assigned an `ENI` with an unique IP making it like an individual `EC2` instance. Hence, multiple tasks with the same port can run without conflict issues. Note, container port **must** matches host port on `fargate` mode.
 
 ![dynamic-port-mapping](./dynamic-port-mapping.png)
 
@@ -261,6 +263,8 @@ References:
 - When using task execution role, it will overwrite EC2 instance role you've defined. Therefore, if you use predefined `AmazonEC2ContainerServiceforEC2Role` as your instance profile role, which gives you permissions to do things like pull images from ECR, you need to make sure task execution role has the same permissions as well.
 
 ---
+
+## ECR
 
 ### Repo Owner
 

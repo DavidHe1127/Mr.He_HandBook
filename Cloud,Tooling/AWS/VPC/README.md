@@ -1,6 +1,7 @@
 ## VPC
 
 - [ENI](#eni)
+- [CIDR](#cidr)
 - [NAT Gateway](#nat-gateway)
   - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
@@ -11,6 +12,11 @@
 
 - Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC.
 - ENI cannot be detached when it's associated and used by a resource - i.e VPCE. To remove ENI, you need to delete parent service.
+
+### CIDR
+
+- Multiple VPCs in one account can have same cidr range. However, overlapped cidr range will preclude vpc peering when needed. As of `08/2017`, VPC allows customers to expand their VPCs by adding secondary IPv4 address ranges (CIDRs).
+- Subnets within one VPC cannot have cidrs overlapped since AWS will treat the 2 subnets as one continuous network.
 
 ### NAT Gateway
 
