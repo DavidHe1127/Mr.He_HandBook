@@ -99,7 +99,15 @@ If a task definition reserves `1,024` CPU units and `2,048` MiB of memory, and t
 
 ![resources reservation](./resources_reservation.png)
 
-#### [CPU Utilization Explained](https://stackoverflow.com/questions/48529434/what-is-the-impact-if-my-service-exceeds-100-service-cpu-utilization)
+[CPU Utilization Explained](https://stackoverflow.com/questions/48529434/what-is-the-impact-if-my-service-exceeds-100-service-cpu-utilization)
+
+#### Task Resource Allocation range
+
+- While task resource allocation is optional for `EC2`, it's **mandatory** for `fargate`.
+- For `EC2` launch type, `128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs)` is allowed.
+- For `Fargate` launch type, only predefined combination of cpu/mem is allowed. See link below.
+
+[Task Resource Allocation Range](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html)
 
 #### How Scaling works in ECS
 
