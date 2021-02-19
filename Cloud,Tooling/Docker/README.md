@@ -89,7 +89,7 @@ If you want to make an image dedicated to a specific command you will use `ENTR
 
 ### HealthCheck
 
-- Failing configured health check will not kill running container but rather showing `unhealthy` status. See below:
+- Failing configured health check will not kill running container but rather marking it as `unhealthy` status. See below:
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS                    NAMES
 c8b925b35dd6        healthcheck         "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes (unhealthy)   0.0.0.0:7000->8080/tcp   pedantic_thompson
