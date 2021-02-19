@@ -6,6 +6,7 @@
   - [Dockerfile](#dockerfile)
   - [Networking](./networking.md)
   - [Caching](./caching.md)
+  - [HealthCheck](#health-check)
   - [Security](#security)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
@@ -20,6 +21,7 @@
 - Docker Compose
   - [Networking](#networking)
   - [Mount your code as a volume to avoid image rebuilds](#Mount-src-to-volume)
+  - [Dependency](#dependency)
   - [Communication between containers](#communication-between-containers)
   - [Memory and CPU limit](#memory-and-cpu-limit)
   - [Env vars](#env-vars)
@@ -85,7 +87,17 @@ We can also override `ENTRYPOINT` by doing `docker run --entrypoint /bin/logwrap
 
 If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
 
----
+### HealthCheck
+
+- Failing configured health check will not kill running container but rather showing `unhealthy` status. See below:
+```
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS                    NAMES
+c8b925b35dd6        healthcheck         "docker-entrypoint.s…"   2 minutes ago       Up 2 minutes (unhealthy)   0.0.0.0:7000->8080/tcp   pedantic_thompson
+```
+- Return health check status from a container
+```
+docker inspect --format='{{.State.Health.Status}}' 5c2f4e67f7c4
+```
 
 ### Security
 
@@ -345,6 +357,25 @@ services:
       # With this, you don't have to manually copy node_modules into container during dev
       # Another benefit is you can debug node_modules locally
       - ./node_modules:/home/node/app/server/node_modules
+```
+
+### Dependency
+
+`depends_on` only affects service start-up order. It will not wait until dependent services to be ready before starting itself.
+
+```docker
+version: '2'
+services:
+  web:
+    build: .
+    # this will always start up db followed by redis before web. But web start-up will not wait for db and redis to be ready
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: redis
+  db:
+    image: postgres
 ```
 
 ### Communication between containers
