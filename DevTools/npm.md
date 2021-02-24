@@ -41,9 +41,9 @@ console.log(process.env.npm_package_config_port);
 
 ### peer-dependency
 
-[Peer Dependency mechanism](https://codingwithspike.wordpress.com/2016/01/21/dealing-with-the-deprecation-of-peerdependencies-in-npm-3/).
-
-As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
+- Useful when authoring a library where some deps are required however, author does not need to install them themselves. It's down to consumers for deps installation.
+- When you see a mismatch error, it basically means dep version defined in lib's `peerDependencies` does not match what consumers have supplied in their `package.json`.
+- As of `npm v3`, `peerDependency` will not be auto-installed. All you have to do is install it manually.
 
 ### semantic-versioning
 
