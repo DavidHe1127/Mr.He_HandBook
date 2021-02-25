@@ -33,6 +33,7 @@ It is an administrative space within the DNS. It's used to host the DNS records 
 - `domain` is the name given to the network
 - Conventional format `hostname.domain.com`. i.e `mymachine.theuniversity.org`
 - `hostname` is sometimes also called subdomain from domain perspective.
+- An apex domain is a custom domain that does not contain a subdomain, such as `example.com` . Apex domains are also known as base, bare, naked, root apex, or zone apex domains.
 
 ### DNS Resolution Flow
 
