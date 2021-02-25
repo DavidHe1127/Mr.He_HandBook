@@ -6,6 +6,7 @@
   - [Desired Count](#desired-count)
   - [Overview](#overview)
   - [Networking](#networking)
+  - [Running modes](#running-modes)
 - [Run a service in cluster](#run-a-service-in-cluster)
 - [Run a task in cluster](#run-a-task-in-cluster)
 - [Resource Allocation and Utilization](#resource-allocation-utilization)
@@ -49,6 +50,10 @@ Desired count of running tasks. Say your task definition defines two containers 
 References:
 - [ECS Networking](https://aws.amazon.com/blogs/compute/introducing-cloud-native-networking-for-ecs-containers/)
 - [ECS awsvpc](https://ufoships.com/docs/extras/ecs-network-mode/)
+
+#### Running modes
+
+- ECS Fargate allows you to focus on apps - task level without having to worry about underlying compute resources. In other words you don't have to provision, configure, or scale clusters of virtual machines to run containers.
 
 ---
 
