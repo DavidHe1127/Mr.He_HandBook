@@ -14,7 +14,7 @@
 
 - Key pair is used to encrypt/decrypt data (session key) in HTTPS context
 - Certificate verifies that an entity is the owner of a particular public key
-- Private key stays with owner while public key can be distributed
+- Private key stays with owner (or server in webapp context) while public key can be distributed
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
 
@@ -31,7 +31,7 @@
 `SSL/TLS` connection enforces data encryption during transmission over the network:
 
 1. `Browser` connects to a web server (website) secured with SSL (https). `Browser` requests that the `Server` identifies itself.
-2. `Server` sends a copy of its `SSL Certificate`, including the `Server's` public key.
+2. `Server` sends a copy of its `SSL Certificate` with server's public key enclosed.
 3. `Browser` checks the certificate root against a list of trusted CAs (comes with Browsers) and that the certificate is unexpired, unrevoked and that its common name is valid for the website that it is connecting to. If the `Browser` trusts the certificate, it creates, encrypts and sends back a symmetric session key using the `Server's` public key.
 4. `Server` decrypts the symmetric session key using its private key and sends back an acknowledgement encrypted with the session key to start the encrypted session.
 5. `Server` and `Browser` now encrypt all transmitted data with the session key - (symmetric encryption).

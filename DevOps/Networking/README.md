@@ -74,6 +74,7 @@ when server sends...
 - A single listening port on server can accept more than one conn simultaneously
 - A single ip/port tuple is theoretically allowed to make 64k (1024-65535) socket conns to a particular ip/port on server
 - Each socket conn is a file descriptor. Total number of allowed concurrent socket conns depends on system config. i.e through sysctl
+- SSL connection comes after TCP connection is established.
 
 #### TCP Timeout
 
