@@ -1,11 +1,16 @@
 ## Networking
 
+- [Network namespace](#network-namespace)
 - [Bridge Network Mode](#bridge-network-mode)
 - [Host Network Mode](#host-network-mode)
 - [What happens when you run a container](#what-happens-when-you-run-a-container)
 - [Bridge Network Gateway](#bridge-network-gateway)
 - [Virtual eth](#veths)
 - [DNS](#dns)
+
+### Network namespace
+
+Each container has an isolated network namespace from other containers'. Therefore, run multiple containers with the same container ports cause no conflicts. So long as `HostPort:ContainerPort` combination are unique, docker is happy. Use `localhost` to reference service itself running inside the container.
 
 ### Bridge network mode
 
