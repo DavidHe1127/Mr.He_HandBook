@@ -17,6 +17,7 @@
 - Private key stays with owner (or server in webapp context) while public key can be distributed
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
+- In client/server communication process, client needs `CA Cert` while server needs to have its `Cert` as well as `Private Key`. Private key is used to decrypt the session key being encrypted by public key enclosed in `Cert`.
 
 ### Digital Signature and Digital Certificate
 
