@@ -6,6 +6,7 @@
 - [Digital Signature and Digital Certificate](#digital-signature-and-digital-certificate)
 - [HTTP or HTTPS](#http-or-https)
 - [CA](#ca)
+- [Self-signed cert generation script](#cert-generation-script)
 
 - [HTTP/2](#http/2)
 - [Redirection](#redirection)
@@ -59,6 +60,20 @@ Certbot is a very popular agent.
 - Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
 - Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
 - CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than obtaining it from CAs.
+
+### Self-signed Cert Generation Script
+
+```shell
+# CN (Common Name) needs to match FQDN you wish to use cert with
+openssl req \
+  -newkey rsa:2048 \
+  -days 365 \
+  -nodes \
+  -x509 \
+  -keyout federated-prom.key \
+  -out federated-prom.crt \
+  -subj "/C=AU/ST=Sydney/L=Sydney/O=DavidHe/CN=federated-prom"
+```
 
 ### HTTP or HTTPs
 
