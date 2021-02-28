@@ -59,7 +59,7 @@ Certbot is a very popular agent.
 
 - Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.
 - Issue cert to servers. Done through asking clients to complete DNS challenge and issuing CA signed cert upon DNS challenge success.
-- CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means servers use their own private key to sign and generate the cert rather than obtaining it from CAs.
+- CA warns clients with a message of `your connection is not private` when either servers present a self-signed cert or no cert to clients. Self-signed cert means the cert is not signed by publicly trusted CA's private key. i.e Servers use their own private key to sign and generate the cert.
 
 ### Self-signed Cert Generation Script
 
