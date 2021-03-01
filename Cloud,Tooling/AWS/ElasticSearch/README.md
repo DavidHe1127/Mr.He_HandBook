@@ -9,7 +9,6 @@
 - A search query must go through all primary shards to be complete. This includes one/more nodes to be visited.
 - Ultimate goal is to visit as few nodes as possible
 - Mapping should be provided to instruct ES how incoming records should be indexed. However when it's absent, it can be inferred from the record (event) by ES. For example:
-
 ```
 # record
 ...
@@ -33,6 +32,8 @@
   }
 }
 ```
+- A record should comply with [ECS](https://www.elastic.co/guide/en/ecs/current/ecs-using-ecs.html) where `@timestamp` and `message` fields should be present containing timestamp infor and message respectively. Otherwise, `failed to find message` message might display.
+
 
 ### References
 
