@@ -2,6 +2,7 @@
 
 - [Key Concepts](#key-concepts)
 - [Facts](#facts)
+- [Useful commands](#useful-commands)
 
 ### Key Concepts
 
@@ -73,3 +74,24 @@ new aws.ecr.Repository(
   })
 ```
 
+---
+
+## Useful Commands
+
+```shell
+# export state (stack)
+pulumi stack export --stack auth0-configuration-dev > auth0-configuration-dev.json
+
+# import state (stack) into an existing stack
+AWS_PROFILE=david pulumi stack import --file auth0-configuration-dev.json --stack auth0-configuration-dev
+
+# create secret. This command will create a secret entry in config file
+#
+# auth0:client_secret:
+#    secure: xxxxxxxx
+#
+AWS_PROFILE=david pulumi config set --secret auth0:client_secret xjfiwLKDI
+
+# set kms key to be used for secrets encryption/decryption
+AWS_PROFILE=david pulumi stack init new-stack --secrets-provider="awskms://alias/ExampleAlias?region=us-east-1"
+```
