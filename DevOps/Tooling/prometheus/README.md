@@ -14,6 +14,20 @@
 ![prometheus-metrics-scraping](prometheus-metrics-scraping.png)
 ![ways-gather-metrics](ways-gather-metrics.png)
 
+### Time Series
+
+Each time series is comprised of `metric` and `label`. Unique combination identifies an unique time series. Think of time series as a bucket where it stores sample data that has the same `metric/label` combination. Sample including value and associated timestamp. Sample data is stored by time series.
+
+```
+# each sample data represented as t0, v0
+time series = [(t0, v0), (t1, v1), ...]
+
+# example time series
+http_requests_total(job="nginx", instance="1.2.3.4:80", path="/home", status="200")
+```
+
+![time-series](./time-series.png)
+
 ### Job vs Instance vs Target
 
 `Job` is a collection of instances with the same purpose. An `instance` is a `<host>:<port>` representation. While `target` is an object that holds information such as what labels to apply, any authentication required to connect, or other information that defines how the scrape will occur.
