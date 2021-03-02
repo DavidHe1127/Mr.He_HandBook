@@ -14,7 +14,6 @@
 ### Key points
 
 - Key pair is used to encrypt/decrypt data (session key) in HTTPS context
-- Certificate verifies that an entity is the owner of a particular public key
 - Private key stays with owner (or server in webapp context) while public key can be distributed
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
@@ -27,6 +26,7 @@
 - Bob sends the digital cert to Alice who then tries to decrypt it using the public key distributed by the **same** `CA`.
 - If it can be decrypted with no errors, it means the cert is from Bob.
 - Signature is the result of encryption. `Message - hash -> Digest - encrypt with private key -> Signature`.
+- Signature is attached to the cert. In verification process, users will use CA's public key to verify the signature's validity.
 
 ### How SSL works
 
