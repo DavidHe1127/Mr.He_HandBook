@@ -35,34 +35,6 @@ gerardnico.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABA............
 
 When similar warning message is presented, it means host identity is changed since last connection, you can simply find the entry and remove it. That way, you can connect afresh.
 
-```
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@       WARNING: POSSIBLE DNS SPOOFING DETECTED!          @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-The ECDSA host key for jenkins.lz002.awsnp.national.com.au has chan
-ged,
-and the key for the corresponding IP address 10.156.61.79
-is unknown. This could either mean that
-DNS SPOOFING is happening or the IP address for the host
-and its host key have changed at the same time.
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
-Someone could be eavesdropping on you right now (man-in-the-middle
-attack)!
-It is also possible that a host key has just been changed.
-The fingerprint for the ECDSA key sent by the remote host is
-SHA256:heOIATWHJC/Vfy6IHNG3BjFhFlQnl6UqwKi1mTsHpsw.
-Please contact your system administrator.
-Add correct host key in /Users/P782199/.ssh/known_hosts to get rid
-of this message.
-Offending ECDSA key in /Users/P782199/.ssh/known_hosts:11
-ECDSA host key for jenkins.lz002.awsnp.national.com.au has changed
-and you have requested strict checking.
-Host key verification failed.
-```
-
 **authorized_keys**
 
 - Just like the client wants to know if the host is who it really claims to be, the server wants to know if the user that is connecting is in fact the user it claims to be.
