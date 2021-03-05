@@ -186,7 +186,7 @@ The check involves looking at the certificate sent by the server, and verifying 
 -----BEGIN CERTIFICATE-----
 ...
 -----END CERTIFICATE-----
-subject=/CN=fluentbit.ap-southeast-2.dev.kasada.dev
+subject=/CN=fluentbit.ap-southeast-2.dev.parrodise.dev
 issuer=/C=US/O=Amazon/OU=Server CA 1B/CN=Amazon
 ```
 

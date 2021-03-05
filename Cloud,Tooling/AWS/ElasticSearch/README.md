@@ -12,13 +12,13 @@
 ```
 # record
 ...
-"Kasada": {
+"Parrodise": {
   "tenant": "io-247-logging-tenant-portal"
 },
 ...
 
 # mapping
-"Kasada": {
+"Parrodise": {
   "properties": {
     "tenant": {
       "type": "text",
