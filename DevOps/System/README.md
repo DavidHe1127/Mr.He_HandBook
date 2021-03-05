@@ -146,8 +146,8 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
 
   ```shell
   $ sudo node               # run node command as a root user
-  $ sudo node -U p782199    # run node command as user p782199
-  $ sudo -l -U p782191      # list all this user can do
+  $ sudo node -U xxxx       # run node command as user xxxx
+  $ sudo -l -U xxxx         # list all this user can do
   $ sudo su                 # means run the command su as sudo which means as root. Here the system will ask you for your
                             # password since you are a sudoer. After you enter your password, you now have root privilege
                             # useful when you need to execute a number of commands as root. As opposed to sudo <command>
@@ -156,7 +156,7 @@ With this configuration, you ssh into another ec2 instance by typing `ssh remote
   - if you see something like this:
 
   ```
-  Sorry, user P782199 is not allowed to execute '/Users/P782199/.nvm/versions/node/v8.16.1/bin/node -u p782199' as root on C02X1KJSJG5H (host).
+  Sorry, user xxxx is not allowed to execute '/Users/xxxx/.nvm/versions/node/v8.16.1/bin/node -u xxxx' as root on COMPUTERNAME (host).
   ```
 
   it basically means the command you are trying to run is not a whitelisted command you can run on behalf of root.

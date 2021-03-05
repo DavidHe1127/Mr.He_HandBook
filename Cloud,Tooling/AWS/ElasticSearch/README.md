@@ -8,7 +8,7 @@
 - A shard is a Lucene Index that has one or more segments to store data on disk. Larger segments are more efficient for storing data.
 - A search query must go through all primary shards to be complete. This includes one/more nodes to be visited.
 - Ultimate goal is to visit as few nodes as possible
-- Mapping should be provided to instruct ES how incoming records should be indexed. However when it's absent, it can be inferred from the record (event) by ES. For example:
+- Mapping (schema) should be provided to instruct ES how incoming records should be indexed. However when it's absent, it can be inferred from the record (event) by ES. For example:
 ```
 # record
 ...

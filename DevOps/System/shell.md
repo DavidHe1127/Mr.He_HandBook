@@ -70,7 +70,7 @@ $ la | pbcopy
 $ scp -i path/to/key file/to/copy ec2-user@<EC2_IP>:path/to/file
 
 # copy file from remote to local
-scp -i ~/.ssh/nabx-nonprod.pem ec2-user@jenkins-nonprod.lz002.awsnp.national.com.au:david-playground/output.json .
+scp -i ~/.ssh/xxx.pem ec2-user@hostname:david-playground/output.json .
 ```
 
 ### brace vs bracket
