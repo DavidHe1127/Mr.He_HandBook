@@ -2,6 +2,7 @@
 
 - [Key Concepts](#key-concepts)
 - [Facts](#facts)
+- [Import Resources](#import-resources)
 - [Useful commands](#useful-commands)
 
 ### Key Concepts
@@ -73,6 +74,11 @@ new aws.ecr.Repository(
     name: 'ecr-repo' // this will prevent uuid generation
   })
 ```
+
+## Import resources
+
+- Once imported, delete `import` identifier in resources
+- Must fully specify resource configs even non-functional one like resource description, failing to do so will cause `Pulumi` not to be able to find the existing resource.
 
 ---
 
