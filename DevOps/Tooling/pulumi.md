@@ -2,6 +2,7 @@
 
 - [Key Concepts](#key-concepts)
 - [Facts](#facts)
+- [Notes](#notes)
 - [Import Resources](#import-resources)
 - [Useful commands](#useful-commands)
 
@@ -73,6 +74,18 @@ new aws.ecr.Repository(
   {
     name: 'ecr-repo' // this will prevent uuid generation
   })
+```
+
+## Notes
+
+- Do not use supported provider as namesapce when defining custom configs:
+
+```
+config:
+  # not ok
+  auth0:custom_config: dave.dev
+  # ok
+  auth0-configuration:custom_config: dave.dev
 ```
 
 ## Import resources
