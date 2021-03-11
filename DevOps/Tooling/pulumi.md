@@ -4,6 +4,7 @@
 - [Facts](#facts)
 - [Notes](#notes)
 - [Import Resources](#import-resources)
+- [Secret Management](#serect-management)
 - [Useful commands](#useful-commands)
 
 ### Key Concepts
@@ -92,6 +93,10 @@ config:
 
 - Once imported, delete `import` identifier in resources
 - Must fully specify resource configs even non-functional one like resource description, failing to do so will cause `Pulumi` not to be able to find the existing resource.
+
+## Secret Management
+
+Either use one of built-in encryption providers i.e `awskms` and `passphrase` or use SSM secured string or Secret Manager. With built-in encryption providers optoin, encrypted values are kept alongside your code while the latter option, encrypted values are kept on remote storage and decrypted when used.
 
 ---
 
