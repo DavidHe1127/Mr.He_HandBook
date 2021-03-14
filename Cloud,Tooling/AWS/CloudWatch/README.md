@@ -1,11 +1,16 @@
 ## CloudWatch
 
+- [Concepts Explanation]
 - [Logging](#logging)
 - [Datapoint](#datapoint)
 - [Event](#event)
 - [Alarm](#alarm)
 - [Subscription Filter](#subscription-filter)
 - [Notes](#notes)
+
+### Concepts Explanation
+
+Alarm when average(Statistics) CPUUtilization(Metric) is over 70%(Threshold) in the period of 30 minutes(Period/Aggregation Period) with 2 DataPoints out of 3 evaluation period (>70% happens 2 times out of 90 mins - 3x30 mins).
 
 ### Logging
 
