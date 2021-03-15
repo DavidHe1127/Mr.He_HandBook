@@ -6,6 +6,7 @@
 - [Event](#event)
 - [Alarm](#alarm)
 - [Subscription Filter](#subscription-filter)
+- [INSUFFICIENT_DATA](#insufficient-data)
 - [Notes](#notes)
 
 ### Concepts Explanation
@@ -129,6 +130,15 @@ functions:
           filter: 'ERROR'
 ```
 
+### Insufficient Data
+
+2 types of metrics - `period-driven` and `event-driven`. Some services send periodic data points to their metrics, but specific metrics might have periods without data points. For example, the `CPUUtilization` metric of an EC2 instance has a data point every period. However, if you stop the instance, the service doesn't push any data points to it.
+
+`event-driven` - `HTTPCode_ELB_5XX_Count` metric for an ALB. The service sends data points when there's an error (or an event). If there are no errors during a period, then the result is an empty dataset (rather than a zero value).
+
+If an alarm is monitoring a metric that has no data points during a given time by design, the state of the alarm is `INSUFFICIENT_DATA` during those periods
+
 ### Notes
 
 - Use `Metrics` to access aggregated data. i.e ELB request counts of all ELBs
+- Not all `statistics` are supported for a metric, find out supported ones from service metric docs. i.e `NumberOfMessagesPublished` in SNS only supports `Sum`.
