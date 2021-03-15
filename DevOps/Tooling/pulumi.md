@@ -80,7 +80,6 @@ new aws.ecr.Repository(
 ## Notes
 
 - Do not use supported provider as namesapce when defining custom configs:
-
 ```
 config:
   # not ok
@@ -88,6 +87,7 @@ config:
   # ok
   auth0-configuration:custom_config: dave.dev
 ```
+- Use `--force` to delete stack state file even if registered resources still exist. It's now your responsibility to remove resources.
 
 ## Import resources
 
