@@ -61,7 +61,7 @@ opening port on http.
 
 #### Useful commands:
 ```sh
-# verify IMDS is enabled or not
+# verify IMDSv2 is enabled or not
 $ aws ec2 describe-instances --region ap-southeast-2 --instance-id i-0123456789abcdef --query Reservations[0].Instances[0].MetadataOptions
 {
     "State": "applied",
