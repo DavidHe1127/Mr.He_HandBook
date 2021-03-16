@@ -59,6 +59,22 @@ opening port on http.
 - The AWS SDKs use IMDSv2 calls by default. If the IMDSv2 call receives no response, the SDK retries the call and, if still unsuccessful, uses IMDSv1. This can result in a delay.
 - In a container environment, if the hop limit is 1, the IMDSv2 response does not return because going to the container (bridge network other than host network) is considered an additional network hop. To avoid the process of falling back to IMDSv1 and the resultant delay, **in a container environment we recommend that you set the hop limit to 2**.
 
+#### Useful commands:
+```sh
+# verify IMDS is enabled or not
+$ aws ec2 describe-instances --region ap-southeast-2 --instance-id i-0123456789abcdef --query Reservations[0].Instances[0].MetadataOptions
+{
+    "State": "applied",
+    # token is required for v2
+    "HttpTokens": "optional",
+    "HttpPutResponseHopLimit": 1,
+    "HttpEndpoint": "enabled"
+}
+
+# v2 is enabled if return code 401
+$ curl -w "%{http_code}\n" http://169.254.169.254/
+```
+
 ![imds](how-imds-work.svg)
 
 Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will automatically retrieve credentials for you. You do not need to configure any credentials.

@@ -3,6 +3,7 @@
 - [Key facts](#key-facts)
 - [Concurrency](#concurrency)
 - [Metrics to monitor](#metrics)
+- [Tips]
 
 ### Key Facts
 
@@ -37,3 +38,7 @@ Controls how many of jobs can run at any given time. Example below shows preview
 ### Metrics
 
 [Link](https://github.com/buildkite/buildkite-agent-metrics/blob/master/README.md) shows available metrics you can monitor. Use case - query and visualize them on Grafana.
+
+### Tips
+
+- Look for `Preparing working directory` and unfold it to review source code working directory for debugging.
