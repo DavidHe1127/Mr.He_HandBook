@@ -22,6 +22,7 @@
 - [Route53](AWS/Route53)
 - [KMS](AWS/KMS)
 - [ACM](AWS/ACM)
+- [Trusted Advisor](AWS/TrustedAdvisor)
 - [Org](AWS/Org)
 
 ### AWS General Topics
