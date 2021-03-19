@@ -7,6 +7,7 @@
 - [Federated Users](#federated-users)
 - [Credentials lookup](#credentials-lookup)
 - [Permission Boundary](#permission-boundary)
+- [Managing Server Certs](#managing-server-certs)
 - [Reference](#reference)
 
 ### Role
@@ -162,7 +163,7 @@ When using `marketingadmin` in CLI, CLI automatically looks up the credentials f
 
 ### Permission Boundary
 
-Set the maximum permissions that an identity-based policy can grant to an IAM entity. A typical use case scenario: You designate user A to create users for you. You can create a permission boundary that sets the max permissions new users will have and mandate the attachment of permission boundary to new users. Such that, A can only create new users if permission boundary is attached to users role policy.
+Set the maximum permissions that an identity-based policy can grant to an IAM entity. It doesn't grant actual permissions - same as SCP A typical use case scenario: You designate user A to create users for you. You can create a permission boundary that sets the max permissions new users will have and mandate the attachment of permission boundary to new users. Such that, A can only create new users if permission boundary is attached to users role policy.
 
 ```json
 ...
@@ -184,6 +185,14 @@ Set the maximum permissions that an identity-based policy can grant to an IAM en
 ...
 ```
 
+### Managing Server Certs
+
+Use ACM most of the time. Use IAM to manage certs ONLY when:
+
+- You must support HTTPS connections in a Region that is not supported by ACM
+- Certificate algorithms and key sizes that aren't currently supported by ACM or the associated AWS resources
+
+By and large, if cert is not compatible with ACM, use IAM. Trusted Advisor also exposes `IAM Server Certificates` service limit metric for this use case.
 
 ### Reference
 
