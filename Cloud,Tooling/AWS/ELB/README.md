@@ -12,6 +12,7 @@
   - [Cost reduction methods](#cost-reduction-methods)
   - [References](#references)
 - [Load balancer with HA](#load-balancer-with-ha)
+- [Notes](#notes)
 
 ### ASG
 
@@ -103,6 +104,10 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 - Use smaller TLS cert. AWS ACM produces relatively larger cert! Typically, browser will cache and reuse cert being sent by server in the initial HTTPs connection for subsequent communication. However, if large number of new clients are there, cert will be transferred through ALB millions of times!
 - Increase idle timeout i.e 10 mins to make the most of connection reuse - ALB will reuse established session without opening new one. Also, enable `keep-alive` on the server making it greater than idle timeout such that ALB will close connections
 - Use ALB over Classic Load Balancer as ALB supports HTTP/2 while Classic one doesn't. HTTP/2 enables http header compression.
+
+#### Notes
+
+- ELB is not possible to work across multiple regions however it is possible to distribute traffic across multiple AZs within the same region. To enable multi-region ELB, you need to create ELB in each region you want to support and use Route53 with a proper routing policy.
 
 #### References
 
