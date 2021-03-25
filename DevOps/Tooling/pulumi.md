@@ -88,6 +88,7 @@ config:
   auth0-configuration:custom_config: dave.dev
 ```
 - Use `--force` to delete stack state file even if registered resources still exist. It's now your responsibility to remove resources.
+- If there is any error occurred during `up`, all proposed changes will not be made.
 
 ## Import resources
 
