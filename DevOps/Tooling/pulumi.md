@@ -120,10 +120,8 @@ const foo = new Foo('foo', {}, {
   provider
 });
 
-// access it
+// access output property
 foo.bucketName
-// or. res is another output
-let res = foo.bucketName.apply(bucketName => console.log(bucketName));
 ```
 
 ## Secret Management
