@@ -4,6 +4,7 @@
 - [Facts](#facts)
 - [Notes](#notes)
 - [Import Resources](#import-resources)
+- [Create Custom Resource](#create-custom-resource)
 - [Secret Management](#serect-management)
 - [Useful commands](#useful-commands)
 
@@ -90,10 +91,40 @@ config:
 - Use `--force` to delete stack state file even if registered resources still exist. It's now your responsibility to remove resources.
 - If there is any error occurred during `up`, all proposed changes will not be made.
 
+
 ## Import resources
 
 - Once imported, delete `import` identifier in resources
 - Must fully specify resource configs even non-functional one like resource description, failing to do so will cause `Pulumi` not to be able to find the existing resource.
+
+## Create Custom Resource
+
+```js
+export class Foo extends pulumi.ComponentResource {
+  constructor(name, args, opts) {
+    // project:component to avoid naming conflicts
+    super('project:Foo', name, args, opts: pulumi.ComponentResourceOptions);
+    // provider not required and is inferred from provider in opts
+    let siteBucket = new aws.s3.Bucket(bucketName, {}, { parent: this });
+    // The call to registerOutputs typically happens at the very end of the component resource’s constructor.
+    // It also tells Pulumi that the resource is done registering children resources and should be considered fully constructed
+    // so always register outputs even if nothing to be registered
+    this.registerOutputs({
+      bucketName: siteBucket.bucketDomainName
+    });
+  }
+}
+
+// use it
+const foo = new Foo('foo', {}, {
+  provider
+});
+
+// access it
+foo.bucketName
+// or. res is another output
+let res = foo.bucketName.apply(bucketName => console.log(bucketName));
+```
 
 ## Secret Management
 
