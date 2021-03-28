@@ -71,7 +71,7 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 
 ELB used as health check type in ASG
 
-![asg-elb](asg-elb.svg)
+![elb-health-check-with-asg](elb-health-check-with-asg.svg)
 
 #### Connection Draining
 
