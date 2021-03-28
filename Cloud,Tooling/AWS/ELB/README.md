@@ -69,8 +69,7 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 - `In Service` state exists for ELB as well (besides EC2) - as long as one registered target is considered healthy, ELB enters `InService` state.
 - When an instance is fully configured and passes the Amazon EC2 health checks, it is attached to the ASG and it enters the `InService` state. The instance is counted against the desired capacity of the ASG.
 
-ELB used as health check type in ASG
-
+When health check type is `ELB`, ASG will delegate this task to ELB which will perform health checks on ASG behalf. ASG will be notified of result.
 ![elb-health-check-with-asg](elb-health-check-with-asg.svg)
 
 #### Connection Draining
