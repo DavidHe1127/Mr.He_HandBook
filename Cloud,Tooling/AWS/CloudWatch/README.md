@@ -1,6 +1,6 @@
 ## CloudWatch
 
-- [Concepts Explanation](#concepts-explanation)
+- [Core concepts illustrated](#concepts-illustrated)
 - [Logging](#logging)
 - [Datapoint](#datapoint)
 - [Event](#event)
@@ -9,7 +9,7 @@
 - [INSUFFICIENT_DATA](#insufficient-data)
 - [Notes](#notes)
 
-### Concepts Explanation
+### Concepts Illustrated
 
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
 
@@ -28,8 +28,6 @@ aka EventBridge Event, allows you to react in response to aws events being emitt
 Represents the value for a metric for a given metric aggregation period. i.e if you use one min as an aggregation period for instance CPU utilization (metric), then there will be one datapoint. And its value can be something like 25%
 
 This feature allows to create a CloudWatch alarm that alerts you when M out of N datapoints of a metric are above your predefined threshold, such as three out of five times in any given five minutes interval or two out of six times in a thirty minutes interval. When any M out of N datapoints are below your threshold in an interval, the alarm will be in OK state. Please note that the M datapoints out of N datapoints in an interval can be of any order and does not need to be consecutive. Consequently, you can now get alerted even when the spikes in your metrics are intermittent over an interval.
-
-![datapoint](cloudwatch-datapoint.png)
 
 ### Alarm
 
