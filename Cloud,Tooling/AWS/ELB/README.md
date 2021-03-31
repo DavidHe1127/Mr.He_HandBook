@@ -7,16 +7,14 @@
   - [lifecycle hooks](#lifecycle-hooks)
   - [Tear down ASG](#tear-down-asg)
   - [Cooldown period](#cooldown-period)
-  - [Connection Draining](#connection-draining)
   - [Spot Fleet](#spot-fleet)
-  - [Cost reduction methods](#cost-reduction-methods)
-  - [References](#references)
 - [ELB](#elb)
   - [Load balancer with HA](#load-balancer-with-ha)
   - [ALB vs NLB](#alb-vs-nlb)
   - [Connection Draining](#connection-draining)
   - [Cost Reduction Methods](#cost-reduction-methods)
   - [Notes](#notes)
+- [References](#references)
 
 ## ASG
 
@@ -57,6 +55,14 @@ Now, with help from `cooldown period` defaults to 5 mins, after the scaling acti
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
 
+### Spot Fleet
+
+![spot-fleet](how-spot-fleet-works.png)
+
+Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
+
+[Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
+
 ---
 
 ## ELB
@@ -69,14 +75,6 @@ Diagram below explains how load balancer distributes traffic to a target group o
 ### Connection Draining
 
 When you enable `Connection Draining` on a load balancer, any back-end instances that you deregister will complete requests that are in progress before deregistration. Likewise, if a back-end instance fails health checks, the load balancer will not send any new requests to the unhealthy instance but will allow existing requests to complete.
-
-### Spot Fleet
-
-![spot-fleet](how-spot-fleet-works.png)
-
-Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
-
-[Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
 
 ### Cost Reduction Methods
 
@@ -115,7 +113,7 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 When health check type is `ELB`, ASG will delegate this task to ELB which will perform health checks on ASG behalf. ASG will be notified of result.
 ![elb-health-check-with-asg](elb-health-check-with-asg.svg)
 
-### References
+## References
 
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
