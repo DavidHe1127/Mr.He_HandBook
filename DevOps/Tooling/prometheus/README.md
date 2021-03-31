@@ -108,6 +108,7 @@ reconnects.inc(labels, 0, Date.now());
 # TYPE xxx_ioredis_reconnects_total counter
 xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc739"} 0 1615863870257
 ```
+- Enable debugging `--log.level=debug` to have insights into logs.
 
 ### References
 
