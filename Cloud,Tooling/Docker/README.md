@@ -8,6 +8,7 @@
   - [Caching](./caching.md)
   - [HealthCheck](#health-check)
   - [Security](#security)
+  - [Processes](#processes)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
   - [Behind a proxy server](#behind-a-proxy-server)
@@ -132,6 +133,12 @@ You can do this:
 ports:
   - "127.0.0.1:8001:8001"
 ```
+
+### Processes
+
+- process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`.
+
+![docker processes](docker-process.svg)
 
 ### Data Persistence
 
