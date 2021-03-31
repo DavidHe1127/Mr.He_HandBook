@@ -89,6 +89,26 @@ By default, Prometheus stores metric records in local TSDB. But this does not ac
 
 When remote store is configured, queries will be sent to both local and remote stores and the searching results will be merged.
 
+### Debugging tips
+
+- When Prometheus federation is architected, to see if federated prometheus is scraping each prometheus node correctly, curl `/metrics` endpoint inside node.
+```
+# total number of metric scraping reqs successfully handled by node Prometheus
+promhttp_metric_handler_requests_total{code="200"} 170
+promhttp_metric_handler_requests_total{code="500"} 0
+promhttp_metric_handler_requests_total{code="503"} 0
+```
+- Try not set timestamp infor on log, or you might see error: `Error on ingesting samples that are too old or are too far into the future`. This error means metrics is too far behind the current moment to be ingested by Prometheus.
+
+```
+# don't do this
+reconnects.inc(labels, 0, Date.now());
+
+# problematic metric. it shows timestamp as well which shouldn't
+# TYPE xxx_ioredis_reconnects_total counter
+xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc739"} 0 1615863870257
+```
+
 ### References
 
 [The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)

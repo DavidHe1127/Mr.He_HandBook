@@ -30,7 +30,7 @@ sudo systemctl enable application
 # stop service start-up upon system boot, remove symlink
 sudo systemctl disable application
 
-# check service status
+# check service status. This command also tells you where the unit file for the service is
 systemctl status application
 
 # if service is up and running. exit code 0 => active
