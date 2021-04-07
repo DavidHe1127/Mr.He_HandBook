@@ -102,3 +102,34 @@ Output plugin in buffered mode first stores the received events into buffers and
 ---
 
 ## FluentBit
+
+### Config
+
+#### Logstash_Prefix_Key
+
+If record has the specified `key`, then the corresponding value will be used to generate index.
+
+```
+[OUTPUT]
+    Name            es
+    Match           *
+    Host            ${ES_HOST}
+    Port            443
+    Logstash_Format On
+    Logstash_Prefix fluentbit
+    Logstash_Prefix_Key app
+    Time_Key        @timestamp
+
+<filter logs>
+    @type record_modifier
+    <record>
+        app "fluentbit-logger"
+    </record>
+</filter>
+
+// index
+fluentbit-logger-2021.04.01
+
+// index without app
+fluentbit-2021.04.01
+```
