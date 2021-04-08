@@ -97,7 +97,16 @@ Match directive is evaluated in order:
 
 #### Buffer mode
 
+Output plugins such as `forward` and `copy` supports three modes
+
+- Non-Buffered. i.e stdout
+- Synchronous Buffered
+- Asynchronous Buffered
+
 Output plugin in buffered mode first stores the received events into buffers and then writes out buffers to a destination after meeting flush conditions. So, using the buffered output, you do not see the received events immediately unlike stdout non-buffered output.
+
+fluentd will choose the appropriate mode if `<buffer>` section is missing. A buffer is a set of chunks where a collection of events are saved. Buffers can be
+stored either in memory (default) or file. In the case that the backend is unreachable (network failure or application log rejection) Fluentd automatically goes into a retry process. This could incur big memory consumption issue where undelivered logs are continuously piled up in buffer/memory awaiting retry. In this case, opt to either cap the buffer size or save buffer in files.
 
 ---
 
