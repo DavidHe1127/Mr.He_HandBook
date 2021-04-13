@@ -12,7 +12,9 @@
   - [Load balancer with HA](#load-balancer-with-ha)
   - [ALB vs NLB](#alb-vs-nlb)
   - [Connection Draining](#connection-draining)
+  - [Pre-warming](#pre-warming)
   - [Cost Reduction Methods](#cost-reduction-methods)
+  - [Best Practices](#best-practices)
   - [Notes](#notes)
 - [References](#references)
 
@@ -76,6 +78,12 @@ Diagram below explains how load balancer distributes traffic to a target group o
 
 When you enable `Connection Draining` on a load balancer, any back-end instances that you deregister will complete requests that are in progress before deregistration. Likewise, if a back-end instance fails health checks, the load balancer will not send any new requests to the unhealthy instance but will allow existing requests to complete.
 
+### Pre-warming
+
+ELB will not try to queue up reqs to be handled when it's at its capacity which resulting in `503` errors. If traffic goes up over time, ELB will keep up with such demand and handles reqs correctly. That said, when hefty traffic is hitting ELB at a rate that is higher than ELB can scale to meet it, contact AWS to enable pre-warming.
+
+With pre-warming, specify start date/time & rps so that certain level of capacity will be added preemptively.
+
 ### Cost Reduction Methods
 
 Data Transfer In is free whilst Data Transfer Out is charged. So the key is to cut response in size.
@@ -101,6 +109,11 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 - ALB is layer 7 lb while NLB is layer 4 lb. With NLB, it does not access HTTP headers
 - ALB/CLB supports connection multiplexing - reqs from multiple clients uses the single one backend connection. This improves latency and reduces load on your application. Set `Connection: close` header in your app HTTP response to disable it.
 
+### Best Practices
+
+- When ELB scales up, it updates the DNS records with new IPs so that these IPs are registered when more ELB resources being added. Records have TTL of 60 seconds. So client will re-lookup DNS at least every 60 seconds.
+- When testing ELB load handling, make sure use multiple clients and ELB DNS is resolved every TTL so that these clients will not keep hitting a single IP of one ELB. However, such problem will not occur in the real world.
+
 ### Notes
 
 - Client <---frontend conn---> ELB <---backend conn---> targets
@@ -112,9 +125,12 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 
 When health check type is `ELB`, ASG will delegate this task to ELB which will perform health checks on ASG behalf. ASG will be notified of result.
 ![elb-health-check-with-asg](elb-health-check-with-asg.svg)
+- Health checks are not collected against metrics reported by CloudWatch but they will appear in your app logs if enabled.
+- ELB will also make a conn to your instances to ensure the awareness when a registered instance is terminated.
 
 ## References
 
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
+- [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1])
 
