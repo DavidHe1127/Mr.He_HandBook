@@ -111,7 +111,7 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 
 ### Best Practices
 
-- When ELB scales up, it updates the DNS records with new IPs so that these IPs are registered when more ELB resources being added. Records have TTL of 60 seconds. So client will re-lookup DNS at least every 60 seconds.
+- When ELB scales up, it updates the DNS records with new IPs so that these IPs are registered when more ELB resources (nodes) being added. Records have TTL of 60 seconds. So client will re-lookup DNS at least every 60 seconds.
 - When testing ELB load handling, make sure use multiple clients and ELB DNS is resolved every TTL so that these clients will not keep hitting a single IP of one ELB. However, such problem will not occur in the real world.
 
 ### Notes
