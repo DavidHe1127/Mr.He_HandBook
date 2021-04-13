@@ -1,17 +1,9 @@
-## System & Cloud
-
-- [Docker](Docker)
-- [K8S](./k8s.md)
-- [Serverless](Serverless)
-- [NGINX](./nginx.md)
-
-### AWS
+## AWS
 - [QuickStart](https://aws-quickstart.github.io/index.html)
 - [CLI](AWS/CLI)
 - [ELB](AWS/ELB)
 - [ECS](AWS/ECS)
 - [S3](AWS/S3)
-- [ElasticSearch](AWS/ElasticSearch)
 - [IAM](AWS/IAM)
 - [EC2 & EBS](AWS/EC2)
 - [VPC](AWS/VPC)
@@ -26,7 +18,15 @@
 - [Trusted Advisor](AWS/TrustedAdvisor)
 - [Org](AWS/Org)
 
-### AWS General Topics
+### General Topics
 - [Security](AWS/security.md)
 - [Service Continuity](AWS/service_continuity.md)
 - [Cost optimisation](AWS/cost_optimisation.md)
+
+## Others
+
+- [Docker](Docker)
+- [K8S](./k8s.md)
+- [Serverless](Serverless)
+- [NGINX](./nginx.md)
+- [ElasticSearch](ElasticSearch)

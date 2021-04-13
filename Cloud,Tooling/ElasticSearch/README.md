@@ -2,6 +2,7 @@
 
 - [Architecture](#architecture)
 - [Mapping](#mapping)
+- [text vs keyword](#text-vs-keyword)
 - [Notes](#notes)
 - [References](#references)
 
@@ -63,6 +64,13 @@ clientResp.headers.Expires
 ```
 
 Use Explicit Mappings (certain fields) + Dynamic Templates (unknown fields).
+
+## text vs keyword
+
+- `string` is split into `text` and `keyword` since ES5.0
+- When `text` is used, the value is broken down into individual terms at indexing to allow for partial matching aka full text search. i.e for value `this is good`, each single substring gets indexed such that you can search by any of them (`this`, `is` or `good`) to get the whole string.
+- When `keyword` is used, the value is not analyzed and indexed as is. Consequently, for string `this is good`, you have to enter the whole string to be able to get searching result. Good use cases are states i.e enter NSW rather than NS.
+- In summary, use `text` for full text search whilst `keyword` for structured content such as IDs, email addresses, hostnames, status codes, zip codes, or tags.
 
 ## Notes
 
