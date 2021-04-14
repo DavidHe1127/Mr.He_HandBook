@@ -139,6 +139,8 @@ i.e App has desired count 2, min 1 and max 5. When scaling in happens, desired c
 
 #### Cluster Auto Scaling
 
+**ECS Fargate does not require CAS**
+
 - With capacity provider, tasks drive the scaling activity which means you determine total number of tasks to run and capacity provider will work out the compute capacity needed to serve those tasks. Using EC2 capacity provider as an example, you can just set the max number of instances while leaving min and desired to be 0 and capacity provider will help set min and desired on your behalf.
 - CAS relies on ECS capacity providers, which provide the link between your ECS cluster and the ASGs you want to use.
 - Previously, tasks that cannot be placed due to insufficient compute resources will fail immediately. Now with managed scaling policy enabled in capacity provider, tasks will go into provisioning state instead and later be deployed when more instances come up as result of scale out. Currently, it allows 100 tasks in provisioning state to be queued.
