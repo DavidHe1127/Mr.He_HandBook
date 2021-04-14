@@ -1,5 +1,6 @@
 ## EC2
 
+- [How EC2 works](#how-ec2-works)
 - [IP and DNS](#ip-and-dns)
 - [EIP and Public IPv4](#eip-and-public-ipv4)
 - [Reboot](#reboot)
@@ -19,6 +20,12 @@
 - [AutoScaling](#asg)
   - [Cooldown](#cooldown)
   - [LaunchConfiguration](#launch-configuration)
+
+### How EC2 works?
+
+![ec2-arch](ec2-arch.jpg)
+
+Hypervisor is a software to control resources allocations for VMs.
 
 ### IP and DNS
 

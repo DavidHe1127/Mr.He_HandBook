@@ -2,6 +2,8 @@
 
 - [Architecture](#architecture)
 - [Mapping](#mapping)
+- [Queries](#queries)
+- [Text analysis](#text-analysis)
 - [text vs keyword](#text-vs-keyword)
 - [Notes](#notes)
 - [References](#references)
@@ -65,10 +67,75 @@ clientResp.headers.Expires
 
 Use Explicit Mappings (certain fields) + Dynamic Templates (unknown fields).
 
+## Queries
+
+- `term` does exact match and no analyzing involved.
+
+```
+#
+...
+{
+  "xxx": {
+    "tenant": "uat"
+  }
+}
+...
+
+# value must exactly match
+{
+  "query": {
+    "term": {
+      "xxx.tenant": {
+        "value": "uat"
+      }
+    }
+  }
+}
+```
+
+## Text Analysis
+
+ES performs text analysis when indexing or searching **text** field. During indexing, entire string is split into chunks (tokens) which is called tokenizing. Likewise, when searching, analysis will apply again before searching.
+
+```
+GET /_analyze?analyzer=standard&text=We are madewithlove
+# 3 tokens will be stored in an inverted index
+{
+  "tokens": [
+     {
+        "token": "we"
+     },
+     {
+        "token": "are"
+     },
+     {
+        "token": "madewithlove"
+     }
+  ]
+}
+
+# both queries below finds result
+{
+  "query": {
+    "term": {
+      "name": "we"
+    }
+  }
+}
+
+{
+  "query": {
+    "match": {
+      "name": "we are madewithlove"
+    }
+  }
+}
+```
+
 ## text vs keyword
 
 - `string` is split into `text` and `keyword` since ES5.0
-- When `text` is used, the value is broken down into individual terms at indexing to allow for partial matching aka full text search. i.e for value `this is good`, each single substring gets indexed such that you can search by any of them (`this`, `is` or `good`) to get the whole string.
+- When `text` is used, the value is broken down into individual tokens at indexing to allow for partial matching aka full text search. i.e for value `this is good`, each single substring gets indexed such that you can search by any of them (`this`, `is` or `good`) to get the whole string.
 - When `keyword` is used, the value is not analyzed and indexed as is. Consequently, for string `this is good`, you have to enter the whole string to be able to get searching result. Good use cases are states i.e enter NSW rather than NS.
 - In summary, use `text` for full text search whilst `keyword` for structured content such as IDs, email addresses, hostnames, status codes, zip codes, or tags.
 
