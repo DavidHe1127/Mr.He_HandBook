@@ -1,10 +1,18 @@
 ## Prometheus
 
+- [Concepts](#concepts)
+- [Time Series](#time-series)
+- [Job vs Instance vs Target](#job-instance-target)
+- [Components](#components)
+- [PromQ](#promq)
+- [Blackexporter](#blackexporter)
+- [CAdvisor](#cadvisor)
+- [Debugging Tips](#debugging)
+- [References](#references)
+
 ### Concepts
 
-- TSDB (Time-series DB)
 - `Instrumentation` in Prometheus terms means adding client libraries to your application in order for them to expose metrics to Prometheus
-- Pull metrics from targets aka metric scraping
 - Metrics can be scraped by several ways including
   - `Instrument` your app. It basically means you use their out-of-box library to collect and send metrics to server during scraping
   - Use an `Exporter` that is a binary running alongside the application you want to obtain metrics from. The exporter exposes Prometheus metrics, commonly by converting metrics that are exposed in a non-Prometheus format into a format that Prometheus supports.
@@ -32,20 +40,6 @@ http_requests_total(job="nginx", instance="1.2.3.4:80", path="/home", status="20
 `Job` is a collection of instances with the same purpose. An `instance` is a `<host>:<port>` representation. While `target` is an object that holds information such as what labels to apply, any authentication required to connect, or other information that defines how the scrape will occur.
 
 ![jobs-instances](jobs-instances.png)
-
-### Tools
-
-Use `promtool` to validate config file. Install it with wget first.
-
-```
-./promtool check config prometheus.yml
-```
-
-### Example PromQLs
-
-```
-rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
-```
 
 ### Components
 
@@ -88,13 +82,26 @@ By default, Prometheus stores metric records in local TSDB. But this does not ac
 
 When remote store is configured, queries will be sent to both local and remote stores and the searching results will be merged.
 
+### PromQ
+
+```
+rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
+```
+
+### BlackExporter
+
+- `/probe` endpoint exposed for metrics retrieval.
+- Monitor network endpoints such as HTTP, HTTPS, DNS, ICMP or TCP endpoints.
+- Mainly used to measure service response times.
+- The main difference between the Blackbox exporter and application instrumenting is that the Blackbox exporter only focuses on availability while instrumentations can go more into details about performance.
+
 ### CAdvisor
 
 While `node-exporter` is for hardware and OS metrics exposed by *nix kernel. `cadvisor`, on the other hand, collects, aggregates, processes, and exports information (resource usage) about running containers on the host. To summarise, `node-exporter` is for server metrics collection while `cadvisor` is for containers metrics collection.
 
 ![cadvisor](cadvisor.png)
 
-### Debugging tips
+### Debugging
 
 - When Prometheus federation is architected, to see if federated prometheus is scraping each prometheus node correctly, curl `/metrics` endpoint inside node.
 ```
@@ -114,6 +121,10 @@ reconnects.inc(labels, 0, Date.now());
 xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc739"} 0 1615863870257
 ```
 - Enable debugging `--log.level=debug` to have insights into logs.
+- Use `promtool` to validate config file. Install it with wget first.
+```
+./promtool check config prometheus.yml
+```
 
 ### References
 
