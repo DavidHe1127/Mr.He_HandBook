@@ -146,7 +146,7 @@ See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/res
 - Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status. So `refresh` might update state file but will not change actual infrastructure. `refresh` command can help you detect drift.
 - Change value in resource `name` field is likely to incur resource replacement! i.e When an AWS resource's name immutable, change in terraform will cause resource replacement.
 - Comment resources out will instruct terraform to tear down provisioned resource. However, deleting the file containing resource lets terraform do nothing as it cannot this change.
-- Terraform defers the read action (data block) until the `apply` phase as thus resource that depends on data block will always be marked as `changed` during tf `plan`. But this behaviour has changed as of 0.13. See [Data source deps](https://www.terraform.io/docs/configuration/data-sources.html#data-resource-dependencies) 
+- Terraform defers the read action (data block) until the `apply` phase as thus resource that depends on data block will always be marked as `changed` during tf `plan`. But this behaviour has changed as of 0.13. See [Data source deps](https://www.terraform.io/docs/configuration/data-sources.html#data-resource-dependencies)
 
 ---
 
@@ -186,11 +186,3 @@ terraform state rm 'module.nabx-miniapp.aws_kms_key.kms-key'
 ```
 
 This will remove target resource managed by tf in state file. Following this operation, you should now be able to run destroy command again successfully. Note, underlying resource will not be blown up when running `terraform state rm`.
-
-
-
-
-
-
-
-

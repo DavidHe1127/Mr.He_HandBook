@@ -1,6 +1,7 @@
 ## EC2
 
 - [How EC2 works](#how-ec2-works)
+- [Security Group](#security-group)
 - [IP and DNS](#ip-and-dns)
 - [EIP and Public IPv4](#eip-and-public-ipv4)
 - [Reboot](#reboot)
@@ -26,6 +27,11 @@
 ![ec2-arch](ec2-arch.jpg)
 
 Hypervisor is a software to control resources allocations for VMs.
+
+### Security Group
+
+- For ingress rule, it specifies traffic source and destination port range etc. i.e given `fromPort` 0 and `toPort` 65535 basically means the SG allows conn to any ports from 0 to 65535 inclusive to be established.
+- For egress rule, it specifies traffic destination and destination port range etc. i.e given `fromPort` 1025 and `toPort` 2025 basically means the SG allows conn to any ports (on destination service) from 1025 to 2025 inclusive to be established.
 
 ### IP and DNS
 
