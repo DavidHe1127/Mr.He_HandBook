@@ -196,6 +196,10 @@ Use `openssl` to establish a TLS connection to the remote. This command will ret
 $ openssl s_client -connect some-domain.com.au:24223
 ```
 
+#### SAN Cert
+
+SAN (Subject Alternate Name) cert can be used to protect multiple hostnames by a single cert. i.e www.ssl.com/faq.ssl.com/ssl.com/tools.ssl.com can all be protected by one SAN cert. SAN infor can be found in the cert by looking for `Extension: Subject Alternative Name` in chrome.
+
 References
 
 - [Understand ssl cert](https://www.cnblogs.com/iiiiher/p/8085698.html)
