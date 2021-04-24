@@ -1,6 +1,6 @@
 ## CloudWatch
 
-- [Core concepts illustrated](#concepts-illustrated)
+- [Concepts illustrated](#concepts-illustrated)
 - [Logging](#logging)
 - [Datapoint](#datapoint)
 - [Event](#event)
@@ -12,6 +12,8 @@
 ### Concepts Illustrated
 
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
+
+By default, data resolution is 1 min (1 second is the smallest) meaning metric data is aggregated and stored by CloudWatch in a 1 minute chunk. If you retrieve the metric for a hour from 3 days ago, you will receive 180 data points. However, depending on the metric data age, older data might be only retrievable at a higher resolution. For example, after 15 days, metric data is still available but can only be retrieved with 5 mins data resolution - 5 one min chunks combined and made available for your retrieval. If you still specify 1 min data resolution, you will receive nothing.
 
 ### Logging
 
