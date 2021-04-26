@@ -52,7 +52,7 @@ Connection: keep-alive
 User-Agent: Mozilla/5.0...
 ```
 
-Server will respond without **Access-Control-Allow-Origin** which will in turn trigger `onerror` in the ajax call.
+Server responding without **Access-Control-Allow-Origin** will in turn trigger `onerror` in the ajax call.
 
 Turn on cors for whole list of webistes as exceptions to same-origin policy. This time, server will respond
 
@@ -67,6 +67,6 @@ Now, ajax calls to another domain is allowed.
 
 ### preflight
 
-For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is 200, the actual request will then be issued.
+For non-simple requests - `PUT`, `DELETE` or `content-type: application/json` header, an `OPTIONS` http request will be sent first asking if the requested site is within the exception list and available http methods and headers. If answer is `200`, the actual request will then be issued.
 
-To avoid sending too many `OPTIONS`, One approach is - frontend sends ajax to its server (only serves up frontend code) which then forwards the requests to api server - backend. Because the communication is between two servers, preflight calls are completed avoided.
+To avoid sending too many `OPTIONS`, One could use a proxy server where frontend sends requests to its server - serving frontend code which then forwards the requests to actual API server - backend. Because the communication is between two servers, preflight calls are completed avoided.
