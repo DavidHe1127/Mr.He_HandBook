@@ -68,6 +68,7 @@ opening port on http.
 
 - Represents virtual/logical networking interface.
 - Security Group is attached to ENI to enable firewall on traffic whereas EIP is associated with ENI.
+- Check `Description` to help discover the resource ENI is attached to.
 
 ### IMDS
 

@@ -18,3 +18,10 @@ This will conclude a change by `lerna`. Note conventional commit message only he
 
 - NEVER EVER do version bump/tagging from feature branch unless it's targeting a prerelease which should be in a different release channel than official release.
 - Make sure branch protection is not that strict otherwise `lerna` will fail to be able to push commited changes on version/changelog back on your behalf during CD.
+
+
+---
+
+## semantic-release
+
+- It uses [env-ci](https://github.com/pvdlg/env-ci) to help gather metadata infor such as commit/branch from CI it's detected.
