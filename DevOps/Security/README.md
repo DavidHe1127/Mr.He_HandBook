@@ -198,7 +198,9 @@ $ openssl s_client -connect some-domain.com.au:24223
 
 #### SAN Cert
 
-SAN (Subject Alternate Name) cert can be used to protect multiple hostnames by a single cert. i.e www.ssl.com/faq.ssl.com/ssl.com/tools.ssl.com can all be protected by one SAN cert. SAN infor can be found in the cert by looking for `Extension: Subject Alternative Name` in chrome.
+- SAN (Subject Alternate Name) cert can be used to protect multiple hostnames by a single cert. i.e www.ssl.com/faq.ssl.com/ssl.com/tools.ssl.com can all be protected by one SAN cert.
+- SAN infor can be found in the cert by looking for `Extension: Subject Alternative Name` in chrome.
+- In modern cert validation process, if `SAN` is found, always checks it first and ignores `CN`. One should put all protected domains in `SAN`.
 
 References
 
