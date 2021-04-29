@@ -245,7 +245,7 @@ NOTE: There are multiple thresholds
 
 #### Target Tracking:
 
-Set and Forget and you don't want to have to make so many decisions. Makes the experience simple as compared to the previous 2 scaling options. It’s automatic. All you need to do is pick a metric, set the value and that’s it. Auto scaling does the rest adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
+It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. i.e maitain CPUUtilization at around 50% constantly. Auto scaling does the rest by adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
 
 #### Cooldown
 
