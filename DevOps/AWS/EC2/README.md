@@ -221,13 +221,13 @@ Throughput limit - For example, a gp2 volume under 1000 GiB with burst credits a
 #### Simple Scaling
 
 You pick ANY CW metric i.e `CPUUtilization`. You specify a SINGLE THRESHOLD beyond which you define how you want to scale accordingly.
-
+```
 EXAMPLE: how many EC2 instances do you want to add or remove when selected metric breaches the threshold.
-
+```
 The scaling policy then acts.
-
+```
 THRESHOLD - add 1 instance when CPUUtilization is between 40% and 50%
-
+```
 NOTE: This is the ONLY Threshold. Plus the main issue with simple scaling is that after a scaling activity is started, the policy must wait for the scaling activity or health check replacement to complete and the cooldown period to expire before responding to additional alarms. While Step/target tracking Scaling policy can continue to react to additional alarms.
 
 #### Step Scaling
@@ -245,7 +245,7 @@ NOTE: There are multiple thresholds
 
 #### Target Tracking:
 
-It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. i.e maitain CPUUtilization at around 50% constantly. Auto scaling does the rest by adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
+It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. i.e maintain CPUUtilization at around 50% constantly. Auto scaling does the rest by adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
 
 #### Cooldown
 
