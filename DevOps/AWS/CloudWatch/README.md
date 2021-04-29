@@ -143,3 +143,4 @@ If an alarm is monitoring a metric that has no data points during a given time b
 - Use `Metrics` to access aggregated data. i.e ELB request counts of all ELBs
 - Not all `statistics` are supported for a metric, find out supported ones from service metric docs. i.e `NumberOfMessagesPublished` in SNS only supports `Sum`.
 - The combination of namespace, metric name, and dimensions uniquely identify a metric. When specifying a metric programmatically or using the AWS command-line interface, all of these must be specified. It is not possible to `filter` metrics by only specifying, for example, a subset of its dimensions.
+- Set `treat missing data` to `not breaching` will change alarm into `OK` state from `INSUFFICIENT_DATA`.
