@@ -1,6 +1,6 @@
 ## CloudWatch
 
-- [Concepts illustrated](#concepts-illustrated)
+- [Concepts Explained](#concepts-explained)
 - [Logging](#logging)
 - [Datapoint](#datapoint)
 - [Event](#event)
@@ -9,7 +9,7 @@
 - [INSUFFICIENT_DATA](#insufficient-data)
 - [Notes](#notes)
 
-### Concepts Illustrated
+### Concepts Explained
 
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
 
@@ -144,3 +144,4 @@ If an alarm is monitoring a metric that has no data points during a given time b
 - Not all `statistics` are supported for a metric, find out supported ones from service metric docs. i.e `NumberOfMessagesPublished` in SNS only supports `Sum`.
 - The combination of namespace, metric name, and dimensions uniquely identify a metric. When specifying a metric programmatically or using the AWS command-line interface, all of these must be specified. It is not possible to `filter` metrics by only specifying, for example, a subset of its dimensions.
 - Set `treat missing data` to `not breaching` will change alarm into `OK` state from `INSUFFICIENT_DATA`.
+- CloudWatch is push model based. i.e it requires agent to be installed on EC2 instance to collect their metrics.
