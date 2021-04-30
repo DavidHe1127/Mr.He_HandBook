@@ -38,7 +38,7 @@ Infra As Code
 ## AWS
 - [QuickStart](https://aws-quickstart.github.io/index.html)
 - [CLI](AWS/CLI)
-- [ELB](AWS/ELB)
+- [ELB/ASG](AWS/ELB)
 - [ECS](AWS/ECS)
 - [S3](AWS/S3)
 - [IAM](AWS/IAM)
