@@ -65,7 +65,9 @@ For all identities under an account to assume a role, simply specify like this `
 
 #### Pass role
 
-It allows users to determine which role (instance profile) needs to be assigned to instance when launching a new instance.
+It grants the service a principal launches has the permission to assume a role to perform other actions on your behalf. It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
+
+One example is help users determine which role (instance profile) needs to be assigned to instance when launching a new instance.
 
 ```json
 {
@@ -85,7 +87,7 @@ It allows users to determine which role (instance profile) needs to be assigned 
 
 Above example means when the user launches an EC2 instance, that user is allowed to associate only the `S3Access` role with the instance. When an application is running in the instances that are launched by this user, that application can perform only the actions that are permitted by whatever is defined in the `S3Access` role.
 
-[pass role](https://aws.amazon.com/blogs/security/granting-permission-to-launch-ec2-instances-with-iam-roles-passrole-permission/)
+[pass role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
 
 #### Service-linked Role
 
