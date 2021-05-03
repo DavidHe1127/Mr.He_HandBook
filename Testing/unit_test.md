@@ -14,6 +14,7 @@
   - [Use doMock to avoid hoisting](#use-domock)
   - [Correct Mocked data](#correct-mocked-data)
   - [Test rejected promise](#test-rejected-promise)
+  - [Test a specific test in a spec](#test-specific-test-in-spec)
 - Best Practices
   - [Tests should be deterministic](https://jestjs.io/docs/en/snapshot-testing#2-tests-should-be-deterministic)
 
@@ -98,7 +99,7 @@ Remember, ES6 class is just syntactic sugar for prototype-based class, so we can
 ```js
 jest.mock('./myClass', () => {
   const module = jest.requireActual('./myClass');
-  
+
   module.myClass.prototype.oneMethod = jest.fn().mockImplementationOnce(() => ({
     id: '2def'
   })).mockImplementationOnce(() => {
@@ -210,7 +211,18 @@ connect().catch(error => {
 await expect(connect()).rejects.toThrow(err);
 ```
 
+### Test specific test in spec
 
+Use `-t` to match words in description.
 
+```
+// e2e/__tests__/main.test.ts
+describe('test ecs fargate', () => {
+  test('ecs service created', async () => {
+    ...
+    expect(Object.entries(res).length).not.toEqual(0);
+  });
+});
 
-
+// npx jest e2e/__tests__/main.test.ts -t fargate
+```
