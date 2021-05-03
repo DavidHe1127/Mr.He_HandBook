@@ -65,7 +65,7 @@ For all identities under an account to assume a role, simply specify like this `
 
 #### Pass role
 
-It grants the service a principal launches has the permission to assume a role to perform other actions on your behalf. It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
+It grants the service a principal launches the permission to assume a role to perform other actions on your behalf. It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
 
 One example is help users determine which role (instance profile) needs to be assigned to instance when launching a new instance.
 
