@@ -3,7 +3,7 @@
 - [Key facts](#key-facts)
 - [Concurrency](#concurrency)
 - [Metrics to monitor](#metrics)
-- [Tips]
+- [Tips](#tips)
 
 ### Key Facts
 
