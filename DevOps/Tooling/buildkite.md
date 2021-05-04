@@ -42,3 +42,27 @@ Controls how many of jobs can run at any given time. Example below shows preview
 ### Tips
 
 - Look for `Preparing working directory` and unfold it to review source code working directory for debugging.
+- `block` step will create implicit deps for steps before/after it. i.e
+
+```yml
+
+- label: 'Lint'
+  key: 'lint'
+  command: 'task lint'
+
+- block: "block 1"
+  key: "block-one"
+  prompt: "Block one"
+  branches: "!main"
+
+...
+
+# it will wait on block one meaning unless block one is run and passed, block two won't run
+# unless depends_on is specified which will overwrite implicit deps
+- block: "block 2"
+  key: "block-two"
+  prompt: "Block two"
+  branches: "!main"
+# depends_on:
+#   - "lint"
+```
