@@ -25,3 +25,4 @@ This will conclude a change by `lerna`. Note conventional commit message only he
 ## semantic-release
 
 - It uses [env-ci](https://github.com/pvdlg/env-ci) to help gather metadata infor such as commit/branch from CI it's detected.
+- Sometimes when the next release has been tagged but actual module is failed to be published, you simply cannot re-publish on that version. To fix it, you need to delete that tag from `origin` and then remove its local counterpart as well. Once done, try re-publishing. `commit-analyzer` **ONLY** looks at local tags when calculating new versions.
