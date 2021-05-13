@@ -105,7 +105,7 @@ Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will 
 
 ### Metrics
 
-Stats on EC2s pulled out by CloudWatch by default. Data is sent every 5 minutes by default, or every minute if detailed monitoring is enabled.
+EC2 sends metrics to CW through CW agent. Data is sent every 5 minutes by default, or every minute if detailed monitoring is enabled.
 
 - `CPUUtilization` - Recorded as a percentage value that is the amount of allocated EC2 compute units that are currently in use on the instance.
 
