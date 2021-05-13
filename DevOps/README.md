@@ -28,10 +28,13 @@ Infra As Code
 - [Pulumi](./Tooling/pulumi.md)
 - [Terraform and Ansible](./Tooling/terraform_ansible.md)
 
-### Logging & Monitoring
+### Logging
 
-- [Prometheus](./Tooling/prometheus)
 - [Fluentd](./Tooling/fluent.md)
+
+### [Monitoring](./Monitoring)
+
+- [Prometheus](Monitoring/prometheus)
 
 ---
 
