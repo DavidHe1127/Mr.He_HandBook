@@ -5,7 +5,7 @@
 - [DNS Zone file](#dns-zone-file)
 - [hostname vs domain](#hostname-vs-domain)
 - [DNS Resolution workflow](#dns-resolution-flow)
-- [DNS TTL](#dns-ttl)
+- [DNS TTL/Propagation](#dns-ttl-propagation)
 - [www domain and naked domain](#www-vs-naked)
 - [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [DNS records](#dns-records)
