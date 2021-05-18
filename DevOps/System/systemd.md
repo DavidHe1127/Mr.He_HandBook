@@ -79,6 +79,7 @@ PathChanged = /tmp/foo
 PathModified = /tmp/a.log
 PathExists = /tmp/file.lock
 MakeDirectory = yes
+# trigger foo.service when changes detected
 Unit = foo.service
 
 # how this service is enabled - auto start on boot
