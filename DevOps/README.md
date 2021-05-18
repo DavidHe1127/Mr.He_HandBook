@@ -55,6 +55,7 @@ Infra As Code
 - [Route53](AWS/Route53)
 - [KMS](AWS/KMS)
 - [ACM](AWS/ACM)
+- [System Manager](AWS/SystemManager)
 - [Trusted Advisor](AWS/TrustedAdvisor)
 - [Org](AWS/Org)
 
