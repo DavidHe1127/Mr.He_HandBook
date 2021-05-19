@@ -148,4 +148,7 @@ AWS_PROFILE=david pulumi config set --secret auth0:client_secret xjfiwLKDI
 
 # set kms key to be used for secrets encryption/decryption
 AWS_PROFILE=david pulumi stack init new-stack --secrets-provider="awskms://alias/ExampleAlias?region=us-east-1"
+
+# if actual res deleted but it still exists in state file, refresh will remove it from state file
+pulumi refresh
 ```
