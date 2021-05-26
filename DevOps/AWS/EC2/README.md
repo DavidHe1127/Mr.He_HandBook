@@ -14,6 +14,7 @@
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
 - [UserData](#user-data)
+- [Notes](#notes)
 
 ## EBS
 - [EBS vs Instance Store](#ebs-vs-instance-store)
@@ -152,6 +153,10 @@ UserData:
             STACK_RESOURCE=Dashboard
             STACK_REGION=${AWS::Region}
 ```
+
+### Notes
+
+- A `stop` and `start` isn't equivalent to a `reboot`. A `start` can put instance on faulty hardware to a healthy one.
 
 ---
 

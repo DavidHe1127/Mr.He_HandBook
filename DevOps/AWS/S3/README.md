@@ -1,6 +1,7 @@
 ## S3
 
 - [Access object](#access-object)
+- [Lifecycle rules](#lifecycle-rules)
 - [Multi-part upload](#multi-part-upload)
 
 ### Access Object
@@ -13,6 +14,14 @@ https://bucket-name.s3.region.amazonaws.com/key-name
 
 https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
 ```
+
+### Lifecycle Rules
+
+- Objects in S3 standard need to wait for `30` days before allowing to be moved to IA.
+- When expiring (delete) objects that haven't finished their minimal stay, S3 will charge you for the whole minimal stay period. i.e Min stay for objs in Glacier storage is `90` days, and if you expire in `80` days, you will be charged for `90` days.
+- Combined rules
+
+> You can combine these S3 Lifecycle actions to manage an object's complete lifecycle. For example, suppose that the objects you create have a well-defined lifecycle. Initially, the objects are frequently accessed for a period of 30 days. Then, objects are infrequently accessed for up to 90 days. After that, the objects are no longer needed, so you might choose to archive or delete them. In this scenario, you can create a S3 Lifecycle rule in which you specify the initial transition action to S3 Intelligent-Tiering, S3 Standard-IA, or S3 One Zone-IA storage, another transition action to S3 Glacier storage for archiving, and an expiration action. As you move the objects from one storage class to another, you save on storage cost. For more information about cost considerations,
 
 ### Multi-part Upload
 
