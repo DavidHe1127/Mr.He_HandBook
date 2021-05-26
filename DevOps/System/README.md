@@ -2,7 +2,7 @@
 
 - [tty](#tty)
 - [Process](#process)
-- [Signal](#signal)
+- [Signal](./linux_signal.md)
 - [File and Permissions](#file-and-permissions)
 - [Host file](#host-file)
 - [SSH](#ssh)
@@ -41,16 +41,6 @@ To run a process and put it in the background (using &) which then gives you pro
 $ gunzip file.gz &
 ```
 
-#### What's happened when pressing `ctrl+c`?
-
-> We ask the kernal to send the interrupt (SIGINT) to the process. Say it's a NodeJS process, then a signal event will be emitted by EventEmitter:
-
-```js
-process.on('SIGINT', () => {
-  console.log('received SIGINT');
-});
-```
-
 #### What's happened when running ls in a shell?
 
 > Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
@@ -64,18 +54,6 @@ a = show processes for all users
 u = display the process's user/owner
 x = also show processes not attached to a terminal
 ```
-
-### Signal
-
-- Signal is a notification, a message sent by either operating system or some application to our program.
-- Signals are a mechanism for one-way asynchronous notifications.
-- A signal may be sent from the kernel to a process, from a process to another process, or from a process to itself.
-- With the exception of `SIGKILL` and `SIGSTOP` which always terminates the process or stops the process, respectively, processes may control what happens when they receive a signal. They can
-
-1. accept the default action, which may be to terminate the process, terminate and coredump the process, stop the process, or do nothing, depending on the signal.
-2. Or, processes can elect to explicitly ignore or handle signals.
-   1. Ignored signals are silently dropped.
-   2. Handled signals cause the execution of a user-supplied signal handler function. The program jumps to this function as soon as the signal is received, and the control of the program resumes at the previously interrupted instructions
 
 ### File and Permissions
 

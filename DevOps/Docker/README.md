@@ -6,6 +6,7 @@
   - [Dockerfile](#dockerfile)
   - [Networking](./networking.md)
   - [Caching](./caching.md)
+  - [Signals](#signals)
   - [HealthCheck](#health-check)
   - [Security](#security)
   - [Processes](#processes)
@@ -87,6 +88,14 @@ We can override `CMD` by doing `docker run myservice /bin/debug`. In this case, 
 We can also override `ENTRYPOINT` by doing `docker run --entrypoint /bin/logwrap myservice`. In this case, command `["/bin/logwrap", "/bin/service", "-d"]` will be executed.
 
 If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
+
+### Signals
+
+When running `docker kill` or `docker stop`, the main process inside the container will receive a signal.
+
+`docker stop` - stop a running container. Main process will receive a `SIGTERM` at which point, docker is given time to do cleanup followed by a `SIGKILL` signal after 10 seconds of grace period.
+
+`docker kill` - send `SIGKILL` to kill the main process inside the container. No chance to do cleanu.
 
 ### HealthCheck
 
