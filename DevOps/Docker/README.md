@@ -93,7 +93,7 @@ If you want to make an image dedicated to a specific command you will use `ENTR
 
 When running `docker kill` or `docker stop`, the main process inside the container will receive a signal.
 
-`docker stop` - stop a running container. Main process will receive a `SIGTERM` at which point, docker is given time to do cleanup followed by a `SIGKILL` signal after 10 seconds of grace period.
+`docker stop` - stop a running container. Main process will receive a `SIGTERM` at which point, docker is given time to do cleanup. If the process hasn't exited within the grace period (can be specified) a SIGKILL signal will be sent.
 
 `docker kill` - send `SIGKILL` to kill the main process inside the container. No chance to do cleanu.
 

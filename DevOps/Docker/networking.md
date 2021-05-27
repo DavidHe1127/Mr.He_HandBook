@@ -27,7 +27,11 @@ As shown above, **docker0** bridge is virtual interface created by docker, it ra
 
 Bridge network provides isolations that containers sitting outside the default bridge network (custom one) cannot communicate with ones sitting inside.
 
-Containers connected to the default bridge network can communicate and it doesn't need port mapping but **ONLY by IP address**, unless they are linked using the `legacy--link flag`.
+By default, running containers without setting `--network` will connect them to the same default `bridge` network. They can communicate with each other via their **IP Address** and it doesn't need port mapping, unless they are linked using the `legacy--link flag`.
+
+The Docker host’s own IP address on the bridge is used as the default gateway by which each container reaches the rest of the Internet. This IP address can also be used for container to talk to the host.
+
+All traffic coming from and going to the container flows over the bridge to the Docker daemon, which handles routing on behalf of the container.
 
 ### Host network mode
 
