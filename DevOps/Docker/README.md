@@ -99,6 +99,11 @@ When running `docker kill` or `docker stop`, the main process inside the contain
 
 ### HealthCheck
 
+```Dockerfile
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1
+```
+
 - Failing configured health check will not kill running container but rather marking it as `unhealthy`. See below:
 ```
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS                    NAMES
