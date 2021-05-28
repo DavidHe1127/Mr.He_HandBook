@@ -37,7 +37,7 @@ All traffic coming from and going to the container flows over the bridge to the 
 
 - No containerisation for network that is container shares the host’s network namespace.
 - No IP allocated for container - if you run a container which binds to port `80` and you use host networking, the container’s application is available on port `80` on the host’s IP address
-- No need for port-mapping, service running from inside the container can be accessed directly from host via open port
+- No need for port-mapping, service running from inside the container can be accessed by other services either in/outside containers via `localhost:<port>`.
 - Port conflicts might happen if trying to run 2 containers on the host.
 
 ### What happens when you run a container
