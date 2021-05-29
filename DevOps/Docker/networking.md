@@ -35,9 +35,10 @@ All traffic coming from and going to the container flows over the bridge to the 
 
 ### Host network mode
 
+- **The host networking driver only works on Linux hosts**.
 - No containerisation for network that is container shares the host’s network namespace.
 - No IP allocated for container - if you run a container which binds to port `80` and you use host networking, the container’s application is available on port `80` on the host’s IP address
-- No need for port-mapping, service running from inside the container can be accessed by other services either in/outside containers via `localhost:<port>`.
+- Port-mapping is no longer required. For comm between containers and comm between host & containers, use `localhost:<port>`.
 - Port conflicts might happen if trying to run 2 containers on the host.
 
 ### What happens when you run a container
@@ -55,7 +56,7 @@ Docker network drivers utilize **veths** to provide explicit connections between
 ### DNS
 
 - By default, containers on default `bridge` network has a copy of `/etc/resolv.conf` from host.
-- Containers using `user-defined` network (aka custom network) including bridge, overlay and MACVLAN use Docker's embedded DNS server addressed at `127.0.0.11`.
+- Containers using `user-defined` network (aka custom network) including bridge, overlay and MACVLAN use Docker's embedded DNS server addressed at `127.0.0.11`. So that running containers with `--name` can be resolved.
 This DNS server provides name resolution to all of the containers on the custom network.
 - If containers cannot reach any of the IP addresses you specify - i.e --dns xxx.xxx.xx.xx then it will use Google's public DNS server `8.8.8.8`.
 
