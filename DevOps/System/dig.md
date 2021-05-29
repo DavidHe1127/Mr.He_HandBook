@@ -37,6 +37,19 @@ $ dig m.linuxidc.com +short
 $ dig hungrypenguin.net MX
 ```
 
+- Reverse lookup
+
+```
+$ dig -x 8.8.8.8
+```
+
+- Trace mode shows you full details of recursive resolutions
+
+```
+$ dig +trace https://lendi.com.au
+```
+
+
 ### Example response
 
 ```shell
