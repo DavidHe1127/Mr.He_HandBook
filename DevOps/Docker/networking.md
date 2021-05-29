@@ -55,10 +55,9 @@ Docker network drivers utilize **veths** to provide explicit connections between
 
 ### DNS
 
-- By default, containers on default `bridge` network has a copy of `/etc/resolv.conf` from host.
-- Containers using `user-defined` network (aka custom network) including bridge, overlay and MACVLAN use Docker's embedded DNS server addressed at `127.0.0.11`. So that running containers with `--name` can be resolved.
-This DNS server provides name resolution to all of the containers on the custom network.
-- If containers cannot reach any of the IP addresses you specify - i.e --dns xxx.xxx.xx.xx then it will use Google's public DNS server `8.8.8.8`.
+- By default, containers on default `bridge` network has a copy of `/etc/resolv.conf` from host. To enable comms through their names, it either requires an external DNS or using links (legacy).
+- With user-defined network, Docker will use embedded DNS server addressed at `127.0.0.11`. The Docker engine itself now has the ability to provide name resolution to all of the containers - comms through name becomes unprecedentedly simple. DNS server is always at `127.0.0.11`. Docker DNS server is also capable of handling external requests. It hands off external requests to the name server used by the Docker host.
+- If containers cannot reach any of the IP addresses you specify for resolution - i.e --dns xxx.xxx.xx.xx then it will use Google's public DNS server `8.8.8.8`.
 
 ### DNS resolution process
 
@@ -67,8 +66,8 @@ This DNS server provides name resolution to all of the containers on the custom 
 In this example there is a service of two containers called `myservice`. A second service (client) exists on the same network. The client executes two curl operations for `docker.com` and `myservice`. These are the resulting actions:
 
 - DNS queries are initiated by client for `docker.com` and `myservice`.
-- The container's built-in resolver intercepts the DNS queries on `127.0.0.11:53` and sends them to Docker Engine's DNS server.
+- The container's built-in resolver intercepts the DNS queries to `127.0.0.11:53` and sends them to Docker Engine's DNS server.
 - Docker Engine then checks if the DNS query belongs to a container or service on network(s) that the requesting container belongs to. If it does, then Docker Engine looks up the IP address that matches a container or service's name in its key-value store and returns that IP or service Virtual IP (VIP) back to the requester. In this example, `myservice` does exist on the network so internal DNS resolve its name and return associated IP to the client.
-- `docker.com` does not exist as a service name in the `mynet` network and so the request is forwarded to the configured default DNS server.
+- `docker.com` does not exist as a service name in the `mynet` network and so the request is forwarded to the nameserver specified on the Docker host.
 
-### [Between-container communication](https://www.jianshu.com/p/710f4bb5a1a6)
+### [Container Linking and Docker DNS](https://hub.packtpub.com/container-linking-and-docker-dns/#)
