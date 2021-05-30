@@ -30,6 +30,7 @@
 - Recipes
   - [Copy assets from container to host](#copy-assets-from-container-to-host)
   - [Enter stopped containers](#enter-stopped-containers)
+  - [Grant user perms to use docker](#grant-user-perms-to-use-docker)
 - References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
@@ -494,6 +495,12 @@ docker create -it \
 
 docker cp adhoc:"/opt/platy/apps/lambda" "$(pwd)/build/"
 docker rm -f adhoc
+```
+
+### Grant User Perms to use docker
+Switch to the user and run:
+```
+$ chmod a+rw /var/run/docker.sock
 ```
 
 ### Enter stopped containers
