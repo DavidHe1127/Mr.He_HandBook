@@ -369,14 +369,8 @@ $ sudo nginx -V
 Suppose we have a Python flask container running on `3100` in `host` network mode, refer to below example config to learn how nginx is configured
 to forward traffic through to flask app.
 
-Use `upstream` in `proxy_pass` to force dynamic DNS resolution using `resolver` directive.
-
 ```nginx
 http {
-    upstream backend {
-      server 127.0.0.1:3100;
-    }
-
     resolver 127.0.0.1 valid=60s;
     error_log /var/log/nginx/error.log error;
 
@@ -405,7 +399,8 @@ http {
       msie_padding off;
 
       location / {
-        proxy_pass http://backend;
+        # localhost won't work since it cannot be resolved
+        proxy_pass http://127.0.0.1:3100$request_uri;
       }
     }
 }
