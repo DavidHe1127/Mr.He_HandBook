@@ -15,6 +15,7 @@
 - [Sample config](#sample-config)
 - Tips
   - [Print more nginx infor](#print-detailed-nginx-info)
+  - [Run nginx in docker host network mode](#run-nginx-in-docker-host-network)
 - Learning Resources
   - [nginx tutorial basics concepts](https://www.netguru.com/codestories/nginx-tutorial-basics-concepts)
 
@@ -363,4 +364,51 @@ $ sudo nginx -V
 ...
 ```
 
+### Run nginx in docker host network mode
 
+Suppose we have a Python flask container running on `3100` in `host` network mode, refer to below example config to learn how nginx is configured
+to forward traffic through to flask app.
+
+Use `upstream` in `proxy_pass` to force dynamic DNS resolution using `resolver` directive.
+
+```nginx
+http {
+    upstream backend {
+      server 127.0.0.1:3100;
+    }
+
+    resolver 127.0.0.1 valid=60s;
+    error_log /var/log/nginx/error.log error;
+
+    server {
+        listen 80 default_server deferred;
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+
+        location / {
+            add_header X-SERVE "served by location /";
+            try_files $uri $uri/ /index.html;
+        }
+    }
+
+    server {
+      listen 8443 ssl http2 default_server;
+
+      ssl_protocols TLSv1.2;
+
+      ssl_certificate     /etc/certs/nginx.crt;
+      ssl_certificate_key /etc/certs/nginx.key;
+      root /tmp/NOROOT;
+
+      postpone_output 0;
+      merge_slashes off;
+      msie_padding off;
+
+      location / {
+        proxy_pass http://backend;
+      }
+    }
+}
+
+events {}
+```
