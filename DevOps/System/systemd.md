@@ -67,7 +67,7 @@ journalctl -u cadvisor.template -f
 
 #### Path
 
-Watch for changes to files or paths and trigger specified actions when changes being detected. It's paired with a `.service` file with the same name.
+Watch for changes to files or paths and trigger specified actions when changes being detected. It's paired with a `.service` file with the same name. Sometimes, you might want to start up the service only a prerequisite config file does exist. This is a good user case for Path file.
 
 ```shell
 # foo.path
@@ -77,7 +77,9 @@ Description = monitor some files
 [Path]
 PathChanged = /tmp/foo
 PathModified = /tmp/a.log
+# allow multiple entries
 PathExists = /tmp/file.lock
+PathExists = /tmp/file2.lock
 MakeDirectory = yes
 # trigger foo.service when changes detected
 Unit = foo.service
