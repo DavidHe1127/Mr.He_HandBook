@@ -130,6 +130,17 @@ xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc73
 ### Study Notes
 
 - Main monitoring targets a) Docker Daemon b) Node (node_exporter) c) Docker Container (cAdvisor) d) Application (custom exporter)
+- One can use `relabel_configs` to drop certain target metrics. For example, this config will drop metrics with label being `movies`
+
+```
+...
+relabel_configs:
+  - source_labels: [name]
+    regex: movies
+    action: drop
+...
+```
+This means, matched metrics exposed by target will NOT BE scraped into TSDB by Prom. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s of resolution - show the latest 14s of data from TSDB.
 
 ### References
 
