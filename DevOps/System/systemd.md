@@ -86,6 +86,10 @@ Unit = foo.service
 
 # how this service is enabled - auto start on boot
 # this service is enabled as part of multi-user.target target
+# only works if service is enabled
+# if you omit the WantedBy=multi-user.target line and no other enabled service includes a Requires=your.service or
+# Wants=your.service in its service definition, your service will not be started automatically.
+# multi-user.target defines a **system state**, in other words, when it reaches this state, start our service.
 [Install]
 WantedBy = multi-user.target
 
@@ -144,3 +148,4 @@ todo
 ### References
 
 - [Systemd guide](https://cloud.tencent.com/developer/article/1516125)
+- [WantedBy multi-user.target](https://unix.stackexchange.com/questions/506347/why-do-most-systemd-examples-contain-wantedby-multi-user-target)
