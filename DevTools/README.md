@@ -6,6 +6,7 @@
 - [lerna](lerna.md)
 - [linting](linting.md)
 - [npm](npm.md)
+- [sonarqube](#sonarqube)
 
 ## YAML templating
 
@@ -41,4 +42,14 @@ will parsed to
     "job_name": "dev"
   }
 ]
+```
+
+## SonarQube
+
+```properties
+# multiple rule exceptions separated by ,
+sonar.issue.ignore.multicriteria=e1
+# https://rules.sonarsource.com/javascript/RSPEC-1848
+sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1848
+sonar.issue.ignore.multicriteria.e1.resourceKey=src/**/*
 ```
