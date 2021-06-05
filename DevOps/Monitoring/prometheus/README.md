@@ -6,6 +6,7 @@
 - [Components](#components)
 - [PromQ](#promq)
 - [Blackexporter](#blackexporter)
+- [Auth](#auth)
 - [CAdvisor](#cadvisor)
 - [Debugging Tips](#debugging)
 - [Study Notes](#study-notes)
@@ -95,6 +96,10 @@ rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
 - Monitor network endpoints such as HTTP, HTTPS, DNS, ICMP or TCP endpoints.
 - Mainly used to measure service response times.
 - The main difference between the Blackbox exporter and application instrumenting is that the Blackbox exporter only focuses on availability while instrumentations can go more into details about performance.
+
+### Auth
+
+Doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic.
 
 ### CAdvisor
 
