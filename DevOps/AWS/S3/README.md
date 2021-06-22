@@ -29,3 +29,4 @@ https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
 - 3 steps - initiation, parts upload, upload completion.
 - Once completed by uploading multiple parts of an object, you signal S3 for completion at which point,
 S3 will concatenate them into one object.
+- `aws s3 cp` and other aws s3 commands that involve uploading objects into an S3 bucket (for example, aws s3 sync or aws s3 mv) also **automatically** perform a multipart upload when the object is large.
