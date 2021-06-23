@@ -237,6 +237,7 @@ Use `gp3` over `gp2` whenever is possible. `gp3` allows for consistent perf and 
 - EC2 sends metrics to CW in every 1 or 5 minutes depending on monitoring type - 5 mins for simple monitoring while 1 min for detailed monitoring. CW will evaluate aggregated metrics and work out if a specific alarm is triggered based on the alarm policy. When a new EC2 is launched, it will not send metrics before monitoring period either 1 or 5 mins has elapsed resulting in `insufficient data`. **Use detailed monitoring to have more frequent updates on resources utilization change**.
 - EC2 is considered to be `unhealthy` if its state is in any state of `stopping`, `stopped`, `terminating`, `terminated` other than `running`.
 - When each instance is fully configured and passes the Amazon EC2 health checks, it is attached to the Auto Scaling group and it enters the `InService` state. The instance is counted against the desired capacity of the Auto Scaling group.
+- A `MaxBatchSize > 100` in the `UpdatePolicy` will break AWS AutoScaling limits.
 
 #### Simple Scaling
 
