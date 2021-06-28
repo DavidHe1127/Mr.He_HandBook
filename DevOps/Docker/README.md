@@ -31,6 +31,7 @@
   - [Copy assets from container to host](#copy-assets-from-container-to-host)
   - [Enter stopped containers](#enter-stopped-containers)
   - [Grant user perms to use docker](#grant-user-perms-to-use-docker)
+  - [Verify if a container is running correctly](#check-if-conatiner-is-running)
 - References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
@@ -510,3 +511,11 @@ Create an image from stopped container with **same** state.
 $ docker commit <CONTAINER_ID> <REPO>/<TAG>
 ```
 Then you can run it as you would normally.
+
+### Check if a container is running
+
+```shell
+  # Exclude container that is in a crash loop and constantly restarting from showing that it's up
+  if [ "$( docker container inspect -f '{{.State.Status}}' $container_name )" == "running" ]; then ...
+```
+

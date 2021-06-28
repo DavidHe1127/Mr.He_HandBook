@@ -50,6 +50,10 @@ Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb12
 
 Very much like `CNAME` except that `CNAME` only works on subdomain not root domain (aka naked domain name or zone apex record). i.e cannot have a `CNAME` record for `example.com`.
 
+**Always** use `alias` record over `CNAME` where possible. Route 53 doesn't charge for alias queries to AWS resources while it does for CNAME queries.
+
+[See more in comparisons](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html)
+
 ### Zone Delegation
 
 You can use it to route traffic to your subdomain i.e `acme.example.com.` See [more](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-routing-traffic-for-subdomains.html#dns-routing-traffic-for-subdomains-new-hosted-zone).
