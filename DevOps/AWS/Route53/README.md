@@ -27,7 +27,7 @@ Note, don't change them!
 
 A `SOA` record example - `ns-2048.awsdns-64.net. hostmaster.example.com. 1 7200 900 1209600 86400`
 
-`NS` is used by TLD (Top Level Domain) servers to direct traffic to the Content DNS server which contains the authoritative DNS records.
+`NS` record indicates which DNS server is authoritative for that domain (i.e. which server contains the actual DNS records - those you've added to your hosted zone later on).
 
 When an user visiting `theparrodise.com` the DNS resolution workflow is described as follow:
 
