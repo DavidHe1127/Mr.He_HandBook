@@ -63,6 +63,8 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 
 Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
 
+Most of time, you will receive a 2-min notice prior to instances termination. If your app is well architected, you might not necessarily need to do anything in 2-min window.
+
 [Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
 
 ---
