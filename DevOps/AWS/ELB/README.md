@@ -78,6 +78,8 @@ Diagram below explains how load balancer distributes traffic to a target group o
 
 When you enable `Connection Draining` on a load balancer, any back-end instances that you deregister will complete requests that are in progress before deregistration. Likewise, if a back-end instance fails health checks, the load balancer will not send any new requests to the unhealthy instance but will allow existing requests to complete.
 
+Connection Draining is also integrated with Auto Scaling. When Connection Draining is enabled, Auto Scaling will wait for outstanding requests to complete before terminating instances.
+
 ### Pre-warming
 
 ELB will not try to queue up reqs to be handled when it's at its capacity which resulting in `503` errors. If traffic goes up over time, ELB will keep up with such demand and handles reqs correctly. That said, when hefty traffic is hitting ELB at a rate that is higher than ELB can scale to meet it, contact AWS to enable pre-warming.
