@@ -15,10 +15,14 @@
 - Use KMS CMK to create both plain-text and encrypted key. Encryption is done by a specific CMK - specified in the api call.
 - Use Data Key to encrypt/decrypt application data. i.e objects on s3
 - AWS KMS does not store, manage, or track your data keys, or perform cryptographic operations with data keys. You must use and manage data keys outside of AWS KMS.
-- Using Data key saves you network bandwidth as content doesn't need to be travelled to AWS for encryption/decryption. Instead, use data key sent by AWS for these purposes. It's aka `envelope encryption`.
+- Using Data key saves you network bandwidth as content doesn't need to be travelled to AWS for encryption/decryption. Instead, use data key sent by AWS for these purposes.
 - AWS services with KMS integrations are responsible for data encryption/decryption using a data key. If you need to encrypt your data using a data key, you can call KMS API to generate your data key via a specified CMK.
 
 ![data key](data-key.png)
+
+#### Envelope Encryption
+
+When you encrypt your data, your data is protected, but you have to protect your encryption key. One strategy is to encrypt it. Envelope encryption is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key - CMK.
 
 #### How data key is used?
 
