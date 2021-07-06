@@ -3,7 +3,8 @@
 - [Same Origin and CORS](#same-origin-and-cors)
 - [CSRF](#csrf)
 - [JSONP](#jsonp)
-- [How to enable it?](#how-to-enable-it)
+- [How to enable cors?](#how-to-enable-cors)
+- [SameSite](#same-site)
 - [Preflight](#preflight)
 
 ### Same Origin and CORS
@@ -56,7 +57,7 @@ Altough ajax requests are restricted, remote scripts loaded via `src tags` are f
 
 Downside of jsonp is - it only works for http `GET`.
 
-### How to enable it
+### How to enable cors
 
 **Origin** header specifies where this request is being sent from.
 
@@ -82,6 +83,24 @@ Content-Type: text/html; charset=utf-8
 ```
 
 Now, ajax calls to another domain is allowed.
+
+### SameSite
+
+If a cookie's domain matches address currently shown in address bar, it's considered as a 1st party cookie otherwise it's a 3rd party cookie.
+
+3rd party cookie use case - suppose site A has embedded a Youtube video on its site, a visitor who's signed in to Youtube will see `Watch Later` option rather than being prompted for login. It's happened so because visitor login state cookie - 3rd party cookie is sent by browser when loading Youtube video such that Youtube knows this visitor has already authenticated.
+
+With SameSite, it allows users to control who the browser should send cookies to. i.e cross-site or same site.
+
+```js
+// same site
+www.web.dev and static.web.dev
+
+// cross site
+your-project.github.io and my-project.github.io
+```
+
+With SameSite cookie attribute, we can effectively avoid CSRF attacks.
 
 ### preflight
 
