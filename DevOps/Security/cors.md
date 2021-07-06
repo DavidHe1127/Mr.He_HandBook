@@ -84,7 +84,7 @@ Content-Type: text/html; charset=utf-8
 
 Now, ajax calls to another domain is allowed.
 
-### SameSite
+### same-site
 
 If a cookie's domain matches address currently shown in address bar, it's considered as a 1st party cookie otherwise it's a 3rd party cookie.
 
@@ -101,6 +101,8 @@ your-project.github.io and my-project.github.io
 ```
 
 With SameSite cookie attribute, we can effectively avoid CSRF attacks.
+
+[Read More](https://web.dev/samesite-cookies-explained/)
 
 ### preflight
 
