@@ -28,8 +28,11 @@ webmaster@your_domain_name
 admin@your_domain_name
 ```
 
-##### via cli/api
+There is no guarantee that apex domain will receive validation email.
 
-If you are using the RequestCertificate API operation or the request-certificate AWS CLI command, AWS does not perform an MX lookup. In this case you can explicitly specify which domain you wish to receive validation emails.
+##### via cli/api (preferred)
+
+If you are using the RequestCertificate API operation or the request-certificate AWS CLI command, AWS does not perform an MX lookup. In this case you can explicitly specify which domain you wish to receive validation emails. This way, you can warrant validation emails will go to apex domain rather than subdomain. i.e `example.com` rather than `test.example.com`.
+
 
 
