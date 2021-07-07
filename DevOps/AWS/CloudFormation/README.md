@@ -5,6 +5,7 @@
   - [User Data Property](#user-data-property)
   - [Typical example](#typical-example)
   - [cross-stack reference](#cross-stack-reference)
+  - [cfn-init vs user data](#cfn-init-vs-user-data)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
 - [Troubleshooting](#troubleshooting)
@@ -183,6 +184,11 @@ params.json
 ```
 
 One noticeable caveat is `You can't modify or remove an output value that is referenced by another stack.`. So use it with caution!
+
+
+### cfn-init vs user-data
+
+A major benefit of `AWS::CloudFormation::Init` over UserData is that the former is updatable -- if you modify the `AWS::CloudFormation::Init` section, CloudFormation will update your EC2 instance in place, whereas if you modify the UserData property of an EC2 resource in your template and update your stack, CloudFormation will replace that EC2 instance.
 
 ---
 
