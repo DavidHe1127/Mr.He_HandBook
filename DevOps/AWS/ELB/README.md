@@ -63,7 +63,7 @@ Automatically applies to `dynamic scaling` and optionally to manual scaling but 
 
 Most of time, you will receive a 2-min notice prior to instances termination. If your app is well architected, you might not necessarily need to do anything in 2-min window.
 
-Specify as many different pools as possile to minimise the chance of instance interruptions.
+Specify as many different pools as possile to minimise the chance of instance interruptions. Don't overbid on price as it won't warrant indefinite running of your instances. EC2 can still terminate them when they need capacity back.
 
 Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
 
