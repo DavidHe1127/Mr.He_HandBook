@@ -32,7 +32,7 @@ Attacker forges a new url to transfer money to himself:
 POST https://banking.com/onlinebanking/transfer?amount=500&accountNumber=888888 HTTP/1.1
 ```
 - Attacker then tricks A into clicking the forged link by enclosing it in a phishing email to A.
-- A clicks the link without signing out which ends up sending money to attacker. This happens is because session cookies are sent to the same origin automatically by browsers.
+- A clicks the link without signing out which ends up sending money to attacker. This happens because session cookies are sent to the same origin automatically by browsers.
 
 SOP will not stop CSRF at all!!! as it allows attacker to send requests but not accessing the response. A CSRF attack is done by sending a request, and not by reading anything from the response. In fact, you neither can nor need to read the response.
 
