@@ -190,6 +190,8 @@ One noticeable caveat is `You can't modify or remove an output value that is ref
 
 A major benefit of `AWS::CloudFormation::Init` over UserData is that the former is updatable -- if you modify the `AWS::CloudFormation::Init` section, CloudFormation will update your EC2 instance in place, whereas if you modify the UserData property of an EC2 resource in your template and update your stack, CloudFormation will replace that EC2 instance.
 
+Use `cfn-init` to do prep work before user-data.
+
 ---
 
 ### Troubleshooting
