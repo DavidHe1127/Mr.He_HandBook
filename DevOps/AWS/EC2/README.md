@@ -1,6 +1,7 @@
 ## EC2
 
 - [How EC2 works](#how-ec2-works)
+- [vCPU, threads and core](#vcpu-threads-core)
 - [Security Group](#security-group)
 - [IP and DNS](#ip-and-dns)
 - [EIP and Public IPv4](#eip-and-public-ipv4)
@@ -31,6 +32,10 @@
 ![ec2-arch](ec2-arch.jpg)
 
 Hypervisor is a software to control resources allocations for VMs.
+
+### vCPU, threads and core
+
+1 thread = 1 vCPU and 1 core = 2 vCPU/threads. EC2 supports multithreading which enables multiple threads to run concurrently on a single CPU core. With NodeJS app, it will only use one thread/vCPU.
 
 ### Security Group
 
