@@ -1,13 +1,10 @@
 ## ASG/ELB
 
 - [ASG](#asg)
-  - [Scaling Policy](#scaling-policy)
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
-  - [lifecycle hooks](#lifecycle-hooks)
-  - [Tear down ASG](#tear-down-asg)
   - [Cooldown period](#cooldown-period)
-  - [Spot Fleet](#spot-fleet)
+  - [Spot instances](#spot-instances)
 - [ELB](#elb)
   - [Load balancer with HA](#load-balancer-with-ha)
   - [ALB vs NLB](#alb-vs-nlb)
@@ -19,11 +16,6 @@
 - [References](#references)
 
 ## ASG
-
-### Scaling Policy
-
-- Scale in/out within the boundary of Min/Max capacity
-- Desired capacity is subject to change over time but is always between Min/Max capacity range
 
 ### Health Check
 
@@ -40,15 +32,6 @@ Use it to control which instances need to be terminated when scale in. i.e `Olde
 
 ⚠️⚠️⚠️ Termination policy will be applied to AZ with most instances first i.e imbalanced AZs before other balanced AZs. For example, suppose you have 2 instances in `2a` and 1 instance in `2b`, termination policy will be applied to `2a` first to take one of two instances down. Consequently, you have 2 instances left. If desired count is 2, then ASG will stop looking further at `2b` even if you are expected to terminate another one in `2b` during a ami update process.
 
-### Lifecycle Hooks
-
-Use it when you need to perform some custom tasks berfore launching/terminating instances in scale out/in respectively.
-See [this](https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html) for more details.
-
-### Tear down ASG
-
-When you delete an Auto Scaling group, its `desired, minimum, and maximum` values are set to 0. As a result, the instances are terminated.
-
 ### Cooldown period
 
 No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch alarms. In an event of scaling out activity, ASG will add a new instance to the group and instance takes 3 mins to come up and become ready to serve traffic. During this period of time, alarm is likely to be triggered again which is causing ASG to add more instances. It's a big waste as we might only need one additional instance but not 2!!!.
@@ -57,9 +40,9 @@ Now, with help from `cooldown period` defaults to 5 mins, after the scaling acti
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
 
-### Spot Fleet
+### Spot Instances
 
-![spot-fleet](how-spot-fleet-works.png)
+![spot-instances](how-spot-pool-works.png)
 
 Most of time, you will receive a 2-min notice prior to instances termination. If your app is well architected, you might not necessarily need to do anything in 2-min window.
 
@@ -68,6 +51,7 @@ Specify as many different pools as possile to minimise the chance of instance in
 Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
 
 [Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
+[Run mixed instances in ASG](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 
 ---
 
@@ -107,7 +91,7 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
   ```
   Saving can add up to a big amount!
 - Use smaller TLS cert. AWS ACM produces relatively larger cert! Typically, browser will cache and reuse cert being sent by server in the initial HTTPs connection for subsequent communication. However, if large number of new clients are there, cert will be transferred through ALB millions of times!
-- Increase idle timeout i.e 10 mins to make the most of connection reuse - ALB will reuse established session without opening new one. Also, enable `keep-alive` on the server making it greater than idle timeout such that ALB will close connections
+- `idle timeout` - when no data is sent/received after `idle timeout` elapses, elb closes connections (backend/frontend). `keep-alive` - when set and returned by server, it hints the minimum amount of time an idle connection has to be kept opened (in seconds). When timeout is expired, server may close the connection. So increase idle timeout i.e 10 mins to make the most of connection reuse - ELB will reuse established session without opening new one. Also, enable `keep-alive` on the server making it greater than the configured `idle timeout` such that ELB is responsible for closing the connections to your instance.
 - Use ALB over Classic Load Balancer as ALB supports HTTP/2 while Classic one doesn't. HTTP/2 enables http header compression.
 
 ### ALB vs NLB
@@ -136,6 +120,7 @@ When health check type is `ELB`, ASG will delegate this task to ELB which will p
 
 ## References
 
+- [ELB error codes](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ts-elb-http-errors.html#ts-elb-error-metrics-ELB_5XX)
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
 - [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1])
