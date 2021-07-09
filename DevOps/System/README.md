@@ -2,6 +2,7 @@
 
 - [tty](#tty)
 - [Process](#process)
+- [Multi-threading](#multi-threading)
 - [Signal](./linux_signal.md)
 - [File and Permissions](#file-and-permissions)
 - [Host file](#host-file)
@@ -54,6 +55,12 @@ a = show processes for all users
 u = display the process's user/owner
 x = also show processes not attached to a terminal
 ```
+
+### Multi-threading
+
+One process can have 1 or many threads. At any single time, there is only one thread running on single-core processor. The reason we can have multiple processes running is actually done by context switching where each thread is given a time slice to run on processor then stop making way for another thread to jump on. All this is controlled by CPU. Switching happens so fast making it look like things running simultaneously.
+
+In a multi-core CPU environment, it genuinely allows multiple threads each run on a separate core. This is the real concurrency. It boosts the overall CPU performance.
 
 ### File and Permissions
 
