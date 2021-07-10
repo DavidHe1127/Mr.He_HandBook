@@ -7,6 +7,7 @@
   - [Spot instances](#spot-instances)
 - [ELB](#elb)
   - [Load balancer with HA](#load-balancer-with-ha)
+  - [Surge Queue and Spillover count](#surge-queue-and-spillover-count)
   - [ALB vs NLB](#alb-vs-nlb)
   - [Connection Draining](#connection-draining)
   - [Pre-warming](#pre-warming)
@@ -21,7 +22,6 @@
 
 - By default, ASG will consider an instance healthy if it passes instance status check
 - Change health check type to be `ELB` so an instance is seen as healthy ONLY if it passes both ALB and EC2 health check
-- Unhealthy instances will be killed and replaced by ASG
 - If you attach multiple load balancer target groups, all of them must report that the instance is healthy in order for it to consider the instance healthy. If any one of them reports an instance as unhealthy, the Auto Scaling group replaces the instance, even if other ones report it as healthy
 
 Use case scenario: In an ECS application fronted with ALB. ALB health check will fail when putting a container instance on `DRAINING` mode. However, instance is still seen as healthy by ASG since it passes status check. Therefore, ASG will do nothing. To fix it, set `health check type` to be `ELB` which will turn this instance to an unhealthy one as it fails ALB health check. Now, ASG will see and action to replace this unhealthy instance.
@@ -99,6 +99,14 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 - ALB is layer 7 lb while NLB is layer 4 lb. With NLB, it does not access HTTP headers
 - ALB/CLB supports connection multiplexing - reqs from multiple clients uses the single one backend connection. This improves latency and reduces load on your application. Set `Connection: close` header in your app HTTP response to disable it.
 
+### Surge Queue and Spillover count
+
+Surge Queue - The total number of requests that are pending routing. The load balancer queues a request if it is unable to establish a connection with a healthy instance in order to route the request. The maximum size of the queue is `1,024`. Additional requests are rejected when the queue is full.
+
+Spillover count - The total number of requests that were rejected because the surge queue is full.
+
+See #ELB useful metrics for more details
+
 ### Best Practices
 
 - When ELB scales up, it updates the DNS records with new IPs so that these IPs are registered when more ELB resources (nodes) being added. Records have TTL of 60 seconds. So client will re-lookup DNS at least every 60 seconds.
@@ -121,6 +129,7 @@ When health check type is `ELB`, ASG will delegate this task to ELB which will p
 ## References
 
 - [ELB useful metrics](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html)
+- [ELB health and performance metrics](https://www.datadoghq.com/blog/top-elb-health-and-performance-metrics/)
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
 - [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1])
