@@ -120,7 +120,7 @@ When health check type is `ELB`, ASG will delegate this task to ELB which will p
 
 ## References
 
-- [ELB error codes](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/ts-elb-http-errors.html#ts-elb-error-metrics-ELB_5XX)
+- [ELB useful metrics](https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-cloudwatch-metrics.html)
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
 - [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1])
