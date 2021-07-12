@@ -8,6 +8,7 @@
 - [Reusable execution context](#reusable-execution-context)
 - [Invocation model](#invocation-model)
 - [Error handling](#error-handling)
+- [Custom runtime and layers](#custom-runtime-and-layers)
 - [Custom Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
@@ -159,6 +160,12 @@ Lambda will automatically poll the following services on your behalf, retrieve r
 ### Error Handling
 
 Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY). Note DLQ only works for lambda Async invocation model. It's used when an event fails all processing attempts or expires without being processed.
+
+### Custom runtime and layers
+
+layers allow you to share code between lambdas. Custom runtime allows you to use runtime AWS by default doesn't support i.e Bash. See [layers](https://github.com/mthenw/awesome-layers) for public layers you can use.
+
+One thing to note, You can use layers **ONLY** with Lambda functions deployed as a `.zip` file archive. For functions defined as a container image, you package your preferred runtime and all code dependencies when you create the container image.
 
 ### Use SSM Parameter Store for env-vars
 
