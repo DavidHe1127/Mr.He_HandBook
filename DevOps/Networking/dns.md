@@ -7,7 +7,6 @@
 - [DNS Resolution workflow](#dns-resolution-flow)
 - [DNS TTL/Propagation](#dns-ttl-propagation)
 - [www domain and naked domain](#www-vs-naked)
-- [Route53 Alias record vs CNAME record](#alias-record-vs-cname-record)
 - [DNS records](#dns-records)
 
 ### DNS Servers
@@ -57,13 +56,9 @@ One more subdomain might simply makes one more DNS server. i.e `https://www.test
 
 - From SEO point of view, some search engine recognize `www` and `non-www` as two different web sites and this cause to penalize the domain considering website has duplicate contents.
 
-### alias-record-vs-cname-record
-
-`alias` record is similar to a `CNAME` record, except you can create an alias record both for the `root domain - example.com` and for `subdomains - www.example.com` whereas you can create `CNAME` records only for subdomains.
-
-Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
-
 ### DNS Records
+
+All DNS records are stored on DNS name servers.
 
 ### CNAME
 
@@ -92,3 +87,9 @@ mydomainname.com      NS      ns1.mydomainname.com
 
 >>>
 MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。例如，当Internet上的某用户要发一封信给user@mydomain.com 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上
+
+### Route53 Alias Records
+
+`alias` record is similar to a `CNAME` record, except you can create an alias record both for the `root domain - example.com` and for `subdomains - www.example.com` whereas you can create `CNAME` records only for subdomains.
+
+Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
