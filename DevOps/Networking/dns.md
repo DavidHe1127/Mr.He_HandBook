@@ -74,13 +74,13 @@ Note, `CNAME` only points the source domain to the destination domain, which the
 | ftp.mydomain.com     |    CNAME    |       mydomain.com |
 | mail.mydomain.com    |    CNAME    |       mydomain.com |
 
-Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed.
+Say you have several domains all want to point to `mydomain.com`. Benefit of this design allows you only need to change once when `mydomain.com` ip address is changed. Another use case is when you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
 
-One usecase for `CNAME` is - you want domains registered in AU `mydomain.com.au` and NZ `mydomain.com.nz` both to be redirected to `mydomain.com`.
+[cname record resolution](https://webmasters.stackexchange.com/questions/118044/do-i-need-a-certificate-to-redirect-via-cname)
 
 ### NS Record
 
-It tells your browser where all DNS records for your domain can be found. In other words, it shows your browser the IP address of the server that holds your DNS records. Think of it as a library assistant who you need to ask first before knowing where to find your book.
+It contains a set of name servers address. It tells browser which name servers it needs to ask for your domain DNS records. NS records live with domain registry. If you use Route53 to route traffic but register your domain via GoDaddy, you need to add NS records in Route53 to the GoDaddy system.
 
 NS
 

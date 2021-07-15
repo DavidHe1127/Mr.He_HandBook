@@ -308,6 +308,19 @@ $ bash <<EOF
 > EOF
 ```
 
+4. Set var a json string
+
+```shell
+PAYLOAD=$(cat <<EOF
+{
+  "hostname": "${hostname}",
+  "name": "${name}",
+  "type": ""
+}
+EOF
+)
+```
+
 ### Parameter Expansion
 
 ```shell
