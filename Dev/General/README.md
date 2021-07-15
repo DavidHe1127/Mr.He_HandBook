@@ -14,6 +14,7 @@
 - [Idempotent](#idempotent)
 - [Coarse-grained-vs-fine-grained](#coarse-grained-vs-fine-grained)
 - [Service worker](#service-worker)
+- [Web caching](./web_caching.md)
 
 - [Dev Tricks](./tricks.md)
 

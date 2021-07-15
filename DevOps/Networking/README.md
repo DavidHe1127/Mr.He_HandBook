@@ -2,7 +2,6 @@
 
 - [Http(s)](./http(s).md)
 - [OSI](#osi)
-- [Web Caching](./web_caching.md)
 - [SSH](./ssh.md)
 - [DNS](./dns.md)
 - [nc(telnet) on Mac](#nc)
