@@ -2,8 +2,6 @@
 
 - [ENI](#eni)
 - [CIDR](#cidr)
-- [NAT Gateway](#nat-gateway)
-  - [NAT Gateway vs IP gateway](#nat-gateway-vs-ip-gateway)
 - [Cost](#cost)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
@@ -18,19 +16,10 @@
 - Multiple VPCs in one account can have same cidr range. However, overlapped cidr range will preclude vpc peering when needed. As of `08/2017`, VPC allows customers to expand their VPCs by adding secondary IPv4 address ranges (CIDRs).
 - Subnets within one VPC cannot have cidrs overlapped since AWS will treat the 2 subnets as one continuous network.
 
-### NAT Gateway
-
-Enable instances in a private subnet to connect to the internet or other AWS services, but prevent the internet from initiating a connection with those instances.
-
-[Detailes about IGW and NATs](https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6)
-
 ### Public IP vs Elastic IP
 Public IP addresses are dynamic - i.e if you stop/start your instance you get reassigned a new public IP.
 
 Elastic IPs get allocated to your account and stay the same - it's up to you to attach them to any instance or not. you could say they are `static public ip addresses`. To avoid charge over using elastic ip, make sure it's attached to an instance. It will incur charges if it's detached.
-
-### NAT Gatway vs IP Gateway
-Attaching an IGW to a VPC allows instances with public IPs to access the internet, while NATs allow instances with no public IPs to access the internet.
 
 ### Cost
 VPC themselves are free but you need to pay for the services running within it. i.e NAT gateway, internet gateway, EC2s.
@@ -39,14 +28,11 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 ### VPC Endpoint and Endpoint Service
 
-Basically, you setup an endpoint in your VPC which will receive vpc traffic and forward them through to either your own `VPCE service` or `AWS VPCE services` through AWS PrivateLink without going through public network.
-
-#### VPC Endpoint
-
-- Endpoint - Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
-- Two types - `Interface Endpoint` and `Gateway Endpoint`.
+- It Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
 - VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic.
 - Private DNS - a private hosted zone for the endpoint is only supported in AWS services and AWS Marketplace Partner services.
+
+To connect to S3 via VPCE, setup a VPC endpoint in your VPC - consumer and point it to S3 VPCES address - provider.
 
 ![vpce](./vpce.png)
 
