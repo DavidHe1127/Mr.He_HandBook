@@ -88,6 +88,9 @@ When remote store is configured, queries will be sent to both local and remote s
 
 ```
 rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
+
+# set to 0 when vector shows null
+count(expression) or on() vector(0)
 ```
 
 ### BlackExporter
