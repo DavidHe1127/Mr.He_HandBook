@@ -10,7 +10,7 @@
 - [Add Users](https://www.tecmint.com/add-users-in-linux/)
 - [sudo and sudoers File](#sudo-and-sudoers-file)
 - [ssh config file](#ssh-config-file)
-- [File Descriptor](#file-descriptor)
+- [IO Redirection](#io-redirection)
 - [systemd](./systemd.md)
 - [Commands](#commands)
   - [Tee](#tee)
@@ -183,13 +183,11 @@ papi ALL=(root) NOPASSWD: /bin/chown,/usr/sbin/useradd
 
 [sudoers file explained](https://www.cnblogs.com/jing99/p/9323080.html)
 
-### File descriptor
+### IO Redirection
 
 Difference between `2>&1` and `2>1` is the previous one will redirect the `stderr` to `stdout` while the latter one redirects the `stderr` to file named `1`.
 
 As you can see, **&** here is used to distinguish `stdout (1)` or `stderr (2)` from files named `1` or `2`.
-
-![File Descriptors](./file-descriptor.png)
 
 ```shell
 # And this will redirect `stdout` and `stderr` to null device resulting in nothing prints out to terminal. It works because `stdout` redirects to `/dev/null`, and then `stderr` redirects to the address of `stdout` by using `>&`, which has been set to `/dev/null`, consequently both `stdout` and `stderr` point to `/dev/null`.
@@ -197,6 +195,14 @@ $ CMD > /dev/null 2>&1
 $ 2>/dev/null # redirect STDERR to /dev/null
 $ &>/dev/null # redirect both STDERR and STDOUT to /dev/null (nothing will show up)
 $ >/dev/null  # redirect STDOUT to /dev/null (only STDERR shows up)
+
+# Command substitution only catches the standard output(stdout). Code below will direct stderr to terminal
+var=$(mkdir '')
+# empty!
+echo "$var"
+
+# to capture stderr into var
+var=$(cat file.log nofile.txt 2>&1 >/dev/null)
 ```
 
 ---
