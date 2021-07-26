@@ -138,19 +138,33 @@ xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc73
 ### Study Notes
 
 - Main monitoring targets a) Docker Daemon b) Node (node_exporter) c) Docker Container (cAdvisor) d) Application (custom exporter)
-- One can use `relabel_configs` to drop certain target metrics. For example, this config will drop metrics with label being `movies`
+- One can use `relabel_configs` to filter certain targets based on their labels. For example, this config will skip targets with label `movies`
 
 ```
 ...
 relabel_configs:
-  - source_labels: [name]
+  - source_labels: [__name__]
     regex: movies
     action: drop
 ...
 ```
-This means, matched metrics exposed by target will NOT BE scraped into TSDB by Prom. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s of resolution - show the latest 14s of data from TSDB.
+
+Note, `relabel_configs` works for labels on **target** not on `metric`.
+
+- To drop certain metrics on target:
+
+```yml
+# drop node_memory_free_bytes
+metric_relabel_configs:
+- source_labels: [__name__]
+  regex: 'node_memory_free_bytes'
+  action: drop
+```
+
+`metric_relabel_configs` by contrast are applied after the scrape has happened, but before the data is ingested into TSDB. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s of resolution - show the latest 14s of data from TSDB.
 
 ### References
 
 [The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)
 [Prometheus Components](https://samirbehara.com/2019/05/30/cloud-native-monitoring-with-prometheus/)
+[Relabelling tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)

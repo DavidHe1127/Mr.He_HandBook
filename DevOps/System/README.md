@@ -203,6 +203,9 @@ echo "$var"
 
 # to capture stderr into var
 var=$(cat file.log nofile.txt 2>&1 >/dev/null)
+
+# send logs to other places rather than syslog
+logger -t SPOT -s "$1" 2>> /var/log/spot-interruptions
 ```
 
 ---

@@ -108,6 +108,13 @@ Output plugin in buffered mode first stores the received events into buffers and
 fluentd will choose the appropriate mode if `<buffer>` section is missing. A buffer is a set of chunks where a collection of events are saved. Buffers can be
 stored either in memory (default) or file. In the case that the backend is unreachable (network failure or application log rejection) Fluentd automatically goes into a retry process. This could incur big memory consumption issue where undelivered logs are continuously piled up in buffer/memory awaiting retry. In this case, opt to either cap the buffer size or save buffer in files.
 
+#### fluent-cat
+
+```shell
+# pipe message tagged log-adder.spot to fluent-cat binery as input
+echo '{"app": "fluentbit-spot"}' | docker exec -i aec fluent-cat log-adder.spot
+```
+
 ---
 
 ## FluentBit

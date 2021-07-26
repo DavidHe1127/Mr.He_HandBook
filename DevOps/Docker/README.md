@@ -508,7 +508,7 @@ $ chmod a+rw /var/run/docker.sock
 Create an image from stopped container with **same** state.
 
 ```shell
-$ docker commit <CONTAINER_ID> <REPO>/<TAG>
+$ docker commit <CONTAINER_ID> <IMAGE_NAME>/<TAG>
 ```
 Then you can run it as you would normally.
 
