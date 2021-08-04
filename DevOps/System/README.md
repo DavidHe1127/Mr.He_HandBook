@@ -11,7 +11,9 @@
 - [sudo and sudoers File](#sudo-and-sudoers-file)
 - [ssh config file](#ssh-config-file)
 - [IO Redirection](#io-redirection)
+- [Internal vs External commands](#internal-vs-external-commands)
 - [systemd](./systemd.md)
+- [Linux commands dict](https://wangchujiang.com/linux-command/)
 - [Commands](#commands)
   - [Tee](#tee)
   - [watch](#watch)
@@ -206,6 +208,19 @@ var=$(cat file.log nofile.txt 2>&1 >/dev/null)
 
 # send logs to other places rather than syslog
 logger -t SPOT -s "$1" 2>> /var/log/spot-interruptions
+```
+
+### Internal vs External commands
+
+- Internal commands that are built into shell. Execution of them are faster as shell doesn't need to find path for them by querying `PATH` variable. No extra process will be spawned to execute them
+- External commands that are not built into shell. Shell needs to query `PATH` to learn about where the binary is. New process will be spawned to execute them.
+
+```shell
+$ type cat
+cat is /bin/cat
+
+$ type cd
+cd is a shell builtin
 ```
 
 ---

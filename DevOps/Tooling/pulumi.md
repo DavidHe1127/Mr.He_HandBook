@@ -130,7 +130,7 @@ Either use one of built-in encryption providers i.e `awskms` and `passphrase` or
 
 ---
 
-## Useful Commands
+## Useful Commands/Snippets
 
 ```shell
 # export state (stack)
@@ -151,4 +151,22 @@ AWS_PROFILE=david pulumi stack init new-stack --secrets-provider="awskms://alias
 
 # if actual res deleted but it still exists in state file, refresh will remove it from state file
 pulumi refresh
+```
+
+```typescript
+
+const subnetIds = aws.ec2.getSubnetIds(
+  {
+    vpcId: mainVpcId,
+    filters: [
+      {
+        name: 'tag:Name',
+        values: [`networking-*-${awsRegion}-main-vpc-private-*`],
+      },
+    ],
+  },
+  { provider },
+);
+
+pulumi.output(subnetIds).apply((subnetids: string[]) => subnetids.map(...))
 ```

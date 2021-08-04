@@ -2,6 +2,7 @@
 
 - [Concepts](#concepts)
 - [Time Series](#time-series)
+- [Query result type](#query-result-type)
 - [Job vs Instance vs Target](#job-instance-target)
 - [Components](#components)
 - [PromQ](#promq)
@@ -36,6 +37,12 @@ http_requests_total(job="nginx", instance="1.2.3.4:80", path="/home", status="20
 ```
 
 ![time-series](./time-series.png)
+
+### Query result type
+
+- instant vector i.e `prometheus_http_requests_total` which returns a single value with same labels.
+- range vector i.e `prometheus_http_requests_total{}[5m]` which returns a set of values for the specified time window.
+- scalar. it doesn't have time. i.e `count(http_requests_total)`.
 
 ### Job vs Instance vs Target
 
@@ -168,3 +175,4 @@ metric_relabel_configs:
 [The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)
 [Prometheus Components](https://samirbehara.com/2019/05/30/cloud-native-monitoring-with-prometheus/)
 [Relabelling tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
+[Query](https://www.cnblogs.com/chanshuyi/p/04_quick_start_of_promql.html)
