@@ -1,6 +1,9 @@
 # EKS
 
 - [Architecture](#architecture)
+  - [Control Plane](#control-plane)
+    - [API Server](#api-server)
+  - [Data Plane](#data-plane)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture
