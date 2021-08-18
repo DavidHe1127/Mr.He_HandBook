@@ -37,7 +37,6 @@ VPC themselves are free but you need to pay for the services running within it. 
 
 - It Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
 - VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic.
-- Private DNS - a private hosted zone for the endpoint is only supported in AWS services and AWS Marketplace Partner services.
 
 To connect to S3 via VPCE, setup a VPC endpoint in your VPC - consumer and point it to S3 VPCES address - provider.
 

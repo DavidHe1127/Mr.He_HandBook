@@ -2,7 +2,9 @@
 
 - [Access object](#access-object)
 - [Lifecycle rules](#lifecycle-rules)
+- [Access only specific folder](#access-only-specific-folder)
 - [Multi-part upload](#multi-part-upload)
+- [Troubleshooting](#troubleshooting)
 
 ### Access Object
 
@@ -24,6 +26,33 @@ https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
 
 > You can combine these S3 Lifecycle actions to manage an object's complete lifecycle. For example, suppose that the objects you create have a well-defined lifecycle. Initially, the objects are frequently accessed for a period of 30 days. Then, objects are infrequently accessed for up to 90 days. After that, the objects are no longer needed, so you might choose to archive or delete them. In this scenario, you can create a S3 Lifecycle rule in which you specify the initial transition action to S3 Intelligent-Tiering, S3 Standard-IA, or S3 One Zone-IA storage, another transition action to S3 Glacier storage for archiving, and an expiration action. As you move the objects from one storage class to another, you save on storage cost. For more information about cost considerations,
 
+### Access only specific folder
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": ["s3:ListBucket"],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::mybucket"],
+      "Condition": {"StringLike": {"s3:prefix": ["folder1/*"]}}
+    },
+    {
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Effect": "Allow",
+      "Resource": ["arn:aws:s3:::mybucket/folder1/*"]
+    }
+  ]
+}
+```
+Things to note:
+- `ListBucket` that allows listing a bucket operates on the bucket itself (not a path). To restrict access to a specific folder, it's must be set via `s3:prefix`.
+- `GetObject` and `PutObject` operate against objects, so the folder can be referenced in the ARN.
+
 ### Multi-part Upload
 
 - Consider using it when object is 100M in size.
@@ -31,3 +60,9 @@ https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
 - Once completed by uploading multiple parts of an object, you signal S3 for completion at which point,
 S3 will concatenate them into one object.
 - `aws s3 cp` and other aws s3 commands that involve uploading objects into an S3 bucket (for example, aws s3 sync or aws s3 mv) also **automatically** perform a multipart upload when the object is large.
+
+### Troulbeshooting
+
+#### Error putting S3 policy: MalformedPolicy: Policy has invalid resource when trying to update bucket policy
+Most likely, the resource in the policy doesn't match target bucket's name
+

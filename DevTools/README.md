@@ -53,3 +53,5 @@ sonar.issue.ignore.multicriteria=e1
 sonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S1848
 sonar.issue.ignore.multicriteria.e1.resourceKey=src/**/*
 ```
+
+SonarSource analyzers do not run your tests or generate reports. They only import pre-generated. reports. Hence, for test coverage, you need to ask testing harness to create report so you then can feed it to SQ for testing coverage.
