@@ -56,9 +56,10 @@ sudo systemctl daemon-reload
 ### Debugging Tips
 
 `journalctl -u <SERVICE>` to see more infor around services failing to start. Use `-f` to show logs in follow mode.
+`-e` shows most recent logs first.
 
 ```shell
-journalctl -u cadvisor.template -f
+journalctl -u cadvisor.template -f -e
 ```
 
 ---
