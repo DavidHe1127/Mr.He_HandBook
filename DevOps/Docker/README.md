@@ -97,7 +97,13 @@ When running `docker kill` or `docker stop`, the main process inside the contain
 
 `docker stop` - stop a running container. Main process will receive a `SIGTERM` at which point, docker is given time to do cleanup. If the process hasn't exited within the grace period (can be specified) a SIGKILL signal will be sent.
 
-`docker kill` - send `SIGKILL` to kill the main process inside the container. No chance to do cleanu.
+`docker kill` - send `SIGKILL` to kill the main process inside the container leaving no chance for cleanup.
+
+Sometimes app may be configured to listen to a different signal - `SIGUSR1` and `SIGUSR2`, for example. In these instances, you can use the STOPSIGNAL instruction in Dockerfile to override the default.
+
+```Dockerfile
+STOPSIGNAL SIGTERM
+```
 
 ### HealthCheck
 

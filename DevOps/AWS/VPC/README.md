@@ -6,6 +6,7 @@
 - [Cost](#cost)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
+- [Check overlapping of two cidrs](#check-overlapping-of-two-cidrs)
 
 ### ENI
 
@@ -74,4 +75,19 @@ Policy below allows lambda within your vpc to publish messages to SNS through a 
     }
   }]
 }
+```
+
+### Check overlapping of 2 CIDRs
+
+Use Python package `ipaddr`
+
+```shell
+>>> import ipaddr
+>>> n1 = ipaddr.IPNetwork('192.168.1.0/24')
+>>> n2 = ipaddr.IPNetwork('192.168.2.0/24')
+>>> n3 = ipaddr.IPNetwork('192.168.2.0/25')
+>>> n1.overlaps(n2)
+False
+>>> n2.overlaps(n3)
+True
 ```

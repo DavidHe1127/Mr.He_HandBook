@@ -30,7 +30,7 @@ Infra As Code
 
 ### Logging
 
-- [Fluentd](./Tooling/fluent.md)
+- [Fluentd/fluentbit](./logging)
 
 ### [Monitoring](./Monitoring)
 

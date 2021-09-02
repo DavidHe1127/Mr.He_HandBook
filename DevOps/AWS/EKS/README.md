@@ -7,6 +7,8 @@
 - [User Account vs Service Account](#user-account-vs-service-account)
 - [RBAC](#RBAC)
 - [OIDC provider](#OIDC-provider)
+- [Workloads](#workloads)
+- [Node](./node.md)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture
@@ -41,6 +43,8 @@ A Service Account is an identity that is attached to the processes running withi
 
 ### RBAC
 
+Defines and controls who can access what within the cluster. It's implemented via `rbac.authorization.k8s.io`.
+
 3 groups:
 - Subjects - User/Group/Service Account
 - Operations - list/get/post/delete etc
@@ -48,7 +52,7 @@ A Service Account is an identity that is attached to the processes running withi
 
 Operations are executed against API server.
 
-- Defines and controls who can access what within the cluster. It's implemented via `rbac.authorization.k8s.io`. 4 components:
+- 4 components:
   - Role - defines namespace level resources access
   - ClusterRole - cluster level which applies to all namespaces. be careful!
   - RoleBinding - similar to IAM role assumption
@@ -106,7 +110,36 @@ subjects:
   namespace: kube-system
 ```
 
+### Workloads
 
+A way to manage a set of pods so that you don't have to manage each pod individually. i.e use `deployment` workload type to define stateless app manifest.
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  # num of pods
+  replicas: 3
+  # manage pods labelled nginx
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    # label pods with nginx
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
 
 ## Useful code snippet
 

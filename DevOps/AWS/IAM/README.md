@@ -8,6 +8,7 @@
 - [Credentials lookup](#credentials-lookup)
 - [Permission Boundary](#permission-boundary)
 - [Managing Server Certs](#managing-server-certs)
+- [Resource Cross-Account access](#resource-cross-account-access)
 - [Reference](#reference)
 
 ### Role
@@ -195,6 +196,21 @@ Use ACM most of the time. Use IAM to manage certs ONLY when:
 - Certificate algorithms and key sizes that aren't currently supported by ACM or the associated AWS resources
 
 By and large, if cert is not compatible with ACM, use IAM. Trusted Advisor also exposes `IAM Server Certificates` service limit metric for this use case.
+
+### Resource cross-account access
+
+Suppose ec2 in account B needs to access ssm param in account A:
+
+- Create a new role in A account with GetParameter perm + set account B as truster in trust relationship
+- Add allow AssumeRole to iam role attached to ec2 to assume role created in previous step
+- On ec2 terminal, create a new profile
+```
+[profile cross-account-access]
+role_arn = arn:aws:iam::222222222222:role/role-in-a-account
+credential_source = Ec2InstanceMetadata
+```
+- Make the call `aws ssm get-parameter --profile cross-account-access --region ap-southeast-2 --name '/david/token' --with-decryption --queryParameter.Value --output text`
+- To return to original role, call cli without `--profile`
 
 ### Reference
 
