@@ -9,6 +9,7 @@
 - [Service](./service.md)
 - [Networking](./networking.md)
 - [Node](./node.md)
+- [Pod](./pod.md)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture
