@@ -3,6 +3,8 @@
 - [User Account vs Service Account](#user-account-vs-service-account)
 - [RBAC](#RBAC)
 - [OIDC provider](#OIDC-provider)
+- [PodSecurityPolicy](#psp)
+- [References](#references)
 
 ### User Account vs Service Account
 
@@ -78,3 +80,13 @@ subjects:
   name: default
   namespace: kube-system
 ```
+
+### PodSecurityPolicy
+
+Restrictive rule set enforced on pod for security hardening. i.e Disallow container to run as a root. Common workflow is 1) create allowed rules, 2) create role to use it c) bind the role to cluster.
+
+Note, it is not a container run-time security platform that can detect violations and shutdown pods.
+
+### References
+
+- [PsP](https://medium.com/devops-dudes/a-detailed-guide-to-kubernetes-podsecuritypolicy-in-aws-eks-71c66ded6375)
