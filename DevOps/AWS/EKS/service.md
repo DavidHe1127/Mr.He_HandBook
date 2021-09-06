@@ -122,7 +122,7 @@ An Ingress Controller is the actual implementation of the Ingress API. It runs a
 
 Take EKS as an example, when creating an Ingress, an external ALB (managed by Ingress and located outside of cluster) is created alongside other resources such as TargetGroup, Listeners, Rules etc.
 
-![ingress](./ingress.png)
+![ingress](./ingress_arch.png)
 
 ---
 
