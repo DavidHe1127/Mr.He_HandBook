@@ -118,6 +118,8 @@ spec:
 
 It watches API Server for changes to Ingress resource and creates ALB (external to cluster) with configured rules it reads from Ingress. It runs as a pod in cluster. For HA, it's deployed 2 replicas onto 2 selected nodes.
 
+**Note, seems Nginx ingress controller does things differently, it also takes care of traffic load balancing?
+
 #### Components
 
 Take EKS as an example, when creating an Ingress, an external ALB (managed by Ingress and located outside of cluster) is created alongside other resources such as TargetGroup, Listeners, Rules etc.
