@@ -116,7 +116,7 @@ spec:
 
 #### Ingress Controller
 
-An Ingress Controller is the actual implementation of the Ingress API. It runs as a pod in cluster. For example, Nginx Ingress Controller is a Nginx server that reads Ingress rules and translates them into Nginx config.
+It watches API Server for changes to Ingress resource and creates ALB (external to cluster) with configured rules it reads from Ingress. It runs as a pod in cluster. For HA, it's deployed 2 replicas onto 2 selected nodes.
 
 #### Components
 
