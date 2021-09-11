@@ -14,7 +14,14 @@ Services allow your applications to receive traffic from internal/external(outsi
 
 #### ClusterIP
 
-Exposes the Service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default type.
+Exposes the Service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default type. i.e fluentd service can be accessed on Node via:
+
+```
+# via service's clusterIP
+http://<service_clusterIP>:<service_port>/fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
+# or via pod's ip
+http://<pod_ip>:<container_port>/fluentd.healthcheck?json=%7B%22ping%22%3A+%22pong%22%7D
+```
 
 #### NodePort
 

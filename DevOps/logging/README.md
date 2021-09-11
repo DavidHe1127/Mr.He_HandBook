@@ -112,7 +112,7 @@ stored either in memory (default) or file. In the case that the backend is unrea
 
 ```shell
 # pipe message tagged log-adder.spot to fluent-cat binery as input
-echo '{"app": "fluentbit-spot"}' | docker exec -i aec fluent-cat log-adder.spot
+echo '{"app": "fluentbit-spot"}' | docker exec -i <CONTAINER> fluent-cat log-adder.spot
 ```
 
 ---

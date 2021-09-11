@@ -10,6 +10,9 @@
 - [Networking](./networking.md)
 - [Node](./node.md)
 - [Pod](./pod.md)
+- [Storage](./storage.md)
+
+- [Tooling](./tooling.md)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture
