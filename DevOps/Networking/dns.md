@@ -93,3 +93,12 @@ MX记录 MX（Mail Exchanger）记录是邮件交换记录，它指向一个邮�
 `alias` record is similar to a `CNAME` record, except you can create an alias record both for the `root domain - example.com` and for `subdomains - www.example.com` whereas you can create `CNAME` records only for subdomains.
 
 Note, `CNAME` only points the source domain to the destination domain, which they both have the same ip address. In other words, traffic targeting source domain will now be routed to destination domain. However, you cannot see the redirection in the browser, since `DNS` itself does not provide redirection capability. You have to do that at the web server level. i.e using `nginx`.
+
+### CAA
+
+Dictate which CA is allowed to issue cert for a given domain. For example, if you own domain `theparrodise.com`, you can create a CAA record to let only let's encrypt to issue cert for it.
+
+```
+theparrodise.com     0 issue letsencrypt.org
+```
+Read more at [What is CAA](https://www.thesslstore.com/blog/what-is-caa-record-certificate-authority-authorization/)

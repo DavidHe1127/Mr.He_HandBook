@@ -66,3 +66,15 @@ containers:
     command: ["/bin/sh"]
     args: ["-c", "while true; do date >> /var/forever/file.txt; sleep 5; done"]
 ```
+
+Use `volumeClaimTemplates` when creating a StatefulSet.
+
+
+
+
+
+
+
+
+
+

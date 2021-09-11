@@ -5,7 +5,6 @@
     - [API Server](#api-server)
   - [Data Plane](#data-plane)
 - [Security](./security.md)
-- [Deployment](./deployment.md)
 - [Service](./service.md)
 - [Networking](./networking.md)
 - [Node](./node.md)
