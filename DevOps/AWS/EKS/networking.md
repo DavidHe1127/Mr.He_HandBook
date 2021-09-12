@@ -8,8 +8,8 @@
 - Pod IP: The IP address assigned to a given Pod. This is ephemeral.
 - Node IP: The IP address assigned to a given node.
 
+### Comms
 
-Draft
-
-- Containers in a pod can communicate via localhost:port. They share the same network namespace.
-- Pod
+- Comm between containers within a pod occur via `localhost:port`. Similar to how `host` network mode works in Docker
+- Inter-pods comms occur via pod IP. ip:<container_port>. Considering pod is transient, use service instead which also takes care of load balancing traffic across multiple pods behind the service.
+![inter-pod-comm](./inter-pod-comm.png)
