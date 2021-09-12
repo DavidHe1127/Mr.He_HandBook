@@ -96,7 +96,7 @@ It watches API Server for changes to Ingress resource and creates ALB (external 
 
 Take EKS as an example, when creating an Ingress, an external ALB (managed by Ingress and located outside of cluster) is created alongside other resources such as TargetGroup, Listeners, Rules etc.
 
-[<img src="./ingress_arch.png" height="600"/>](./ingress_arch.png)
+[<img src="./ingress_arch.png" height="800"/>](./ingress_arch.png)
 
 ---
 
