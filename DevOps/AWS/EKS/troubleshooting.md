@@ -11,3 +11,7 @@ aws sts get-caller-identity
 # then update kubeconfig with that role
 aws eks update-kubeconfig --name dev-apse1-dave --region ap-southeast-1 --profile david-adm --role-arn <role>
 ```
+
+### Practical guide
+
+https://learnk8s.io/troubleshooting-deployments
