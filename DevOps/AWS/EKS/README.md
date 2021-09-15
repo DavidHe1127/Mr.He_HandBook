@@ -13,6 +13,7 @@
 
 - [Tooling](./tooling.md)
 - [Logging](./logging.md)
+- [Monitoring](./monitoring.md)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture
