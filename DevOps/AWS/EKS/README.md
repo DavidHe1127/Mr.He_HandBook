@@ -12,6 +12,7 @@
 - [Storage](./storage.md)
 
 - [Tooling](./tooling.md)
+- [Logging](./logging.md)
 - [Useful code snippets](useful-code-snippet)
 
 ## Architecture

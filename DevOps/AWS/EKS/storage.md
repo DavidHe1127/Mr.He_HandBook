@@ -11,6 +11,8 @@
 
 - Live beyond pod/node restarts
 - Resource in cluster
+- Local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster.
+- Provides a file system that can be mounted to the cluster, without being associated with any particular node.
 
 ```yml
 kind: PersistentVolume
@@ -64,6 +66,7 @@ containers:
         mountPath: /var/forever
     image: alpine
     command: ["/bin/sh"]
+    # output written to PV
     args: ["-c", "while true; do date >> /var/forever/file.txt; sleep 5; done"]
 ```
 

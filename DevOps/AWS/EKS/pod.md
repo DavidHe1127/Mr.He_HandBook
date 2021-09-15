@@ -105,6 +105,8 @@ Use `Deployment` with `replicas` instead.
 #### StatefulSet
 
 - Every replica has its own state. Each pod has own PVC. i.e 3 pods means 3 volumes
+- Replica pods are not identical! as opposed to deployment. Each pod has its own identity and is not replicable i.e 3 replicas: mysql-0, mysql-1, mysql-2
+- When a pod is replaced, it doesn't lose the ID. Storage is re-attached to the new pod
 - Support rolling update but not rollback since it's statefulness
 
 ```yml
