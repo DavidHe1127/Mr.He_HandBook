@@ -12,6 +12,11 @@ aws sts get-caller-identity
 aws eks update-kubeconfig --name dev-apse1-dave --region ap-southeast-1 --profile david-adm --role-arn <role>
 ```
 
+### Pod logs
+
+When something goes wrong, always remember to check pod logs for clue.
+
+
 ### Practical guide
 
 https://learnk8s.io/troubleshooting-deployments

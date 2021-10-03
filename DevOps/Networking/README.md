@@ -33,10 +33,10 @@
 
 ### nc
 
-Use `nc` as you would with `telnet`:
+Useful if you need to send packets of data through TCP conn.
 
 ```shell
-$ nc -v https://xyz.com 443
+$ echo '{"app":"fluentbit-app-test", "message": "this is a test"}' | netcat --ssl log-aggregator.ap-southeast-2.dev.david.dev 24223
 ```
 
 Here are some troubleshooting tips:

@@ -8,6 +8,7 @@
 - [DNS TTL/Propagation](#dns-ttl-propagation)
 - [www domain and naked domain](#www-vs-naked)
 - [DNS records](#dns-records)
+- [resolv.conf](#resolv.conf)
 
 ### DNS Servers
 
@@ -102,3 +103,12 @@ Dictate which CA is allowed to issue cert for a given domain. For example, if yo
 theparrodise.com     0 issue letsencrypt.org
 ```
 Read more at [What is CAA](https://www.thesslstore.com/blog/what-is-caa-record-certificate-authority-authorization/)
+
+### resolv.conf
+
+`search` domain field is used for completing a given query name to a FQDN when no domain suffix is supplied - `baidu`. In this case, resolver will try `baidu.example.com` followed by `baidu.local.test` if previous one cannot be resolved.
+
+```
+search example.com local.test
+nameserver 10.0.0.17
+```

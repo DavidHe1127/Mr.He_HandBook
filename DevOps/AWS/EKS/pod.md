@@ -3,6 +3,8 @@
 - [Basics](#basics)
 - [Attach role to pod to allow aws access](#aws-access)
 - [Deployment](#deployment)
+- [Affinity and Anti-affinity](#affinity-and-anti-affinity)
+- [CrashLoopBackOff](#crash-loop-backoff)
 
 ### Basics
 
@@ -51,16 +53,15 @@ metadata:
     eks.amazonaws.com/audience: aws-iam # Optional and will default to API flags
     eks.amazonaws.com/role-arn: arn:aws:iam::1234567890123:role/my-app-role
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
-  name: aws-test
+  name: my-deployment
 spec:
-  serviceAccountName: hello-world-app
-  containers:
-  - name: aws-cli
-    image: mikesir87/aws-cli:v1
-    command: ["aws", "s3", "ls"]
+  template:
+    spec:
+      serviceAccountName: build-robot
+      automountServiceAccountToken: false
 ```
 
 ### Deployment
@@ -169,3 +170,14 @@ spec:
 
 - equivalent of one time/standalone task in ECS. It can also run certain a number of times.
 
+### Affinity and Anti-affinity
+
+To control which node the pod can/cannot run on a particular node. Pod affinity is pod-driven policy which means one pod placement is constrained by another pod. This can be useful when needing to make sure 2 same pods are not run on the same node. While node affinity is looking at node only not pod. i.e a pod can only run a node with label `abc`.
+
+- [pod affinity/anti-affinity](http://bazingafeng.com/2019/03/31/k8s-affinity-topologykey/)
+
+### CrashLoopBackOff
+
+A commonplace reason it happens
+
+| The Docker container must hold and keep the PID 1 running in it otherwise the container exit (A container exit when the main process exit). In the case of Docker, the process which is having PID 1 is the main process and since it is not running, the docker container gets stopped. When the container gets stopped, the Kubernetes will try to restart it(as we have specified the spec.restartPolicy as "Always").

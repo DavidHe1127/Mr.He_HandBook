@@ -172,6 +172,8 @@ metric_relabel_configs:
 
 - Target labels starting with `__` are available during relabelling process but will be removed afterwards. So if you need to keep some labels, make sure you relabel them.
 
+- When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
+
 ### References
 
 [The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)
