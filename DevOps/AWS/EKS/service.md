@@ -76,7 +76,7 @@ Exposes the Service externally using a cloud provider's load balancer. NodePort 
 
 When using AWS, this will create a load balancer which proxies traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods.
 
-Remarkable downsid is each service will have a dedicated load balancer created for it resulting in large bills.
+Remarkable downside is each service will have a dedicated load balancer created for it resulting in large bills.
 
 ### Ingress (Production-ready)
 

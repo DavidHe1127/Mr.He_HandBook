@@ -111,6 +111,25 @@ count(expression) or on() vector(0)
 
 Doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic.
 
+```
+server {
+  listen 443 ssl http2 default_server;
+
+  ssl_protocols TLSv1.2;
+
+  # tls
+  ssl_certificate  /etc/ssl/server.crt;
+  ssl_certificate_key /etc/ssl/private/server.key;
+
+  # specifies a file with trusted CA certs to verify client certs
+  # ssl_trusted_certificate on the other hand will not send the list
+  # ssl_client_certificate in contrast will send trusted CA cert list to client which is not
+  # recommended as it's consuming CPU when constructing the list at the runtime.
+  ssl_trusted_certificate /etc/ssl/client_auth.crt;
+  ssl_verify_client optional_no_ca;
+}
+```
+
 ### CAdvisor
 
 While `node-exporter` is for hardware and OS metrics exposed by *nix kernel. `cadvisor`, on the other hand, collects, aggregates, processes, and exports information (resource usage) about running containers on the host. To summarise, `node-exporter` is for server metrics collection while `cadvisor` is for containers metrics collection.

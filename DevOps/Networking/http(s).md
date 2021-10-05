@@ -44,6 +44,8 @@ Please note, for all above to work, `ssl cert` needs to be placed under a partic
 
 Server requests clients to prove they are who they claim to be by asking for a client cert. The process is the same to server authentication but happens in a reverse way.
 
+Server sends a list of trusted CA certs to the clients while requesting a client cert. The list tells clients only these CA certs are supported and can be used to verify client cert. For an example with Nginx, see [client auth](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/Monitoring/prometheus#auth).
+
 ### Ssl cert with Let's encrypt
 
 - The objective of Let’s Encrypt and the ACME protocol is to make it possible to set up an HTTPS server and have it automatically obtain a browser-trusted certificate, without any human intervention. This is accomplished by running a certificate management agent on the web server.
