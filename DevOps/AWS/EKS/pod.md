@@ -4,6 +4,7 @@
 - [Attach role to pod to allow aws access](#aws-access)
 - [Deployment](#deployment)
 - [Affinity and Anti-affinity](#affinity-and-anti-affinity)
+- [Container Liveness and Readiness](#liveness-and-readiness)
 - [CrashLoopBackOff](#crash-loop-backoff)
 
 ### Basics
@@ -175,6 +176,14 @@ spec:
 To control which node the pod can/cannot run on a particular node. Pod affinity is pod-driven policy which means one pod placement is constrained by another pod. This can be useful when needing to make sure 2 same pods are not run on the same node. While node affinity is looking at node only not pod. i.e a pod can only run a node with label `abc`.
 
 - [pod affinity/anti-affinity](http://bazingafeng.com/2019/03/31/k8s-affinity-topologykey/)
+
+### Liveness and Readiness
+
+Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the Container, and the Container is subjected to its restart policy. If a Container does not provide a liveness probe, the default state is Success.
+
+Readiness probe indicates whether the Container is ready to serve traffic. A Pod is considered ready when all of its containers are ready. One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers. If left undefined, the default state is Success.
+
+K8S relies on the readiness probes. During a rolling update, it will keep the old container up and running until the new service declares that it is ready to take traffic. Therefore the readiness probes have to be implemented correctly.
 
 ### CrashLoopBackOff
 
