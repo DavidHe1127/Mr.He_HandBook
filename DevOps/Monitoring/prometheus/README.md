@@ -11,6 +11,8 @@
 - [CAdvisor](#cadvisor)
 - [Debugging Tips](#debugging)
 - [Study Notes](#study-notes)
+- [Rules Analyser](https://relabeler.promlabs.com/)
+- [Query example](#query-example)
 - [References](#references)
 
 ### Concepts
@@ -23,6 +25,7 @@
 
 ![prometheus-metrics-scraping](prometheus-metrics-scraping.png)
 ![ways-gather-metrics](ways-gather-metrics.png)
+![sample-data-ingestion](sample-data-ingestion.png)
 
 ### Time Series
 
@@ -192,6 +195,23 @@ metric_relabel_configs:
 - Target labels starting with `__` are available during relabelling process but will be removed afterwards. So if you need to keep some labels, make sure you relabel them.
 
 - When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
+
+### Query Example
+
+```
+# in browser
+hhtp://localhost:9090/api/v1/query?query={__name__=~"pro.*"}and{job="progres"}
+
+# count total number of time series
+count({job="aws-cluster-autoscaler", __name__="rest_client_request_duration_seconds_bucket"})
+
+# top 50 metric count used to find out which metric consumes larger resources
+topk(50, count by (__name__, job)({__name__=~".+"}))
+
+```
+
+
+---
 
 ### References
 
