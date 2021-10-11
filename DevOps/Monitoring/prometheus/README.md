@@ -192,16 +192,24 @@ metric_relabel_configs:
 
 `metric_relabel_configs` by contrast are applied after the scrape has happened, but before the data is ingested into TSDB. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s of resolution - show the latest 14s of data from TSDB.
 
+- To drop labels from all time series under a job:
+
+```
+- job_name: cadvisor
+  metric_relabel_configs:
+  - regex: 'target_label_name'
+    action: labeldrop
+```
+
 - Target labels starting with `__` are available during relabelling process but will be removed afterwards. So if you need to keep some labels, make sure you relabel them.
 
 - When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
 
 ### Query Example
 
-```
-# in browser
-hhtp://localhost:9090/api/v1/query?query={__name__=~"pro.*"}and{job="progres"}
+Use [Prometheus Query npm](https://www.npmjs.com/package/prometheus-query)
 
+```
 # count total number of time series
 count({job="aws-cluster-autoscaler", __name__="rest_client_request_duration_seconds_bucket"})
 

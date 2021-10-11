@@ -1,18 +1,19 @@
 ## Storage
 
-### Volume
+### Regular Volume
 
 - It can live across containers restart. It lives as long as the pod does.
 - It can be shared by multiple containers in the same pod.
 - Different types/sources. i.e `emptyDir` or `hostPath` that mounts node filesystem to pod.
-- pod level resource
+- Pod level resource
 
 ### Persistent Volume
 
 - Live beyond pod/node restarts
 - Resource in cluster
 - Local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster.
-- Provides a file system that can be mounted to the cluster, without being associated with any particular node.
+- Provides a file system that can be mounted to the cluster, without being associated with any particular node. In AWS, the EBS Volume (PV) stays detached from your nodes as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the node that holds the Pod.
+- On AWS, it uses EBS CSI driver to help EKS manage EBS as PVs. Since k8s version `1.11`, no storage class is required.
 
 ```yml
 kind: PersistentVolume
@@ -70,5 +71,4 @@ containers:
     args: ["-c", "while true; do date >> /var/forever/file.txt; sleep 5; done"]
 ```
 
-Use `volumeClaimTemplates` instead when creating a [StatefulSet](./pod.md#statefulset).
-
+Use `volumeClaimTemplates` instead when using it in a [StatefulSet](./pod.md#statefulset).
