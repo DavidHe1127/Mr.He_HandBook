@@ -2,10 +2,9 @@
 
 - [Concepts](#concepts)
 - [Time Series](#time-series)
-- [Query result type](#query-result-type)
 - [Job vs Instance vs Target](#job-instance-target)
 - [Components](#components)
-- [PromQ](#promq)
+- [Query](./query.md)
 - [Functions](#functions)
 - [Blackexporter](#blackexporter)
 - [Auth](#auth)
@@ -13,7 +12,6 @@
 - [Debugging Tips](#debugging)
 - [Study Notes](#study-notes)
 - [Rules Analyser](https://relabeler.promlabs.com/)
-- [Query example](#query-example)
 - [References](#references)
 
 ### Concepts
@@ -41,12 +39,6 @@ http_requests_total(job="nginx", instance="1.2.3.4:80", path="/home", status="20
 ```
 
 ![time-series](./time-series.png)
-
-### Query result type
-
-- instant vector i.e `prometheus_http_requests_total` which returns a single value with same labels.
-- range vector i.e `prometheus_http_requests_total{}[5m]` which returns a set of values for the specified time window.
-- scalar. it doesn't have time. i.e `count(http_requests_total)`.
 
 ### Job vs Instance vs Target
 
@@ -94,15 +86,6 @@ Prometheus regularly sends an HTTP request called a ‘scrape’ to the applicat
 By default, Prometheus stores metric records in local TSDB. But this does not accommodate clustering envrionment where you run multiple Prom nodes. In this scenario, you need to configure remote store.
 
 When remote store is configured, queries will be sent to both local and remote stores and the searching results will be merged.
-
-### PromQ
-
-```
-rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
-
-# set to 0 when vector shows null
-count(expression) or on() vector(0)
-```
 
 ### Functions
 
@@ -209,20 +192,6 @@ metric_relabel_configs:
 - Target labels starting with `__` are available during relabelling process but will be removed afterwards. So if you need to keep some labels, make sure you relabel them.
 
 - When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
-
-### Query Example
-
-Use [Prometheus Query npm](https://www.npmjs.com/package/prometheus-query)
-
-```
-# count total number of time series
-count({job="aws-cluster-autoscaler", __name__="rest_client_request_duration_seconds_bucket"})
-
-# top 50 metric count used to find out which metric consumes larger resources
-topk(50, count by (__name__, job)({__name__=~".+"}))
-
-```
-
 
 ---
 
