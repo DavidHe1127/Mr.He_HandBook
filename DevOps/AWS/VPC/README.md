@@ -47,8 +47,10 @@ To connect to S3 via VPCE, setup a VPC endpoint in your VPC - consumer and point
 
 - You can also turn your own application in a VPC into a VPCEs powered by AWS PrivateLink. That way, other AWS principals can create a connection from their VPC to your endpoint service using an interface VPC endpoint. You are service provider while others are service consumers.
 - It also allows services residing in different VPCs to talk with each other via AWS PrivateLink. i.e The owner of VPC B has a service endpoint (vpce-svc-1234) with an associated Network Load Balancer that points to the instances in subnet B as targets. Instances in subnet A of VPC A use an interface endpoint to access the services in subnet B.
-- The service provider can configure a private DNS name so consumers can access the service using an existing DNS name. This practice also requires providers to prove they have control over the domain. Basically, a `TXT` record containing DNS endpoint service domain infor needs to be added to a **public** hosted zone. Then verify the domain owernship. See [Private DNS names for endpoint services
+- The service provider can also configure a private DNS name so consumers can access the service using an existing DNS name. This practice requires providers to prove they have control over the domain. Basically, a `TXT` record containing DNS endpoint service domain infor needs to be added to a **public** hosted zone. Then verify the domain ownership. See [Private DNS names for endpoint services
 ](https://docs.aws.amazon.com/vpc/latest/userguide/verify-domains.html).
+
+> ProTip: One can use VPC Peering to bridge the gap between service provider/consumer. It conveniently removes the need for adding a new endpoint everytime a new service is added to provider's VPC.
 
 ![vpce-service](vpce-service.png)
 

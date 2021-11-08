@@ -24,9 +24,13 @@
 - A container in a pod in `kube-system` namespace
 - Primary role is to forward traffic to the pods (registered as endpoints) behind a service. Usually, it runs in `iptables` mode to load balance inbound traffic across a group of pods via round-robin mechanism.
 
-### CNI
+### VPC CNI
 
-It allows pods to have the same IP address inside the pod as they do on the VPC network. The CNI allocates AWS ENI to each node and uses the secondary IP range from each ENI for pods on the node.
+- VPC CNI plugin provided via addon assigns each pod an IP address from your VPC.
+- It allocates AWS ENI to each node and uses the secondary IP range from each ENI for pods on the node.
+- Deployed within each of your Amazon EC2 nodes in a Daemonset with the name `aws-node`.
+
+The Amazon VPC Container Network Interface (CNI) plugin for Kubernetes is deployed with each of your Amazon EC2 nodes in a Daemonset with the name aws-node
 
 ### Key facts
 

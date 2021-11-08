@@ -162,7 +162,7 @@ But in HTTPS, a TLS handshake takes place first, before the HTTP conversation ca
 
 **SNI adds the domain name to the TLS handshake process**, so that the TLS process reaches the right domain name and receives the correct SSL certificate, enabling the rest of the TLS handshake to proceed as normal.
 
-Specifically, SNI includes the hostname in the Client Hello message, or the very first step of a TLS handshake.
+Specifically, SNI includes the `hostname` in the Client Hello message, or the very first step of a TLS handshake.
 
 ---
 

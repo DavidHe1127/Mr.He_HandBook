@@ -23,3 +23,8 @@ curl -u <FTP_USER>:<FTP_PSD> -T myfile.txt ftp://10.5.6.119:2221/folder
 curl -u <FTP_USER>:<FTP_PSD> -T '{file1,file2}' ftp://10.5.6.119:2221/folder
 ```
 
+- Retry
+
+```shell
+curl -s --fail --retry 40 --retry-connrefused --retry-delay 2 http://localhost:80${CHECK_TARGET}
+```

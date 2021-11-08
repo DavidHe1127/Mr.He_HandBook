@@ -25,10 +25,10 @@
   - [Stash Changes](#stash-change)
   - [View change details after pull](#view-change-detail-after-pull)
   - [Unreset changes](#unreset-change)
-  - [See all commits in one file](#see-all-changes)
   - [Show branches containing a commit](#show-branch-has-commit)
   - [Sync with remote, overwrite local changes](#sync-remote-kill-local)
   - [Add only modified/deleted files excluding untracked files](#add-exclude-untracked-files)
+  - [Revert commited changes to align with that from main](#revert-committed-changes)
 
 - Merge
   - [Check unmerged commits](#unmerged-commits)
@@ -259,12 +259,6 @@ git reflog # shows log list which guides you which point you need to go back to
 git reset HEAD@{N} # undo reset to N
 ```
 
-## see-all-changes
-
-```shell
-git log -p <FILENAME>
-```
-
 ## show-branch-has-commit
 
 ```shell
@@ -283,6 +277,14 @@ git fetch origin && git reset --hard origin/<BRANCH_NAME> && git clean -f -d
 ```shell
 git add -u
 ```
+
+## revert-committed-changes
+
+```shell
+git checkout origin/main <pathToFile>
+```
+
+---
 
 ## unmerged-commits
 

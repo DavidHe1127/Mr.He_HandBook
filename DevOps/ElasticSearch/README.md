@@ -3,6 +3,8 @@
 - [Architecture](#architecture)
 - [Mapping](#mapping)
 - [Queries](#queries)
+- [Index Alias](#index-alias)
+- [Data Streams](#data-streams)
 - [Text analysis](#text-analysis)
 - [text vs keyword](#text-vs-keyword)
 - [Notes](#notes)
@@ -92,6 +94,23 @@ Use Explicit Mappings (certain fields) + Dynamic Templates (unknown fields).
   }
 }
 ```
+
+## Index Alias
+
+It allows search across multiple indices.
+```
+curl -XPOST 'http://localhost:9200/_aliases' -d '{
+  "actions" : [
+    { "add" : { "index" : "day10", "alias" : "week12" } },
+    { "add" : { "index" : "day11", "alias" : "week12" } },
+    { "add" : { "index" : "day12", "alias" : "week12" } }
+  ]
+}'
+```
+
+## Data Streams
+
+See [definition](https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams.html). Best suited for logs, events, metrics, and other continuously generated data. If data needs to be updated/deleted frequently, use `Index Alias` instead as you cannot perform these actions to Data Streams directly.
 
 ## Text Analysis
 

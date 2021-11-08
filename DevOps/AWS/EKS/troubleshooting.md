@@ -16,6 +16,13 @@ aws eks update-kubeconfig --name dev-apse1-dave --region ap-southeast-1 --profil
 
 When something goes wrong, always remember to check pod logs for clue.
 
+### VPC cni issue
+
+Run this command to pull logs out of `cni` plugin. Keep eyes peeled for obvious errors in `message` and `ipamd.log` files.
+
+```shell
+sudo bash /opt/cni/bin/aws-cni-support.sh
+```
 
 ### Practical guide
 

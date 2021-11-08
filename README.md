@@ -28,3 +28,4 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [Mock.io - generate mocked rest api in your favor](https://www.mocky.io/)
 - [Patch buggy npm modules that you don't own. Alternative to fork](https://www.npmjs.com/package/patch-package)
 - [Code snippet screenshot generator](https://carbon.now.sh/)
+- [Escape JSON](https://github.com/nikmilson/escape-json)

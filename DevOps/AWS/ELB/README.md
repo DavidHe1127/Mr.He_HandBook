@@ -120,6 +120,7 @@ See #ELB useful metrics for more details
 - `In Service` state exists for ELB as well (besides EC2) - as long as one registered target is considered healthy, ELB enters `InService` state.
 - ELB is not possible to work across multiple regions however it is possible to distribute traffic across multiple AZs within the same region. To enable multi-region ELB, you need to create ELB in each region you want to support and use Route53 with a proper routing policy.
 - When an instance is fully configured and passes the Amazon EC2 health checks, it is attached to the ASG and it enters the `InService` state. The instance is counted against the desired capacity of the ASG.
+- CLB is fail-close meaning traffic won't be routed to unhealthy hosts if all hosts are marked as unhealthy. However ALB is fail-open meaning traffic will be routed to targets even if they are unhealthy when all targets in TG are considered unhealthy.
 
 When health check type is `ELB`, ASG will delegate this task to ELB which will perform health checks on ASG behalf. ASG will be notified of result.
 ![elb-health-check-with-asg](elb-health-check-with-asg.svg)

@@ -6,6 +6,7 @@
 - [Job vs Instance vs Target](#job-instance-target)
 - [Components](#components)
 - [PromQ](#promq)
+- [Functions](#functions)
 - [Blackexporter](#blackexporter)
 - [Auth](#auth)
 - [CAdvisor](#cadvisor)
@@ -102,6 +103,10 @@ rate(node_cpu_seconds_total{federated_via_instance="i-0da5ce26ff964522f"}[5m])
 # set to 0 when vector shows null
 count(expression) or on() vector(0)
 ```
+
+### Functions
+
+- [rate vs irate](https://www.kancloud.cn/pshizhsysu/prometheus/1872576)
 
 ### BlackExporter
 
