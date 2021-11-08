@@ -13,8 +13,6 @@
 
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
 
-Within a single **Period**, there will be multiple sample data collected. Depending on the chosen **Statistics**, they are then calculated into one data point which represents a aggregate value of that period. i.e With data resolution of 1 min and period of 5 mins, 5 sample data is collected. If `Maximum` is used, the largest value out of 5 will be plucked into one data point.
-
 By default, data resolution is 1 min (1 second is the smallest) meaning metric data is aggregated and stored by CloudWatch in a 1 minute chunk. If you retrieve the metric for a hour from 3 days ago, you will receive 60 data points. However, depending on the metric data age, older data might be only retrievable at a higher resolution. For example, after 15 days, metric data is still available but can only be retrieved with 5 mins data resolution - 5 one min chunks combined and made available for your retrieval. If you still specify 1 min data resolution, you will receive nothing.
 
 ### Logging
