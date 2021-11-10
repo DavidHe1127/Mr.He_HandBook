@@ -2,6 +2,7 @@
 
 - [ISO](#iso)
 - [UTC](#utc)
+- [Timezone ID table](https://www.ibm.com/docs/en/was-zos/9.0.5?topic=ctzs-time-zone-ids-that-can-be-specified-usertimezone-property)
 
 ### iso
 The ISO format is a simplification of the ISO 8601 extended format. See format as follow:

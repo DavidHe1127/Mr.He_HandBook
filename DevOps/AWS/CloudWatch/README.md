@@ -11,9 +11,21 @@
 
 ### Concepts Explained
 
+#### DatapointsToAlarm
+
+The number of alarm data points that must breach the threshold during the evaluation period for the alarm to go off.
+
+```
+# UnHealthyHostRate breaches threshold of 0.4 for one time in 4 mins of window
+Threshold
+UnHealthyHostRate >= 0.4 for 1 datapoints within 4 minutes
+```
+
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
 
 With 5 mins period and 1 min data resolution, `SampleCount` returns you 5 (data points) aggregated over last 5 mins. `Minimum` gives you the lowest data point.
+
+Period needs to be >= underlying metric period (how often AWS publishes metric).
 
 By default, data resolution is 1 min (1 second is the smallest) meaning metric data is aggregated and stored by CloudWatch in a 1 minute chunk. If you retrieve the metric for a hour from 3 days ago, you will receive 60 data points. However, depending on the metric data age, older data might be only retrievable at a higher resolution. For example, after 15 days, metric data is still available but can only be retrieved with 5 mins data resolution - 5 one min chunks combined and made available for your retrieval. If you still specify 1 min data resolution, you will receive nothing.
 
