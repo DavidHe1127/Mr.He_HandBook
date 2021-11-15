@@ -1,4 +1,4 @@
-z## Service
+## Service
 
 Services allow your applications to receive traffic from internal/external(outside cluster but still within the same network)/internet.
 

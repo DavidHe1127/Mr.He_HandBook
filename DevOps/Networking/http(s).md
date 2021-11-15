@@ -1,10 +1,10 @@
 ## HTTP, HTTP(S) with SSL/TLS and Cert
 
 - [Key points](#key-points)
-- [SSL Cert with Let's encrypt](#Ssl-cert-with-lets-encrypt)
+- [SSL Cert with Let's encrypt](#ssl-cert-with-lets-encrypt)
 - [How SSL works](#how-ssl-works)
 - [Digital Signature and Digital Certificate](#digital-signature-and-digital-certificate)
-- [HTTP or HTTPS](#http-or-https)
+- [Persistent Connection](https://www.oreilly.com/library/view/http-the-definitive/1565925092/ch04s05.html)
 - [CA](#ca)
 - [Self-signed cert generation script](#cert-generation-script)
 
@@ -76,10 +76,6 @@ openssl req \
   -out federated-prom.crt \
   -subj "/C=AU/ST=Sydney/L=Sydney/O=DavidHe/CN=federated-prom"
 ```
-
-### HTTP or HTTPs
-
-If all hosts involved are running within the same network trust boundary, it's ok to have http connections between any 2 of them. If it is not the case however, HTTPS must be used to prevent man-in-the-middle attacks. i.e communication between 2 instances on the same vpc can allow http whereas browser-n-server communication must take place over HTTPS.
 
 ---
 

@@ -11,7 +11,6 @@
 - [Marshall vs Unmarshall](#marshall-vs-unmarshall)
 - [Memory leak and detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
 - [Premature optimization](#premature-optimization)
-- [Idempotent](#idempotent)
 - [Coarse-grained-vs-fine-grained](#coarse-grained-vs-fine-grained)
 - [Service worker](#service-worker)
 - [Web caching](./web_caching.md)
@@ -109,13 +108,14 @@ The response from the server would be:
 
 Go's terminology calls `marshal` the process of generating a JSON string from a data structure, and unmarshal the act of parsing JSON string back to a data structur.
 
+### Memory Leak
+
+https://stackoverflow.com/questions/2308751/what-is-a-memory-heap#
+[Memory Detection](https://www.arbazsiddiqui.me/a-practical-guide-to-memory-leaks-in-nodejs/)
+
 ### Premature Optimization
 
 Any coding practice that makes your code harder to understand in the name of performance is a `premature optimization`.
-
-### Idempotent
-
-In the context of API server, idempotent means each request must be independent, produce the same outcome, and not related to the previous one. So, when it is multiple API instances, then it doesn’t matter to which server request is redirected.
 
 ### Coarse-grained vs Fine-grained
 

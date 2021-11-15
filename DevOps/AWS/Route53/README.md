@@ -2,8 +2,9 @@
 
 - [Public hosted zone](#public-hosted-zone)
 - [Private hosted zone](#private-hosted-zone)
-- [Alias Record](#alias-record)
+- [Alias Record vs CNAME](#alias-record-vs-cname)
 - [Zone Delegation](#zone-delegation)
+- [Health Check](#health-check)
 - Examples
   - [root domain and subdomain config](#root-domain-and-subdomain-config)
 - Troubleshooting
@@ -45,8 +46,8 @@ When an user visiting `theparrodise.com` the DNS resolution workflow is describe
 
 [More infor](https://www.bogotobogo.com/DevOps/AWS/aws-Route53-DNS-Private-Hosted-Zone.php)
 
-### Alias Record
-Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb1234.elb.amazonaws.com).
+### Alias Record vs CNAME
+Allows you to map one DNS name (www.theparrodise.com) to another DNS name (elb1234.elb.amazonaws.com). However, CNAME needs to point to another record.
 
 Very much like `CNAME` except that `CNAME` only works on subdomain not root domain (aka naked domain name or zone apex record). i.e cannot have a `CNAME` record for `example.com`.
 
@@ -59,6 +60,11 @@ Very much like `CNAME` except that `CNAME` only works on subdomain not root doma
 You can use it to route traffic to your subdomain i.e `acme.example.com.` See [more](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-routing-traffic-for-subdomains.html#dns-routing-traffic-for-subdomains-new-hosted-zone).
 
 One benefit with it is to use IAM permissions to restrict who can access hosted zone for subdomain. This is not possible with adding records for subdomains in domain hosted zone which is considered another option when routing traffic for subdomain.
+
+### Health Check
+
+- For ELB endpoints, Route 53 evaluates the health of the load balancer itself and the health of your application running on the EC2 instances behind it. If any part of the stack goes down, Route 53 detects the failure, routes traffic away from the load balancer, and directs traffic to other healthy ELB endpoints.
+- [How Route53 determines the health of ELB](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-failover-determining-health-of-endpoints.html#dns-failover-determining-health-of-endpoints-monitor-endpoint)
 
 ---
 

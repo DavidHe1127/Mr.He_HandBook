@@ -164,7 +164,7 @@ GET /_analyze?analyzer=standard&text=We are madewithlove
 - A shard is a Lucene Index that has one or more segments to store data on disk. Larger segments are more efficient for storing data.
 - A search query must go through all primary shards to be complete. This includes one/more nodes to be visited.
 - Ultimate goal is to visit as few nodes as possible
-- A record should comply with [ECS](https://www.elastic.co/guide/en/ecs/current/ecs-using-ecs.html) where `@timestamp` and `message` fields should be present containing timestamp infor and message respectively. Otherwise, `failed to find message` message might display.
+- A record should comply with [ECS](https://www.elastic.co/guide/en/ecs/current/ecs-using-ecs.html) where `@timestamp` and `message` fields should be present containing timestamp infor and message respectively. Otherwise, `failed to find message` message might display during query.
 - If a field can either be a number or string in one index, to avoid type mismatch error, consider using `keyword` as type.
 
 ## References
