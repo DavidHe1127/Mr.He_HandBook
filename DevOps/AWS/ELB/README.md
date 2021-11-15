@@ -1,5 +1,7 @@
 ## ASG/ELB
 
+**MUST READ** [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1]) for pre-warm/DNS resolution etc.
+
 - [ASG](#asg)
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
@@ -107,11 +109,6 @@ Spillover count - The total number of requests that were rejected because the su
 
 See #ELB useful metrics for more details
 
-### Best Practices
-
-- When ELB scales up, it updates the DNS records with new IPs so that these IPs are registered when more ELB resources (nodes) being added. Records have TTL of 60 seconds. So client will re-lookup DNS at least every 60 seconds.
-- When testing ELB load handling, make sure use multiple clients and ELB DNS is resolved every TTL so that these clients will not keep hitting a single IP of one ELB. However, such problem will not occur in the real world.
-
 ### Notes
 
 - Client <---frontend conn---> ELB <---backend conn---> targets
@@ -133,4 +130,3 @@ When health check type is `ELB`, ASG will delegate this task to ELB which will p
 - [ELB health and performance metrics](https://www.datadoghq.com/blog/top-elb-health-and-performance-metrics/)
 - [Using AWS Application Load Balancer and Network Load Balancer with EC2 Container Service](https://medium.com/containers-on-aws/using-aws-application-load-balancer-and-network-load-balancer-with-ec2-container-service-d0cb0b1d5ae5)
 - [Ways to reduce your ELB cost](https://gameanalytics.com/product-updates/reduce-costs-https-api-aws/)
-- **MUST READ** [Best Practices in Evaluating ELB](https://aws.amazon.com/articles/best-practices-in-evaluating-elastic-load-balancing/#pre-warming][1])
