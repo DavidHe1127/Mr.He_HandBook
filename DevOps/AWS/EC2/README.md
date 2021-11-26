@@ -147,6 +147,40 @@ UserData:
             STACK_REGION=${AWS::Region}
 ```
 
+To have user data script run on reboot, use `cloud-config` to configure user data is always run on reboot via mime multi-part.
+
+```
+Content-Type: multipart/mixed; boundary="==BOUNDARY=="
+MIME-Version: 1.0
+
+--==BOUNDARY==
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
+#cloud-config
+cloud_final_modules:
+- [scripts-user, always]
+
+--==BOUNDARY==
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+
+# your user data goes here
+/bin/echo "Hello World" >> /tmp/testfile.txt
+pwd >> /tmp/testfile.txt
+ls -latr >> /tmp/testfile.txt
+
+--==BOUNDARY==--
+```
+
+See [cloud-init example](https://github.com/ukayani/cloud-init-example/blob/master/README.md) for more details.
+
 ### Notes
 
 - A `stop` and `start` isn't equivalent to a `reboot`. A `start` can put instance on faulty hardware to a healthy one.
