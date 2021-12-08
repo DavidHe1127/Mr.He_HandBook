@@ -20,6 +20,17 @@ call_counter_total{instance="movies", job="movies_test", name="movies", path="/m
 # avg (call_counter_total) by (instance, job)
 {instance="app:3100", job="movies"} 45.666666666666664
 {instance="movies", job="movies_test"} 45.666666666666664
+
+# rate(call_counter_total[1m])
+{instance="app:3100", job="movies", name="movies", path="/movies", status="200"} 0.32765996177300444
+{instance="app:3100", job="movies", name="movies", path="/movies", status="403"} 0.0910166560480568
+{instance="app:3100", job="movies", name="movies", path="/movies", status="404"} 0.07281332483844544
+
+# sum(rate(call_counter_total[1m]))
+# Sum of rate of increase for all time series with metric call_counter_total in the past 1 min
+{} 0.49150783681939825
+
+# sum without(job)(rate(call_counter_total[1m])) === rate(call_counter_total[1m]) on values except for label discrepancy
 ```
 
 ### Result Type
@@ -37,7 +48,7 @@ Use [Prometheus Query npm](https://www.npmjs.com/package/prometheus-query)
 # count total number of time series
 count({job="aws-cluster-autoscaler", __name__="rest_client_request_duration_seconds_bucket"})
 
-# top 50 metric count used to find out which metric consumes larger resources
+# return top 50 largest metrics with each of its count. used to find out which metric consumes larger resources
 topk(50, count by (__name__, job)({__name__=~".+"}))
 
 # set to 0 when vector shows null

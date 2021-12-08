@@ -6,6 +6,7 @@
 - [Components](#components)
 - [Query](./query.md)
 - [Functions](#functions)
+- [Recording Rules](./recording-rules.md)
 - [Blackexporter](#blackexporter)
 - [Auth](#auth)
 - [CAdvisor](#cadvisor)
@@ -112,7 +113,7 @@ server {
   ssl_certificate  /etc/ssl/server.crt;
   ssl_certificate_key /etc/ssl/private/server.key;
 
-  # specifies a file with trusted CA certs to verify client certs
+  # specifies a file with trusted CA certs to verify client certs - useful when authenticated client can have access i.e Grafana
   # ssl_trusted_certificate on the other hand will not send the list
   # ssl_client_certificate in contrast will send trusted CA cert list to client which is not
   # recommended as it's consuming CPU when constructing the list at the runtime.
