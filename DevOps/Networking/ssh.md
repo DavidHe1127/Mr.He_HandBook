@@ -3,6 +3,7 @@
 - [Port](#port)
 - [SSH VS TLS](#ssh-vs-tls)
 - [ssh connection](#ssh-connection)
+- [Port Forwarding/Tunneling](#port-forwarding)
 
 ### port
 
@@ -47,3 +48,14 @@ When similar warning message is presented, it means host identity is changed sin
   - If the key exists, server will encrypt a message using the public key from the authorized keys list and expect the client to be able to decrypt it, since it should have the private key
   - Client will get the encrypted token from the server, decrypt it, and send it back (it actually sends back a hash of the token and a session key, but this is not important for the sake of this explanation)
   - Server will see that the token was decrypted successfully, and will allow the user to log in as `david` by impersonating the user.
+
+### Port Forwarding
+
+It enables you to send traffic to a remote private server from your local terminal. The traffic flows from `client --> jump box (public subnet) --> server (private subnet)`. Note, jump box needs to open `22` and ideally should only allow traffic sourcing from a particular IP.
+
+```shell
+# ssh -L <local_port>:<remote_server_ip>:<remote_port> user@<jumpbox_ip> -N
+ssh -L 6379:10.8.22.88:6379 ec2-user@5.26.117.150 -N
+```
+
+After tunnel connected, whatever command you push to `localhost:6379` will be forwarded through to `10.8.22.88:6379`. Specifying `-N` will avoid running command on remote server. It's useful when you only want the tunnel but are not interested in running any commands. i.e normally it would open a login shell when running `ssh ec2-user@x.xx.xxx.xxx`.

@@ -10,7 +10,7 @@
 - [ENI](#eni)
 - [IMDS(Instance Metadata service)](#IMDS)
 - [Metrics](#metrics)
-- [Instance Connect](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Connect-using-EC2-Instance-Connect.html)
+- [Connect to EC2](#connect-to-ec2)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
 - [UserData](#user-data)
@@ -105,6 +105,10 @@ Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will 
 EC2 sends metrics to CW through CW agent. Data is sent every 5 minutes by default, or every minute if detailed monitoring is enabled.
 
 - `CPUUtilization` - Recorded as a percentage value that is the amount of allocated EC2 compute units that are currently in use on the instance.
+
+### Connect to EC2
+
+Session manager is the optimal way. One useful command from Instance Connect though is you can send public key to remote server to enable ssh conn even if the instance it's spun up without loading any key. See [send-ssh-public-key](https://docs.aws.amazon.com/cli/latest/reference/ec2-instance-connect/send-ssh-public-key.html). Note, key can be generated locally through ssh-keygen.
 
 ### AMI
 

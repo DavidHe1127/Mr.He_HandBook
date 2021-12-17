@@ -74,14 +74,6 @@ def process_request(t):
 
 It takes requests from Prometheus server, gathers the required data from the apps, transforms them into the correct format and sends a response back to Prometheus server in the desired format
 
-#### Service Discovery
-
-Service Discovery plays a key role in dynamic environments. Prometheus has integrations with many popular service discovery tooling like Kubernetes, AWS EC2, Consul etc. This enables Prometheus to identify the applications it needs to monitor and pull metrics from.
-
-#### Scraping
-
-Prometheus regularly sends an HTTP request called a ‘scrape’ to the applications it wants to monitor & fetch metrics.
-
 #### Local Storage
 
 By default, Prometheus stores metric records in local TSDB. But this does not accommodate clustering envrionment where you run multiple Prom nodes. In this scenario, you need to configure remote store.
@@ -101,7 +93,7 @@ When remote store is configured, queries will be sent to both local and remote s
 
 ### Auth
 
-Doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic.
+Doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic. Comms between nginx and Prometheus is via http.
 
 ```
 server {

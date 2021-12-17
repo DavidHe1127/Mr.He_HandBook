@@ -3,6 +3,11 @@
 ### Key points
 
 - It's used to query a DNS server about what records a domain/host holds
+- TTL in the result is the **time left until the TTL expires**.
+- Just want to see TTL?
+```
+dig +nocmd +noall +answer A www.xxx.com.
+```
 - It looks up `/etc/resolv.conf` for name server it should use to send the query:
 
 /etc/resolv.conf

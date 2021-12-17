@@ -323,6 +323,7 @@ USER root
 - Make sure your containers only write data to volumes. Use `tmpfs` for small temp files.
 - Pin down package version in Dockerfile.
 - Lint your Dockerfile. i.e [hadolint](https://github.com/hadolint/hadolint).
+- Build multi-arch images with `buildx` to reap the benefits of multiple arch os support. i.e Performance/Cost boost when using Amazon EC2 M6g instances that are powered by 64 bit ARM based AWS Graviton2 processors.
 
 ---
 
