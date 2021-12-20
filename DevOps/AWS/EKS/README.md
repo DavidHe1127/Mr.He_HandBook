@@ -11,7 +11,7 @@
 - [Pod](./pod.md)
 - [Storage](./storage.md)
 
-- [Labelling](./labels.md)
+- [Metadata](./metadata.md)
 - [Tooling](./tooling.md)
 - [Logging](./logging.md)
 - [Monitoring](./monitoring.md)

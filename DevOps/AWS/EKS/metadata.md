@@ -1,4 +1,8 @@
-## Labels
+## Metadata
+
+### Labels
+
+Commonly-used labels on deployment.
 
 ```
 apiVersion: apps/v1
@@ -13,3 +17,7 @@ metadata:
     app.kubernetes.io/managed-by: helm
     app.kubernetes.io/created-by: controller-manager
 ```
+
+### Annotation
+
+Used for adding non-identifying infor. Unlike `labels` you cannot use `selector` to query them.
