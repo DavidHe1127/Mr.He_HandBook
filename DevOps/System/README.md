@@ -1,6 +1,5 @@
 ## Linux
 
-- [tty](#tty)
 - [Process](#process)
 - [Multi-threading](#multi-threading)
 - [Signal](./linux_signal.md)
@@ -11,6 +10,7 @@
 - [sudo and sudoers File](#sudo-and-sudoers-file)
 - [ssh config file](#ssh-config-file)
 - [IO Redirection](#io-redirection)
+- [CPU and Memory](#cpu-and-memory)
 - [Internal vs External commands](#internal-vs-external-commands)
 - [systemd](./systemd.md)
 - [Linux commands dict](https://wangchujiang.com/linux-command/)
@@ -28,10 +28,6 @@
 - [Example script](./shell_scripting.md)
 - [Bash Template](./bash_template.md)
 
-### tty
-
-In unix terminology, the short answer is `terminal = tty = text input/output environment`
-
 ### Process
 
 - Application stored in the disk will be loaded into memory when it's running. This process will turn the application into a running process with an id (pid). Also, process has state.
@@ -43,10 +39,6 @@ To run a process and put it in the background (using &) which then gives you pro
 ```
 $ gunzip file.gz &
 ```
-
-#### What's happened when running ls in a shell?
-
-> Parent process (shell) `fork()` a child process which `exec()` to run `ls` by replacing itself with the `ls`.
 
 #### ps
 
@@ -209,6 +201,10 @@ var=$(cat file.log nofile.txt 2>&1 >/dev/null)
 # send logs to other places rather than syslog
 logger -t SPOT -s "$1" 2>> /var/log/spot-interruptions
 ```
+
+### CPU and Memory
+
+IO Wait - for a given CPU, the I/O wait time is the time during which that CPU was idle (i.e. didn’t execute any tasks) and there was at least one outstanding disk I/O operation requested by a task scheduled on that CPU (at the time it generated that I/O request).
 
 ### Internal vs External commands
 

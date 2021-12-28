@@ -1,6 +1,5 @@
 ## Shell script, commands
 
-- [What is shell](#what-is-shell)
 - [ctrl+d vs ctrl+c](#ctrld-ctrlc)
 - [ls](#ls-output-explained)
 - [less](#less)
@@ -25,11 +24,6 @@
 
 - [Scripting](./shell_scripting.md)
 - [Bash Template](./bash_template.md)
-
-### what is shell
-
-Located in `/bin/sh`. A shell is a program that runs commands. The shell also serves as a small programming environment. There is an enhanced version of shell called `bash` or `Bourne-again shell`.
-We open a shell window via terminal.
 
 ### ctrld-ctrlc
 
@@ -431,7 +425,3 @@ set -euxo pipefail
 ### Use mktemp
 
 It allows you to create temp file a) with random name b) with permissions locked down to current user. Safer! See [more details](https://www.ruanyifeng.com/blog/2019/12/mktemp.html)
-
-
-
-
