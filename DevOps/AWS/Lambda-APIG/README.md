@@ -8,12 +8,13 @@
 - [Reusable execution context](#reusable-execution-context)
 - [Invocation model](#invocation-model)
 - [Error handling](#error-handling)
+- [Run lambda in a container](#lambda-in-container)
 - [Custom runtime and layers](#custom-runtime-and-layers)
 - [Custom Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 - Tips
   - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
   - [Share modules/libs](#share-modules/libs)
-- [Useful write-ups](#useful-writeups)
+- [Articles](#articles)
 
 ### versioning-alias
 
@@ -161,6 +162,11 @@ Lambda will automatically poll the following services on your behalf, retrieve r
 
 Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY). Note DLQ only works for lambda Async invocation model. It's used when an event fails all processing attempts or expires without being processed.
 
+### Lambda in container
+
+Lambda function code can now be packaged in docker images that are hosted on ECR. And cross account
+ECR access for lambda is also [supported](https://aws.amazon.com/blogs/compute/introducing-cross-account-amazon-ecr-access-for-aws-lambda/) now.
+
 ### Custom runtime and layers
 
 layers allow you to share code between lambdas. Custom runtime allows you to use runtime AWS by default doesn't support i.e Bash. See [layers](https://github.com/mthenw/awesome-layers) for public layers you can use.
@@ -204,7 +210,7 @@ response = ssm.get_parameter(
 
 ---
 
-### Useful write-ups
+### Articles
 
 [All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
 
