@@ -4,6 +4,7 @@
 - [NAT Gateway](#nat-gateway)
 - [CIDR](#cidr)
 - [Cost](#cost)
+- [Inter-vpc comms](#inter-vpc-comms)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
 - [Check overlapping of two cidrs](#check-overlapping-of-two-cidrs)
@@ -33,6 +34,13 @@ Elastic IPs get allocated to your account and stay the same - it's up to you to 
 VPC themselves are free but you need to pay for the services running within it. i.e NAT gateway, internet gateway, EC2s.
 
 - [Use vpc endpoint to save money](https://medium.com/nubego/how-to-save-money-with-aws-vpc-endpoints-9bac8ae1319c)
+
+### Inter-VPC comms
+
+- [Shared VPC](https://aws.amazon.com/blogs/architecture/using-vpc-sharing-for-a-cost-effective-multi-account-microservice-architecture/)
+- VPC Peering
+- VPC Endpoint Service via private link
+- Transit Gateway (could be costly!)
 
 ### VPC Endpoint and Endpoint Service
 

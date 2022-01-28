@@ -18,7 +18,7 @@
 Some tips:
 
 - Start with static alerts - alert on static metric value. i.e when rps is above 1000.
-- Use percentile i.e 95th Percentile latency as it means most likely everyone is happy.
+- Use percentile i.e 95th Percentile latency as if that value is acceptable then it means 95% customers are happy. p99 is the maximum value of the remaining 99%. The 95th percentile means that 95 percent of the data is lower than this value and 5 percent of the data is higher than this value.
 - Use anomaly detection. Try CloudWatch anomaly detection when metric follows a pattern.
 - Test to see how your alerting reacts by turning it on but not raising incidents. i.e put it on suppress mode which generates alarms but not page people.
 - Collate metrics and plot them out in graphs in one page so you can visually correlate them in time. DataDog/Grafana

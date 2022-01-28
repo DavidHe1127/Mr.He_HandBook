@@ -92,6 +92,8 @@ On the other hand, you could also place your lambda function within a VPC when t
 
 The default route target for traffic in a VPC public subnet is the Internet Gateway (IGW) and, because the Lambda function only has a private IP, all packets to the internet from the Lambda function will be dropped at the IGW.
 
+Triggering services such as EventBridge/S3 can still reach VPC-connected VPC. Only thing to ensure is security group to attach to lambda needs to allow all inbound traffic.
+
 Think carefully before putting your lambdas inside a vpc because:
 
 - Each time a lambda function is executed, it uses a proportion of your ENI(Elastic Network Interface) capacity from the subnet. You must have sufficient ENI capacity to support your lambda scaling requirement. If you run out of ENI capacity this will cause your lambda functions to fail.

@@ -225,9 +225,7 @@ NOTE: There are multiple thresholds
 
 #### Target Tracking:
 
-It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. An associated alarm will be created and managed by as part of policy. When being triggered, actions will be performed to normalise the metric value. However you don't have much control over it.
-
-i.e maintain CPUUtilization at around 50% constantly. Auto scaling does the rest by adding and removing the capacity in order to keep chosen metric as close as possible to the target value. It’s SELF OPTIMIZING which means it has an algorithm that learns how your metric changes over time and uses that information to make sure that over and under scaling are minimized. You get the fastest scaling response.
+It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. ASG will maintain that value. In addition, an associated alarm will be created and managed by AWS as part of policy. When being triggered, actions will be performed to normalise the metric value. However you don't have much control over it.
 
 #### Cooldown
 
