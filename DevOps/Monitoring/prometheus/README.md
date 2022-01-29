@@ -17,7 +17,6 @@
 
 ### Concepts
 
-- `Instrumentation` in Prometheus terms means adding client libraries to your application in order for them to expose metrics to Prometheus
 - Metrics can be scraped by several ways including
   - `Instrument` your app. It basically means you use their out-of-box library to collect and send metrics to server during scraping
   - Use an `Exporter` that is a binary running alongside the application you want to obtain metrics from. The exporter exposes Prometheus metrics, commonly by converting metrics that are exposed in a non-Prometheus format into a format that Prometheus supports.
@@ -37,6 +36,12 @@ time series = [(t0, v0), (t1, v1), ...]
 
 # example time series
 http_requests_total(job="nginx", instance="1.2.3.4:80", path="/home", status="200")
+
+# 4 distinct time series
+temperature
+temperature{city=”NY”}
+temperature{city=”SF”}
+temperature{city=”SF”, unit=”Celsius”}
 ```
 
 ![time-series](./time-series.png)
