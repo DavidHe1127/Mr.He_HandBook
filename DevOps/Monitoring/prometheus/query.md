@@ -42,7 +42,13 @@ call_counter_total{instance="movies", job="movies_test", name="movies", path="/m
 
 ### Example Query
 
-Use [Prometheus Query npm](https://www.npmjs.com/package/prometheus-query)
+Use [Prometheus Query npm](https://www.npmjs.com/package/prometheus-query) to write your query in js with ease. Alternatively, run query in curl when no access to query expression in web app.
+
+```shell
+curl -G \
+  --data-urlencode "query=(avg by (instance) (rate(process_cpu_seconds_total{job=\"prometheus\"}[1m])) * 100)" \
+  http://localhost:9090/api/v1/query
+```
 
 ```
 # count total number of time series

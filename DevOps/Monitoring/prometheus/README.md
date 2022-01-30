@@ -31,7 +31,7 @@
 Each time series is comprised of `metric` and `label`. Unique combination identifies an unique time series. Think of time series as a bucket where it stores sample data that has the same `metric/label` combination. Sample including value and associated timestamp. Sample data is stored by time series.
 
 ```
-# each sample data represented as t0, v0
+# each sample data aka data point represented as t0, v0
 time series = [(t0, v0), (t1, v1), ...]
 
 # example time series
