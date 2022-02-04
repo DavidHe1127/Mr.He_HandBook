@@ -1,13 +1,12 @@
 ## Prometheus
 
 - [Concepts](#concepts)
-- [Time Series](#time-series)
-- [Job vs Instance vs Target](#job-instance-target)
+  - [Time Series](#time-series)
+  - [Job vs Instance vs Target](#job-instance-target)
 - [Components](#components)
-- [Query](./query.md)
-- [Functions](#functions)
-- [Recording Rules](./recording-rules.md)
 - [Blackexporter](#blackexporter)
+- [Query](./query.md)
+- [Recording Rules](./recording-rules.md)
 - [Auth](#auth)
 - [CAdvisor](#cadvisor)
 - [Debugging Tips](#debugging)
@@ -26,9 +25,9 @@
 ![ways-gather-metrics](ways-gather-metrics.png)
 ![sample-data-ingestion](sample-data-ingestion.png)
 
-### Time Series
+#### Time Series
 
-Each time series is comprised of `metric` and `label`. Unique combination identifies an unique time series. Think of time series as a bucket where it stores sample data that has the same `metric/label` combination. Sample including value and associated timestamp. Sample data is stored by time series.
+Each time series is comprised of `metric` and `label`. Unique combination identifies an unique time series (a.k.a cardinality). Think of time series as a bucket where it stores sample data that has the same `metric/label` combination. Sample including value and associated timestamp. Sample data is stored by time series.
 
 ```
 # each sample data aka data point represented as t0, v0
@@ -46,9 +45,11 @@ temperature{city=”SF”, unit=”Celsius”}
 
 ![time-series](./time-series.png)
 
-### Job vs Instance vs Target
+#### Job vs Instance vs Target
 
-`Job` is a collection of instances with the same purpose. An `instance` is a `<host>:<port>` representation. While `target` is an object that holds information such as what labels to apply, any authentication required to connect, or other information that defines how the scrape will occur.
+- `Job` is a collection of instances with the same purpose.
+- `instance` is a `<host>:<port>` representation.
+- `target` is an object that holds information such as what labels to apply, any authentication required to connect, or other information that defines how the scrape will occur.
 
 ![jobs-instances](jobs-instances.png)
 
@@ -77,7 +78,7 @@ def process_request(t):
 
 #### Exporter
 
-It takes requests from Prometheus server, gathers the required data from the apps, transforms them into the correct format and sends a response back to Prometheus server in the desired format
+It takes requests from Prometheus server, gathers the required data from the apps, transforms them into the correct format and sends a response back to Prometheus server in the desired format.
 
 #### Local Storage
 
@@ -85,9 +86,7 @@ By default, Prometheus stores metric records in local TSDB. But this does not ac
 
 When remote store is configured, queries will be sent to both local and remote stores and the searching results will be merged.
 
-### Functions
-
-- [rate vs irate](https://www.kancloud.cn/pshizhsysu/prometheus/1872576)
+Read [Prom storage](https://www.cnblogs.com/vovlie/p/7709312.html)
 
 ### BlackExporter
 
@@ -188,14 +187,14 @@ metric_relabel_configs:
 ```
 
 - Target labels starting with `__` are available during relabelling process but will be removed afterwards. So if you need to keep some labels, make sure you relabel them.
-
 - When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
+- `rate/irate` functions should be used on `counter` metrics rather than `gauge` metrics.
+- A time series that freshly has data points added, it's called active time series. They are stored in file/memory prior to being moved to TSDB when become inactive for longer persistence . Considerable active time series means large resources are consumed, In particular, the RAM.
 
 ---
 
 ### References
 
-[The Definitive guide to Prometheus](https://devconnected.com/the-definitive-guide-to-prometheus-in-2019/#c_Jobs_Instances)
-[Prometheus Components](https://samirbehara.com/2019/05/30/cloud-native-monitoring-with-prometheus/)
+[Technical terms for humans](https://valyala.medium.com/prometheus-storage-technical-terms-for-humans-4ab4de6c3d48)
 [Relabelling tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
 [Query](https://www.cnblogs.com/chanshuyi/p/04_quick_start_of_promql.html)

@@ -59,4 +59,7 @@ topk(50, count by (__name__, job)({__name__=~".+"}))
 
 # set to 0 when vector shows null
 count(expression) or on() vector(0)
+
+# aggregate same category of time series
+sum(sum_over_time(net_conntrack_dialer_conn_failed_total{dialer_name="prometheus"}[24h]))
 ```
