@@ -190,6 +190,7 @@ metric_relabel_configs:
 - When there is an error with config file, Prom server will fail to load the broken config but rather use the previous working one.
 - `rate/irate` functions should be used on `counter` metrics rather than `gauge` metrics.
 - A time series that freshly has data points added, it's called active time series. They are stored in file/memory prior to being moved to TSDB when become inactive for longer persistence . Considerable active time series means large resources are consumed, In particular, the RAM.
+- When querying historical data, wider time span means more time series is loaded into RAM from TSDB which in turn inevitably consumes larger RAM.
 
 ---
 

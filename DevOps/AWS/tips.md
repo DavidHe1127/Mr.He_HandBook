@@ -10,3 +10,9 @@ fields @timestamp
 | filter @message like "DeleteNetworkInterface"
 | fields eventName,errorCode,errorMessage,userAgent
 ```
+- Use Athena to help with advanced query against events in CloudTrail. Steps are:
+1. create a bucket to receive events.
+2. create a trail and link it to bucket.
+3. create an athena table with the added bucket.
+
+After debugging, turn off logging in trail so that bucket size will stop growing.
