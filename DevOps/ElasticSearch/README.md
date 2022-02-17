@@ -143,5 +143,4 @@ GET /_analyze?analyzer=standard&text=We are madewithlove
 
 ## References
 
-- [shards-and-replicas](https://stackoverflow.com/questions/15694724/shards-and-replicas-in-elasticsearch)
 - [ES field explosion](https://medium.com/handy-tech/elasticsearch-field-explosion-ca0a21f97a4a)
