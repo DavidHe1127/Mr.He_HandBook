@@ -10,8 +10,9 @@
 - [Node](./node.md)
 - [Pod](./pod.md)
 - [Storage](./storage.md)
-
 - [Metadata](./metadata.md)
+
+- [Autoscaling](./autoscaling.md)
 - [Tooling](./tooling.md)
 - [Logging](./logging.md)
 - [Monitoring](./monitoring.md)

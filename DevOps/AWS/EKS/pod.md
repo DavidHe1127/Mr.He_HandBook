@@ -74,12 +74,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  # deployment labels
   labels:
     app: nginx
 spec:
   # num of pods
   replicas: 3
-  # manage pods labelled nginx
+  # dictates what pods are managed by this deployment. Identify them via label
   selector:
     matchLabels:
       app: nginx

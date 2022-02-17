@@ -74,7 +74,7 @@ Once deployed, service can be accessed from outside of cluster via NodeIP:NodePo
 
 Exposes the Service externally using a cloud provider's load balancer. NodePort and ClusterIP Services, to which the **external load balancer** routes, are automatically created.
 
-When using AWS, this will create a load balancer which proxies traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods.
+When using AWS, this will create a NLB which proxies LV4 traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods. To work with LV7 traffic, create an `ingress` resource.
 
 Remarkable downside is each service will have a dedicated load balancer created for it resulting in large bills.
 
