@@ -12,7 +12,7 @@
 - [Custom runtime and layers](#custom-runtime-and-layers)
 - [Custom Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 - Tips
-  - [Use SSM parameter store to keep env vars](#use-ssm-parameter-store-for-env-vars)
+  - [Env vars access](#env-vars-access)
   - [Share modules/libs](#share-modules/libs)
 - [Articles](#articles)
 
@@ -175,7 +175,7 @@ layers allow you to share code between lambdas. Custom runtime allows you to use
 
 One thing to note, You can use layers **ONLY** with Lambda functions deployed as a `.zip` file archive. For functions defined as a container image, you package your preferred runtime and all code dependencies when you create the container image.
 
-### Use SSM Parameter Store for env-vars
+### Env vars access
 
 Env vars can be plaintext or encrypted in ssm param store. You can populate the value during build time:
 
@@ -198,6 +198,11 @@ response = ssm.get_parameter(
 )
 ```
 
+#### Use AppConfig
+
+Using AppConfig with lambda extension allows you to change env vars values on the fly without touching your lambda. Read more at  [AWS AppConfig with lambda extension](https://www.linkedin.com/pulse/aws-appconfig-lambda-roshan-shetty/?trk=read_related_article-card_title)
+
+
 ### Share modules/libs
 
 - Put common modules/libs in a `lib` folder sitting at the same level as `functions` directory.
@@ -214,5 +219,4 @@ response = ssm.get_parameter(
 
 ### Articles
 
-[All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
-
+- [All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
