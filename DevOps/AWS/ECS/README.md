@@ -14,6 +14,7 @@
 - [Roles comparison](#roles-comparison)
 - [Logging](#logging)
 - [Monitoring](#monitoring)
+- [Service Discovery](#service-discovery)
 - [Troubleshooting guide](#troubleshooting-guide)
 - [Dynamic port mapping](#dynamic-port-mapping)
 - [Tips and Caveats](#tips-and-caveats)
@@ -268,6 +269,11 @@ References:
 - [Build log solution aggregator](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/)
 - [Under the hood firelens for amazon ecs tasks](https://aws.amazon.com/blogs/containers/under-the-hood-firelens-for-amazon-ecs-tasks/)
 
+### Service Discovery
+
+2 ways of inter-service communications without using SD. a) via container instance's private IP (not practical as ip is transient) b) via their load balancers.
+
+Using Service Discovery allows a domain bound to a service which returns ip when sending a DNS query. For more details, see `Service Discovery` in Platy.
 ---
 
 ### Troubleshooting Guide
