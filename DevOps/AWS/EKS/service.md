@@ -74,7 +74,7 @@ Once deployed, service can be accessed from outside of cluster via NodeIP:NodePo
 
 Exposes the Service externally using a cloud provider's load balancer. NodePort and ClusterIP Services, to which the **external load balancer** routes, are automatically created.
 
-When using AWS, this will create a NLB which proxies LV4 traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods. To work with LV7 traffic, create an `ingress` resource.
+In the context of AWS, creating a `service` of `loadbalancer` type which creates a NLB which proxies LV4 traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods. To work with LV7 traffic, create a K8S `ingress` resource.
 
 Remarkable downside is each service will have a dedicated load balancer created for it resulting in large bills.
 
@@ -90,9 +90,13 @@ It is an API object that provides routing rules to manage external users' access
 
 #### Ingress Controller
 
-It watches API Server for changes to Ingress resource and creates ALB (external to cluster) with configured rules it reads from Ingress. It runs as a pod in cluster. For HA, it's deployed 2 replicas onto 2 selected nodes.
+It watches API Server for changes to Ingress resource and creates ALB (external to cluster) with configured rules it reads from Ingress. It runs as a pod in cluster. For HA, it's deployed 2 replicas onto 2 selected nodes. It's implemented through [AWS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
 
 **Note, seems Nginx ingress controller does things differently, it also takes care of traffic load balancing?
+
+#### TLS
+
+In [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingress/cert_discovery/), TLS cert for ALB Listeners can be automatically discovered from `tls` and `host` field in Ingress rules, if `alb.ingress.kubernetes.io/certificate-arn` left unspecified. Taking wildcard cert as an example, setting `game2048.*.eks-use1.prod.abc.io` as host will help controller discover and attach the wildcard cert `*.eks-use1.prod.abc.io` to the ALB it's created.
 
 #### Components
 
