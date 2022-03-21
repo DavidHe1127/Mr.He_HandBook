@@ -20,6 +20,7 @@ sum(increase(xxx_http_responses_total{cfn_stack="$stack"}[30s])) by (status_code
     )
 
 # new query in grafana - * 30 = 30s of increments
+# by - keeps only status_code label
 sum by(status_code) (cfn_stack:xxx_http_response_total:rate1m{cfn_stack="$stack"}) * 30
 ```
 

@@ -24,6 +24,15 @@ Run this command to pull logs out of `cni` plugin. Keep eyes peeled for obvious 
 sudo bash /opt/cni/bin/aws-cni-support.sh
 ```
 
+### Port forwarding
+
+It allows you to use a resource name to select a matching pod to port forward to. For example, port forward via a StatefulSet resource.
+
+```
+kubectl port-forward -n=monitoring sts/prometheus-kube-prometheus-stack-prometheus 9090
+```
+
+
 ### Practical guide
 
 https://learnk8s.io/troubleshooting-deployments

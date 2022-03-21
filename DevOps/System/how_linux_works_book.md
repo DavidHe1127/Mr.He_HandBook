@@ -8,6 +8,7 @@ the hardware and any running program.
 - A CPU is just an operator on memory; it reads its instructions and data from the memory and writes data back out to the memory.
 - The main memory that the kernal allocates for user processes is called `user space`. User space also refers to the memory for the entire collection of running processes.
 - When you run `kill pid`, you are asking the kernal to send a signal to another process
+- `Buffer` is an area of memory used to temporarily store data while it's being moved from one place to another. `Cache` is a temporary storage area of memory used to store frequently accessed data for rapid access.
 
 ![linux-kernal](linux-kernal.png)
 

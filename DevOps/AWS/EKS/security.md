@@ -91,6 +91,7 @@ subjects:
 As recommended by k8s, bind the PsP to the entire namesapce.
 
 ```
+# the resource role is applied to
 - kind: Group
   apiGroup: rbac.authorization.k8s.io
   name: system:serviceaccounts:<authorized namespace>
