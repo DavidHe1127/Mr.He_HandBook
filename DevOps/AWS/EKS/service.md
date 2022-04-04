@@ -157,3 +157,4 @@ Quoted from K8S In Action
 
 - [Ingress vs load-balancer](https://stackoverflow.com/questions/45079988/ingress-vs-load-balancer)
 - [Ingress 101](https://oteemo.com/ingress-101-what-is-kubernetes-ingress-why-does-it-exist/)
+- [External traffic into k8s](https://blog.ovhcloud.com/getting-external-traffic-into-kubernetes-clusterip-nodeport-loadbalancer-and-ingress/)

@@ -56,6 +56,8 @@ One process can have 1 or many threads. At any single time, there is only one th
 
 In a multi-core CPU environment, it genuinely allows multiple threads each run on a separate core. This is the real concurrency. It boosts the overall CPU performance.
 
+With VM, vCPU is the portion of underlying physical CPU which is assigned to VM.
+
 ### File and Permissions
 
 ![ls output](./ls.jpg)

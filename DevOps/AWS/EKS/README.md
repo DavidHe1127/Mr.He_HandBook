@@ -17,6 +17,8 @@
 - [Logging](./logging.md)
 - [Monitoring](./monitoring.md)
 - [Useful code snippets](useful-code-snippet)
+- Awesome posts
+  - [k8s best practices](https://www.weave.works/blog/kubernetes-best-practices)
 
 ## Architecture
 

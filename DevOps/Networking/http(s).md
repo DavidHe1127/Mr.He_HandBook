@@ -18,6 +18,7 @@
 - Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
 - In client/server communication process, client needs `CA Cert` while server needs to have its `Cert` as well as `Private Key`. Private key is used to decrypt the session key being encrypted by public key enclosed in `Cert`.
+- Use one cert to sign another basically means **using private key associated with the public key stored in the certificate** to encrypt the other cert.
 
 ### Digital Signature and Digital Certificate
 
@@ -40,11 +41,15 @@
 
 Please note, for all above to work, `ssl cert` needs to be placed under a particular directory on `Server` side for `ssl` server to locate.
 
-### Client certificate
+### mTLS
 
 Server requests clients to prove they are who they claim to be by asking for a client cert. The process is the same to server authentication but happens in a reverse way.
 
-Server sends a list of trusted CA certs to the clients while requesting a client cert. The list tells clients only these CA certs are supported and can be used to verify client cert. For an example with Nginx, see [client auth](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/Monitoring/prometheus#auth).
+Typically, org creates its own root cert so org itself becomes a CA. Client cert/private key are created and signed by root cert. They need to be kept on client side and will be presented to server during client authentication.
+
+[See how mTLS works in Node](https://codeburst.io/mutual-tls-authentication-mtls-de-mystified-11fa2a52e9cf)
+
+Alternatively, if org doesn't generate its own root cert, server can send a list of trusted CA certs to the clients while requesting a client cert. The list tells clients only these CA certs are supported and can be used to verify client cert. For an example with Nginx, see [client auth](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/Monitoring/prometheus#auth).
 
 ### Ssl cert with Let's encrypt
 

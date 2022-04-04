@@ -3,10 +3,10 @@
 - [ENI](#eni)
 - [NAT Gateway](#nat-gateway)
 - [CIDR](#cidr)
-- [Cost](#cost)
 - [Inter-vpc comms](#inter-vpc-comms)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
+- [Accessibility and Reachability](#accessibility-and-reachability)
 - [Check overlapping of two cidrs](#check-overlapping-of-two-cidrs)
 
 ### ENI
@@ -30,10 +30,10 @@ Public IP addresses are dynamic - i.e if you stop/start your instance you get re
 
 Elastic IPs get allocated to your account and stay the same - it's up to you to attach them to any instance or not. you could say they are `static public ip addresses`. To avoid charge over using elastic ip, make sure it's attached to an instance. It will incur charges if it's detached.
 
-### Cost
-VPC themselves are free but you need to pay for the services running within it. i.e NAT gateway, internet gateway, EC2s.
+### Accessibility and Reachability
 
-- [Use vpc endpoint to save money](https://medium.com/nubego/how-to-save-money-with-aws-vpc-endpoints-9bac8ae1319c)
+Use **Network Access Analyzer** to find out unintended network access points to your VPC and help you improve your security.
+**VPC Reachability Analyzer** helps you troubleshoot if connectivity is enabled between 2 endpoints.
 
 ### Inter-VPC comms
 
