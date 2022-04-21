@@ -149,6 +149,8 @@ xxx_ioredis_reconnects_total{xxx_gitsha="8ab3a74376ab3ec8407e575aef132fbea5ccc73
 ./promtool check config prometheus.yml
 ```
 
+- Check alertmanager config `amtool --alertmanager.url='http://localhost:5000' config routes`
+
 ### Study Notes
 
 - Main monitoring targets a) Docker Daemon b) Node (node_exporter) c) Docker Container (cAdvisor) d) Application (custom exporter)
