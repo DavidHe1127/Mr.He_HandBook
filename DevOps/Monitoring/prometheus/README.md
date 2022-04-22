@@ -53,6 +53,36 @@ temperature{city=”SF”, unit=”Celsius”}
 
 ![jobs-instances](jobs-instances.png)
 
+#### Vector
+
+A set of related timeseries is called a vector.
+
+```sh
+# instance vector
+curl 'http://localhost:9090/api/v1/query' \
+  --data 'query=http_requests_total{code="200"}' \
+  --data time=1608481001
+
+{
+  "metric": {"__name__": "http_requests_total", "code": "200"},
+  "value": [1608481001, "881"]
+}
+
+# range vector
+curl 'http://localhost:9090/api/v1/query' \
+  --data 'query=http_requests_total{code="200"}[30s]' \
+  --data time=1608481001
+
+{
+  "metric": {"__name__": "http_requests_total", "code": "200"},
+  "values": [
+    [1608480978, "863"],
+    [1608480986, "874"],
+    [1608480094, "881"]
+  ]
+}
+```
+
 ### Components
 
 ![prom-components](prom-components.png)
