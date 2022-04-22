@@ -30,6 +30,8 @@ Hypervisor is a software to control resources allocations for VMs.
 
 ### vCPU, threads and core
 
+vCPU represents a portion of the underlying physical CPU that is assigned to a particular virtual machine (VM).
+
 1 thread = 1 vCPU and 1 core = 2 vCPU/threads. EC2 supports multithreading which enables multiple threads to run concurrently on a single CPU core through logical core(?). With NodeJS app, it will only use one thread/vCPU.
 
 ### Security Group

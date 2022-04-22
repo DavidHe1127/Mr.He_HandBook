@@ -8,9 +8,7 @@
   - [cfn-init vs user data](#cfn-init-vs-user-data)
 - Tools
   - [lono - Preview changes, like Terraform plan](https://lono.cloud/reference/lono-cfn-preview/)
-- [Troubleshooting](#troubleshooting)
 - Tips
-  - [Use deploy command](#use-deploy-command)
   - [Use !Sub not !Join](https://theburningmonk.com/2019/05/cloudformation-protip-use-fnsub-instead-of-fnjoin/)
   - [Practical way to debug user data](#debug-user-data)
 
@@ -194,24 +192,11 @@ Use `cfn-init` to do prep work before user-data.
 
 ---
 
-### Troubleshooting
-
-**Q** Error - When calling the CreateChangeSet operation ... stack XXX is in ROLLBACK_COMPLETE state and can not be updated
-
-**A** If a stack fails to be created for any reasons, cf will execute a rollback to delete all previously created resources. The stack itself remains in a `ROLLBACK_COMPLETE` state to enable users to inspect and debug the problems. It is not possible to retry with this stack again. Users have to delete the stack on their own.
-
 ### Tips
 
-#### Use Deploy Command
-Use `deploy` over `create-stack` as the former not only does create a new stack but also updates an existing stack (by using a change set). However `create-stack` can only be used when you create a brand new/non-existent resource stack. In essence, `deploy` is a combination of `create-stack` and `update-stack`.
+#### Reduce use of cross-stack as possibly as you can
 
-Change set is a way to inform users of proposed changes they will have when updating a stack. It helps them understand what's going to be changed and discover any unexpected changes adding more confidence to deployment.
-
-```shell
-$ aws cloudformation deploy
-
-$ aws cloudformation create-stack
-```
+Cross-stack creates deps making modification/deletion to one stack harder. If output from one stack is required in another, put them in `ssm` for access.
 
 #### Debug user data
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
