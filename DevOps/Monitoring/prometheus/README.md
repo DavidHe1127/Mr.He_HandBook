@@ -127,7 +127,9 @@ Read [Prom storage](https://www.cnblogs.com/vovlie/p/7709312.html)
 
 ### Auth
 
-Doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic. Comms between nginx and Prometheus is via http.
+#### Authenticated client connections
+
+Useful when we want only authed clients to connect to Prom. i.e Grafana. It doesn't provide auth out of box. Use reverse-proxy like nginx to enable gated traffic. Comms between nginx and Prometheus is via http.
 
 ```
 server {
@@ -139,7 +141,7 @@ server {
   ssl_certificate  /etc/ssl/server.crt;
   ssl_certificate_key /etc/ssl/private/server.key;
 
-  # specifies a file with trusted CA certs to verify client certs - useful when authenticated client like Grafana wants to connect to prometheus
+  # specifies a file with trusted CA certs to verify client certs -
   # ssl_trusted_certificate on the other hand will not send the list
   # ssl_client_certificate in contrast will send trusted CA cert list to client which is not
   # recommended as it's consuming CPU when constructing the list at the runtime.
@@ -148,6 +150,30 @@ server {
   ssl_verify_client optional_no_ca;
 }
 ```
+
+#### Scraping through TLS
+
+Useful in federation where one prom is scraping another prom.
+
+```
+scrape_configs:
+  - job_name: 'node'
+
+    scheme: https
+    tls_config:
+        # Prometheus will check that the node_exporter presents a certificate
+        # signed by this ca.
+        ca_file: 'ca.crt'
+        # The cert and key are presented to node_exporter to authenticate
+        # Prometheus as a client. Prom is scraping node_exporter in which case Prom is considered as a client
+        cert_file: 'client.crt'
+        key_file: 'client.key'
+
+    static_configs:
+    - targets: ['myserver.internal.net:443']
+```
+
+See [this for more details](https://smallstep.com/hello-mtls/doc/client/prometheus)
 
 ### CAdvisor
 
