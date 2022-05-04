@@ -198,6 +198,8 @@ Use `cfn-init` to do prep work before user-data.
 
 Cross-stack creates deps making modification/deletion to one stack harder. If output from one stack is required in another, put them in `ssm` for access.
 
+If a stack is truly long-lived, and the output values static i.e networking stack, the values depended on could also be hard coded into the dependent template.
+
 #### Debug user data
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
 

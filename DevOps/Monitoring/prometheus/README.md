@@ -139,11 +139,12 @@ server {
   ssl_certificate  /etc/ssl/server.crt;
   ssl_certificate_key /etc/ssl/private/server.key;
 
-  # specifies a file with trusted CA certs to verify client certs - useful when authenticated client can have access i.e Grafana
+  # specifies a file with trusted CA certs to verify client certs - useful when authenticated client like Grafana wants to connect to prometheus
   # ssl_trusted_certificate on the other hand will not send the list
   # ssl_client_certificate in contrast will send trusted CA cert list to client which is not
   # recommended as it's consuming CPU when constructing the list at the runtime.
   ssl_trusted_certificate /etc/ssl/client_auth.crt;
+  # allow client's self-signed cert
   ssl_verify_client optional_no_ca;
 }
 ```

@@ -4,6 +4,6 @@ While you could use k8s sd provided out-of-box in Prometheus as blogged [here](h
 
 See [ServiceMonitorSpec](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#servicemonitorspec) for more details.
 
-If you look for a more comprehensive solution that covers AlertManagers, Grafana etc. Check out [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) helm chart.
+If you look for a more comprehensive solution that covers monitoring, AlertManagers, Grafana etc. Check out [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) helm chart.
 
 See [Arch diagram](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/troubleshooting.md#overview-of-servicemonitor-tagging-and-related-elements) to understand how it works under the hood.
