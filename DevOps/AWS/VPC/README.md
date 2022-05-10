@@ -1,5 +1,6 @@
 ## VPC
 
+- [Isolated Subnet](#isolated-subnet)
 - [ENI](#eni)
 - [NAT Gateway](#nat-gateway)
 - [CIDR](#cidr)
@@ -8,6 +9,11 @@
 - [Public IP vs Elastic iP](#public-ip-vs-elastic-ip)
 - [Accessibility and Reachability](#accessibility-and-reachability)
 - [Check overlapping of two cidrs](#check-overlapping-of-two-cidrs)
+
+
+### Isolated Subnet
+
+A private subnet is one that is configured to use a NAT Gateway (NAT) so that it can reach the internet, but which prevents the internet from initiating connections to it. An isolated subnet is one that cannot reach the internet either through an IGW or with NAT.
 
 ### ENI
 

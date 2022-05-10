@@ -23,7 +23,7 @@
 - [ENV VAR checker](https://github.com/flemay/envvars)
 - [3 Musketeers](https://github.com/flemay/3musketeers)
 
-Infra As Code
+#### Infra As Code
 
 - [Pulumi](./Tooling/pulumi.md)
 - [Terraform and Ansible](./Tooling/terraform_ansible.md)
@@ -59,7 +59,7 @@ Infra As Code
 - [Trusted Advisor](AWS/TrustedAdvisor)
 - [Org](AWS/Org)
 
-### General Topics
+### General
 - [Security](AWS/security.md)
 - [Service Continuity](AWS/service_continuity.md)
 - [Cost optimisation](AWS/cost_optimisation.md)
@@ -67,7 +67,6 @@ Infra As Code
 ## Others
 
 - [Docker](Docker)
-- [K8S](./k8s.md)
 - [Serverless](Serverless)
 - [NGINX](./nginx.md)
 - [ElasticSearch](ElasticSearch)

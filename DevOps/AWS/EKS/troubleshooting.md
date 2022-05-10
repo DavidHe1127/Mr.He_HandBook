@@ -32,6 +32,18 @@ It allows you to use a resource name to select a matching pod to port forward to
 kubectl port-forward -n=monitoring sts/prometheus-kube-prometheus-stack-prometheus 9090
 ```
 
+### Res stuck in terminating state after deletion
+
+Check `finalizer` in resource definition as it might has value as dependency. `finalizer` is a mechanism to help prevent dependent resource being deleted accidentally. K8S will check regularly and only delete the resource when it's safe to do so.
+
+For quick fix, see [Namespace stuck in terminating state](https://craignewtondev.medium.com/how-to-fix-kubernetes-namespace-deleting-stuck-in-terminating-state-5ed75792647e)
+
+For more details, see[what is k8s finalizer](https://www.howtogeek.com/devops/what-are-finalizers-in-kubernetes-how-to-handle-object-deletions/)
+
+
+### Delete Custom Resource
+
+In `k9s`, type `crd` to list custom resources and find the one you want to delete.
 
 ### Practical guide
 

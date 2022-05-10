@@ -13,7 +13,7 @@
 
   - [Rename Branch](#rename-branch)
   - [Check Branch presence](#check-branch)
-  - [Remove branch](#remove-branch)
+  - [Remove branch(es)](#remove-branches)
   - [Check Branch merge status](#if-merge-into-master)
   - [Remove local branches that their remote counterparts no longer exist](#remove-non-tracking-local-branches)
 
@@ -160,11 +160,12 @@ List all branches on remote. Pass optional `BRANCH` to see if that specific bran
 git ls-remote --heads git@bitbucket.org:zentri/zdc.git [BRANCH]
 ```
 
-## remove-branch
+## remove branches
 
 ```shell
 git branch -d [BRANCH] // del local one
 git push origin :[BRANCH] // del remote one
+git br | grep IO-9 | xargs git branch -D // remove ones starting their names with IO-9
 ```
 
 ## if-merge-into-master
