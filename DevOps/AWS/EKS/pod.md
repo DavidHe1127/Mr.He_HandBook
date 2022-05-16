@@ -5,6 +5,7 @@
 - [Deployment](#deployment)
 - [Affinity and Anti-affinity](#affinity-and-anti-affinity)
 - [Container Liveness and Readiness](#liveness-and-readiness)
+- [Pod Disruption Budget](#pod-disruption-budget)
 - [CrashLoopBackOff](#crash-loop-backoff)
 
 ### Basics
@@ -185,6 +186,19 @@ Liveness probe indicates whether the Container is running. If the liveness probe
 Readiness probe indicates whether the Container is ready to serve traffic. A Pod is considered ready when all of its containers are ready. One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers. If left undefined, the default state is Success.
 
 K8S relies on the readiness probes. During a rolling update, it will keep the old container up and running until the new service declares that it is ready to take traffic. Therefore the readiness probes have to be implemented correctly.
+
+### Pod Disruption Budget
+
+Protect your app from voluntary disruptions including but not restricted to:
+
+- node group replacement
+- node scaling up/down
+
+
+
+
+It however doesn't add protection when data centre has an outage.
+
 
 ### CrashLoopBackOff
 

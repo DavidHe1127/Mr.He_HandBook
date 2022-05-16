@@ -1,19 +1,8 @@
 # Mr.He HandBook
 
-A rich collection of all knowledges/concepts/tips etc for quick reference.
+A compilation of all I know but sometimes forget for quick reference.
 
-<details>
-<summary><strong>dummy</strong></summary>
-  Dummy
-</details>
-
-## Resources
-
-### React
-
-- [Learn Storybook](https://www.learnstorybook.com/react/en/test/)
-
-### Cool tools that help u be productive
+### Tooling
 
 - [Mockaroo - Mock data generator & API](https://mockaroo.com/)
 - [Mailinator - Disposable temporary email](https://mailinator.com/)
@@ -30,3 +19,5 @@ A rich collection of all knowledges/concepts/tips etc for quick reference.
 - [Code snippet screenshot generator](https://carbon.now.sh/)
 - [Escape JSON](https://github.com/nikmilson/escape-json)
 - [Texted based flow diagram](https://asciiflow.com/#/)
+- [TS error translator](https://ts-error-translator.vercel.app/)
+- [VScode remote ssh](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)

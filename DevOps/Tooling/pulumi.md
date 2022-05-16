@@ -126,7 +126,7 @@ foo.bucketName
 
 ## Secret Management
 
-Either use one of built-in encryption providers i.e `awskms` and `passphrase` or use SSM secured string or Secret Manager. With built-in encryption providers optoin, encrypted values are kept alongside your code while the latter option, encrypted values are kept on remote storage and decrypted when used.
+Either use one of built-in encryption providers i.e `awskms` and `passphrase` or use SSM secured string or Secret Manager. With built-in encryption providers option, encrypted values are kept alongside your code while the latter option, encrypted values are kept on remote storage and decrypted when used.
 
 ---
 

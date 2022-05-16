@@ -116,13 +116,21 @@ ref: refs/heads/master
 
 [Read more](https://www.softwhy.com/article-8500-1.html)
 
-## Origin Master
+## Origin/HEAD
 `HEAD` is a pointer always pointing to the current branch (latest commit).
 
-- `origin/master` is a remote branch (which is a local copy of the branch named `master` on the remote named `origin`)
-- `master` is a local branch
-- `origin` is remote
-- `origin/HEAD` in git logs identifies default branch on remote (origin)
+```
+ b81c023 - (HEAD, origin/main, origin/HEAD, main) Merge pull request #283 from abc/feat-100 (36 minutes ago) <David He>
+```
+
+Above log tells you that:
+
+- local `HEAD`
+- main branch on origin (remote)
+- remote `HEAD`
+- local `main`
+
+All points to `b81c023` commit sha.
 
 ## Refspec
 

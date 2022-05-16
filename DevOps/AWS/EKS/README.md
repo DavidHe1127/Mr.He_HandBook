@@ -10,6 +10,7 @@
 - [Node](./node.md)
 - [Pod](./pod.md)
 - [Storage](./storage.md)
+- [ConfigMap & Secret](./configMap-secret.md)
 - [Metadata](./metadata.md)
 
 - [Autoscaling](./autoscaling.md)
@@ -17,6 +18,7 @@
 - [Logging](./logging.md)
 - [Monitoring](./monitoring.md)
 - [Useful code snippets](useful-code-snippet)
+- [Design Pattern](./design-pattern.md)
 - Awesome posts
   - [k8s best practices](https://www.weave.works/blog/kubernetes-best-practices)
 
