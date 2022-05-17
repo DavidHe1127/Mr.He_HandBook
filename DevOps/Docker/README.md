@@ -9,7 +9,7 @@
   - [Signals](#signals)
   - [HealthCheck](#health-check)
   - [Security](#security)
-  - [Processes](./process.md)
+  - [Process](./docker-process.md)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
   - [Behind a proxy server](#behind-a-proxy-server)
