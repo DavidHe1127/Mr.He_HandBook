@@ -4,10 +4,10 @@
 
 ### ENTRYPOINT and CMD
 
-- In Linux, `init` process is run on `PID 1` and cannot be killed even with `sudo`. However, this is not the case inside the container.
+- In Linux, `init` process is run on `PID 1` and cannot be killed even with `sudo`. However, `PID 1` can be killed via `init`, `tini` or handle signals in the app when it's run on `PID 1`.
 - `ENTRYPOINT` specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 - `CMD` specifies arguments that is fed to `ENTRYPOINT`.
-- Process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`.
+- Process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`. When PID 1 exits, the container will exit.
 - Always use exec format.
 
 ```Dockerfile
@@ -41,6 +41,6 @@ STOPSIGNAL SIGTERM
 
 If PID 1 is `init` - run docker with `--init` or use `tini`, PID 1 will help a) handle signal forwarding to its child process b) reap zombie processes. In this case, containers can be terminated via `ctrl+c` that sends interrupt (SIGINT) to the process.
 
-If PID 1 is anything but `init` - program specified in `ENTRYPOINT` or `CMD`, container will not stop/terminate when `ctrl+c` from host unless there is code to handle `SIGTERM`, `SIGINT`.
+If PID 1 is anything but `init`, container will not stop/terminate when `ctrl+c` from host unless there is code to handle `SIGINT` and exit explicitly.
 
 However, container can still be killed from host via `docker kill/stop`. Note, without signal handling code, `docker stop` will have to wait `10s` before issuing `SIGKILL` to forcefully kill the container in the end.
