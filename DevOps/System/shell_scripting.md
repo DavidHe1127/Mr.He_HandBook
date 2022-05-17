@@ -87,6 +87,7 @@ fi
 # has no special meaning and could be replaced with any non-null string.
 # It is there primarily because just [ -z $parameter ] would also return true if parameter were set to null (empty string)
 # If parameter contains spaces in between different parts of string, then use [ ! "${#parameter}" == 0 ]
+# without +x, it might error out with `unbound variable parameter` when it's not set & we terminate the process when such happens via set -u
 if [ -z ${parameter+x} ]
 then
   echo 'parameter is unset'

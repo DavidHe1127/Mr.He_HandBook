@@ -9,7 +9,7 @@
   - [Signals](#signals)
   - [HealthCheck](#health-check)
   - [Security](#security)
-  - [Processes](#processes)
+  - [Processes](./process.md)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
   - [Behind a proxy server](#behind-a-proxy-server)
@@ -35,12 +35,6 @@
 - References
   - [Run multiple instances of a service using docker-compose](https://pspdfkit.com/blog/2018/how-to-use-docker-compose-to-run-multiple-instances-of-a-service-in-development/)
 
-### Architecture
-
-Docker Engine aka Docker Daemon/Docker is architected as follow:
-
-![docker-arch](./docker-arch.png)
-
 ### Image and Container
 
 ![image-layers](image-layers.png)
@@ -48,10 +42,11 @@ Docker Engine aka Docker Daemon/Docker is architected as follow:
 - Base image is read-only while container layer allows read/write
 - Any changes only occur in container layer without touching base image
 - Container layer is added on top when a new container is started
+- Changes made to container layer persist even after container exits. They are lost after container is removed.
 - One can overwrite pre-baked contents with custom contents by means of volume
 - Not allowed to change history image
 
-### dockerfile
+### Dockerfile
 
 Layers are also known as intermediate images. Each instruction in `Dockerfile` composes one layer of final image. More layers more complex. So try to group instructions.
 
@@ -70,40 +65,6 @@ Docker images are layered. When you build a new image, Docker does this for each
 - Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
 - Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
 - Each line of instruction should only do things relating to that layer.
-
-#### ENTRYPOINT VS CMD
-
-The ENTRYPOINT specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
-The CMD specifies arguments that will be fed to the ENTRYPOINT.
-
-Given example docker file below:
-
-```dockerfile
-ENTRYPOINT ["/bin/chamber", "exec", "production", "--"]
-CMD ["/bin/service", "-d"]
-```
-if we run `docker run myservice`, container will be created with below arguments:
-`["/bin/chamber", "exec", "production", "--", "/bin/service", "-d"]`. It looks similar to `/bin/chamber exec production -- /bin/service -d` which is the command container is run on start-up.
-
-We can override `CMD` by doing `docker run myservice /bin/debug`. In this case, command `["/bin/chamber", "exec", "production", "--", "/bin/debug"]` will be executed.
-
-We can also override `ENTRYPOINT` by doing `docker run --entrypoint /bin/logwrap myservice`. In this case, command `["/bin/logwrap", "/bin/service", "-d"]` will be executed.
-
-If you want to make an image dedicated to a specific command you will use `ENTRYPOINT ["/path/dedicated_command"]`. Otherwise, if you want to make an image for general purpose, you can leave **ENTRYPOINT** unspecified and use `CMD ["/path/dedicated_command"]` as you will be able to override the setting by supplying arguments to docker run.
-
-### Signals
-
-When running `docker kill` or `docker stop`, the main process inside the container will receive a signal.
-
-`docker stop` - stop a running container. Main process will receive a `SIGTERM` at which point, docker is given time to do cleanup. If the process hasn't exited within the grace period (can be specified) a SIGKILL signal will be sent.
-
-`docker kill` - send `SIGKILL` to kill the main process inside the container leaving no chance for cleanup.
-
-Sometimes app may be configured to listen to a different signal - `SIGUSR1` and `SIGUSR2`, for example. In these instances, you can use the STOPSIGNAL instruction in Dockerfile to override the default.
-
-```Dockerfile
-STOPSIGNAL SIGTERM
-```
 
 ### HealthCheck
 
@@ -155,12 +116,6 @@ You can do this:
 ports:
   - "127.0.0.1:8001:8001"
 ```
-
-### Processes
-
-- process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`.
-
-![docker processes](docker-process.svg)
 
 ### Data Persistence
 
