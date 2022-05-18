@@ -4,7 +4,8 @@
 
 ### ENTRYPOINT and CMD
 
-- In Linux, `init` process is run on `PID 1` and cannot be killed even with `sudo`. However, `PID 1` can be killed in containers via `init`, `tini` or handle signals in the app when it's run on `PID 1`.
+- In Linux, `init` process is run on `PID 1` and cannot be killed even with `sudo`. It ignores any signals unless a handler for that signal is explicitly declared.
+- A process running as PID 1 inside a container is treated specially by Linux - it ignores any signals with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so. Alternatively, use `init`, `tini`.
 - `ENTRYPOINT` specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 - `CMD` specifies arguments that is fed to `ENTRYPOINT`.
 - Process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`. When PID 1 exits, the container will exit.
