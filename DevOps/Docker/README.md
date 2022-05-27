@@ -272,7 +272,7 @@ USER david
 FROM <namespace>/<image>:<tag_version>
 USER root
 ```
-- Keep each image as lean as possible. Only include things required. This maximizes performance and minimizes security risks. Consider to use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/).
+- Keep each image as lean as possible. Only include things required. This maximizes performance and minimizes security risks. Consider to use [multi-stage builds](./Dockerfile).
 - Use twistlock/clair to scan images for security holes.
 - Don't store sensitive data. In case, developers inadvertently push images to public registry.
 - Make sure your containers only write data to volumes. Use `tmpfs` for small temp files.
