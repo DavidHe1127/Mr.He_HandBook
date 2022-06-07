@@ -34,6 +34,11 @@ vCPU represents a portion of the underlying physical CPU that is assigned to a p
 
 1 thread = 1 vCPU and 1 core = 2 vCPU/threads. EC2 supports multithreading which enables multiple threads to run concurrently on a single CPU core through logical core(?). With NodeJS app, it will only use one thread/vCPU.
 
+### CPU Arch difference
+
+- The computational performance of AWS’s `ARM` EC2 instances is similar to that of the `x86_64` instances.
+- Considering that `ARM` instances are significantly cheaper, the cost effectiveness of `ARM` instances are better than `x86_64` instances.
+
 ### Security Group
 
 - For ingress rule, it specifies traffic source and destination port range etc. i.e given `fromPort` 0 and `toPort` 65535 basically means the SG allows conn to any ports from 0 to 65535 inclusive to be established.
@@ -55,7 +60,7 @@ i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resol
 
 Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot.
 
-One thing to note is after instance reboots, vol other than root one will be unmounted!!! You need to mount it back.
+One thing to note is after instance reboots, volume other than root one will be unmounted!!! You need to mount it back.
 
 [How to mount ebs during boot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
 

@@ -145,14 +145,11 @@ Read more around this on [IAM Q&A](https://aws.amazon.com/iam/faqs/)
 When used in EC2 instances or containers, it instructs SDK/development tool how to find credentials they need to be able to assume a role specified in `role_arn`. i.e
 
 ```
-[david-dev]
+[aws-dev]
 credential_source = Ec2InstanceMetadata
-role_arn = arn:aws:iam::123456789012:role/david-admin
-[david-sandbox]
-credential_source = Ec2InstanceMetadata
-role_arn = arn:aws:iam::123456789012:role/david-sandbox
+role_arn = arn:aws:iam::123456789012:role/david-dev
 ```
-This uses metadata service to retrieve credentials which will be used to assume `david-admin` role. Use case would be dynamically assign role to a build agent to use as per profile in use.
+This uses metadata service to retrieve credentials which will be used to assume `david-dev` role. Use case would be dynamically assign role to a build agent to use as per profile in use.
 
 Similarly, you can also get temp credentials through a source profile:
 
@@ -161,7 +158,7 @@ Similarly, you can also get temp credentials through a source profile:
 role_arn = arn:aws:iam::123456789012:role/marketingadminrole
 source_profile = user1
 ```
-When using `marketingadmin` in CLI, CLI automatically looks up the credentials for the linked `user1` profile and uses them to request temporary credentials for the specified `marketingadminrole`. The CLI uses the `sts:AssumeRole` operation in the background to accomplish this.
+When using `marketingadmin` as `AWS_PROFILE` in CLI, CLI automatically looks up the credentials for the linked `user1` profile and uses them to request temporary credentials for the specified `marketingadminrole`. The CLI uses the `sts:AssumeRole` operation in the background to accomplish this.
 
 
 ### Permission Boundary

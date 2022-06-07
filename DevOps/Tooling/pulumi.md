@@ -66,6 +66,7 @@ config.get('region');
 
 ## Facts
 
+- When updating, Pulumi tries to create new resources before destroying old ones. If there is a resource conflict issue, use `delete_before_update`.
 - `pulumi login` is used for state management. i.e `pulumi login s3://parrodise-state` lets you sync your stack state to remote s3 bucket.
 - Stacks will be synced back to your configured state management service like s3. i.e `stack ls`will return all stacks managed by s3.
 - Provider plugins will be installed into `.pulumi/plugins` folder upon installing deps like `@pulumi/aws`. In case run into plugin related error, i.e version mismatch simply delete `plugins` folder and reinstall it.

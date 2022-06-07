@@ -6,6 +6,7 @@
 - [Use WAF to protect your service](#use-waf-to-protect-your-service)
 - [Tag all taggable resources](#tag-all-taggable-resources)
 - [Benefits of using webpack](#benefits-of-using-webpack)
+- [Deploy serverless with CI/CD tooling based on EC2](#deploy-serverless-from-ec2)
 
 ### Thin handler
 
@@ -65,3 +66,15 @@ provider:
 
 - Use typescript or Babel
 - Treeshake unused modules to reduce total bundle size. This will save cold start time as bundle to be loaded into lambda runtime is smaller.
+
+### Deploy serverless from EC2
+
+If authentication is configured in a way that there is no `.aws/credentials` file:
+
+```
+[aws-dev]
+credential_source = Ec2InstanceMetadata
+role_arn = arn:aws:iam::123456789012:role/david-dev
+```
+
+then, refer to solution in comment of [this](https://github.com/serverless/serverless/issues/9271).
