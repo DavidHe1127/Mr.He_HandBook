@@ -16,9 +16,26 @@
 The number of alarm data points that must breach the threshold during the evaluation period for the alarm to go off.
 
 ```
-# UnHealthyHostRate breaches threshold of 0.4 for one time in 4 mins of window
-Threshold
-UnHealthyHostRate >= 0.4 for 1 datapoints within 4 minutes
+# alarm will trigger if GroupPendingInstances > 10 in 5 consecutive periods of 60 seconds
+MetricName: GroupPendingInstances
+Namespace: AWS/AutoScaling
+Statistic: Maximum
+Period: 60
+# when DatapointsToAlarm omit, it defaults to the same value of EvaluationPeriods
+EvaluationPeriods: 5
+ComparisonOperator: GreaterThanThreshold
+Threshold: 10
+
+# similar as above but 3 out of 5 periods are breaching the threshold. Note doesn't have to be 3 periods in a row though.
+# for example, it can be 1st/3rd/4th of 5 are breaching.
+MetricName: GroupPendingInstances
+Namespace: AWS/AutoScaling
+Statistic: Maximum
+Period: 60
+EvaluationPeriods: 5
+DatapointsToAlarm: 3
+ComparisonOperator: GreaterThanThreshold
+Threshold: 10
 ```
 
 Alarm when average **(Statistics)** CPUUtilization **(Metric)** is over 70%**(Threshold)** in the period of 30 minutes **(Period/Aggregation Period)** with 2 DataPoints out of 3 evaluation period **(>70% happens 2 times out of 90 mins - 3x30 mins)**.
