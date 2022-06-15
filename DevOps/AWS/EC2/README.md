@@ -19,8 +19,9 @@
 ## [EBS](ebs.md)
 
 ## AutoScaling
+
 - [Cooldown](#cooldown)
-- [LaunchConfiguration](#launch-configuration)
+- [Zone Rebalancing](#zone-rebalancing)
 
 ### How EC2 works?
 
@@ -230,7 +231,7 @@ Threshold C - add 3 instances when CPU Utilization is between 70% and 90%
 
 NOTE: There are multiple thresholds
 
-#### Target Tracking:
+#### Target Tracking
 
 It’s automatic. All you need to do is pick a metric, set the value (target) and that’s it. ASG will maintain that value. In addition, an associated alarm will be created and managed by AWS as part of policy. When being triggered, actions will be performed to normalise the metric value. However you don't have much control over it.
 
@@ -244,6 +245,6 @@ It’s automatic. All you need to do is pick a metric, set the value (target) an
 Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown. Scaling-specific cooldown is useful. i.e lesser wait time in scale-in activity. EC2 termination process is faster than launch one so it might not need to wait 5 mins before next ec2 needs to be killed. This leads to faster scale-in experience
 - When multiple instances involved in a single scaling activity, cooldown starts when the last instance finishes launching/terminating. i.e Once 1st instance is launched, cooldown steps in.
 
-#### Launch Configuration
+#### Zone Rebalancing
 
-- One remarkable issue with it is once Launch Configuration is created, you cannot change it i.e cannot change AMI with it. You have to create a new Launch Configuration based on the existing one with changed AMI and then update ASG to point to the new one.
+During zone rebalancing, because ASG attempts to launch new instances before terminating the old ones, being at or near the specified maximum capacity could impede or completely halt rebalancing activities. To avoid this problem, the system can temporarily exceed the specified maximum capacity of a group by a 10 percent margin (or by a 1-instance margin, whichever is greater) during a rebalancing activity. The margin is extended only if the group is at or near maximum capacity and needs rebalancing, either because of user-requested rezoning or to compensate for zone availability issues. The extension lasts only as long as needed to rebalance the group (typically a few minutes).

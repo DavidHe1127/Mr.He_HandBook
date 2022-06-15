@@ -59,7 +59,7 @@ signature = header_alg(xxxxxxx.yyyyyyyy, YOUR_SECRET);
 - With JWT, you should NEVER EVER store token in db on server side. Instead it needs to be stored safely on client side.
 - It makes scaling easier since any server in a cluster can serve the request given no session is kept on the server side.
 - People use JWT to protect their APIs.
-![jwt-based-auth](./jwt-based-auth.png)
+  ![jwt-based-auth](./jwt-based-auth.png)
 
 #### Downsides
 
@@ -183,11 +183,13 @@ This is often used by hacker so that they can come up with accurate hacking appr
 
 ### SSL Cert
 
+A conventional cert protects only one domain.
+
 `subject` shows CN (common name) that is the DNS you wish to secure. This value needs to match request hostname i.e domain in your browser's address bar. If not, you will get `Common Name Mismatch` error.
 
 The above check is aka Hostname Verification that involves a server identity check to ensure that the client is talking to the correct server and has not been redirected by a man in the middle attack.
 
-The check involves looking at the certificate sent by the server, and verifying that the `dnsName` in the `subjectAltName` field of the certificate matches the host portion of the URL used to make the request.
+The check involves looking at the certificate sent by the server, and verifying that domains in the `SAN/CN` (in the order of preference) field of the certificate matches the host portion of the URL used to make the request.
 
 ```
 -----BEGIN CERTIFICATE-----
@@ -205,10 +207,12 @@ $ openssl s_client -connect some-domain.com.au:24223
 
 #### SAN Cert
 
-- SAN (Subject Alternate Name) cert can be used to protect multiple hostnames by a single cert. i.e www.ssl.com/faq.ssl.com/ssl.com/tools.ssl.com can all be protected by one SAN cert.
+- SAN (Subject Alternate Name) - an optional property in the cert can be used to protect multiple hostnames by a single cert. i.e www.ssl.com/faq.ssl.com/ssl.com/tools.ssl.com can all be protected by one SAN cert.
+- `CN` can only contain one entry: either a wildcard or non-wildcard name. It's not possible to specify a list of names covered by an SSL certificate `CN`. `SAN` was introduced to solve this limitation.
 - SAN infor can be found in the cert by looking for `Extension: Subject Alternative Name` in chrome.
-- In modern cert validation process, if `SAN` is found, always checks it first and ignores `CN`. One should put all protected domains in `SAN`.
-- Consider using SAN if you want to protect multiple **domains** i.e `abc.com/bcd.com`. If multiple subdomains under one root domain such as `www.ssl.com/faq.ssl.com/tools.ssl.com`, consider using `SSL Wildcard Cert`.
+- In modern cert verification process, if `SAN` is found, always checks it first and ignores `CN`. One should put all protected domains in `SAN`.
+- Only non-Wildcard names can be added to `SAN`.
+- Consider using SAN if you want to protect multiple **domains** i.e `abc.com/bcd.com`. If multiple subdomains `www/faq/tools` under the same root domain `ssl.com`, consider using `SSL Wildcard Cert`.
 
 References
 

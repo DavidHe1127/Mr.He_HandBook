@@ -1,6 +1,7 @@
 ## KMS
 
 - [Key concepts](#key-concepts)
+- [Best practice](#best-practice)
 - [References](#references)
 
 ### Key Concepts
@@ -42,6 +43,14 @@ Decryption:
 #### Key Policy
 
 To allow access to a KMS CMK, you must use the key policy, either **alone** or in combination with IAM policies or grants. IAM policies by themselves are not sufficient to allow access to a CMK, though you can use them in combination with a CMK's key policy.
+
+#### Best Practice
+
+Use the pattern below to specify a key. Big upside than using arn is when key is recreated no need to update the arn as long as alias stays the same.
+
+```
+'ForAnyValue:StringLike': { 'kms:ResourceAliases': 'alias/your-key-alias' },
+```
 
 ### References
 

@@ -4,6 +4,7 @@
   - [Pass role](#pass-role)
   - [service-linked role](#service-linked-role)
 - [Policy](#policy)
+- [Conditions](#conditions)
 - [Federated Users](#federated-users)
 - [Credentials lookup](#credentials-lookup)
 - [Permission Boundary](#permission-boundary)
@@ -15,54 +16,16 @@
 
 A role consists of 2 parts:
 
-- `Trust Policy` - is a policy that does nothing more than state `who` can assume a role
+- `Trust Policy` - is a policy that does nothing more than state `who` can assume (use) this role
 - `Permissions Policy` - `What` actions can the owner of this role take to `which` resources
 
-Note when creating roles in the console, we don't really worry about trust policy since the service we pick will be served as `who`.
+Note when creating roles in the console, we don't really worry about trust policy since the service we pick will be served as `who` aka identity-based policy.
 
 #### Assume a role
 
 Assuming a role means asking Security Token Service (STS) to provide you with a set of temporary credentials -- role credentials -- that are specific to the role you want to assume.
 
-Let's grant `Code Pipeline` service permission to assume a role to be able to perform operations on `Code Build` service.
-
-As shown in the above section, we need to firstly create a role with trust policy and then attach permission policy to the role.
-
-Trust policy:
-```json
-{
-  "Version":"2012-10-17",
-  "Statement": {
-    "Effect":"Allow",
-    "Principal": {
-      "Service": "codepipeline.amazonaws.com"
-    },
-    "Action":"sts:AssumeRole"
-  }
-}
-```
-
-This means `codepipeline` service can assume this role.
-
-Next is permission policy:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "codebuild:BatchGetBuilds",
-        "codebuild:StartBuild"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-```
-
-For all identities under an account to assume a role, simply specify like this `arn:aws:iam::123456789012:root` in principal field.
+For all identities under an account to be able to assume a role, simply specify `arn:aws:iam::123456789012:root` in the principal field.
 
 #### Pass role
 
@@ -133,6 +96,51 @@ Resource-based Policy
 - Attached to a resource.
 - It defines **what** actions is **allowed/denied** on which **resource** by **who** or which **resource**
 - Can have `Principal`.
+
+### Conditions
+
+```
+{
+  "Version": "2012-10-17",
+  "Statement": {
+    "Effect": "Deny",
+    "Action": "*",
+    "Resource": "*",
+    "Condition": {
+      "NotIpAddress": {
+        "aws:SourceIp": ["192.168.21.55/32"]
+      },
+      "Bool": {
+        "aws:ViaAWSService": "false"
+      }
+    }
+  }
+}
+```
+
+can be interpreted as
+
+```
+if (sourceIp !== "192.168.21.55/32" && viaAWSService === false) {
+  deny actions
+}
+```
+
+in other words, if the call is made by an AWS service, the policy doesn't apply. Policy applies only if the call is made from an user/role AND principal ip is not `192.168.21.55/32`. It's useful when you want to force IAM user/role to use specific IP to interact with services but don't want to force the same thing onto AWS services.
+
+#### aws:CalledVia* and aws:ViaAWSService
+
+Consider a call to reading a piece of data in a DynamoDB table, encrypted with a KMS key. In order to decrypt the data, DynamoDB will have to call kms:Decrypt - and this will be done using the credentials of the principal that asked for the data to be read from the DynamoDB table. Therefore - that principal will have to have permissions to the DynamoDB table AND to kms:Decrypt on the KMS key which has to be used to decrypt it.
+
+Service Role and Service Linked Role are direct caller to other services.
+
+#### PrincipaIsAWSService vs aws:ViaAWSService
+
+The difference between them is the `PrincipaIsAWSService` will have a service principal, such as `cloudtrail.amazonaws.com` while the `viaAWSService` would use an IAM Principal (IAM role or User, but not a service role or service-linked role).
+
+The exact evaluation for aws:PrincipalIsAWSService: "The request context key is set to true when a service uses a service principal to perform a direct action on your resources. The context key is set to false if the service uses the credentials of an IAM principal to make a request on the principal's behalf. It is also set to false if the service uses a service role or service-linked role to make a call on the principal's behalf."
+
+The exact evaluation for aws:ViaAWSService: "The request context key returns true when a service uses the credentials of an IAM principal to make a request on behalf of the principal. The context key returns false if the service uses a service role or service-linked role to make a call on the principal's behalf. The request context key also returns false when the principal makes the call directly."
 
 ### Federated Users
 
