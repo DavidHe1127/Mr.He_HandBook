@@ -234,7 +234,7 @@ metric_relabel_configs:
   action: drop
 ```
 
-`metric_relabel_configs` by contrast are applied after the scrape has happened, but before the data is ingested into TSDB. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s of resolution - show the latest 14s of data from TSDB.
+`metric_relabel_configs` by contrast are applied after the scrape has happened, but before the data is ingested into TSDB. If it has been scraped prior to adding change to drop it, you will probably see it coming up in console when executing query there. But it will disappear after 14s - the default resolution. Note, resolution is the distance (in time) between points on the graph.
 
 - To drop labels from all time series under a job:
 
@@ -258,3 +258,4 @@ metric_relabel_configs:
 [Technical terms for humans](https://valyala.medium.com/prometheus-storage-technical-terms-for-humans-4ab4de6c3d48)
 [Relabelling tricks](https://medium.com/quiq-blog/prometheus-relabeling-tricks-6ae62c56cbda)
 [Query](https://www.cnblogs.com/chanshuyi/p/04_quick_start_of_promql.html)
+Monitoring With Prometheus Ebook.

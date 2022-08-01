@@ -4,7 +4,7 @@
 - [Attach role to pod to allow aws access](#aws-access)
 - [Deployment](#deployment)
 - [Affinity and Anti-affinity](#affinity-and-anti-affinity)
-- [Container Liveness and Readiness](#liveness-and-readiness)
+- [Container Liveness and Readiness](#liveness)
 - [Pod Disruption Budget](#pod-disruption-budget)
 - [CrashLoopBackOff](#crash-loop-backoff)
 
@@ -179,11 +179,30 @@ To control which node the pod can/cannot run on in particular. Pod affinity is p
 
 - [pod affinity/anti-affinity](http://bazingafeng.com/2019/03/31/k8s-affinity-topologykey/)
 
-### Liveness and Readiness
+### Liveness
 
-Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the Container, and the Container is subjected to its restart policy. If a Container does not provide a liveness probe, the default state is Success.
+Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the container, and the container is subjected to its restart policy. If a container does not provide a liveness probe, the default state is Success. Also, it doesn’t wait for readiness probes to succeed.
 
-Readiness probe indicates whether the Container is ready to serve traffic. A Pod is considered ready when all of its containers are ready. One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers. If left undefined, the default state is Success.
+#### Readiness
+
+- Indicates whether the Container is ready to serve traffic.
+- A Pod is considered ready when all of its containers are ready.
+- One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers.
+- If left undefined, the default state is Success.
+- Readiness probes runs on the container during its whole lifecycle - it checks continously, see pod logs.
+- When all pods are unhealthy meaning they all fail readiness probes, then your service will receive 0 traffic.
+
+when readiness probe fails:
+```
+# pod
+NAME       READY   STATUS    RESTARTS   AGE
+notready   0/1     Running   0          17m
+
+# Events:
+Type     Reason     Age                 From    Message
+----     ------     ----                ----    -------
+Warning  Unhealthy  1s (x21 over 58s)  kubelet  Readiness probe failed: HTTP probe failed with statuscode: 500
+```
 
 K8S relies on the readiness probes. During a rolling update, it will keep the old container up and running until the new service declares that it is ready to take traffic. Therefore the readiness probes have to be implemented correctly.
 
@@ -194,11 +213,10 @@ Protect your app from voluntary disruptions including but not restricted to:
 - node group replacement
 - node scaling up/down
 
-
-
-
 It however doesn't add protection when data centre has an outage.
 
+[Read more](https://innablr.com.au/blog/what-is-pod-disruption-budget-in-k8s-and-why-to-use-it/)
+[Demo](https://www.youtube.com/watch?v=e2HjRrmXMDw)
 
 ### CrashLoopBackOff
 
@@ -206,4 +224,4 @@ A commonplace reason it happens
 
 > The Docker container must hold and keep the PID 1 running in it otherwise the container exit (A container exit when the main process exit). In the case of Docker, the process which is having PID 1 is the main process and since it is not running, the docker container gets stopped. When the container gets stopped, the Kubernetes will try to restart it(as we have specified the spec.restartPolicy as "Always").
 
-One workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file.
+One workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file to keep it running forever.

@@ -1,6 +1,7 @@
 ## Autoscaling
 
 - [HorizontalPodAutoscaler](#HorizontalPodAutoscaler)
+- [Prometheus Adapter](#prometheus-adapter)
 
 ### HorizontalPodAutoscaler
 
@@ -26,3 +27,7 @@ status:
   currentReplicas: 5
   desiredReplicas: 0
 ```
+
+### Prometheus Adapter
+
+Helps us to leverage the metrics collected by Prometheus and use them to make scaling decisions. HPA can only scale based on CPU/Mem.

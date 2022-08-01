@@ -69,3 +69,16 @@ sum(sum_over_time(net_conntrack_dialer_conn_failed_total{dialer_name="prometheus
 ```
 curl -G --data-urlencode 'match[]={__name__=~".+"}' http://localhost:9090/federate
 ```
+
+### Why no samples returned after time series stop being produced for a while?
+
+Either of 2 cases below will mark time series as stale and will not return to query
+
+- A scrape fails then all time series from the previous scrape.
+- There's no samples within the 5 minutes before the query.
+
+Sampling in Prom means pull time series from targets. See `sample-data-ingestion` diagram for difference from scaping.
+
+### what is deriv?
+
+In the context of monitoring, a derivative of a metric is the rate at which the metric value changes.
