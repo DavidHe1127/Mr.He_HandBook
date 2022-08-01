@@ -43,4 +43,4 @@
 - Current offset -> Sent Records -> This is used to avoid resending same records again to the same consumer.
 - Committed offset -> Processed Records -> It is used to avoid resending same records to a new consumer in the event of partition rebalance or consumer failover so the new consumer will pick from where it's left off.
 
-<img src="./consumer-offset.png" width="320" />
+<img src="./consumer-offset.png" width="640" />
