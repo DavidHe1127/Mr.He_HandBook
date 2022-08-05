@@ -35,6 +35,7 @@
 - Each consumer in a consumer group processes records and only one consumer in that group will get the same record. consumers in a consumer group load balance record processing.
 - Number of consumers =< number of partitions. If more consumer is added, it will be idle.
 - Once event is processed, consumer should commit the offset. The committed offset is stored in `topic` as `__consumer_offsets`.
+- When the consumer lag is significant or is constantly growing. That means that the data is not processed fast enough.
 
 ### Offset
 
