@@ -5,7 +5,7 @@
 ### ENTRYPOINT and CMD
 
 - In Linux, `init` process is run on `PID 1` and cannot be killed even with `sudo`. It ignores any signals unless a handler for that signal is explicitly declared.
-- A process running as PID 1 inside a container is treated specially by Linux - it ignores any signals with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so. Alternatively, use `init`, `tini`.
+- A process running as PID 1 inside a container is treated specially by Linux - it ignores any signals with the default action. So, the process will not terminate on SIGINT or SIGTERM unless it is coded to do so. Alternatively, specify `--init` flag or use `tini` for docker versions not supporting that flag.
 - `ENTRYPOINT` specifies a command that will always be executed when the container starts, by default it is `/bin/sh -c`.
 - `CMD` specifies arguments that is fed to `ENTRYPOINT`.
 - Process specified in `ENTRYPOINT` or `CMD` becomes the main process owning pid `1`. When PID 1 exits, the container will exit.
@@ -40,7 +40,7 @@ STOPSIGNAL SIGTERM
 
 ### Init
 
-If PID 1 is `init` - run docker with `--init` or use `tini`, PID 1 will help a) handle signal forwarding to its child process b) reap zombie processes. In this case, containers can be terminated via `ctrl+c` that sends interrupt (SIGINT) to the process.
+If PID 1 is `init` - run docker with `--init`, PID 1 will help a) handle signal forwarding to its child process b) reap zombie processes. In this case, containers can be terminated via `ctrl+c` that sends interrupt (SIGINT) to the process.
 
 If PID 1 is anything but `init`, container will not stop/terminate when `ctrl+c` from host unless there is code to handle `SIGINT` and exit explicitly.
 
