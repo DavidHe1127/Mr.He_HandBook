@@ -10,7 +10,7 @@
 - [Connect to EC2](#connect-to-ec2)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
-- [Spot Instance](/spot-instance.md)
+- [Spot Instance](spot-instance.md)
 - [UserData](#user-data)
 - [Notes](#notes)
 
