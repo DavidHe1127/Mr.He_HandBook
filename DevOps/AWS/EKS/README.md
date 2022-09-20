@@ -16,6 +16,7 @@
 - [Autoscaling](./autoscaling.md)
 - [Tooling](./tooling.md)
 - [Logging](./logging.md)
+- [Backup](./backup.md)
 - [Monitoring](./monitoring.md)
 - [Useful code snippets](useful-code-snippet)
 - [Design Pattern](./design-pattern.md)
