@@ -1,5 +1,7 @@
 # Spot Instances
 
+> Unverified advice: use ASG with spot instances rather than Spot Fleet w/ auto-scaling/ELB attaching.
+
 ## Allocation Strategy
 
 While it can be specified to use spot instances through launch template, a preferred option is through auto-scaling group. Because any changes made to it require a new version of template while it's not the case when setting it through auto-scaling group.
@@ -58,3 +60,5 @@ Proactively attempting to replace spot instances emitting `rebalance recommendat
 It can arrive sooner than 2-min interruption notice.
 
 When there is a risky instance, ASG will spin up a new instance and follow normal process to replace the risky one - detach it from elb, drain conns, run shutdown hook etc.
+
+Rebalance Recommendation can be simulated via [FIS](https://aws.amazon.com/blogs/compute/implementing-interruption-tolerance-in-amazon-ec2-spot-with-aws-fault-injection-simulator/)
