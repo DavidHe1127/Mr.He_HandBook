@@ -11,64 +11,102 @@
 
 - Live beyond pod/node restarts
 - Cluster level resource. That is available to all ns.
+- `StorageClass` describes storage offering in cluster.
 - Local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster.
 - Provides a file system that can be mounted to the cluster, without being associated with any particular node. In AWS, the EBS Volume (PV) stays detached from your nodes as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the node that holds the Pod.
 - On AWS, it uses EBS CSI driver to help EKS manage EBS as PVs. Since k8s version `1.11`, no storage class is required.
 
+### Types
+
+#### Static Provisioning
+
+One downside is fixed sizing!
+
 ```yml
-kind: PersistentVolume
+# begin with creating PV
 apiVersion: v1
+kind: PersistentVolume
 metadata:
-  name: my-persistent-volume
+  name: test-pv
 spec:
+  accessModes:
+  - ReadWriteOnce
   capacity:
-    storage: 128M
-# The list of ways the persistent volume can be mounted
+    storage: 5Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    # vol needs to pre-exist
+    volumeHandle: vol-03c604538dd7d2f41
+  # limit what nodes this volume can be accessed from. Pods that use a PV will only be scheduled to nodes that are selected by the node affinity
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.ebs.csi.aws.com/zone
+              operator: In
+              values:
+                - us-east-2c
+
+---
+# allocate storage per claim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-claim
+spec:
+  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: test-pv
   accessModes:
     - ReadWriteOnce
-# Configuration settings for the persistent volume.
-# In this case, we're going to store the data on minikube.
-hostPath:
-  path: /data/my-persistent-volume/
-
----
-# allocation claim request
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: my-small-pvc
-spec:
-  # "Give me a persistent volume with at least
-  # 64MB of space where I can read and write."
   resources:
     requests:
-      storage: 64M
-accessModes:
-  - ReadWriteOnce
+      storage: 5Gi
 
 ---
-# use it via reference to pvc name
+# use it
 apiVersion: v1
+kind: Pod
 metadata:
-  name: my-pv-user-pod
+  name: app
 spec:
-  volumes:
-    # This volume is of type persistentVolumeClaim -- i.e.
-    # we need a persistent volume.
-    - name: a-persistent-volume
-      persistentVolumeClaim:
-        # Must match claim name from the PVC YAML
-        claimName: my-small-pvc
-# Mount the volume into the container and use it
-containers:
-  - name: pv-user
-    volumeMounts:
-      - name: a-persistent-volume
-        mountPath: /var/forever
-    image: alpine
+  containers:
+  - name: app
+    image: centos
     command: ["/bin/sh"]
-    # output written to PV
-    args: ["-c", "while true; do date >> /var/forever/file.txt; sleep 5; done"]
+    args: ["-c", "while true; do echo $(date -u) >> /data/out.txt; sleep 5; done"]
+    volumeMounts:
+    - name: persistent-storage
+      mountPath: /data
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: ebs-claim
 ```
+
+#### Dynamic Provisioning
+
+`StorageClass` needs to be created by admin. It watches for `PVC`s and dynamically creates `PV` to fulfill them when no existing `PV`s match claim requests.
+
+```yml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+# allows for PV upsizing. Simply edit PVC to set a bigger size. However, downsizing is not supported.
+# if you edit both the capacity of the PV and PVC to have the same size, k8s will assume that the backing volume size has been manually increased and that it doesn’t need to resize it.
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
+```
+
+Once done with PV, delete PVC so the taken PV can be re-used subject to `retain` policy in `StorageClass`.
+
+#### Notes
 
 Use `volumeClaimTemplates` instead when using it in a [StatefulSet](./pod.md#statefulset).
