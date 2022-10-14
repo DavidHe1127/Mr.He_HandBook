@@ -7,6 +7,7 @@
 - [Blackexporter](#blackexporter)
 - [Query](./query.md)
 - [Recording Rules](./recording-rules.md)
+- [Sharding](#sharding)
 - [Auth](#auth)
 - [CAdvisor](#cadvisor)
 - [Debugging Tips](#debugging)
@@ -124,6 +125,41 @@ Read [Prom storage](https://www.cnblogs.com/vovlie/p/7709312.html)
 - Monitor network endpoints such as HTTP, HTTPS, DNS, ICMP or TCP endpoints.
 - Mainly used to measure service response times.
 - The main difference between the Blackbox exporter and application instrumenting is that the Blackbox exporter only focuses on availability while instrumentations can go more into details about performance.
+
+### Sharding
+
+Horizontal sharding is architected to help with scaling. Multiple Prom works are deployed with each scraping a subset of holistic targets. There is also a primary Prom which then scrapes each worker one through federation.
+
+```yml
+scrape_configs:
+  - job_name: some_job
+    # Add usual service discovery here, such as static_configs
+    relabel_configs:
+    - source_labels: [__address__]
+      modulus:       4    # 4 shards. It's same as shard (worker Prom) count
+      target_label:  __tmp_hash
+      action:        hashmod
+    - source_labels: [__tmp_hash]
+      regex:         ^1$  # Only keep targets from the second shard. Index starts from 0
+      action:        keep
+```
+
+For example, say you have these instances with IPs raning from `192.168.1.1` to `192.168.1.10` from discovery. `hashmod` will evenly compute a modulo ([0-2] below) and then assign the output to `__tmp_hash`.
+
+```
+192.168.1.1:9090 shard number 2
+192.168.1.2:9090 shard number 1
+192.168.1.3:9090 shard number 0
+192.168.1.4:9090 shard number 1
+192.168.1.5:9090 shard number 0
+192.168.1.6:9090 shard number 0
+192.168.1.7:9090 shard number 2
+192.168.1.8:9090 shard number 0
+192.168.1.9:9090 shard number 1
+192.168.1.10:9090 shard number 0
+```
+
+See [scaling-and-federating-prometheus](https://www.robustperception.io/scaling-and-federating-prometheus/) for more details.
 
 ### Auth
 
