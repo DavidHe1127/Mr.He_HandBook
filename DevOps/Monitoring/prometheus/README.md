@@ -128,15 +128,16 @@ Read [Prom storage](https://www.cnblogs.com/vovlie/p/7709312.html)
 
 ### Sharding
 
-Horizontal sharding is architected to help with scaling. Multiple Prom works are deployed with each scraping a subset of holistic targets. There is also a primary Prom which then scrapes each worker one through federation.
+Horizontal sharding is architected to help with scaling. Multiple Prom workers are deployed with each scraping a subset of holistic targets. There is also a primary Prom which then scrapes each worker one through federation.
 
 ```yml
+# worker node example config
 scrape_configs:
   - job_name: some_job
     # Add usual service discovery here, such as static_configs
     relabel_configs:
     - source_labels: [__address__]
-      modulus:       4    # 4 shards. It's same as shard (worker Prom) count
+      modulus:       3    # 3 shards. It's same as shard (worker Prom) count
       target_label:  __tmp_hash
       action:        hashmod
     - source_labels: [__tmp_hash]
@@ -144,7 +145,20 @@ scrape_configs:
       action:        keep
 ```
 
-For example, say you have these instances with IPs raning from `192.168.1.1` to `192.168.1.10` from discovery. `hashmod` will evenly compute a modulo ([0-2] below) and then assign the output to `__tmp_hash`.
+```yml
+# master node example config
+scrape_config:
+  - job_name: slaves
+    honor_labels: true
+    metrics_path: /federate
+    params:
+      match[]:
+        - '{job="some_job"}'
+    static_configs:
+    - targets: ['Prom-0:9090', 'Prom-1:9090', 'Prom-2:9090']
+```
+
+For example, say you have these instances with IPs ranging from `192.168.1.1` to `192.168.1.10` from discovery. `hashmod` will evenly compute a modulo ([0-2] below) and then assign the output to `__tmp_hash`.
 
 ```
 192.168.1.1:9090 shard number 2
