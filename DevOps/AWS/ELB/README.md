@@ -6,7 +6,6 @@
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
   - [Cooldown period](#cooldown-period)
-  - [Spot instances](#spot-instances)
 - [ELB](#elb)
   - [Load balancer with HA](#load-balancer-with-ha)
   - [Surge Queue and Spillover count](#surge-queue-and-spillover-count)
@@ -41,19 +40,6 @@ No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch ala
 Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
-
-### Spot Instances
-
-![spot-instances](how-spot-pool-works.png)
-
-Most of time, you will receive a 2-min notice prior to instances termination. If your app is well architected, you might not necessarily need to do anything in 2-min window.
-
-Specify as many different pools as possile to minimise the chance of instance interruptions. Don't overbid on price as it won't warrant indefinite running of your instances. EC2 can still terminate them when they need capacity back.
-
-Refer to [Mixed instance type](https://github.com/DavidHe1127/dockerzon-ecs/tree/master/experiments/mixed-instance-type) for more details.
-
-[Spot instances tips](https://medium.com/swlh/aws-ec2-spot-useful-tips-dc3cd8210028)
-[Run mixed instances in ASG](https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 
 ---
 

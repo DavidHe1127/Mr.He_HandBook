@@ -12,6 +12,7 @@
 - [Unpublish a published package](#npm-unpublish)
 - [npx](#npx)
 - [unsafe-perm](#unsafe-perm)
+- [How npm handle module version conflicts](https://www.geeksforgeeks.org/how-does-npm-handle-version-conflicts/)
 
 ## Yarn
 

@@ -60,8 +60,6 @@ Alternatively, if org doesn't generate its own root cert, server can send a list
 
 Certbot is a very popular agent.
 
-![How Https work](./how_https_work.png)
-
 ### CA
 
 - Verify identity of servers clients trying to connect. It's done by verifying the cert servers respond with against CAs installed on clients' browsers.

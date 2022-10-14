@@ -31,6 +31,21 @@ call_counter_total{instance="movies", job="movies_test", name="movies", path="/m
 {} 0.49150783681939825
 
 # sum without(job)(rate(call_counter_total[1m])) === rate(call_counter_total[1m]) on values except for label discrepancy
+
+# sum vs sum_over_time
+request_count{a=1}  1,1,1,1,1
+request_count{a=2}  1,1,1,1,1
+
+sum(request_count)
+# {} 2,2,2,2,2
+
+sum_over_time(request_count[5s])
+# request_count{a=1}  5
+# request_count{a=2}  5
+
+# use of Grafana global var. __range is specified in the dashboard time range view (calendar)
+# sum of all time series values over set of time.
+sum_over_time(METRIC{}[${__range}])
 ```
 
 ### Result Type
@@ -69,3 +84,21 @@ sum(sum_over_time(net_conntrack_dialer_conn_failed_total{dialer_name="prometheus
 ```
 curl -G --data-urlencode 'match[]={__name__=~".+"}' http://localhost:9090/federate
 ```
+
+### Why no samples returned after time series stop being produced for a while?
+
+Either of 2 cases below will mark time series as stale and will not return to query
+
+- A scrape fails then all time series from the previous scrape.
+- There's no samples within the 5 minutes before the query.
+
+Sampling in Prom means pull time series from targets. See `sample-data-ingestion` diagram for difference from scaping.
+
+### what is deriv?
+
+In the context of monitoring, a derivative of a metric is the rate at which the metric value changes.
+
+### functions
+
+- `rate/irate/increase/resets` ONLY work properly for counter metrics, as they interpret any decrease in value over time as a counter reset. In the case of the rate()-style functions, these resets will be approximated away and only positive rates are computed, leading to totally incorrect results when using these functions on gauge metrics.
+- `delta/idelta/deriv/predict_linear` ONLY work properly for gauge metrics, as they treat increases and decreases in input metrics the same, and don't interpret decreases as counter resets.

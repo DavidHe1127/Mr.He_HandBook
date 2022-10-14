@@ -1,110 +1,20 @@
 ## Pod
 
 - [Basics](#basics)
-- [Attach role to pod to allow aws access](#aws-access)
 - [Deployment](#deployment)
 - [Affinity and Anti-affinity](#affinity-and-anti-affinity)
-- [Container Liveness and Readiness](#liveness-and-readiness)
+- [Taint & Tolerations](#taint-and-tolerations)
+- [Container Liveness and Readiness](#liveness)
 - [Pod Disruption Budget](#pod-disruption-budget)
-- [CrashLoopBackOff](#crash-loop-backoff)
+- [CPU & Memory](#cpu-and-memory)
+- Common Errors
+  - [CrashLoopBackOff](#crash-loop-backoff)
 
 ### Basics
 
 Pod cannot self-heal if it has issues. It will get removed by controller when it cannot run anymore.
 
-### AWS access
-
-See [oicd provider](https://github.com/DavidHe1127/Mr.He_HandBook/blob/master/DevOps/AWS/EKS/security.md#OIDC-provider) for how it works.
-
-First, create trust relationship. Example policy below allow service account named `hello-world-app` to assume role with WebIdentity.
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::1234567890123:oidc-provider/my-oidc-provider.example.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "my-oidc-provider.example.com:sub": [
-            "system:serviceaccount:default:hello-world-app"
-          ]
-        }
-      }
-    }
-  ]
-}
-```
-
-sub format `system:serviceaccount:<namespace>:<service-account-name>`
-
-Next, create iam role with desired perms. `arn:aws:iam::1234567890123:role/my-app-role`
-
-Last, assign role to service account via annotations. And use the service account in pod:
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: hello-world-app
-  annotations:
-    eks.amazonaws.com/audience: aws-iam # Optional and will default to API flags
-    eks.amazonaws.com/role-arn: arn:aws:iam::1234567890123:role/my-app-role
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: my-deployment
-spec:
-  template:
-    spec:
-      serviceAccountName: build-robot
-      automountServiceAccountToken: false
-```
-
 ### Deployment
-
-A way to manage a set of pods so that you don't have to manage each pod individually. i.e use `deployment` workload type to define stateless app manifest.
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  # deployment labels
-  labels:
-    app: nginx
-spec:
-  # num of pods
-  replicas: 3
-  # dictates what pods are managed by this deployment. Identify them via label
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    # label pods with nginx
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
-```
-
-- Mainly used for stateless applications.
-- Only one Persistence Volume Claim created. So all pods will share it. Same file/volume shared by all pods.
-- Support rolling update and rollback
-
-#### ReplicaSet
-
-Use `Deployment` with `replicas` instead.
 
 #### StatefulSet
 
@@ -179,11 +89,34 @@ To control which node the pod can/cannot run on in particular. Pod affinity is p
 
 - [pod affinity/anti-affinity](http://bazingafeng.com/2019/03/31/k8s-affinity-topologykey/)
 
-### Liveness and Readiness
+### Taint and Tolerations
 
-Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the Container, and the Container is subjected to its restart policy. If a Container does not provide a liveness probe, the default state is Success.
+It tells particular nodes to **ONLY** accept pods with certain tolerations. To restrict pods to certain nodes, use Node affinity.
 
-Readiness probe indicates whether the Container is ready to serve traffic. A Pod is considered ready when all of its containers are ready. One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers. If left undefined, the default state is Success.
+### Liveness
+
+Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the container, and the container is subjected to its restart policy. If a container does not provide a liveness probe, the default state is Success. Also, it doesn’t wait for readiness probes to succeed.
+
+#### Readiness
+
+- Indicates whether the Container is ready to serve traffic.
+- A Pod is considered ready when all of its containers are ready.
+- One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers.
+- If left undefined, the default state is Success.
+- Readiness probes runs on the container during its whole lifecycle - it checks continously, see pod logs.
+- When all pods are unhealthy meaning they all fail readiness probes, then your service will receive 0 traffic.
+
+when readiness probe fails:
+```
+# pod
+NAME       READY   STATUS    RESTARTS   AGE
+notready   0/1     Running   0          17m
+
+# Events:
+Type     Reason     Age                 From    Message
+----     ------     ----                ----    -------
+Warning  Unhealthy  1s (x21 over 58s)  kubelet  Readiness probe failed: HTTP probe failed with statuscode: 500
+```
 
 K8S relies on the readiness probes. During a rolling update, it will keep the old container up and running until the new service declares that it is ready to take traffic. Therefore the readiness probes have to be implemented correctly.
 
@@ -194,10 +127,45 @@ Protect your app from voluntary disruptions including but not restricted to:
 - node group replacement
 - node scaling up/down
 
-
-
-
 It however doesn't add protection when data centre has an outage.
+
+[Read more](https://innablr.com.au/blog/what-is-pod-disruption-budget-in-k8s-and-why-to-use-it/)
+[Demo](https://www.youtube.com/watch?v=e2HjRrmXMDw)
+
+### CPU and Memory
+
+#### CPU
+
+- **DON'T set limits on CPU, ONLY set requests**
+- Set on container level and is aggregated in pod.
+```yml
+# measuring unit can either be numbers such as 1.0, 0.5 or 500m in millicores.
+# 1000 millicores = 1 whole core (vCPU)
+# Thinking in ms can better understand measuing unit. k8s uses a cfs_period_us of 100ms (period). In other words, each a CPU request of 1.0 (quota) in k8s represents 100ms of CPU time in 100ms.
+# 1 millicore = 1/1000th of a cpu’s time. 1000m = 100ms So if a container's cpu request is set to 4.0 which is 4000 millicore = 400ms cpu time allowed per 100ms. The reason why we get 400ms in a 100ms time frame is each core is capable of doing 100ms of work in a 100ms period – 100ms x 4cores = 400ms.
+
+spec:
+  containers:
+  - name: app
+    image: images.my-company.example/app:v4
+    resources:
+      requests:
+        memory: "64Mi"
+        # in every 100ms, 25ms cpu time is alloted to the process
+        cpu: "250m"
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+```
+- Pod scheduling is based on `requests` not `limits`
+- Pod will never get scheduled if CPU request > core count of largest node
+- Keep CPU at 1 or below and run more replicas to scale out unless apps require multi-core processing such as a multi-threaded database.
+- If no `limits` is set, struggling pod can use more cpu if available.
+- Use metric server to help figure out consumption requirement.
+- CPU percentage is the sum of percentage per core.
+- Keep in mind, CPU is a compressible resource. In simple terms, applications will start throttling once they hit the CPU limits. Throttling can adversely affect your application’s performance by making it run slower. Kubernetes will not terminate those apps.
+
+#### Memory
 
 
 ### CrashLoopBackOff
@@ -206,4 +174,4 @@ A commonplace reason it happens
 
 > The Docker container must hold and keep the PID 1 running in it otherwise the container exit (A container exit when the main process exit). In the case of Docker, the process which is having PID 1 is the main process and since it is not running, the docker container gets stopped. When the container gets stopped, the Kubernetes will try to restart it(as we have specified the spec.restartPolicy as "Always").
 
-One workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file.
+One workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file to keep it running forever.

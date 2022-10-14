@@ -3,16 +3,14 @@
 - [How EC2 works](#how-ec2-works)
 - [vCPU, threads and core](#vcpu-threads-core)
 - [Security Group](#security-group)
-- [IP and DNS](#ip-and-dns)
-- [EIP and Public IPv4](#eip-and-public-ipv4)
 - [Reboot](#reboot)
-- [Internetwork traffic privacy in aws vpc](#internetwork-traffic-privacy-in-aws-vpc)
-- [ENI](#eni)
+- [Networking](./ec2-networking.md)
 - [IMDS(Instance Metadata service)](#IMDS)
 - [Metrics](#metrics)
 - [Connect to EC2](#connect-to-ec2)
 - [Bastion Host](#bastion-host)
 - [AMI](#ami)
+- [Spot Instance](./spot-instance.md)
 - [UserData](#user-data)
 - [Notes](#notes)
 
@@ -45,18 +43,6 @@ vCPU represents a portion of the underlying physical CPU that is assigned to a p
 - For ingress rule, it specifies traffic source and destination port range etc. i.e given `fromPort` 0 and `toPort` 65535 basically means the SG allows conn to any ports from 0 to 65535 inclusive to be established.
 - For egress rule, it specifies traffic destination and destination port range etc. i.e given `fromPort` 1025 and `toPort` 2025 basically means the SG allows conn to any ports (on destination service) from 1025 to 2025 inclusive to be established.
 
-### IP and DNS
-
-`Private/Public DNS` as shown on EC2 panel resolves to private/public ip of an instance.
-i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resolves to private ip `10.156.61.79`.
-
-### EIP and Public IPv4
-
-- `EIP` is basically a public and static IPv4.
-- `EIP` will remain yours until you explicitly release it. If it's not attached to any instance, you will be charged.
-- When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address (if it had one) is released back into Amazon's pool of public IPv4 addresses. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address.
-- You cannot auto-assign a public IP address if you specify more than one network interface in your instance. Use `EIP` in this case.
-
 ### Reboot
 
 Since a reboot happens within the EC2 instance hardware, the state of the EC2 instance does not change from `running`. There is no rebooting state. And there is no mechanism to determine when the OS of your EC2 instance starts and/or completes its reboot.
@@ -64,16 +50,6 @@ Since a reboot happens within the EC2 instance hardware, the state of the EC2 in
 One thing to note is after instance reboots, volume other than root one will be unmounted!!! You need to mount it back.
 
 [How to mount ebs during boot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html)
-
-### Internetwork traffic privacy in AWS VPC
-Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
-opening port on http.
-
-### ENI
-
-- Represents virtual/logical networking interface.
-- Security Group is attached to ENI to enable firewall on traffic whereas EIP is associated with ENI.
-- Check `Description` to help discover the resource ENI is attached to.
 
 ### IMDS
 
@@ -246,5 +222,7 @@ Two cooldowns 1) Default cooldown 300 secs 2) Scaling-specific cooldown. Scaling
 - When multiple instances involved in a single scaling activity, cooldown starts when the last instance finishes launching/terminating. i.e Once 1st instance is launched, cooldown steps in.
 
 #### Zone Rebalancing
+
+Explicitly terminate or detach instances can lead to an unbalanced group. So ASG might need to fix it (rebalance the zone) by launching instances in the AZ with fewer ones.
 
 During zone rebalancing, because ASG attempts to launch new instances before terminating the old ones, being at or near the specified maximum capacity could impede or completely halt rebalancing activities. To avoid this problem, the system can temporarily exceed the specified maximum capacity of a group by a 10 percent margin (or by a 1-instance margin, whichever is greater) during a rebalancing activity. The margin is extended only if the group is at or near maximum capacity and needs rebalancing, either because of user-requested rezoning or to compensate for zone availability issues. The extension lasts only as long as needed to rebalance the group (typically a few minutes).

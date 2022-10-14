@@ -5,7 +5,9 @@ Services allow your applications to receive traffic from internal/external(outsi
 - [Types](#types)
 - [Ingress](#ingress)
 - [DNS Resolution](#dns-resolution)
+- [Endpoint](#endpoint)
 - [Headless service](#headless-service)
+- [Architecture](#architecture)
 - [Key Points](#key-points)
 
 ### Types
@@ -120,6 +122,22 @@ Use notation below to resolve a service. If namespace left unspecified, current 
 
 Normal service has a DNS record when resolved, it returns the ClusterIP.
 
+### Endpoint
+
+It bridges the gap between service and pod so that service knows the routes (Pod IPs) the traffic needs to go. It's created under the hood when specifying `selector` in service. But there is cases where you want to create a custom endpoint. For example, you want to access external resources those sitting outside of the cluster: TOUPDATE
+
+```
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: dns.google.com
+subsets:
+  - addresses:
+      - ip: 8.8.8.8
+    ports:
+      - port: 53
+```
+
 ### Headless Service
 
 Headless service is not assigned a ClusterIP. DNS query against it returns IPs of registered pods whereas running the same query against normal service returns service's ClusterIP.
@@ -145,6 +163,12 @@ Quoted from K8S In Action
 > For a client to connect to all pods, it needs to figure out the the IP of each individual pod. One option is to have the client call the Kubernetes API server and get the list of pods and their IP addresses through an API call, but because you should always strive to keep your apps Kubernetes-agnostic, using the API server isn’t ideal
 > Luckily, Kubernetes allows clients to discover pod IPs through DNS lookups. Usually, when you perform a DNS lookup for a service, the DNS server returns a single IP — the service’s cluster IP. But if you tell Kubernetes you don’t need a cluster IP for your service (you do this by setting the clusterIP field to None in the service specification ), the DNS server will return the pod IPs instead of the single service IP. Instead of returning a single DNS A record, the DNS server will return multiple A records for the service, each pointing to the IP of an individual pod backing the service at that moment. Clients can therefore do a simple DNS A record lookup and get the IPs of all the pods that are part of the service. The client can then use that information to connect to one, many, or all of them.
 > Setting the clusterIP field in a service spec to None makes the service headless, as Kubernetes won’t assign it a cluster IP through which clients could connect to the pods backing it.
+
+---
+
+### Architecture
+
+![](service-pod-arch.png)
 
 ---
 

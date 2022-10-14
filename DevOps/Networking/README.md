@@ -15,6 +15,7 @@
 - [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
   - [Load Balancing](#load-balancing)
 - [Server Name Indication](#sni)
+- [TLS/TCP comms](#tls-tcp-comms)
 - Tips
   - [Connection Problems](#connection-problem)
   - [Socket API](#socket-api)
@@ -167,6 +168,10 @@ For example, below shows how it can be achieved using openssl.
 ```
 openssl s_client -connect lb.example.com:443 -servername testsite.example.net
 ```
+
+### TLS TCP comms
+
+![tcp-tls-comms](tcp-tls-comms.svg)
 
 ---
 

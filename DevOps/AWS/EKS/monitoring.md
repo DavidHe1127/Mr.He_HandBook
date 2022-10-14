@@ -6,4 +6,4 @@ See [ServiceMonitorSpec](https://github.com/prometheus-operator/prometheus-opera
 
 If you look for a more comprehensive solution that covers monitoring, AlertManagers, Grafana etc. Check out [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) helm chart.
 
-See [Arch diagram](https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/troubleshooting.md#overview-of-servicemonitor-tagging-and-related-elements) to understand how it works under the hood.
+See [architecture diagram](https://github.com/prometheus-operator/prometheus-operator/blob/release/Documentation/custom-metrics-elements.png). Essentially, Prom operator will monitor Prom custom resource and read `ServiceMonitor` objects you've created to monitor your app. Configs in `ServiceMonitor` are then compiled into the Prometheus config file which is served to Prom created by Prom Operator.

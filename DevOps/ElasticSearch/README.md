@@ -86,6 +86,14 @@ curl -XPOST 'http://localhost:9200/_aliases' -d '{
 
 See [definition](https://www.elastic.co/guide/en/elasticsearch/reference/current/data-streams.html). Best suited for logs, events, metrics, and other continuously generated data. If data needs to be updated/deleted frequently, use `Index Alias` instead as you cannot perform these actions to Data Streams directly.
 
+### Rollover
+
+Backing index of Data Stream can be named based on date i.e `.ds-dave-elk-2022.07.24-000006`. Note `000006` is its generation and is cumulative starting from `000001`. `dave-elk` is data stream name.
+
+If you roll over a data stream, the API creates a new write index for the stream. The stream’s previous write index becomes a regular backing index. Set `max_primary_shard_docs: 40gb` to trigger rollover when the largest primary shard reaches a certain size.
+
+`index.routing.allocation.total_shards_per_node` on the other hand determines the shards count (primary + replica) for one index per node.
+
 ## Text Analysis
 
 ES performs text analysis when indexing or searching **text** field. During indexing, entire string is split into chunks (tokens) which is called tokenizing. Likewise, when searching, analysis will apply again before searching.

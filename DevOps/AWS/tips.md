@@ -16,3 +16,5 @@ fields @timestamp
 3. create an athena table with the added bucket.
 
 After debugging, turn off logging in trail so that bucket size will stop growing.
+
+- [Service Authorization Ref](https://docs.aws.amazon.com/service-authorization/latest/reference/list_identityandaccessmanagement.html)
