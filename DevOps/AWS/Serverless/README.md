@@ -1,6 +1,6 @@
 ## Lambda/APIG
 
-- [cold vs warm start](#cold-vs-warm-start)
+- [Cold vs Warm Start](#cold-vs-warm-start)
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Lambda placement](#lambda-placement)
@@ -13,7 +13,8 @@
 - Tips
   - [Env vars access](#env-vars-access)
   - [Share modules/libs](#share-modules/libs)
-- [Articles](#articles)
+- Best Practices
+- [Resources](#resources)
 
 ### Cold vs Warm start
 
@@ -194,6 +195,21 @@ Using AppConfig with lambda extension allows you to change env vars values on th
 
 ---
 
-### Articles
+### Best Practices
+
+- Enable [keep-alive](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html) in SDK.
+- Use provisioned concurrency - set floor on min no. of execution envrionments.
+- Init code such as db conn should live outside of handler.
+- If app is mem/cpu/network bound, increase mem can improve perf and reduce cost.
+- Try [lambda power tuning](https://github.com/alexcasalboni/aws-lambda-power-tuning) for cost/perf optimization. This tool helps find the right balance.
+- Don't wait! If operation takes some time, try async model. i.e In one lambda, put object into S3 where processing happens asynchronously and once done, trigger an event which calls another lambda to carry on with the work.
+- Try run lambda on ARM-based AWS Graviton 2 processor. 34% better than x86-based in price-perf ratio. No code change is required is lambda is written in NodeJS/Python. If written in compiled langs like go, Java, code needs to be re-compiled to target ARM64 env.
+- The fastest and lowest-cost lambda func is the one you remove and replace with a built-in integration! i.e APIG --> DynamoDB w/o using lambdas.
+- Use AWS RDS Proxy for conn pooling which effectively avoids overwhelming DB when huge number of db conns created from lambdas.
+
+---
+
+### Resources
 
 - [All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
+- [Serverless land](https://serverlessland.com/)
