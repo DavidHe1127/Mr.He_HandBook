@@ -107,6 +107,10 @@ volumeBindingMode: Immediate
 
 Once done with PV, delete PVC so the taken PV can be re-used subject to `retain` policy in `StorageClass`.
 
+### Best Practices
+
+- Always consider using `StatefulSet` for running stateful apps. Don't use `Deployment` + `PV` which doesn't work well when app needs scaling.
+
 #### Notes
 
 Use `volumeClaimTemplates` instead when using it in a [StatefulSet](./pod.md#statefulset).
