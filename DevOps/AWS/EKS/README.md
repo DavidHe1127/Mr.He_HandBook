@@ -6,6 +6,7 @@
   - [Data Plane](#data-plane)
 - [Security](./security.md)
 - [Service](./service.md)
+- [Cluster](./cluster.md)
 - [Networking](./networking.md)
 - [Node](./node.md)
 - [Pod](./pod.md)

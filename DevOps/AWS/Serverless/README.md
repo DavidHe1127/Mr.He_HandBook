@@ -1,6 +1,7 @@
 ## Lambda/APIG
 
 - [Cold vs Warm Start](#cold-vs-warm-start)
+- [Permissions](#permissions)
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Lambda placement](#lambda-placement)
@@ -32,6 +33,10 @@ To mitigate this, one can pre-warm up lambdas via scheduling a trigger (cloudwat
 [Package Lambdas with serverless-bundle
 ](https://serverless-stack.com/chapters/package-lambdas-with-serverless-bundle.html)
 [Understand lambda cold start correctly](https://medium.com/hackernoon/im-afraid-you-re-thinking-about-aws-lambda-cold-starts-all-wrong-7d907f278a4f)
+
+### Permissions
+
+To allow your lambda to interact with other AWS services, use lambda exec role. To allow other services to invoke your lambda, set Resource-based policy statements in lambda permissions. See [this](https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.html).
 
 ### Concurrency
 

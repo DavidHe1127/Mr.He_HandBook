@@ -11,14 +11,17 @@
 - [HTTP/2](#http/2)
 - [Redirection](#redirection)
 
+### What does signing a cert mean?
+
+It basically means CA using its private key to encrypt a certificate's content.
+
+When a certificate is signed, the CA calculates a hash value of the certificate's contents and encrypts it using the CA's private key. The encrypted hash value, known as the digital signature, is then added to the certificate. The digital signature serves as a guarantee that the certificate has not been altered or tampered with, and that it can be trusted.
+
 ### Key points
 
-- Key pair is used to encrypt/decrypt data (session key) in HTTPS context
 - Private key stays with owner (or server in webapp context) while public key can be distributed
-- Sign means encrypt. i.e CA uses its own private key to self-sign a certificate. They also use their own private keys to sign/encrypt our supplied cert.
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
-- In client/server communication process, client needs `CA Cert` while server needs to have its `Cert` as well as `Private Key`. Private key is used to decrypt the session key being encrypted by public key enclosed in `Cert`.
-- Use one cert to sign another basically means **using private key associated with the public key stored in the certificate** to encrypt the other cert.
+- In client/server communication process, client needs `CA Cert` while server needs to have its `Cert` as well as `Private Key`. Private key is used to decrypt the session key being encrypted by public key enclosed in `Cert`. Session key is used for comms.
 
 ### Digital Signature and Digital Certificate
 
