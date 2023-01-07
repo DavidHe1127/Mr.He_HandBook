@@ -1,6 +1,7 @@
 ## Lambda/APIG
 
 - [Cold vs Warm Start](#cold-vs-warm-start)
+- [Permissions](#permissions)
 - [Concurrency](#concurrency)
 - [Logging with CloudWatch](#logging-with-cloudwatch)
 - [Lambda placement](#lambda-placement)
@@ -32,6 +33,10 @@ To mitigate this, one can pre-warm up lambdas via scheduling a trigger (cloudwat
 [Package Lambdas with serverless-bundle
 ](https://serverless-stack.com/chapters/package-lambdas-with-serverless-bundle.html)
 [Understand lambda cold start correctly](https://medium.com/hackernoon/im-afraid-you-re-thinking-about-aws-lambda-cold-starts-all-wrong-7d907f278a4f)
+
+### Permissions
+
+To allow your lambda to interact with other AWS services, use lambda exec role. To allow other services to invoke your lambda, set Resource-based policy statements in lambda permissions. See [this](https://docs.aws.amazon.com/lambda/latest/dg/lambda-permissions.html).
 
 ### Concurrency
 
@@ -203,7 +208,7 @@ Using AppConfig with lambda extension allows you to change env vars values on th
 - If app is mem/cpu/network bound, increase mem can improve perf and reduce cost.
 - Try [lambda power tuning](https://github.com/alexcasalboni/aws-lambda-power-tuning) for cost/perf optimization. This tool helps find the right balance.
 - Don't wait! If operation takes some time, try async model. i.e In one lambda, put object into S3 where processing happens asynchronously and once done, trigger an event which calls another lambda to carry on with the work.
-- Try run lambda on ARM-based AWS Graviton 2 processor. 34% better than x86-based in price-perf ratio. No code change is required is lambda is written in NodeJS/Python. If written in compiled langs like go, Java, code needs to be re-compiled to target ARM64 env.
+- Try run lambda on ARM-based AWS Graviton 2 processor. 34% better than x86-based in price-perf ratio. No code change is required is lambda is written in NodeJS/Python. If written in compiled langs like go, Java, code needs to be re-compiled to target ARM64 env. Use `docker buildx` to help build arch-based images. Also, you need to provide docker manifest to the image so Docker knows the right arch image should be downloaded when running from the OS.
 - The fastest and lowest-cost lambda func is the one you remove and replace with a built-in integration! i.e APIG --> DynamoDB w/o using lambdas.
 - Use AWS RDS Proxy for conn pooling which effectively avoids overwhelming DB when huge number of db conns created from lambdas.
 

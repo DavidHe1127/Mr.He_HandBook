@@ -12,7 +12,6 @@
 - [Network interface and Virtual Network Interface](#network-interface)
 - [IP, CIDR, network masking](#ip-cidr-network-masking)
 - [0.0.0.0](#wildcard-ip)
-- [Forward Proxy and Reverse Proxy](#forward-proxy-and-reverse-proxy)
   - [Load Balancing](#load-balancing)
 - [Server Name Indication](#sni)
 - [TLS/TCP comms](#tls-tcp-comms)
@@ -126,18 +125,6 @@ Given `192.168.1.0/28`, it tells us the following:
 - Given `10.0.1.127/25` that is represented in binary as `00001010 00000000 00000001 0(1111111)`, the first ip is `10.0.1.1` and last ip is `10.0.1.126`.
 - Given `10.0.1.128/25` with last range being `1(0000000)`, the first ip is `10.0.1.129` and last ip is `10.0.1.254`.
 
-### Forward Proxy and Reverse Proxy
-
-Both setups aim to protect your servers/clients by enforcing security rules (firewall) on proxy servers.
-
-- Reserve Proxy is used when you want to protect your fleet of servers which respond to clients' request.
-![Reverse Proxy](./reverse-proxy.png)
-
-- Forward Proxy is used when clients from inside internal network need to reach out to the servers on the internet. In other words, clients initiate the connections. Note the difference compared to Reverse Proxy where clients on the internet initiate the connection request.
-![Forward Proxy](./forward-proxy.png)
-
-[Read more](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
-
 #### Load Balancing
 
 L7-LB
@@ -166,7 +153,23 @@ But in HTTPS, a TLS handshake takes place first, before the HTTP conversation ca
 For example, below shows how it can be achieved using openssl.
 
 ```
+# -servername indicate server the domain it's trying to connect
 openssl s_client -connect lb.example.com:443 -servername testsite.example.net
+```
+
+cURL example
+
+```
+# suppose you want to indicate to server the host you want to connect to
+# curl -v 'Host: abc.com' 'https://xyz.com/ready'
+
+# using resolve
+curl -v --resolve abc.com:443:<XYZ-DOMAIN-IP> "https://abc.com/ready"
+
+# using connect-to
+curl -v --connect-to abc.com:443:xyz:443 "https://abc.com/ready"
+
+# both approaches above basically tells curl to route traffic targeting abc.com to xyz.com once TLS handshake is done.
 ```
 
 ### TLS TCP comms
