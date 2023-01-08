@@ -7,7 +7,7 @@
 - [Container Liveness and Readiness](#liveness)
 - [Pod Disruption Budget](#pod-disruption-budget)
 - [CPU & Memory](#cpu-and-memory)
-- Common Errors
+- Miscels
   - [CrashLoopBackOff](#crash-loop-backoff)
 
 ### Basics
@@ -167,8 +167,17 @@ spec:
 
 #### Memory
 
+---
 
-### CrashLoopBackOff
+### Miscels
+
+#### Pod Restart Policy
+
+`Always` - means that the container will be restarted even if it exited with a zero exit code (i.e. successfully). This is useful when you don't care why the container exited, you just want to make sure that it is always running (e.g. a web server). This is the default.
+
+`OnFailure` - means that the container will ONLY be restarted if it exited with a non-zero exit code (i.e. something went wrong). This is useful when you want accomplish a certain task with the pod, and ensure that it completes successfully - if it doesn't, it will be restarted until it does.
+
+#### CrashLoopBackOff
 
 A commonplace reason it happens
 

@@ -1,9 +1,9 @@
 ## HTTP, HTTP(S) with SSL/TLS and Cert
 
+- [Cert Signing](#what-does-signing-a-cert-mean)
 - [Key points](#key-points)
 - [SSL Cert with Let's encrypt](#ssl-cert-with-lets-encrypt)
 - [How SSL works](#how-ssl-works)
-- [Digital Signature and Digital Certificate](#digital-signature-and-digital-certificate)
 - [Persistent Connection](https://www.oreilly.com/library/view/http-the-definitive/1565925092/ch04s05.html)
 - [CA](#ca)
 - [Self-signed cert generation script](#cert-generation-script)
@@ -23,14 +23,14 @@ When a certificate is signed, the CA calculates a hash value of the certificate'
 - Root Cert is cert issued by a trusted CA. It contains public key and is not encrypted. So client can use the public key to decrypt the cert being presented by server. Cert provided by server is signed/encrypted by CA private key.
 - In client/server communication process, client needs `CA Cert` while server needs to have its `Cert` as well as `Private Key`. Private key is used to decrypt the session key being encrypted by public key enclosed in `Cert`. Session key is used for comms.
 
-### Digital Signature and Digital Certificate
+### Ssl cert with Let's encrypt
 
-- Bob creates a cert including his public key and other information to `CA`.
-- `CA` uses its private key to sign(encrypt) provided cert which results in a new cert - Digital Certificate in `X.509` format - a standard format for public key cert.
-- Bob sends the digital cert to Alice who then tries to decrypt it using the public key distributed by the **same** `CA`.
-- If it can be decrypted with no errors, it means the cert is from Bob.
-- Signature is the result of encryption. `Message - hash -> Digest - encrypt with private key -> Signature`.
-- Signature is attached to the cert. In verification process, users will use CA's public key to verify the signature's validity.
+- The objective of Let’s Encrypt and the ACME protocol is to make it possible to set up an HTTPS server and have it automatically obtain a browser-trusted certificate, without any human intervention. This is accomplished by running a certificate management agent on the web server.
+- There are two steps to this process. First, the agent proves to the CA that the web server controls a domain (DNS challenge). Then, the agent can request, renew, and revoke certificates for that domain.
+
+![ACME_CA](./ACME_let's_encrypt.png)
+
+Certbot is a very popular agent.
 
 ### How SSL works
 
@@ -53,15 +53,6 @@ Typically, org creates its own root cert so org itself becomes a CA. Client cert
 [See how mTLS works in Node](https://codeburst.io/mutual-tls-authentication-mtls-de-mystified-11fa2a52e9cf)
 
 Alternatively, if org doesn't generate its own root cert, server can send a list of trusted CA certs to the clients while requesting a client cert. The list tells clients only these CA certs are supported and can be used to verify client cert. For an example with Nginx, see [client auth](https://github.com/DavidHe1127/Mr.He_HandBook/tree/master/DevOps/Monitoring/prometheus#auth).
-
-### Ssl cert with Let's encrypt
-
-- The objective of Let’s Encrypt and the ACME protocol is to make it possible to set up an HTTPS server and have it automatically obtain a browser-trusted certificate, without any human intervention. This is accomplished by running a certificate management agent on the web server.
-- There are two steps to this process. First, the agent proves to the CA that the web server controls a domain (DNS challenge). Then, the agent can request, renew, and revoke certificates for that domain.
-
-![ACME_CA](./ACME_let's_encrypt.png)
-
-Certbot is a very popular agent.
 
 ### CA
 

@@ -44,7 +44,7 @@ With 5 mins period and 1 min data resolution, `SampleCount` returns you 5 (data 
 
 Period needs to be >= underlying metric period (how often AWS publishes metric).
 
-By default, data resolution is 1 min (1 second is the smallest) meaning metric data is aggregated and stored by CloudWatch in a 1 minute chunk. If you retrieve the metric for a hour from 3 days ago, you will receive 60 data points. However, depending on the metric data age, older data might be only retrievable at a higher resolution. For example, after 15 days, metric data is still available but can only be retrieved with 5 mins data resolution - 5 one min chunks combined and made available for your retrieval. If you still specify 1 min data resolution, you will receive nothing.
+By default, data resolution is 1 min (1 second is the smallest) meaning CloudWatch will collect data points at one-minute intervals. If you retrieve the metric for a hour from 3 days ago, you will receive 60 data points. However, depending on the metric data age, older data might be only retrievable at a higher resolution. For example, after 15 days, metric data is still available but can only be retrieved with 5 mins data resolution - 5 one min chunks combined and made available for your retrieval. If you still specify 1 min data resolution, you will receive nothing.
 
 ### Logging
 
@@ -146,6 +146,8 @@ Alarm status
 ```
 
 When evaluating `06:00` period, CW will look at two previous records `05:55:00: data: {Avg=57.846}` and `05:50:00: data: {Avg=58.390}`. Both of them breaches the threshold as well as `06:00` itself. So it satisfies the condition that 3 consecutive data points breaches the threshold.
+
+If no state change in an alarm, associated action will not be fired! e.g if state persists in `OK` spanning across X alarm evaluation periods, it will not trigger multiple actions.
 
 ### Subscription Filter
 

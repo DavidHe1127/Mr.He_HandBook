@@ -10,6 +10,7 @@
 - [Networking](./networking.md)
 - [Node](./node.md)
 - [Pod](./pod.md)
+- [Job](./job.md)
 - [Storage](./storage.md)
 - [ConfigMap & Secret](./configMap-secret.md)
 - [Metadata](./metadata.md)

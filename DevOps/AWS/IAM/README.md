@@ -132,6 +132,11 @@ in other words, if the call is made by an AWS service, the policy doesn't apply.
 
 Consider a call to reading a piece of data in a DynamoDB table, encrypted with a KMS key. In order to decrypt the data, DynamoDB will have to call kms:Decrypt - and this will be done using the credentials of the principal that asked for the data to be read from the DynamoDB table. Therefore - that principal will have to have permissions to the DynamoDB table AND to kms:Decrypt on the KMS key which has to be used to decrypt it.
 
+```
+// specify the ssm must be the service asking for the KMS to provide the key
+'kms:ViaService': ['ssm.ap-southeast-2.amazonaws.com']
+```
+
 Service Role and Service Linked Role are direct caller to other services.
 
 #### PrincipaIsAWSService vs aws:ViaAWSService

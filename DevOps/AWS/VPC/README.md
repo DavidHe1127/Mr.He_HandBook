@@ -3,6 +3,7 @@
 - [Isolated Subnet](#isolated-subnet)
 - [ENI](#eni)
 - [NAT Gateway](#nat-gateway)
+- [Security Group](#security-group)
 - [CIDR](#cidr)
 - [Inter-vpc comms](#inter-vpc-comms)
 - [VPC Endpoint and Endpoint Service](#vpc-endpoint-and-endpoint-service)
@@ -17,7 +18,7 @@ A private subnet is one that is configured to use a NAT Gateway (NAT) so that it
 
 ### ENI
 
-- Each instance in your VPC has a default network interface (the primary network interface) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC.
+- Each instance in your VPC has a default network interface (the primary network interface or eth0) that is assigned a private IPv4 address from the IPv4 address range of your VPC. You cannot detach a primary network interface from an instance. You can create and attach an additional network interface to any instance in your VPC.
 - ENI cannot be detached when it's associated and used by a resource - i.e VPCE. To remove ENI, you need to delete parent service.
 
 ### NAT Gateway
@@ -25,6 +26,10 @@ A private subnet is one that is configured to use a NAT Gateway (NAT) so that it
 - Create per-az NAT Gateway to reduce cross-az data transfer. i.e instance and NAT Gateway in different AZs.
 
 [Reduce cost of NAT Gateway](https://www.stephengrier.com/reducing-the-cost-of-aws-nat-gateways/)
+
+### Security Group
+
+When creating a security group for a subnet, it basically means next time an EC2 instance gets launched, that security group should be attached to the ENI of the instance.
 
 ### CIDR
 
