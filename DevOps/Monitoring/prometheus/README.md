@@ -13,6 +13,7 @@
 - [Debugging Tips](#debugging)
 - [Study Notes](#study-notes)
 - [Rules Analyser](https://relabeler.promlabs.com/)
+- [AlertManager](#alert-manager)
 - [References](#references)
 
 ### Concepts
@@ -300,6 +301,10 @@ metric_relabel_configs:
 - `rate/irate` functions should be used on `counter` metrics rather than `gauge` metrics.
 - A time series that freshly has data points added, it's called active time series. They are stored in file/memory prior to being moved to TSDB when become inactive for longer persistence . Considerable active time series means large resources are consumed, In particular, the RAM.
 - When querying historical data, wider time span means more time series is loaded into RAM from TSDB which in turn inevitably consumes larger RAM.
+
+## Alert Manager
+
+Prom evals defined alerting rule and sends alerts to AlertManager when eval result should trigger an alert. `evaluation_interval` specifies how often this should happen. In addition, `repeat_interval` in AlertManager config tells how often AlertManager should send alert **notifications**. So when an alert is firing, Prom will continue to send alerts until it's resolved. There is a `resolve_timeout` in the configuration, if no alert is received by Prometheus in that duration the alert is considered resolved.
 
 ---
 
