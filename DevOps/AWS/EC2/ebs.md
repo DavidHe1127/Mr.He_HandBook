@@ -1,6 +1,6 @@
 ## EBS
+
 - [Cost](#cost)
-- [EBS vs Instance Store](#ebs-vs-instance-store)
 - [Snapshots](#snapshots)
 - [Block devices infor](#block-devices-infor)
 - [IOPS and throughput](#iops-and-throughput)
@@ -11,12 +11,6 @@
 - `EBS` accrue charges unless they are deleted (NOT WHEN DETACHED!).
 - To avoid any charges to `EBS`, make sure have them deleted as well as `snapshots` created from them.
 - `EBS snapshots` are billed at a lower rate than active `EBS volumes` are. So for cost effectiveness, you can create `EBS` snapshots from `EBS` volumes and delete active `EBS` volumes. Later, you can restore the `EBS` volumes from the snapshots when needed.
-
-### EBS vs Instance Store
-
-One pro with instance store is it's physically attached to the host hence it gives better perf and more reliability than EBS.
-
-![ec2-storage](ec2-storage.png)
 
 ### Snapshots
 
@@ -67,4 +61,4 @@ See more about [mounting](https://gist.github.com/DavidHe1127/7b038d9901ac285af1
 - `Throughput = IOPS * block size`.
 - EBS operations is network-based traffic. Enable EBS optimization for optimal I/O performance as this gives your instance dedicated bandwidth for I/O operations. In other words, other network traffic will not compete for the same bandwidth being hogged by I/O.
 - Throughput limit - For example, a gp2 volume under 1000 GiB with burst credits available has an IOPS limit of 3,000 and a volume throughput limit of 250 MiB/s. If you are using a 256 KiB I/O size, your volume reaches its throughput limit at 1000 IOPS (1000 x 256 KiB = 250 MiB). For smaller I/O sizes (such as 16 KiB), this same volume can sustain 3,000 IOPS because the throughput is well below 250 MiB/s. (These examples assume that your volume's I/O is not hitting the throughput limits of the instance.)
-- Use `gp3` over `gp2` whenever is possible. `gp3` allows for consistent perf (same as gp2 burst perf) and there is no burst credits anymore.
+- Use `gp3` over `gp2` whenever is possible. IOPS is determined by volume size in `gp2` and max is 3000 - 3 per gb. It also allows a burst size but only for a small time period in each day. While `gp3` consistently has a 3000 IOPS as baseline and also allows for provisioned IOPS too.
