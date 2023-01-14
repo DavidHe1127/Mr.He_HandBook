@@ -122,8 +122,11 @@ Given `192.168.1.0/28`, it tells us the following:
 - mask is `255.255.255.240` or `11111111 11111111 11111111 11110000` when represented in binary.
 - 14 available ips - from `00000001` to `00001110` that is `192.168.1.1` as the first ip and `192.168.1.14` as the last ip.
   Note, `192.168.1.0` and `192.168.1.15` are reserved and cannot be used.
-- Given `10.0.1.127/25` that is represented in binary as `00001010 00000000 00000001 0(1111111)`, the first ip is `10.0.1.1` and last ip is `10.0.1.126`.
-- Given `10.0.1.128/25` with last range being `1(0000000)`, the first ip is `10.0.1.129` and last ip is `10.0.1.254`.
+
+Given `10.0.1.100/27` that is represented in binary as `00001010 00000000 00000001 011(00100)` where `011` in the last segment is masked. So the first ip's last bit's binary representation is `011(00001)` which is `97`.
+
+Given `10.0.1.128/25` with last range being `1(0000000)`, the first ip is `10.0.1.129` and last ip is `10.0.1.254`.
+
 
 #### Load Balancing
 
