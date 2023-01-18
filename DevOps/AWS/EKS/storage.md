@@ -11,7 +11,7 @@
 
 - Live beyond pod/node restarts
 - Cluster level resource. That is available to all ns.
-- `StorageClass` describes storage offering in cluster.
+- `StorageClass` describes storage offering in cluster. It's also needed for dynamic storage provisioning.
 - Local or cloud drives can be attached to the cluster as a Persistent Volume. This can be thought of as plugging an external hard drive in to the cluster.
 - Provides a file system that can be mounted to the cluster, without being associated with any particular node. In AWS, the EBS Volume (PV) stays detached from your nodes as long as it is not claimed by a Pod. As soon as a Pod claims it, it gets attached to the node that holds the Pod.
 - While PV is not namespaced which means it's available to the whole cluster, PVC is. Pods in diff ns cannot share the same PVC.

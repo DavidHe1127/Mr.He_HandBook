@@ -1,5 +1,8 @@
 ## ConfigMap & Secret
 
+### ConfigMap
+
+See David's EKS lab repo for example code.
 
 ### Secret
 

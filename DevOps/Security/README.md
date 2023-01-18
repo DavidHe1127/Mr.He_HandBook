@@ -148,6 +148,14 @@ Read more about [what is SSO and how it works](https://auth0.com/blog/what-is-an
   5. **Client** can then use **access_token** to get access to resources on the **Resource Server**
 - In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
 
+How GitHub App auth works
+
+- A 网站跳转到 Github 的授权页面。
+- Github 授权页面询问用户：“是否允许A网站获取下列权限”，用户点击“允许”，取得授权码。
+- Github 授权页面重定向回 A 网站，同时在URL 上带上授权码。
+- A 网站通过 URL 上的授权码往 Github 取回 Token (PAT)。
+- A 网站使用这个 Token 去调用 Github API。
+
 ![](./oauth_2.png)
 
 ### SAML

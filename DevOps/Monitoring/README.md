@@ -33,6 +33,7 @@ Some tips:
 - Incident response is a collaborative process. Get early help from others from different teams.
 - Don't panic! Panic will inevitably cause scrambling leading up to longer resolution. If panic, try to calm down and follow the incident resolution guideline. If still not helpful, yell for help!
 - When not on-call, try to help on-call, they would appreciate your help and you will learn new things during process. This also helps promote a great culture.
+- Use incident management tool such as [rootly](https://rootly.com/).
 
 ### EC2
 
