@@ -120,7 +120,7 @@ AMI in one account can be shared with another account by modifying its permissio
 
 ### User Data
 
-Scripting UserData with [cloud-config](https://www.digitalocean.com/community/tutorials/an-introduction-to-cloud-config-scripting) is supported in CloudFormation.
+Scripting UserData with [cloud-config](https://www.digitalocean.com/community/tutorials/an-introduction-to-cloud-config-scripting) is supported in CloudFormation. It is a YAML format file that is used to provide configuration data to the cloud-init tool.
 
 ```yml
 UserData:

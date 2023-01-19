@@ -33,7 +33,7 @@ The Docker host’s own IP address on the bridge is used as the default gateway 
 
 All traffic coming from and going to the container flows over the bridge to the Docker daemon, which handles routing on behalf of the container.
 
-### Host network mode
+### Host networking mode
 
 - **The host networking driver only works on Linux hosts**.
 - No containerisation for network that is container shares the host’s network namespace.
