@@ -1,3 +1,6 @@
+## Tick
+
+A tick refers to a single pass-through in event loop. Simply put, from one phase to the next phase in the event loop.
 
 ## process.nextTick vs setImmediate
 
