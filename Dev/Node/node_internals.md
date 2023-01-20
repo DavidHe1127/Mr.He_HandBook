@@ -26,6 +26,17 @@ setTimeout(myCallback, 1000);
 
 That doesn’t mean that `myCallback` will be executed in 1,000 ms but rather that, in 1,000 ms, `myCallback` will be added to the queue. The queue, however, might have other events that have been added earlier — your callback will have to wait.
 
+### Don't block your thread
+
+2 types of threads in NodeJS:
+- main thread Event Loop uses
+- worker thread in a thread pool
+
+Worker thread is used to execute IO operations. When either type of thread is taking a long time to execute, e.g executing a callback by EventLoop OR executing an IO operation on worker thread, we call it "blocked". Blocked thread cannot handle requests from other clients.
+
+- Performance: If you regularly perform heavyweight activity on either type of thread, the throughput (processed requests/second) of your server will suffer.
+- Security: If it is possible that for certain input one of your threads might block, a malicious client could submit this "evil input", make your threads block, and keep them from working on other clients. This would be a Denial of Service attack.
+
 ### References
 
 [Event Loop/Task Queue](https://medium.com/@gaurav.pandvia/understanding-javascript-function-executions-tasks-event-loop-call-stack-more-part-1-5683dea1f5ec)
