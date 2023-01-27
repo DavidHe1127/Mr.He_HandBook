@@ -7,3 +7,8 @@ See [ServiceMonitorSpec](https://github.com/prometheus-operator/prometheus-opera
 If you look for a more comprehensive solution that covers monitoring, AlertManagers, Grafana etc. Check out [kube-prometheus-stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack) helm chart.
 
 See [architecture diagram](https://github.com/prometheus-operator/prometheus-operator/blob/release/Documentation/custom-metrics-elements.png). Essentially, Prom operator will monitor Prom custom resource and read `ServiceMonitor` objects you've created to monitor your app. Configs in `ServiceMonitor` are then compiled into the Prometheus config file which is served to Prom created by Prom Operator.
+
+### Monitoring Mixins
+
+[It](https://monitoring.mixins.dev/) provides a rich set of alerting/recording rules out of the box. If using `kube-prometheus-stack` helm chart to deploy monitoring solution, included rules are baked in the deployment through turning [flags](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-35.2.0/charts/kube-prometheus-stack/values.yaml#L33) on/off.
+

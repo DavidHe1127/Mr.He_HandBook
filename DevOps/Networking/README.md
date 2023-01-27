@@ -160,19 +160,22 @@ For example, below shows how it can be achieved using openssl.
 openssl s_client -connect lb.example.com:443 -servername testsite.example.net
 ```
 
-cURL example
+or using Curl:
 
 ```
-# suppose you want to indicate to server the host you want to connect to
-# curl -v 'Host: abc.com' 'https://xyz.com/ready'
+# 2 ways of traffic redirection, if you want to redirect the requests to xyz:443 instead of abc.com:443
 
-# using resolve
+# using resolve. It requires you to first know the ip of redirecting domain
 curl -v --resolve abc.com:443:<XYZ-DOMAIN-IP> "https://abc.com/ready"
 
 # using connect-to
 curl -v --connect-to abc.com:443:xyz:443 "https://abc.com/ready"
 
-# both approaches above basically tells curl to route traffic targeting abc.com to xyz.com once TLS handshake is done.
+# another use case, suppose 3 servers - load1, load2, load3 sit behind www.example.com to provide load balancing
+# normally curl would pick one of 3 to send requests. To specify a specific target server e.g load1, one can:
+
+curl --connect-to www.example.com:443:load1.example.com:443 https://www.example.com
+
 ```
 
 ### TLS TCP comms

@@ -5,7 +5,7 @@ Services allow your applications to receive traffic from internal/external(outsi
 - [Types](#types)
 - [Ingress](#ingress)
 - [DNS Resolution](#dns-resolution)
-- [Endpoint](#endpoint)
+- [Endpoint/EndpointSlice](#endpoint-endpointslice)
 - [Headless service](#headless-service)
 - [Architecture](#architecture)
 - [Key Points](#key-points)
@@ -122,9 +122,9 @@ Use notation below to resolve a service. If namespace left unspecified, current 
 
 Normal service has a DNS record when resolved, it returns the ClusterIP.
 
-### Endpoint
+### Endpoint and EndpointSlice
 
-It bridges the gap between service and pod so that service knows the routes (Pod IPs) the traffic needs to go. It's created under the hood when specifying `selector` in service. But there is cases where you want to create a custom endpoint. For example, you want to access external resources those sitting outside of the cluster: TOUPDATE
+It bridges the gap between service and pod so that service knows the routes (Pod IPs) the traffic needs to go. It's created under the hood when specifying `selector` in service. All backing pods for service are registered under one Endpoint resource. But there is cases where you want to create a custom endpoint. For example, you want to access external resources those sitting outside of the cluster: TOUPDATE
 
 ```
 kind: Endpoints
@@ -137,6 +137,8 @@ subsets:
     ports:
       - port: 53
 ```
+
+EndpointSlice splits backing pods into smaller shards called EndpointSlices. There is a limit of pods that can go under one endpoint. That's why EndpointSlice is designed to solve this problem.
 
 ### Headless Service
 
