@@ -8,7 +8,7 @@
 - [Reusable execution context](#reusable-execution-context)
 - [Invocation model](#invocation-model)
 - [Error handling](#error-handling)
-- [Run lambda in a container](#lambda-in-container)
+- [Monitoring](#monitoring)
 - [Custom runtime and layers](#custom-runtime-and-layers)
 - [Custom Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 - Tips
@@ -43,6 +43,8 @@ To allow your lambda to interact with other AWS services, use lambda exec role. 
 The first time you invoke your function, AWS Lambda creates an instance of the function and runs its handler method to process the event. When the function returns a response, it sticks around to process additional events. If you invoke the function again while the first event is being processed, Lambda creates another instance.
 
 As more events come in, Lambda routes them to available instances and creates new instances as needed. Your function's concurrency is the number of instances serving requests at a given time.
+
+The default concurrency limit per AWS Region is 1,000 invocations at any given time.
 
 ### Logging with CloudWatch
 
@@ -147,10 +149,15 @@ Lambda will automatically poll the following services on your behalf, retrieve r
 
 Configure Lambda to use DLQ for failed requests retry. [How?](https://www.youtube.com/watch?v=nqQh2KmHiLY). Note DLQ only works for lambda Async invocation model. It's used when an event fails all processing attempts or expires without being processed.
 
-### Lambda in container
+### Monitoring
 
-Lambda function code can now be packaged in docker images that are hosted on ECR. And cross account
-ECR access for lambda is also [supported](https://aws.amazon.com/blogs/compute/introducing-cross-account-amazon-ecr-access-for-aws-lambda/) now.
+Key metrics to monitor include but not restricted to
+
+- Duration
+- Throttles
+- ProvisionedConcurrencySpilloverInvocations
+
+For more see [monitoring metrics](https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html)
 
 ### Custom runtime and layers
 

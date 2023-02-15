@@ -46,11 +46,13 @@ To allow access to a KMS CMK, you must use the key policy, either **alone** or i
 
 #### Best Practice
 
-Use the pattern below to specify a key. Big upside than using arn is when key is recreated no need to update the arn as long as alias stays the same.
+- Use the pattern below to specify a key. Big upside than using arn is when key is recreated no need to update the arn as long as alias stays the same.
 
 ```
 'ForAnyValue:StringLike': { 'kms:ResourceAliases': 'alias/your-key-alias' },
 ```
+
+- Enable automatic key rotation - only works for symmetric keys (CMK not data keys). It only changes the key material, which is the cryptographic secret (a random string) that is used in encryption operations.
 
 ### References
 

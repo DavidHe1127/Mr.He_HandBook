@@ -4,6 +4,7 @@
 - [Notes](#notes)
 - [Import Resources](#import-resources)
 - [Create Custom Resource](#create-custom-resource)
+- [Cross-stack reference](#cross-stack-reference)
 - [Command hook with Pulumi Command](https://github.com/pulumi/pulumi-command)
 - [Secret Management](#serect-management)
 - [Useful commands](#useful-commands)
@@ -67,6 +68,17 @@ const foo = new Foo('foo', {}, {
 
 // access output property
 foo.bucketName
+```
+
+## Cross-stack reference
+
+Stacks need to reside in the same backend path. e.g `s3://david-pulumi/cross-stack-ref-test/`.
+
+```
+// reference output from stack-ref-child stack
+const stackRef = new pulumi.StackReference('stack-ref-test', {
+  name: 'stack-ref-child',
+});
 ```
 
 ## Secret Management
