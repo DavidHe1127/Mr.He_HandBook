@@ -86,3 +86,58 @@ To solve the above concerns, one database per microservice must be designed; it 
 - DynamoDB automatically propagates these writes to the other replica tables in the AWS Regions you choose
 
 [DynamoDB Global Table](https://aws.amazon.com/blogs/database/how-to-use-amazon-dynamodb-global-tables-to-power-multiregion-architectures/)
+
+### Data modeling
+
+Use composite primary key. Give PK/SK generic names:
+
+```
+ DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "PK"
+          AttributeType: "S"
+        - AttributeName: "SK"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "PK"
+          KeyType: "HASH"
+        - AttributeName: "SK"
+          KeyType: "RANGE"
+```
+
+This config allows you to save different types of ids into one attribute:
+
+```
+PK                         SK
+USER#UserId (User)         #METADATA#UserId
+USER#UserId (Post)         POST#PostId#Timestamp
+POST#PostId#Timestamp      COMMENT#CommentsId#Timestamp (Comment)
+```
+
+a table of data might look like:
+
+```
+PK            SK               First_Name    Last_Name
+USER#1234     #METADATA#1234   David         He
+PK            SK               Name          Address     Feedback
+USER#1234     POST#1111#xxxx   A post        xxx         xxxyyyzzz
+```
+
+To query:
+
+```
+userId = "USER#{}".format(event['pathParameters']['id'])
+metaId = "METADATA#{}".format(event['pathParameters']['id'])
+
+# fetch user from the database
+result = table.get_item(
+    Key={
+        'PK': userId,
+        'SK': metaId
+    }
+)
+```
+
+For more details, see [dynamoDB table design](https://phatrabbitapps.com/building-modern-serverless-apis-with-aws-dynamodb-lambda-and-api-gatewaypart-3).

@@ -4,6 +4,7 @@
   - [Control Plane](#control-plane)
     - [API Server](#api-server)
   - [Data Plane](#data-plane)
+- [Fundamentals](./fundamental.md)
 - [Security](./security.md)
 - [Service](./service.md)
 - [Cluster](./cluster.md)

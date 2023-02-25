@@ -18,6 +18,8 @@ For example, suppose an ES data source stores JSON data:
 ```
 you can run query `app.name: "$appname"` with `appname` being the variable that is set to `david-test`. And specify `app.name` in `Tags` field to show `david-test` as tag on the graph.
 
+Use annotations to tell us when there is a change which could be linked to a metric value anomaly.
+
 ### Template Variable
 
 ```

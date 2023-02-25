@@ -30,7 +30,7 @@ Don't wait until the end of a project or just before deployment.
 +------------+
 ```
 
-Prioritise monitoring based on app value. i.e monitoring checkouts > 1000AUD first, before moving down to 200 response rate. OS-level metrics should still be considered but come last.
+Prioritise monitoring based on app value. i.e monitoring the amount of time it takes for a user to log into the system or check out with his shopping cart, before moving down to 200 response rate. OS-level metrics should still be considered but come last.
 - Instead of monitoring 200 res code, consider monitoring for correctness of a service first. For example, monitor the content or rates of a business transaction.
 - You should monitor your app frequently enough to:
   • Identify faults or anomalies.
