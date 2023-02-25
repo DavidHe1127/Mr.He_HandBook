@@ -13,7 +13,7 @@
 - [Debugging Tips](#debugging)
 - [Study Notes](#study-notes)
 - [Rules Analyser](https://relabeler.promlabs.com/)
-- [AlertManager](./alert-manager)
+- [AlertManager](./alert-manager.md)
 - [References](#references)
 
 ### Concepts
