@@ -1,7 +1,12 @@
 ## AlertManager
 
+- [Basics](#basics)
 - [Alerts DeDupe](#alerts-dedupe)
 
+
+### Basics
+
+Prom evals defined alerting rule and sends alerts to AlertManager when eval result should trigger an alert. `evaluation_interval` specifies how often this should happen. In addition, `repeat_interval` in AlertManager config tells how often AlertManager should send alert **notifications**. So when an alert is firing, Prom will continue to send alerts until it's resolved. There is a `resolve_timeout` in the configuration, if no alert is received by Prometheus in that duration the alert is considered resolved.
 
 ### Alerts Dedupe
 
