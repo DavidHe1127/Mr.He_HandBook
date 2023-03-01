@@ -39,7 +39,7 @@ Worker thread is used to execute IO operations. When either type of thread is ta
 
 ### Monitor your event loop lag
 
-It measures the time span between the scheduling of a callback and its execution. High event loop lag can indicate that the application is experiencing blocking I/O operations or CPU-intensive tasks that are taking too long to complete.
+It measures the time span between the scheduling of a callback (pushing ready-to-execute callbacks into callback queue) and its execution. High event loop lag can indicate that the application is experiencing blocking I/O operations or CPU-intensive tasks that are taking too long to complete.
 
 ### What does poll phase do in event loop?
 
