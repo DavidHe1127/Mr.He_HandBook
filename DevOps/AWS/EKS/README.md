@@ -25,6 +25,7 @@
 - [Design Pattern](./design-pattern.md)
 - Awesome posts
   - [k8s best practices](https://www.weave.works/blog/kubernetes-best-practices)
+  - [EKS best practices](https://aws.github.io/aws-eks-best-practices/)
 
 ## Architecture
 
