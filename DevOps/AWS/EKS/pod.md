@@ -104,7 +104,8 @@ Liveness probe indicates whether the Container is running. If the liveness probe
 - One use of this signal is to control which Pods are used as backends for Services. When a Pod is not ready, it is removed from Service load balancers.
 - If left undefined, the default state is Success.
 - Readiness probes runs on the container during its whole lifecycle - it checks continously, see pod logs.
-- When all pods are unhealthy meaning they all fail readiness probes, then your service will receive 0 traffic.
+- Pods failing readiness check will not be killed by kubelet but rather being marked `not ready`.
+- When all pods are `not ready` meaning they all fail readiness probes, then your service will receive 0 traffic.
 
 when readiness probe fails:
 ```

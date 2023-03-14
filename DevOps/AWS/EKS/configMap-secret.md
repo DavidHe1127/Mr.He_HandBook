@@ -50,3 +50,5 @@ containers:
 ```
 
 Then, you can access `/etc/secret/key` and `/etc/secret/token` files on your container.
+
+Alternatively, you can use [AWS Secrets and Configuration Provider (ASCP) for the Kubernetes Secrets Store CSI Drive](https://docs.aws.amazon.com/secretsmanager/latest/userguide/integrating_csi_driver.html). With the ASCP, you can store and manage your secrets in Secrets Manager and then retrieve them through your workloads running on Amazon EKS.

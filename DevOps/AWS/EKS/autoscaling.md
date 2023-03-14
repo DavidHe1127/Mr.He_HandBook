@@ -6,6 +6,7 @@
 
 ### HorizontalPodAutoscaler
 
+- Standard k8s resource. No pre-install required. However, k8s-metric-server is still needed to be installed.
 - Doesn't apply for DaemonSet
 - Deploy more pods to cope with increased workload
 - When workload decreases, HPA will scale resources back down below configured minimum number of pods

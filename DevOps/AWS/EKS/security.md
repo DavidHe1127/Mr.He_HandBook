@@ -82,7 +82,7 @@ subjects:
   namespace: kube-system
 ```
 
-### PodSecurityPolicy
+### PodSecurityPolicy (deprecated in favour of PSA/PSS)
 
 - A cluster-level resource
 - Restrictive rule set enforced on pod for security hardening. Once enabled, any attempts to run pods that don't satisfy PsP will be denied into cluster. i.e Disallow container to run as a root. Common workflow is 1) create allowed rules, 2) create role to use it c) bind the role to cluster.
@@ -98,6 +98,8 @@ As recommended by k8s, bind the PsP to the entire namesapce.
 ```
 
 See [example code](./examples/psp.yaml).
+
+> Note Amazon EKS clusters with Kubernetes version 1.13 or higher have a default pod security policy named `eks.privileged`. This policy has no restriction on what kind of pod can be accepted into the system, which is equivalent to running Kubernetes with the PodSecurityPolicy controller disabled.
 
 ### SecurityContext
 
