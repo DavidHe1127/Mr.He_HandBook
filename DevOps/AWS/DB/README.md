@@ -23,7 +23,7 @@
 
 ### Primary Key
 
-- Only key-related attributes need to be defined beforehand. No need put non-key attributes in definition. i.e cloudformation template.
+- Only key-related attributes need to be defined beforehand. No need put non-key attributes in definition.
 - Primary Key
   - **Partition key (hash attribute)** - DynamoDB uses the partition key's value as input to an internal hash function.
     The output determins the partion in which the item will be stored. It's type must be scalar and can only hold one value - string, number or binary.

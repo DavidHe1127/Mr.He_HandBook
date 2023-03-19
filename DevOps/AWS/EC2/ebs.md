@@ -7,7 +7,7 @@
 
 ### Cost
 
-- `EC2` accrue charges only while they're running.
+- `EC2` accrue charges ONLY while they're running - charge for instance hours.
 - `EBS` accrue charges unless they are deleted (NOT WHEN DETACHED!).
 - To avoid any charges to `EBS`, make sure have them deleted as well as `snapshots` created from them.
 - `EBS snapshots` are billed at a lower rate than active `EBS volumes` are. So for cost effectiveness, you can create `EBS` snapshots from `EBS` volumes and delete active `EBS` volumes. Later, you can restore the `EBS` volumes from the snapshots when needed.
@@ -43,7 +43,7 @@ nvme0n1     259:1    0  20G  0 disk
 nvme1n1     259:0    0  40G  0 disk /home/ec2-user/workspace
 ```
 
-We have 2 devices `/dev/nvme0n1` and `/dev/nvme1n1` with `/dev/nvme0n1` mounted as root device (/) and `/dev/nvme1n1` mounted to `/home/ec2-user/workspace`.
+We have 2 devices `/dev/nvme0n1` and `/dev/nvme1n1` with `/dev/nvme0n1` mounted as root device (/) and `/dev/nvme1n1` mounted to `/home/ec2-user/workspace`. `nvme0n1p1` is the first partiion from the device.
 
 Another example
 ```shell

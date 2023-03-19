@@ -14,11 +14,7 @@
 
 ### Basics
 
-- Parameter name - Use Pascal case and begin with an uppercase letter. i.e VPCZoneIdentifier
-- logical ID - i.e MyEC2Instance
-- physical ID - i.e i-28f9ba55 (CF auto generates and assigns to the instance)
-
-- Ref
+- !Ref
   - when specify parameter's logical name, it returns value of parameter.
   - when specify resource's logical name, it returns a value that you can typically use to refer to that resource, such as physical ID. Sometimes, it can also be a identifier such as ip addr for an `AWS::EC2::EIP`.
 
@@ -40,7 +36,7 @@ All stack-level tags, including automatically created tags, are propagated to re
 #### User Data Property
 
 - Scripts entered in UserData are run by `root` so `sudo` is not required. In case files are created and needed to be accessed by non-root users, modify permissions accordingly.
-- Check `/var/log/cloud-init-output.log` for `cloud-init` output.
+- Check `/var/log/cloud-init-output.log` on EC2 instance for `cloud-init` output.
 - To update instance user data, instance MUST stop first.
 
 ```
@@ -52,80 +48,6 @@ UserData:
       baz=${baz}
     - foo: !Ref Foo
       baz: !Ref Baz
-```
-
-#### Typical Example
-
-```yml
-
----
-
-AWSTemplateFormatVersion: 2010-09-09
-
-Parameters:
-  VPCES:
-    Type: 'AWS::SSM::Parameter::Value<String>'
-    Description: VPCEs
-    Default: '/logging/dev/serviceName'
-  # to be removed
-  VPC:
-    Description: VPCID
-    Type: String
-  # to be removed
-  Subnet:
-    Description: Subnet
-    Type: String
-Conditions:
-  CreateLoggingServiceVPCE: !Not [!Equals [!Ref VPCES, ""]]
-Resources:
-  LoggingServiceVPCE:
-    Type: AWS::EC2::VPCEndpoint
-    Condition: CreateLoggingServiceVPCE
-    Properties:
-      SecurityGroupIds:
-        - !Ref LoggingServiceVPCESecurityGroup
-      ServiceName: !Ref VPCES
-      # SubnetIds:
-      #   - !Ref PrivateSubnet0
-      #   - !Ref PrivateSubnet1
-      SubnetIds:
-        - !Ref Subnet
-      VpcEndpointType: Interface
-      VpcId: !Ref VPC
-
-  LoggingServiceVPCESecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Condition: CreateLoggingServiceVPCE
-    Properties:
-      GroupDescription: VPCE Security Group
-      GroupName: test-logging-io-49
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 24223
-          ToPort: 24224
-          # !GetAtt VPC.CidrBlock
-          CidrIp: 10.0.0.0/16
-      SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 24223
-          ToPort: 24224
-          CidrIp: 0.0.0.0/0
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Usage
-          Value: !Sub
-            - 'Used by ${VPC}'
-            - { VPC: !Ref VPC }
-Outputs:
-  LoggingServiceVPCERegionalDNS:
-    Value: !Select
-      - "1"
-      - !Split
-        - ":"
-        - !Select
-          - "0"
-          - !GetAtt LoggingServiceVPCE.DnsEntries
-    Condition: CreateLoggingServiceVPCE
 ```
 
 ### cross-stack reference
@@ -203,7 +125,7 @@ If a stack is truly long-lived, and the output values static i.e networking stac
 #### Debug user data
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
 
-The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once completes editing, hit create stack - cloud icon with a up arrow to update changed stack.
+The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once editing is complete, hit create stack - cloud icon with a up arrow to update changed stack.
 
 When inline editing, ensure to leave blank line between comments and code:
 

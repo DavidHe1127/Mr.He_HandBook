@@ -1,6 +1,7 @@
 ## S3
 
 - [Access object](#access-object)
+- [Temp access to an object]
 - [Lifecycle rules](#lifecycle-rules)
 - [Access only specific folder](#access-only-specific-folder)
 - [Multi-part upload](#multi-part-upload)
@@ -15,6 +16,14 @@ Works only for public content.
 https://bucket-name.s3.region.amazonaws.com/key-name
 
 https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
+```
+
+### Temp access to an object
+
+Generate presigned url to give unauthorised person temp access to objects in a bucket.
+
+```
+aws s3 presign s3://bucket-name/object-key --expires-in 3600
 ```
 
 ### Lifecycle Rules

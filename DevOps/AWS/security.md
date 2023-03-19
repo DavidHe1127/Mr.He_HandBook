@@ -1,8 +1,7 @@
 ## Security
 
 - [AWS Inspector vs GuardDuty](#aws-inspector-vs-guardduty)
-- [Security Best Practices](https://www.stratoscale.com/blog/cloud/aws-security-groups-5-best-practices/)
-
+- [Pulumi CrossGuard (AWS Guard)](https://www.pulumi.com/docs/guides/crossguard/)
 
 ### AWS Inspector vs GuardDuty
 

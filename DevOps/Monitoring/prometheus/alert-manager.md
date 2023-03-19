@@ -2,7 +2,7 @@
 
 - [Basics](#basics)
 - [Alerts DeDupe](#alerts-dedupe)
-
+- [Templating](#templating)
 
 ### Basics
 
@@ -58,4 +58,27 @@ This will result in 2 separate notifications since we want to group alerts by bo
 [ALERT] HighCpuUsage - critical (1 active)
   - instance: server2
   - job: myapp
+```
+
+### Templating
+
+```
+groups:
+- name: example
+  rules:
+  - alert: InstanceDownLabels
+    expr: up
+    for: 5m
+    labels:
+      severity: page
+    annotations:
+      # access label values on metric
+      summary: "Instance {{ $labels.instance }} down"
+      description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
+
+- name: 'team-x'
+  slack_configs:
+  - channel: '#alerts'
+    # access annotations defined in alerts
+    text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
 ```
