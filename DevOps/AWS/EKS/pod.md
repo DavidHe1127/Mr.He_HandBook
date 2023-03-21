@@ -6,6 +6,7 @@
 - [Taint & Tolerations](#taint-and-tolerations)
 - [Container Liveness and Readiness](#liveness)
 - [Pod Disruption Budget](#pod-disruption-budget)
+- [Security Group](#security-group)
 - [CPU & Memory](#cpu-and-memory)
 - Miscels
   - [CrashLoopBackOff](#crash-loop-backoff)
@@ -132,6 +133,13 @@ It however doesn't add protection when data centre has an outage.
 
 [Read more](https://innablr.com.au/blog/what-is-pod-disruption-budget-in-k8s-and-why-to-use-it/)
 [Demo](https://www.youtube.com/watch?v=e2HjRrmXMDw)
+
+### Security Group
+
+- When you create a cluster, EKS creates a security group that's named `eks-cluster-sg-my-cluster-uniqueID`.
+- EKS automatically associate sg to ENI of the nodes in any managed node group that you create.
+- If pod doesn't have a custom sg, then it uses the default one.
+- As long as pod has a custom sg attached, it will DROP the default one (networking issue might be seen here, so check security group of your pod!).
 
 ### CPU and Memory
 

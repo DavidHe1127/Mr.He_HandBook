@@ -10,7 +10,7 @@
 - Doesn't apply for DaemonSet
 - Deploy more pods to cope with increased workload
 - When workload decreases, HPA will scale resources back down below configured minimum number of pods
-- Don't set replicas on deployment. See [this](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#migrating-deployments-and-statefulsets-to-horizontal-autoscaling)
+- If you plan to use HPA with a Deployment or a StatefulSet, do NOT declare replicas. If you do, each rolling update will cancel the effect of the HPA for a while. Define replicas only for the resources that are NOT used in conjunction with HPA. See [this](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/#migrating-deployments-and-statefulsets-to-horizontal-autoscaling)
 
 ```
 apiVersion: autoscaling/v1

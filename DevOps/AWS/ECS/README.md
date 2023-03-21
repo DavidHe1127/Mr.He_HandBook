@@ -48,6 +48,8 @@ Desired count of running tasks. Say your task definition defines two containers 
   - Extract higher network performance from your applications as they no longer contend for bandwidth on a shared bridge.
   - Enforce finer-grained access controls for your containerized applications by associating security group rules for each Amazon ECS task, thus improving the security for your applications.
 - Caveat: each task requires an individual ENI and EC2 instance has a limit number of ENI that can be attached it. For example, `C5.large` might only have 3 ENIs so that you can only run 2 tasks on it. 1 primary taken by instance itself.
+- [Enable ECS/ENI vpc trunking](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-eni.html) to allow larger number of ENIs to be attached to your instance.
+
 
 **bridge**
 - Containers on an instance are connected to each other using the `docker0` bridge - see [docker0 diagram](./docker.md#Networking). Containers also use this bridge to communicate with endpoints outside of the instance, using the primary ENI of the instance on which they are running. Containers share and rely on the networking properties of the primary ENI, including the firewall rules (security group subscription) and IP addressing. Given all containers share the same ENI from instance, you cannot address them by IP only but rather IP+Port.
