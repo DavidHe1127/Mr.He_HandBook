@@ -6,6 +6,7 @@
   - [Data Plane](#data-plane)
 - [Fundamentals](./fundamental.md)
 - [Security](./security.md)
+- [Auth](./auth.md)
 - [Service](./service.md)
 - [Cluster](./cluster.md)
 - [Networking](./networking.md)
