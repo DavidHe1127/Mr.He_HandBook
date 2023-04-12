@@ -47,11 +47,15 @@ Instance pool is a group of instances with same type/os/az.
 
 Specify a high number of pools like `10` when using this strategy.
 
-### capacity-optimized/capacity-optimized-prioritized (Recommended)
+### capacity-optimized/capacity-optimized-prioritized
 
 - Higher price but fewer interruptions in contrast to `lowest-price`.
 - It accounts for pool capacity depth but not spot prices.
 - `capacity-optimized-prioritized` makes the overrides order matter - try to fulfill the request using instances in order but still optimizes for capacity first.
+
+### price-capacity-optimized (preferred)
+
+This strategy in most cases has a higher chance of getting Spot capacity and delivers lower interruption rates when compared to the lowest-price strategy.
 
 #### Capacity Rebalancing (ONLY for capacity-oriented strategy)
 
@@ -62,3 +66,12 @@ It can arrive sooner than 2-min interruption notice.
 When there is a risky instance, ASG will spin up a new instance and follow normal process to replace the risky one - detach it from elb, drain conns, run shutdown hook etc.
 
 Rebalance Recommendation can be simulated via [FIS](https://aws.amazon.com/blogs/compute/implementing-interruption-tolerance-in-amazon-ec2-spot-with-aws-fault-injection-simulator/)
+
+### Spot Capacity
+
+There is no way to see spot capacity per region. The closet option is to check `Spot Requests` to see if there is requests with `no-capacity` status.
+
+### Attributes-based instances type selection
+
+Instead of specifying each instance type you want to support, try using [attribute-based instance type selection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html) to set instance requirements so AWS will identify the right instances to launch for you.
+

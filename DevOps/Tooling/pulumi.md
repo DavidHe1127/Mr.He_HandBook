@@ -5,6 +5,7 @@
 - [Import Resources](#import-resources)
 - [Create Custom Resource](#create-custom-resource)
 - [Cross-stack reference](#cross-stack-reference)
+- [Refresh](#refresh)
 - [Command hook with Pulumi Command](https://github.com/pulumi/pulumi-command)
 - [Secret Management](#serect-management)
 - [Useful commands](#useful-commands)
@@ -81,6 +82,11 @@ const stackRef = new pulumi.StackReference('stack-ref-test', {
 });
 ```
 
+## Refresh
+
+- If resources are removed in reality but their state still exists, refresh will remove the state from state file.
+- If resources are removed in reality but their code still exists, refresh will add the resources back. A subsequent `up` command is still needed to make suggested changes.
+
 ## Secret Management
 
 Either use one of built-in encryption providers i.e `awskms` and `passphrase` or use SSM secured string or Secret Manager. With built-in encryption providers option, encrypted values are kept alongside your code while the latter option, encrypted values are kept on remote storage and decrypted when used.
@@ -105,7 +111,4 @@ AWS_PROFILE=david pulumi config set --secret auth0:client_secret xjfiwLKDI
 
 # set kms key to be used for secrets encryption/decryption
 AWS_PROFILE=david pulumi stack init new-stack --secrets-provider="awskms://alias/ExampleAlias?region=us-east-1"
-
-# if actual res deleted but it still exists in state file, refresh will remove it from state file
-pulumi refresh
 ```

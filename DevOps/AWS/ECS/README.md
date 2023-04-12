@@ -259,7 +259,7 @@ logger.emit('error', {'log': 'Error: Something went wrong'})
 
 ### Monitoring
 
-- [Using Prometheus metrics in AWS CloudWatch](https://aws.amazon.com/blogs/containers/using-prometheus-metrics-in-amazon-cloudwatch/)
+- [Using Prometheus metrics in AWS CloudWatch](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/application-metrics-cloudwatch.html)
 - [Container Insights with Prom walkthrough](https://docs.amazonaws.cn/en_us/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-memcached-ecs.html)
 
 References:
@@ -273,9 +273,9 @@ References:
 
 ### Service Discovery
 
-2 ways of inter-service communications without using SD. a) via container instance's private IP (not practical as ip is transient) b) via their load balancers.
+2 ways of east-west comms without using SD. a) via container instance's private IP (not practical as ip is transient) b) via their internal load balancers in front of services.
 
-Using Service Discovery allows a domain bound to a service which returns ip when sending a DNS query. For more details, see `Service Discovery` in Platy.
+Using Service Discovery allows a domain bound to a service which returns an IP when DNS querying them. For more details, see `Service Discovery` in Platy.
 ---
 
 ### Troubleshooting Guide

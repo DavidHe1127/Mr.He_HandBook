@@ -12,5 +12,5 @@ Read [this](https://docs.aws.amazon.com/eks/latest/userguide/autoscaling.html).
 
 ### Security Group
 
-It's required for comms between your worker nodes (data plane) and k8s control plane.
+A security group is created as part of cluster creation. It's attached to your node by default. It's also attached to your pod if your pod doesn't have a custom security group. It's required for comms between your worker nodes (data plane) and k8s control plane.
 

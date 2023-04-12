@@ -96,6 +96,8 @@ It tells particular nodes to **ONLY** accept pods with certain tolerations. To r
 
 ### Liveness
 
+Both liveness & readiness probes are performed by `kubelet` agent on node.
+
 Liveness probe indicates whether the Container is running. If the liveness probe fails, the kubelet kills the container, and the container is subjected to its restart policy. If a container does not provide a liveness probe, the default state is Success. Also, it doesn’t wait for readiness probes to succeed.
 
 #### Readiness
