@@ -6,6 +6,7 @@
 - [Taint & Tolerations](#taint-and-tolerations)
 - [Container Liveness and Readiness](#liveness)
 - [Pod Disruption Budget](#pod-disruption-budget)
+- [Pod Topology Spread Constraint](https://mby.io/blog/topology-spread-constraints/)
 - [Security Group](#security-group)
 - [CPU & Memory](#cpu-and-memory)
 - Miscels

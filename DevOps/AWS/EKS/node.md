@@ -16,3 +16,7 @@ When the system is about to shut down, the kubelet can delay that shutdown for a
 Pods are split into two categories: "regular" and "critical". Critical pods are those that have priorityClassName set to system-cluster-critical or system-node-critical; all other pods are considered regular. i.e logging DaemonSet is considered to be critical one.
 
 During the graceful node shutdown, regular pods are terminated first, followed by critical pods.
+
+### Node Termination Handler
+
+It will call K8S APIs to cordon node to ensure no more workload is scheduled there, drain it (finish in-flight transactions), remove existing work. Your app will also be notified with `SIGTERM` to give your app time for having a graceful shutdown. A final `SIGKILL` is also sent 30 seconds apart to kill the process.

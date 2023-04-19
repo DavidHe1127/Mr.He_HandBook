@@ -191,4 +191,9 @@ echo "code is $CODE"
 # two commands have the same result. -D will create directories if they don't exist
 install -D x a/b/c
 mkdir -p a/b && cp x a/b/c
+
+### return dir path for script you are executing
+SCRIPT_DIR=$(dirname "$0")
+
+
 ```

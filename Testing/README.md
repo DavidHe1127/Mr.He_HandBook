@@ -1,18 +1,9 @@
 ## Testing
 
-* [Unit Test](./unit_test.md)
-* [lcov](#lcov)
+- [Unit Test](./unit_test.md)
+- [API fuzzing](#api-fuzzing)
 
-### LCOV
 
-LCOV is an extension of GCOV, a GNU tool which provides information about
-what parts of a program are actually executed (i.e. "covered") while running
-a particular test case. The extension consists of a set of Perl scripts
-which build on the textual GCOV output to implement the following enhanced
-functionality:
+### API fuzzing
 
-    * HTML based output: coverage rates are additionally indicated using bar
-      graphs and specific colors.
-    * Support for large projects: overview pages allow quick browsing of
-      coverage data by providing three levels of detail: directory view,
-      file view and source code view.
+Generate large amount of requests with invalid data and send them to your API in order to uncover the potential vulnerabilities and flaws of your system.

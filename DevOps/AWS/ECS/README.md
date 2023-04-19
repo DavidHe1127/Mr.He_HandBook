@@ -11,6 +11,7 @@
 - [Run a task in cluster](#run-a-task-in-cluster)
 - [Resource Allocation and Utilization](#resource-allocation-utilization)
 - [Rolling update](#rolling-update)
+- [Spot instances interruption handling](#spot-instances-interruption-handling)
 - [Roles comparison](#roles-comparison)
 - [Logging](#logging)
 - [Monitoring](#monitoring)
@@ -197,6 +198,10 @@ Key notes
 - When set an instance to `draining`, tasks on it are still be able to serve incoming requests until the point they are drained and stopped by ECS task scheduler
 - Drained instances will finally be removed from asg if you have it configured
 
+### Spot instances interruption handling
+
+Set `ECS_ENABLE_SPOT_INSTANCE_DRAINING=true`. Once enabled, when a container instance is marked for interruption, ECS receives the Spot Instance interruption notice and places the instance in DRAINING status. This prevents new tasks from being scheduled for placement on the container instance
+
 ### Various Roles
 
 | Name | AWS Managed Role/Policy | Purpose | Note
@@ -259,8 +264,10 @@ logger.emit('error', {'log': 'Error: Something went wrong'})
 
 ### Monitoring
 
-- [Using Prometheus metrics in AWS CloudWatch](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/application-metrics-cloudwatch.html)
-- [Container Insights with Prom walkthrough](https://docs.amazonaws.cn/en_us/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-memcached-ecs.html)
+Possible solutions:
+
+- Configure app service to expose Prom metrics & run a CW agent to help collect/deliver exposed metric data to CW log group. CW Agent has built-in support of ECS task service discovery.
+- Run Prom on ECS as a service & configure remote write to push logs to a proper place e.g CW, Thanos Receiver
 
 References:
 
@@ -270,6 +277,8 @@ References:
 - [How to set fluentd/fluentbit input params with firelens](https://aws.amazon.com/blogs/containers/how-to-set-fluentd-and-fluent-bit-input-parameters-in-firelens/)
 - [Build log solution aggregator](https://aws.amazon.com/blogs/compute/building-a-scalable-log-solution-aggregator-with-aws-fargate-fluentd-and-amazon-kinesis-data-firehose/)
 - [Under the hood firelens for amazon ecs tasks](https://aws.amazon.com/blogs/containers/under-the-hood-firelens-for-amazon-ecs-tasks/)
+- [Using Prometheus metrics in AWS CloudWatch](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/application-metrics-cloudwatch.html)
+- [Container Insights with Prom walkthrough](https://docs.amazonaws.cn/en_us/AmazonCloudWatch/latest/monitoring/ContainerInsights-Prometheus-Setup-memcached-ecs.html)
 
 ### Service Discovery
 
