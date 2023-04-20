@@ -1,7 +1,6 @@
 ## Monitoring
 
 - [General](#general)
-- [On-Call](#on-call)
 - [EC2](#ec2)
 - [Prometheus](./prometheus)
 - [Articles](#articles)
@@ -23,17 +22,6 @@ Some tips:
 - Test to see how your alerting reacts by turning it on but not raising incidents. i.e put it on suppress mode which generates alarms but not page people.
 - Collate metrics and plot them out in graphs in one page so you can visually correlate them in time. DataDog/Grafana
 - Enrich your metrics with tags/events, such as deployments, auto-scale events, restarts, and more. i.e annotations in Grafana
-
-### On-call
-
-- Trust an alarm but need to verify it's not noise.
-- Define guidelines for all teams about what warrants an incident along with different levels of severity. This takes guesswork out of the picture, and provides a shared understanding to every team member.
-- **Scope the incident** i.e how big the impact is? which environment is affected? which customers are affected? is it a regional/global? Is it us or 3rd service causing the incident? If possible summarise it in incident title.
-- Create a dedicated channel, declare incident lead, give context, provide hypotheses/proofs and updates to all stakeholders involved.
-- Incident response is a collaborative process. Get early help from others from different teams.
-- Don't panic! Panic will inevitably cause scrambling leading up to longer resolution. If panic, try to calm down and follow the incident resolution guideline. If still not helpful, yell for help!
-- When not on-call, try to help on-call, they would appreciate your help and you will learn new things during process. This also helps promote a great culture.
-- Use incident management tool such as [rootly](https://rootly.com/).
 
 ### EC2
 
