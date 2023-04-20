@@ -12,7 +12,7 @@
 - [AMI](#ami)
 - [Spot Instance](./spot-instance.md)
 - [UserData](#user-data)
-- [Notes](#notes)
+- [Notes/tips](#notes)
 
 ## [EBS](ebs.md)
 
@@ -172,6 +172,7 @@ See [cloud-init example](https://github.com/ukayani/cloud-init-example/blob/mast
 ### Notes
 
 - A `stop` and `start` isn't equivalent to a `reboot`. A `start` can put instance on faulty hardware to a healthy one.
+- To get details about a terminated instance once it's gone from EC2 console is `AWS Config -> Resources -> instance_id -> Timeline -> one of Configuration changes`.
 
 ---
 

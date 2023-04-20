@@ -143,6 +143,7 @@ It however doesn't add protection when data centre has an outage.
 - EKS automatically associate sg to ENI of the nodes in any managed node group that you create.
 - If pod doesn't have a custom sg, then it uses the default one.
 - As long as pod has a custom sg attached, it will DROP the default one (networking issue might be seen here, so check security group of your pod!).
+- When creating security group for pod, then pod requires an ENI attached to it.
 
 ### CPU and Memory
 
