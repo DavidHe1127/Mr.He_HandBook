@@ -75,3 +75,24 @@ There is no way to see spot capacity per region. The closet option is to check `
 
 Instead of specifying each instance type you want to support, try using [attribute-based instance type selection](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-instance-type-requirements.html) to set instance requirements so AWS will identify the right instances to launch for you.
 
+### Spot price protection
+
+Set protection via `SpotMaxPricePercentageOverLowestPrice`. It's used to prevent users paying too much to use spot instances.
+
+Say it's set to `100` which means suppose 3 types `C` instances as follow:
+
+```
+`C5.xlarge` 0.8/hr
+`C6.large`  0.6/hr
+`C6.xlarge` 0.95/hr
+`C4.medium` 0.4/hr
+```
+
+the last price you are happy to pay to run spot instances is `0.8/hr`. So `C6.xlarge` will not be used to fulfill your request even if it has spare capacity. This value can also be set to an insane number like 9999 which is same as turning off the spot price protection.
+
+### Learnings
+
+- Always use `price-capacity-optimized`. If capacity is paramount, then use `capacity-optimized` to reduce chance of spot unavailability.
+- To improve capacity availability, use both `previous` & `current` generations of instance if possible.
+- Use instances with lower interruption rate e.g < 5%. Use [spotinfo](https://github.com/alexei-led/spotinfo) to identify them.
+- Spot instance price can even go above that of OnDemand sometimes.

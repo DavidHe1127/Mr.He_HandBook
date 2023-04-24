@@ -51,11 +51,3 @@ export const provider = new kubernetes.Provider('main', {
 ### Data Plane
 
 ![Diagram](./k8s-master-worker-comm.svg)
-
-## Useful code snippet
-
-
-```shell
-# grant perms for entity to interact with cluster
-aws eks update-kubeconfig --name cluster-name --profile david-adm
-```

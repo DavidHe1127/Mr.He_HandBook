@@ -24,6 +24,8 @@ A private subnet is one that is configured to use a NAT Gateway (NAT) so that it
 ### NAT Gateway
 
 - Create per-az NAT Gateway to reduce cross-az data transfer. i.e instance and NAT Gateway in different AZs.
+- 55,000 simultaneous connections to each destination (distinct ip + port combination). If threshold is crossed, then you will see `ErrorPortAllocation` issue.
+- Connected to a single subnet corresponding to a particular AZ. e.g all conns from ec2 in az-a will be established to that az's NATG.
 
 [Reduce cost of NAT Gateway](https://www.stephengrier.com/reducing-the-cost-of-aws-nat-gateways/)
 
