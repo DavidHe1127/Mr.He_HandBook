@@ -6,9 +6,9 @@
   - [Dockerfile](#dockerfile)
   - [Networking](./networking.md)
   - [Caching](./caching.md)
-  - [Signals](#signals)
   - [HealthCheck](#health-check)
   - [Security](#security)
+  - [Secret](#secret)
   - [Process](./docker-process.md)
   - [Logging](./logging.md)
   - [Data persistence](#data-persistence)
@@ -62,9 +62,15 @@ Docker images are layered. When you build a new image, Docker does this for each
 
 ![docker-args-vs-env](./docker-args-n-env.png)
 
-- Keep it in mind that this is not shell script you should try to write as less lines of intructions as possible.
-- Remember to remove/clean up redundant files you've created during build/setup to reduce image footprint.
-- Each line of instruction should only do things relating to that layer.
+```
+docker build --build-arg SECRET=123
+
+# expose it in Dockerfile. It will create a env var SECRET to hold the value temporarily during build
+ARG SECRET
+
+# or assign it to an env var so that it will persist after build
+ENV NEW_SECRET=$SECRET
+```
 
 ### HealthCheck
 
@@ -81,6 +87,23 @@ c8b925b35dd6        healthcheck         "docker-entrypoint.s…"   2 minutes ago
 - Return health check status from a container
 ```
 docker inspect --format='{{.State.Health.Status}}' 5c2f4e67f7c4
+```
+
+### Secret
+
+Pass secret that's required during build through arg unfolds its value - for example in the build log. A better way to handle it is by using `secret` flag. Note, once build is complete, the mounted file gets booted in the built image.
+
+```
+# secret file
+somethingisreallynice
+
+# set it in build
+export DOCKER_BUILDKIT=1
+docker build --secret id=dave_secret,src=$(pwd)/secret -t docker-secret-test-image .
+
+# grab it
+RUN --mount=type=secret,id=dave_secret \
+    echo "$(cat /run/secrets/dave_secret)"
 ```
 
 ### Security
