@@ -36,6 +36,7 @@ metadata:
   namespace: default
   name: pod-and-pod-logs-reader
 rules:
+# empty string indicates resources api belongs to core api group. To see what api group a resource is in use kubectl api-resources
 - apiGroups: [""]
   resources: ["pods", "pods/log"]
   verbs: ["get", "list"]

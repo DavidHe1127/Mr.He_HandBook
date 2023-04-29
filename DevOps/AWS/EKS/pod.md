@@ -8,6 +8,7 @@
 - [Pod Disruption Budget](#pod-disruption-budget)
 - [Pod Topology Spread Constraint](https://mby.io/blog/topology-spread-constraints/)
 - [Security Group](#security-group)
+- [Priority Class](#priority-class)
 - [CPU & Memory](#cpu-and-memory)
 - Miscels
   - [CrashLoopBackOff](#crash-loop-backoff)
@@ -144,6 +145,10 @@ It however doesn't add protection when data centre has an outage.
 - If pod doesn't have a custom sg, then it uses the default one.
 - As long as pod has a custom sg attached, it will DROP the default one (networking issue might be seen here, so check security group of your pod!).
 - When creating security group for pod, then pod requires an ENI attached to it.
+
+### Priority Class
+
+![pod-priority-class](./pod-priorityclass.png)
 
 ### CPU and Memory
 

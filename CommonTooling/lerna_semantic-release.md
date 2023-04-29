@@ -6,7 +6,7 @@
 
 ### Change Detection
 
-`lerna` determines a change by checking if the latest commit `HEAD` is pointing at is ahead of last tagged commit. If so, it detects a change.
+`lerna` determines a change by comparing target files' snapshot from last tagged commit and from the current commit. Note, only commits with annotated tags are used by lerna. Lerna will ignore commits with lightweight tags. Note lightweight tagging usually happens when tagging commits from web ui or cli without specifying `-a` flag.
 
 This will conclude a change by `lerna`. Note conventional commit message only helps with versioning decision but not change detection.
 ```
