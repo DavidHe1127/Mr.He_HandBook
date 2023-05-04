@@ -39,6 +39,7 @@
   - [See all tags with tagged messages](#show-tags)
   - [Revert vs Reset](#revert-vs-reset)
   - [Create & push a tag](#create-n-push-tag)
+  - [Partial cloning](#partial-cloning)
 
 
 ## Merge types
@@ -345,3 +346,11 @@ git push origin <tag>
 `git revert <insert bad commit hash here>`
 
 `git revert` creates a new commit with the changes that are rolled back. `git reset` erases your git history instead of making a new commit.
+
+## partial-cloning
+
+```
+git clone --filter=blob:none --sparse <YOUR_REPO_URL>
+cd <REPO>
+git sparse-checkout add <REPO_SUBDIR>
+```
