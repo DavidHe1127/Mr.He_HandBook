@@ -154,7 +154,7 @@ It however doesn't add protection when data centre has an outage.
 
 #### CPU
 
-- **DON'T set limits on CPU, ONLY set requests**
+- **[DON'T set limits on CPU, ONLY set requests](https://home.robusta.dev/blog/stop-using-cpu-limits)**
 - Set on container level and is aggregated in pod.
 ```yml
 # measuring unit can either be numbers such as 1.0, 0.5 or 500m in millicores.

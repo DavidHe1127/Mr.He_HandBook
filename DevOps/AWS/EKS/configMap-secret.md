@@ -1,5 +1,10 @@
 ## ConfigMap & Secret
 
+
+## General
+
+- Updates to values in ConfigMap typically force pods reload. The ConfigMap itself is not re-created but pods is.
+
 ### ConfigMap
 
 See David's EKS lab repo for example code.

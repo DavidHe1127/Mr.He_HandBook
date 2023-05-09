@@ -63,13 +63,13 @@ Docker images are layered. When you build a new image, Docker does this for each
 ![docker-args-vs-env](./docker-args-n-env.png)
 
 ```
-docker build --build-arg SECRET=123
+docker build --build-arg NUMBER=123
 
 # expose it in Dockerfile. It will create a env var SECRET to hold the value temporarily during build
-ARG SECRET
+ARG NUMBER
 
 # or assign it to an env var so that it will persist after build
-ENV NEW_SECRET=$SECRET
+ENV NEW_NUMBER=$NUMBER
 ```
 
 ### HealthCheck
@@ -91,7 +91,9 @@ docker inspect --format='{{.State.Health.Status}}' 5c2f4e67f7c4
 
 ### Secret
 
-Pass secret that's required during build through arg unfolds its value - for example in the build log. A better way to handle it is by using `secret` flag. Note, once build is complete, the mounted file gets booted in the built image.
+**Don't use ARG to set secret as it might end up in image history**
+
+Using `secret` flag. Note, once build is complete, the mounted file gets booted in the built image.
 
 ```
 # secret file
@@ -101,7 +103,7 @@ somethingisreallynice
 export DOCKER_BUILDKIT=1
 docker build --secret id=dave_secret,src=$(pwd)/secret -t docker-secret-test-image .
 
-# grab it
+# by default it's stored in /run/secrets
 RUN --mount=type=secret,id=dave_secret \
     echo "$(cat /run/secrets/dave_secret)"
 ```

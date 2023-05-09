@@ -12,6 +12,7 @@
 
 ## Facts
 
+- Pulumi up will never look at realistic resources but only compare your pulumi code with state file. Any diff will be reconciled.
 - When updating, Pulumi tries to create new resources before destroying old ones. If there is a resource conflict issue, use `delete_before_update`.
 - `pulumi login` is used for state management. i.e `pulumi login s3://parrodise-state` lets you sync your stack state to remote s3 bucket.
 - Stacks will be synced back to your configured state management service like s3. i.e `stack ls`will return all stacks managed by s3.
