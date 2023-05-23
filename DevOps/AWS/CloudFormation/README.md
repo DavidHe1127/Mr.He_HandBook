@@ -137,3 +137,83 @@ set +e
 ```
 
 Otherwise, code will be merged into comment as so `# this is comment set +e`
+
+#### Use AWS:Include to help with de-dupe
+
+```
+# main.yml
+
+Resources
+  SentinelLaunchTemplate:
+    Type: 'AWS::EC2::LaunchTemplate'
+    Properties:
+      LaunchTemplateName: abc-2843-test
+      LaunchTemplateData:
+        BlockDeviceMappings:
+          - DeviceName: /dev/xvda
+            Ebs:
+              DeleteOnTermination: true
+              VolumeType: gp3
+        MetadataOptions:
+          HttpEndpoint: enabled
+          HttpTokens: required
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: !Sub "s3://multi-arch-user-data/user-data.yml"
+
+# user-data.yml
+
+ImageId: !Ref ImageId
+UserData:
+  Fn::Base64:
+    Fn::Sub: |
+      #!/bin/bash
+      echo "${ImageId}"
+
+```
+
+#### Use !If to avoid duplicate
+
+```
+Overrides:
+  !If
+  - UseSecondaryArch
+  - - InstanceRequirements:
+        AcceleratorCount:
+          Max: 0
+        BareMetal: excluded
+        BurstablePerformance: excluded
+        InstanceGenerations:
+          - current
+        LocalStorage: included
+        MemoryGiBPerVCpu:
+          Min: 2
+        MemoryMiB:
+          Min: 1
+        OnDemandMaxPricePercentageOverLowestPrice: 50
+        SpotMaxPricePercentageOverLowestPrice: 100
+        VCpuCount:
+          Min: 4
+          Max: 8
+      LaunchTemplateSpecification:
+        LaunchTemplateId: !Ref xxxTemplate
+        Version: !GetAtt xxxTemplate.LatestVersionNumber
+  - - InstanceRequirements:
+        AcceleratorCount:
+          Max: 0
+        BareMetal: excluded
+        BurstablePerformance: excluded
+        InstanceGenerations:
+          - current
+        LocalStorage: included
+        MemoryGiBPerVCpu:
+          Min: 2
+        MemoryMiB:
+          Min: 1
+        OnDemandMaxPricePercentageOverLowestPrice: 50
+        SpotMaxPricePercentageOverLowestPrice: 100
+        VCpuCount:
+          Min: 4
+          Max: 8
+```

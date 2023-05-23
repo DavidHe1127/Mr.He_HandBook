@@ -90,6 +90,10 @@ Say it's set to `100` which means suppose 3 types `C` instances as follow:
 
 the last price you are happy to pay to run spot instances is `0.8/hr`. So `C6.xlarge` will not be used to fulfill your request even if it has spare capacity. This value can also be set to an insane number like 9999 which is same as turning off the spot price protection.
 
+### Dealing with Spot Capacity shortages
+
+- Use multi-arch AMIs in ASG launch template override.
+
 ### Learnings
 
 - Always use `price-capacity-optimized`. If capacity is paramount, then use `capacity-optimized` to reduce chance of spot unavailability.

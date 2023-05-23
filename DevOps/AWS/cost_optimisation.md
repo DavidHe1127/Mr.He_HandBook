@@ -26,6 +26,8 @@ It's as critical as performance, resilience and security.
 
 #### **Implement an effective tag strategy**
 
+Use cost allocation tags - AWS defined and custom ones. This lets you view cost of resources by their tags in the cost explorer. To bulk add tags to resources, consider using AWS Tag Editor.
+
 Good resource tagging strategy can help you save money!!! i.e Shut down instances during after business hours if they are not running business-critical services. For instance, boxes in test/dev environment.
 
 ---
