@@ -102,7 +102,7 @@ Dictate which CA is allowed to issue cert for a given domain. For example, if yo
 ```
 theparrodise.com     0 issue letsencrypt.org
 ```
-Read more at [What is CAA](https://www.thesslstore.com/blog/what-is-caa-record-certificate-authority-authorization/)
+Read this for how evaluation works [How CAA works](https://repost.aws/knowledge-center/acm-troubleshoot-caa-errors)
 
 ### resolv.conf
 

@@ -1,8 +1,7 @@
 ## IAM
 
-- [Role](#role)
-  - [Pass role](#pass-role)
-  - [service-linked role](#service-linked-role)
+- [Pass role](#pass-role)
+- [service-linked role](#service-linked-role)
 - [Policy](#policy)
 - [Conditions](#conditions)
 - [Federated Users](#federated-users)
@@ -10,24 +9,17 @@
 - [Permission Boundary](#permission-boundary)
 - [Managing Server Certs](#managing-server-certs)
 - [Resource Cross-Account access](#resource-cross-account-access)
+
+- [Tips](#tips)
 - [Reference](#reference)
 
-### Role
-
-A role consists of 2 parts:
-
-- `Trust Policy` - is a policy that does nothing more than state `who` can assume (use) this role
-- `Permissions Policy` - `What` actions can the owner of this role take to `which` resources
-
-Note when creating roles in the console, we don't really worry about trust policy since the service we pick will be served as `who` aka identity-based policy.
-
-#### Assume a role
+### Assume a role
 
 Assuming a role means asking Security Token Service (STS) to provide you with a set of temporary credentials -- role credentials -- that are specific to the role you want to assume.
 
 For all identities under an account to be able to assume a role, simply specify `arn:aws:iam::123456789012:root` in the principal field.
 
-#### Pass role
+### Pass role
 
 It grants the service a principal launches the permission to assume a role to perform other actions on your behalf. It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
 
@@ -221,6 +213,20 @@ credential_source = Ec2InstanceMetadata
 ```
 - Make the call `aws ssm get-parameter --profile cross-account-access --region ap-southeast-2 --name '/david/token' --with-decryption --queryParameter.Value --output text`
 - To return to original role, call cli without `--profile`
+
+### Tips
+
+- Use [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html) to help you refind the perms granted to a role. e.g generate policy with required perms from cloudtrail logs. This can prevent you perms overprovisioning. Based on experience, looks like it's smart at identifying over-provisioned actions but not resources?
+
+```
+// role with permissive policy
+"s3:*"
+
+// generated policy
+"s3:GetObject",
+"s3:GetObjectVersion",
+"s3:ListBucket"
+```
 
 ### Reference
 

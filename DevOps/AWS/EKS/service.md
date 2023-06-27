@@ -96,6 +96,8 @@ It watches API Server for changes to Ingress resource and creates ALB (external 
 
 **Note, seems Nginx ingress controller does things differently, it also takes care of traffic load balancing?
 
+- To set tags on target group only, set `'alb.ingress.kubernetes.io/tags': 'AAA=BBBB'` in backend service's annotations.
+
 #### TLS
 
 In [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingress/cert_discovery/), TLS cert for ALB Listeners can be automatically discovered from `tls` and `host` field in Ingress rules, if `alb.ingress.kubernetes.io/certificate-arn` left unspecified. Taking wildcard cert as an example, setting `game2048.*.eks-use1.prod.abc.io` as host will help controller discover and attach the wildcard cert `*.eks-use1.prod.abc.io` to the ALB it's created.

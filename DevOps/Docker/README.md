@@ -497,7 +497,8 @@ Create an image from stopped container with **same** state.
 ```shell
 $ docker commit <CONTAINER_ID> <IMAGE_NAME>/<NEW_TAG>
 ```
-Then you can run it as you would normally.
+Then you can run it as you would normally. This command also lets you update an existing image with changes and tag it a with a new value.
+
 
 ### Check if a container is running
 

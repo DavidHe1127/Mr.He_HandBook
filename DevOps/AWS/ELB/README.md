@@ -89,11 +89,17 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 
 ### Surge Queue and Spillover count
 
+#### CLB
+
 Surge Queue - The total number of requests that are pending routing. The load balancer queues a request if it is unable to establish a connection with a healthy instance in order to route the request. The maximum size of the queue is `1,024`. Additional requests are rejected when the queue is full.
 
 Spillover count - The total number of requests that were rejected because the surge queue is full.
 
 See #ELB useful metrics for more details
+
+#### ALB
+
+Use RejectedConnectionCount.
 
 ### Notes
 
