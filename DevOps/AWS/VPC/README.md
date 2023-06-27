@@ -37,6 +37,7 @@ When creating a security group for a subnet, it basically means next time an EC2
 
 - Multiple VPCs in one account can have same cidr range. However, overlapped cidr range will preclude vpc peering when needed. As of `08/2017`, VPC allows customers to expand their VPCs by adding secondary IPv4 address ranges (CIDRs).
 - Subnets within one VPC cannot have cidrs overlapped since AWS will treat the 2 subnets as one continuous network.
+- AWS allows you specify a CIDR block between `/16` and `/28`. The largest, `/16`, provides you with `65,536` IP addresses and the smallest possible allowed CIDR block, `/28`, provides you with `16` IP addresses.
 
 ### Public IP vs Elastic IP
 Public IP addresses are dynamic - i.e if you stop/start your instance you get reassigned a new public IP.

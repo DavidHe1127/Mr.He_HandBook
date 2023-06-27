@@ -218,6 +218,7 @@ Using AppConfig with lambda extension allows you to change env vars values on th
 - Try run lambda on ARM-based AWS Graviton 2 processor. 34% better than x86-based in price-perf ratio. No code change is required is lambda is written in NodeJS/Python. If written in compiled langs like go, Java, code needs to be re-compiled to target ARM64 env. Use `docker buildx` to help build arch-based images. Also, you need to provide docker manifest to the image so Docker knows the right arch image should be downloaded when running from the OS.
 - The fastest and lowest-cost lambda func is the one you remove and replace with a built-in integration! i.e APIG --> DynamoDB w/o using lambdas.
 - Use AWS RDS Proxy for conn pooling which effectively avoids overwhelming DB when huge number of db conns created from lambdas.
+- To use docker image as deployment type, you must specify a private image URI, public one on ECR is not supported today.
 
 ---
 

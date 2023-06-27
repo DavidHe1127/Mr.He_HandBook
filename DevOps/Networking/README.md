@@ -178,6 +178,8 @@ curl --connect-to www.example.com:443:load1.example.com:443 https://www.example.
 
 ```
 
+Note, both client and server needs to have SNI implemented for it to work.
+
 ### TLS TCP comms
 
 ![tcp-tls-comms](tcp-tls-comms.svg)

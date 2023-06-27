@@ -305,3 +305,7 @@ Using Service Discovery allows a domain bound to a service which returns an IP w
 ### Repo Owner
 
 When a repo is created through an IAM role, the AWS account owning this role becomes repo owner. This means, all roles under that account will have full access to the repo unless explicitly denied.
+
+### cross-region image replications
+
+Make sure the destination repo exist prior to replication!
