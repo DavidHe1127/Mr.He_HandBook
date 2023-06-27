@@ -14,8 +14,8 @@
 
 ```SQL
 # useridentity
-# {type=AssumedRole, principalid=AROAR25ITIYE}
-SELECT useridentity.type FROM "<DB>"."<TABLE>" where useridentity.type like 'A%' limit 10;
+# {type=AssumedRole, principalid=AROAR25ITIYE, nested={arn=abc}}
+SELECT useridentity.type FROM "<DB>"."<TABLE>" WHERE useridentity.type like 'A%' AND useridentity.nested.arn = 'abc' LIMIT 10;
 
 # resources
 # [{accountid=12777, type=AWS::IAM::Role}]
