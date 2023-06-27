@@ -26,7 +26,7 @@
 #### Infra As Code
 
 - [Pulumi](./Tooling/pulumi.md)
-- [Terraform and Ansible](./Tooling/terraform_ansible.md)
+- [Terraform](./Tooling/terraform.md)
 
 ### Logging
 

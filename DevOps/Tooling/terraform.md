@@ -1,37 +1,13 @@
-## Terraform & Ansible
+## Terraform
 
-- [attributes vs arguments](#attributes-vs-arguments)
 - [Typical config](#typical-config)
-- [Play with built-in func](#play-with-built-in-func)
 - [Provider Plugins](#provider-plugins)
-- [Terraform vs Ansible](#terraform-vs-ansible)
-- [Terraform lifecycle hooks](#terraform-lifecycle-hooks)
 - [Terraform important notes](#terraform-notes)
 - Notes
   - [Proper escaping](#proper-escaping)
   - [Variable default value](#variable-default-value)
 - Tricks
   - [workaround to destroy non-existent resource](#workaround-to-destroy-nonexistent-resource)
-
-### Terraform vs Ansible
-
-`Terraform` is primarily used for resource provisioning while `Ansible` is used to configure them.
-Think of `Terraform` as a tool to create a foundation, `Ansible` to put the house on top and then the application gets deployed however you wish (can be Ansible too).
-
-### Attributes vs Arguments
-
-```tf
-resource "aws_instance" "web" {
-  key_name        = aws_key_pair.terraform_key.key_name
-  ami             = "ami-00a54827eb7ffcd3c"
-  instance_type   = "t2.micro"
-  ...
-}
-
-# key_name, ami, instance_type are all arguments.
-# while attribute refers to resulting values upon creation of resource.
-# You can reference them by aws_instance.web.public_id
-```
 
 ### Typical Config
 
@@ -96,23 +72,6 @@ output "region" {
 }
 ```
 
-For more example codes, look for `dockerzon-ecs/infra`.
-
----
-
-### Play with built-in func
-
-```shell
-$ terraform console
-
-> list("hello", "world")
-[
-  "hello",
-  "world",
-]
->
-```
-
 ### Provider Plugins
 It powers Terraform with provider's functionalities. If you have difficulty fetching provider plugins remotely via `terraform init`, you can alternatively download provider plugin from their site and follow either way to use it.
 
@@ -121,31 +80,12 @@ It powers Terraform with provider's functionalities. If you have difficulty fetc
 
 Terraform talks to AWS by using the supplied AWS credentials with the Terraform AWS Provider Plugin, which under the hood utilises the AWS Go SDK.
 
-### Terraform lifecycle hooks
-
-- `create_before_destroy` useful when trying to have zero service down time.
-- `prevent_destroy` useful to stop terraform proceeding with making changes when it's seeing an attempt to delete a particular resource with this flag on.
-- `ignore_changes` useful when you want terraform to ignore planned changes to specified arguments
-
-```terraform
-resource "aws_instance" "example" {
-  ami           = "ami-656be372"
-  instance_type = "t1.micro"
-
-  lifecycle {
-    ignore_changes = ["ami"]
-    prevent_destroy = true
-  }
-}
-```
-See [more about lifecycle hooks](https://www.terraform.io/docs/configuration/resources.html#lifecycle)
-
 ### Terraform Notes
 
-- Terraform will query metadata url - http://169.254.169.254:80/latest to find out credentials it needs when you run terraform on an EC2 Instance.
+- Terraform will query IMDS to find out credentials it needs when you run terraform on an EC2 Instance.
 - Prior to a `plan` or `apply` operation, Terraform does a `refresh` to sync the state file with real-world status. So `refresh` might update state file but will not change actual infrastructure. `refresh` command can help you detect drift.
 - Change value in resource `name` field is likely to incur resource replacement! i.e When an AWS resource's name immutable, change in terraform will cause resource replacement.
-- Comment resources out will instruct terraform to tear down provisioned resource. However, deleting the file containing resource lets terraform do nothing as it cannot this change.
+- Comment resources out will instruct terraform to tear down provisioned resource. However, deleting the resource file lets terraform do nothing as it cannot see this change.
 - Terraform defers the read action (data block) until the `apply` phase as thus resource that depends on data block will always be marked as `changed` during tf `plan`. But this behaviour has changed as of 0.13. See [Data source deps](https://www.terraform.io/docs/configuration/data-sources.html#data-resource-dependencies)
 
 ---
@@ -170,7 +110,7 @@ Considering all interpretations, `\\\"` will become just `\"`.
 
 ### Variable default value
 
-A worth noting caveat in terraform, default value for a variable will only be used when this variable it's not set during operations such as `apply` or `plan`. If it's set, terraform will ignore default value even if it's a falsy value like null!!!
+A worth noting caveat in terraform, default value for a variable will only be used when this variable it's not set during operations such as `apply` or `plan`. If it's set, terraform will ignore default value even if it's a falsy value like null!
 
 ```tf
 terraform apply -var="vpc_name=${VPC_NAME}"
