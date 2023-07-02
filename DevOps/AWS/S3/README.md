@@ -4,6 +4,7 @@
 - [Temp access to an object]
 - [Lifecycle rules](#lifecycle-rules)
 - [Access only specific folder](#access-only-specific-folder)
+- [Reduce cost by using a bucket key](#reduce-cost-by-using-a-bucket-key)
 - [Multi-part upload](#multi-part-upload)
 - [Troubleshooting](#troubleshooting)
 
@@ -61,6 +62,10 @@ aws s3 presign s3://bucket-name/object-key --expires-in 3600
 Things to note:
 - `ListBucket` that allows listing a bucket operates on the bucket itself (not a path). To restrict access to a specific folder, it's must be set via `s3:prefix`.
 - `GetObject` and `PutObject` operate against objects, so the folder can be referenced in the ARN.
+
+### Reduce cost by using a bucket key
+
+Reducing the cost of SSE-KMS with Amazon S3 Bucket Keys. You don't need a bucket key if encryption is Server-side encryption with Amazon S3 managed keys (SSE-S3).
 
 ### Multi-part Upload
 
