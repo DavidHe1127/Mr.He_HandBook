@@ -35,6 +35,8 @@
 - [Reset all states in component](#reset-all-states)
 - [Lazy loading](#lazy-loading)
 
+## [Cookbook](./cookbook.md)
+
 ## Styled-components
 
 - [Styled-components](./styled-components.md)
