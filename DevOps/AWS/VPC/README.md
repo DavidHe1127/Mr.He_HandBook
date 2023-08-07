@@ -12,7 +12,7 @@
 - [Check overlapping of two cidrs](#check-overlapping-of-two-cidrs)
 
 
-### Isolated Subnet
+### Isolated Subnet☻
 
 A private subnet is one that is configured to use a NAT Gateway (NAT) so that it can reach the internet, but which prevents the internet from initiating connections to it. An isolated subnet is one that cannot reach the internet either through an IGW or with NAT.
 
@@ -40,9 +40,7 @@ When creating a security group for a subnet, it basically means next time an EC2
 - AWS allows you specify a CIDR block between `/16` and `/28`. The largest, `/16`, provides you with `65,536` IP addresses and the smallest possible allowed CIDR block, `/28`, provides you with `16` IP addresses.
 
 ### Public IP vs Elastic IP
-Public IP addresses are dynamic - i.e if you stop/start your instance you get reassigned a new public IP.
-
-Elastic IPs get allocated to your account and stay the same - it's up to you to attach them to any instance or not. you could say they are `static public ip addresses`. To avoid charge over using elastic ip, make sure it's attached to an instance. It will incur charges if it's detached.
+AWS starts to charge public ip even if they are attached. AWS has an allocation of 80 million public ips. For an organisation to claim an allocation, they need a IP plan to justify the use case.
 
 ### Accessibility and Reachability
 
