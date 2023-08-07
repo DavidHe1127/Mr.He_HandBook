@@ -30,23 +30,7 @@
 
 ## Architecture
 
-### Control Plane
-
-![Diagram](./k8s-control-plane.svg)
-
-#### API Server
-
-Contact point for control plane. It's how you can interact with your cluster. It validates users requests and process them if valid. Use `kubectl` or REST API for communication.
-You can even use a 3rd k8s provider for interaction too.
-
-```
-// Pulumi communicates with the API Server using the official Kubernetes client-go library
-export const provider = new kubernetes.Provider('main', {
-  kubeconfig: {
-    ...
-  }
-});
-```
+### [Control Plane](./control-plane.md)
 
 ### Data Plane
 

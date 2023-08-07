@@ -12,3 +12,14 @@
 
 Azure roles are used to control access of AD Resources such as users, groups. While Azure RBAC is used to control access to Azure resources.
 
+### Service Plan
+
+An App Service plan defines a set of compute resources for a web app to run.
+
+### App Service
+
+Azure App Service is a fully managed platform as a service (PaaS) for hosting web applications such as REST APIs, and mobile back ends.
+
+### AD Tenant
+
+In simpler terms, an Azure AD tenant is like an organization's user directory or identity store in the cloud. When an organization signs up for Microsoft Azure, they are automatically assigned an Azure AD tenant. This tenant is unique to that organization and is used to store and manage information about its users, groups, and applications.
