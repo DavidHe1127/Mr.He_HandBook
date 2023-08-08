@@ -23,3 +23,12 @@ Azure App Service is a fully managed platform as a service (PaaS) for hosting we
 ### AD Tenant
 
 In simpler terms, an Azure AD tenant is like an organization's user directory or identity store in the cloud. When an organization signs up for Microsoft Azure, they are automatically assigned an Azure AD tenant. This tenant is unique to that organization and is used to store and manage information about its users, groups, and applications.
+
+### Management Group
+
+If your organization has many Azure subscriptions, you may need a way to efficiently manage access, policies, and compliance for those subscriptions. Management groups provide a governance scope above subscriptions. You organize subscriptions into management groups; the governance conditions you apply cascade by inheritance to all associated subscriptions.
+
+Use case scenarios:
+
+- Apply policies to a mgmt group to restrict regions VM can be created in. This policy would be applied to all nested mgmt groups, subscriptions and resources.
+- Allow users to have access to multiple subscriptions. e.g Move them under a mgmt group and create an Azure role assignment there.
