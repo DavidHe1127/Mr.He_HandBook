@@ -23,3 +23,18 @@ Azure App Service is a fully managed platform as a service (PaaS) for hosting we
 ### AD Tenant
 
 In simpler terms, an Azure AD tenant is like an organization's user directory or identity store in the cloud. When an organization signs up for Microsoft Azure, they are automatically assigned an Azure AD tenant. This tenant is unique to that organization and is used to store and manage information about its users, groups, and applications.
+
+### RBAC
+
+It includes
+
+- Security Principal - who has access. can be an user, a group of users, a service or managed identity
+- Scope - how much access
+- Role Definition
+
+Role assignment grants the access
+
+![Role assignment](https://learn.microsoft.com/en-us/azure/role-based-access-control/media/overview/rbac-overview.png)
+
+
+
