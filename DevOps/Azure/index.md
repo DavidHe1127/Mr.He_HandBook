@@ -16,6 +16,15 @@ Azure roles are used to control access of AD Resources such as users, groups. Wh
 
 An App Service plan defines a set of compute resources for a web app to run.
 
+### Application in Azure AD
+
+It's basically an identity for your application. It's needed for your app auth with Azure AD.
+
+Example use cases
+
+- Allow Azure DevOps to access your subscription
+- Want to access key vault service from within a VM
+
 ### App Service
 
 Azure App Service is a fully managed platform as a service (PaaS) for hosting web applications such as REST APIs, and mobile back ends.
