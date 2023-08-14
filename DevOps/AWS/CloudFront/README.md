@@ -1,6 +1,39 @@
 ## Cloudfront
 
+- [s3 static website hosting](#static-website-hosting)
 - [lambda@edge](#lambda-edge)
+
+### Static website hosting
+
+- Cloudfront supports 2 types of origins - s3 bucket and custom origin (a web server).
+- With s3 bucket origin, use s3 website endpoint rather than s3 rest api endpoint for origin domain when creating a new origin. (recommended by AWS)
+- To restrict direct access to s3 origin, add a bucket policy to deny access to bucket objects when requests don't have `referer` header. You need to add custom headers to requests on cloudfront.
+
+```
+{
+    "Version": "2012-10-17",
+    "Id": "HTTP referer policy example",
+    "Statement": [
+        {
+            "Sid": "test referer header",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::your-website-artifact/*",
+            "Condition": {
+                "StringNotLike": {
+                    "aws:Referer": "CUSTOM_REFERER_HEADER"
+                }
+            }
+        }
+    ]
+}
+```
+
+[For more information](https://repost.aws/knowledge-center/cloudfront-serve-static-website).
 
 ### Lambda@edge
 
