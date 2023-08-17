@@ -61,7 +61,7 @@ Cons:
   - It always creates a new commit to include all other commits done on source branch. This lead to non-linear commit history.
 
 #### fast-forward merge
-It occurs when branches have not diverged when merging. By diverged, it means target branch has new changes since source branch is checked out from it.
+It occurs when branches have not diverged when merging. By diverged, it means there has been a commit to the parent branch that's not on the feature branch.
 
 ```
 o ---- o ---- A ---- B  origin/master
