@@ -7,7 +7,7 @@
 
 - Cloudfront supports 2 types of origins - s3 bucket and custom origin (a web server).
 - With s3 bucket origin, use s3 website endpoint rather than s3 rest api endpoint for origin domain when creating a new origin. (recommended by AWS)
-- To restrict direct access to s3 origin, add a bucket policy to deny access to bucket objects when requests don't have `referer` header. You need to add custom headers to requests on cloudfront.
+- To restrict direct access to s3 origin, add a bucket policy to deny access to bucket objects when requests don't have `referer` header. You need to add custom headers to requests on cloudfront. `referer` is a header set by the browser to include the address of the calling site.
 
 ```
 {
