@@ -1,4 +1,4 @@
-## Lambda/APIG
+## Lambda
 
 - [Cold vs Warm Start](#cold-vs-warm-start)
 - [Permissions](#permissions)

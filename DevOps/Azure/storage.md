@@ -7,6 +7,9 @@
 - Storage Account = Unique Azure namespace
 - Every object in Azure has its own web address. i.e Given a storage account called acloudguru, for blob storage, you'd have `acloudguru.blob.core.windows.net`.
 - Storage account has blob containers inside it for you to store blob data in.
+- A container name must be a valid DNS name, as it forms part of the unique URI 
+
+![Storage account/container/Blob](https://learn.microsoft.com/en-us/azure/storage/blobs/media/storage-blobs-introduction/blob1.png)
 
 ### types
 
