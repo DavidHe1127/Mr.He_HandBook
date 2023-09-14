@@ -6,8 +6,25 @@
 ### Static website hosting
 
 - Cloudfront supports 2 types of origins - s3 bucket and custom origin (a web server).
-- With s3 bucket origin, use s3 website endpoint rather than s3 rest api endpoint for origin domain when creating a new origin. (recommended by AWS)
-- To restrict direct access to s3 origin, add a bucket policy to deny access to bucket objects when requests don't have `referer` header. You need to add custom headers to requests on cloudfront. `referer` is a header set by the browser to include the address of the calling site.
+- When using a Static Website endpoint with CloudFront, you still need to have the open bucket policy, as CloudFront needs access to your objects. When configuring CloudFront origin, and you use the S3 static website URL in the Origin, it will show as a Custom Origin.
+
+There are 2 strategies to restrict direct access to s3 origin
+
+#### OAC (origin access control)
+
+Defines who can access the origin. Bucket and its assets can be private and restrict access to only specific CF distribution using a bucket policy.
+
+Key points
+
+- s3 bucket cannot be configured as a website endpoint - don't enable static website hosting.
+- Request signing MUST BE enabled. Disabling it means no OAC!!
+
+#### Custom Header (not recommended)
+
+
+Opt for this option if you don't need the artifact bucket to be private and you don't expect anything other than CloudFront to access the bucket. Warnings, this approach will also block CI's access!
+
+Add a bucket policy to deny access to bucket objects when requests don't have `referer` header. You need to add custom headers to requests on cloudfront. `referer` is a header set by the browser to include the address of the calling site.
 
 ```
 {
@@ -37,7 +54,7 @@
 
 ### Lambda@edge
 
-Lambda@Edge is a service that allows you to execute Lambda functions that modify the behaviour of CloudFront specifically. Lambda@Edge simply runs during the request cycle and makes logical decisions that affect the delivery of the CloudFront content.
+It intercepts traffic flow into CF and does some logic before forwarding them to your origin.
 
 Use cases:
 
