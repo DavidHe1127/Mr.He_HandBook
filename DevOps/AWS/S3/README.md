@@ -1,4 +1,4 @@
-## S3
+0## S3
 
 - [Access object](#access-object)
 - [Temp access to an object]
@@ -79,4 +79,6 @@ S3 will concatenate them into one object.
 
 #### Error putting S3 policy: MalformedPolicy: Policy has invalid resource when trying to update bucket policy
 Most likely, the resource in the policy doesn't match target bucket's name
+
+#### [Access denied when uploading an object](https://repost.aws/knowledge-center/s3-403-forbidden-error)
 

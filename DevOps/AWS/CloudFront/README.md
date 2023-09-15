@@ -33,7 +33,10 @@
 }
 ```
 
-[For more information](https://repost.aws/knowledge-center/cloudfront-serve-static-website).
+References
+
+- https://repost.aws/knowledge-center/s3-website-cloudfront-error-403
+- https://repost.aws/knowledge-center/cloudfront-serve-static-website
 
 ### Lambda@edge
 
