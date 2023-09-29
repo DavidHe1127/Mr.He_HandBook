@@ -1,9 +1,19 @@
 ## Access Control
 
+- [AZ900](#az900)
 - [App registration](#application-in-azure-ad)
 - [Azure Roles vs Azure RBAC](#azure-roles-vs-azure-rbac)
 - [AD Tenant](#ad-tenant)
 - [RBAC](#rbac)
+
+### AZ900
+
+- Every Azure account must have an Azure AD service. That is the first service created when sign up for an Azure account.
+- A tenant is a dedicated instance of Azure AD. It represents your org in Azure.
+- A user can be a member or guest of up to `500` tenants.
+- A subscription is a billing entity. All resources belong to a single subscription.
+- If a subscription isn't paid, all the resources and services associated with the subscription stop.
+- Zero Trust - all users assumed untrustworthy unless proven otherwise.
 
 ### Application in Azure AD
 
