@@ -48,7 +48,8 @@ Above example means when the user launches an EC2 instance, that user is allowed
 #### Service-linked Role
 
 - Only specific services (trust entities) can assume such role
-- Name cannot be changed
+- Streamline role setup as it has pre-defined perms attached so you don't need to manually add required perms
+- Different than service role which is assumed by a specific service but perms need to be manually added.
 
 ### Policy
 
@@ -227,6 +228,7 @@ credential_source = Ec2InstanceMetadata
 "s3:GetObjectVersion",
 "s3:ListBucket"
 ```
+- When using CFN to manage your resources and you don't want to let it use your credentials, it's considered a good practice to assign a service role to CFN. So that only CFN is allowed to use it and the role cannot be inadvertently removed.
 
 ### Reference
 
