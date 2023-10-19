@@ -1,5 +1,7 @@
 ## Azure
 
+### OpEx vs CapEx
+
 ### Resource Structure Management
 
 ![mgmt](./diagrams/mgmt.jpg)

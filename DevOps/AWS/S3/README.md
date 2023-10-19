@@ -1,6 +1,7 @@
 0## S3
 
 - [Access object](#access-object)
+- [ACL](#acl)
 - [Temp access to an object]
 - [Lifecycle rules](#lifecycle-rules)
 - [Access only specific folder](#access-only-specific-folder)
@@ -18,6 +19,12 @@ https://bucket-name.s3.region.amazonaws.com/key-name
 
 https://my-bucket.s3.us-west-2.amazonaws.com/puppy.png
 ```
+
+### ACL
+
+- ACL controls who is granted what access to which resources (bucket/objects). However, a majority of modern use cases in Amazon S3 no longer require the use of ACLs. So it should be disabled as recommended which means bucket owner owns all objects no matter who uploads them.
+- Except in unusual circumstances where you need to control access for each object individually.
+- When you create a bucket or an object, Amazon S3 creates a default ACL that grants the resource owner full control over the resource.
 
 ### Temp access to an object
 
