@@ -4,6 +4,6 @@
 
 ### Integrations
 
-- HTTP_PROXY - connect to a public endpoint. We can implement things like rate limiting, throttling in APIG. APIG will capture and forward
+- `HTTP_PROXY` - connect to a public endpoint. We can implement things like rate limiting, throttling in APIG. APIG will capture and forward
 all requests to the connected backend.
-- AWS_PROXY (lambda)
+- `AWS_PROXY` (lambda)
