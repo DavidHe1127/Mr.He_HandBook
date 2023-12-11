@@ -51,7 +51,10 @@ Add a bucket policy to deny access to bucket objects when requests don't have `r
 }
 ```
 
-[For more information](https://repost.aws/knowledge-center/cloudfront-serve-static-website).
+References
+
+- https://repost.aws/knowledge-center/s3-website-cloudfront-error-403
+- https://repost.aws/knowledge-center/cloudfront-serve-static-website
 
 ### Caching
 
