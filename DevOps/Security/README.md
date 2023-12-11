@@ -223,6 +223,8 @@ $ openssl s_client -connect some-domain.com.au:24223
 - Only non-Wildcard names can be added to `SAN`.
 - Consider using SAN if you want to protect multiple **domains** i.e `abc.com/bcd.com`. If multiple subdomains `www/faq/tools` under the same root domain `ssl.com`, consider using `SSL Wildcard Cert`.
 
+To review SAN field of a cert - `openssl x509 -noout -ext subjectAltName -in cert.pem`.
+
 References
 
 - [Understand ssl cert](https://www.cnblogs.com/iiiiher/p/8085698.html)
