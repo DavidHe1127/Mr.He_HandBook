@@ -1,5 +1,6 @@
 ## HTTP, HTTP(S) with SSL/TLS and Cert
 
+- [Cert standard and format]()
 - [Cert Signing](#what-does-signing-a-cert-mean)
 - [Key points](#key-points)
 - [SSL Cert with Let's encrypt](#ssl-cert-with-lets-encrypt)
@@ -10,6 +11,13 @@
 
 - [HTTP/2](#http/2)
 - [Redirection](#redirection)
+
+### Cert standard and format
+
+- x.509 defines structure and data fields of a cert
+- Cert has different formats such as PEM that's base64 encoded or PKCS#12 in binary format.
+
+For more see [this](https://www.tutorialsteacher.com/https/ssl-certificate-format).
 
 ### What does signing a cert mean?
 

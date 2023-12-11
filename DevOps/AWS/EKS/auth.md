@@ -26,7 +26,7 @@ Operations are executed against API server.
 - Role always applies to a particular `namespace`. You must set `namespace` on the role. While `ClusterRole` must be non-namespaced, applies to all namespaces within a cluster.
 - One service account can have more than 1 role bound to it to access resources in multiple namespaces.
 
-#### Referring to resources
+#### Resource Referencing
 
 ```
 # to grant perms to access GET /api/v1/namespaces/{namespace}/pods/{name}/log
@@ -45,7 +45,7 @@ rules:
   resourceNames: ["my-configmap"]
 ```
 
-#### Referring to subjects
+#### Subjects Referencing
 
 A RoleBinding or ClusterRoleBinding binds a role to subjects. Subjects can be groups, users or ServiceAccounts.
 
