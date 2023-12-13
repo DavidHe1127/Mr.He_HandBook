@@ -13,6 +13,7 @@
 - [Node](./node.md)
 - [Pod](./pod.md)
 - [Job](./job.md)
+- [Ingress](./ingress.md)
 - [Storage](./storage.md)
 - [ConfigMap & Secret](./configMap-secret.md)
 - [Metadata](./metadata.md)
