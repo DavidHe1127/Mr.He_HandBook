@@ -3,6 +3,7 @@
 ### Basics
 
 - Resource Manager Service Conn is a configuration that allows ADO pipelines to securely connect and interact with Azure resources such as a subscription. You must specify the service principal you want to use to connect to Azure. Service Principal is an application within Azure Entra ID, which is authorized to access resources in Azure. This access is restricted by the roles assigned to the service principal, giving you control over which resources can be accessed and at which level. Think of App as a service account.
+**Note, you need service conn to provide authentication to tasks trying to interact with your Azure resources. If you don't need task, you might not need service conn.**
 - Release pipeline supports release creation automation triggered by a new build artifact. However, creating a new release doesn't mean publish apps to different stages - you'd need to set up triggers for app to be deployed to stages.
 - Use `pipeline artifact` when using yaml pipeline. Use `build artifact` only for classic pipeline as it's older and slower in terms of artifact upload/download.
 
