@@ -14,3 +14,10 @@ Use Active Directory Domain Services (Azure AD DS)
 - Provides classic AD features in a managed service including Group Policy, LDAP, Kereros, domain join.
 - Standalone domain **NOT** extension of on-premises AD domain.
 
+## Managed Identity vs Service Principal
+
+- `Service Principal` is an app whose tokens can be used to authenticate and grant access to specific Azure resources from a user-app, service or automation tool, when an organization is using Azure Active Directory.
+- `Managed Identities` are in essence 100% identical in functionality and use case compared with `Service Principals`. In fact, they are actually Service Principals.
+- What makes `Managed Identities` different though, is: **They are always linked to an Azure Resource**, not to an application or 3rd party connector – They are automatically created for you so you no need for credential management.
+
+For more see [Demystifying service principals managed identities](https://devblogs.microsoft.com/devops/demystifying-service-principals-managed-identities/).

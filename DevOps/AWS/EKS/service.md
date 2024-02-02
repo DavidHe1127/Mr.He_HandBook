@@ -3,7 +3,6 @@
 Services allow your applications to receive traffic from internal/external(outside cluster but still within the same network)/internet.
 
 - [Types](#types)
-- [Ingress](#ingress)
 - [DNS Resolution](#dns-resolution)
 - [Endpoint/EndpointSlice](#endpoint-endpointslice)
 - [Headless service](#headless-service)
@@ -18,7 +17,7 @@ Services allow your applications to receive traffic from internal/external(outsi
 
 #### ClusterIP
 
-Exposes the Service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default type. i.e fluentd service can be accessed on Node via:
+Exposes service on a cluster-internal IP. Choosing this value makes the Service only reachable from within the cluster. This is the default type. i.e fluentd service can be accessed on Node via:
 
 ```
 # via service's clusterIP
@@ -79,34 +78,6 @@ Exposes the Service externally using a cloud provider's load balancer. NodePort 
 In the context of AWS, creating a `service` of `loadbalancer` type which creates a NLB which proxies LV4 traffic to all EC2s of the TargetGroup tied to it and then via NodePort Service to all pods. To work with LV7 traffic, create a K8S `ingress` resource.
 
 Remarkable downside is each service will have a dedicated load balancer created for it resulting in large bills.
-
-### Ingress (Production-ready)
-
-Not a service – it merely describes a set of rules for the Kubernetes Ingress Controller to create a Load Balancer, its Listeners, and routing rules for them.
-
-#### Ingress
-
-It is an API object that provides routing rules to manage external users' access to the services in a cluster. It's comprised of Ingress API Object and Ingress Controller. It's assigned an IP when created.
-
-[See example](./examples/ingress.yaml).
-
-#### Ingress Controller
-
-It watches API Server for changes to Ingress resource and creates ALB (external to cluster) with configured rules it reads from Ingress. It runs as a pod in cluster. For HA, it's deployed 2 replicas onto 2 selected nodes. It's implemented through [AWS Load Balancer Controller](https://docs.aws.amazon.com/eks/latest/userguide/aws-load-balancer-controller.html)
-
-**Note, seems Nginx ingress controller does things differently, it also takes care of traffic load balancing?
-
-- To set tags on target group only, set `'alb.ingress.kubernetes.io/tags': 'AAA=BBBB'` in backend service's annotations.
-
-#### TLS
-
-In [AWS Load Balancer Controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/guide/ingress/cert_discovery/), TLS cert for ALB Listeners can be automatically discovered from `tls` and `host` field in Ingress rules, if `alb.ingress.kubernetes.io/certificate-arn` left unspecified. Taking wildcard cert as an example, setting `game2048.*.eks-use1.prod.abc.io` as host will help controller discover and attach the wildcard cert `*.eks-use1.prod.abc.io` to the ALB it's created.
-
-#### Components
-
-Take EKS as an example, when creating an Ingress, an external ALB (managed by Ingress and located outside of cluster) is created alongside other resources such as TargetGroup, Listeners, Rules etc.
-
-[<img src="./ingress_arch.png" height="800"/>](./ingress_arch.png)
 
 ---
 
