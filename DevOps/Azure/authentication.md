@@ -21,3 +21,11 @@ Use Active Directory Domain Services (Azure AD DS)
 - What makes `Managed Identities` different though, is: **They are always linked to an Azure Resource**, not to an application or 3rd party connector – They are automatically created for you so you no need for credential management.
 
 For more see [Demystifying service principals managed identities](https://devblogs.microsoft.com/devops/demystifying-service-principals-managed-identities/).
+
+## Application and Service Principal
+
+- like class (app) and instance (service principal) in OO.
+- When you register your application with Microsoft Entra ID, you're creating an identity configuration for your application that allows it to integrate with Microsoft Entra ID.
+- An application object is used as a template to create one or more service principal objects in every tenant where the application is used. The service principal object defines what the app can actually do in a specific tenant, who can access the app, and what resources the app can access.
+- The service principal object defines what the app can actually do in the specific tenant, who can access the app, and what resources the app can access.
+- Visit `Enterprise applications` for all managed service principals. 

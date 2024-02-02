@@ -4,6 +4,9 @@
 - [caching](#caching)
 - [lambda@edge](#lambda-edge)
 
+- [learning notes](#learning-notes)
+
+
 ### Static website hosting
 
 - Cloudfront supports 2 types of origins - s3 bucket and custom origin (a web server).
@@ -96,3 +99,8 @@ It intercepts traffic flow into CF and does some logic before forwarding them to
 Use cases:
 
 - Serving Static Website Content as Gzip Compressed Content.
+
+
+### Learning Notes
+
+- Enable content compressions which not only improves page load time but also saves cost - CloudFront charges on data egress.
