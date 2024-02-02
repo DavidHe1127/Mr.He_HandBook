@@ -8,7 +8,7 @@
 
 - [How react works](#how-react-works)
 - [Why use PropTypes](#why-use-proptypes)
-- [Component VS Element](#component-vs-element)
+- [React Component as prop](https://www.developerway.com/posts/react-component-as-prop-the-right-way#part2)
 - [Event Listeners](#event-listeners)
 - [Prevent unnecessary re-rendering](#prevent-unnecessary-rerendering)
 - [Avoid inadvertent mounting/unmounting](./avoid_inadvertent_mounting_unmounting.md)
@@ -74,11 +74,6 @@ render → reconcilitation → commit
 ### why-use-proptypes
 
 Use `propTypes` on all occasions - You can use it to document your components. You no longer need to look around the source code of the `render` method to figure out what properties needs to be provided.
-
-### component-vs-element
-
-- React element is an object representation of a DOM node and its properties
-- A component is a function or a Class which optionally accepts input and returns a React element.
 
 ### event-listeners
 
