@@ -7,10 +7,18 @@
 - Apart from the main resource group created for cluster itself. Another resource group - Node Resource Group also automatically created to host other AKS components e.g Azure Disk when you create a PV. A load balancer when you create a load balancer service. DO NOT make ANY changes to node resource group. Best to configure deny rule on the group to prevent accidental changes.
 - To ensure your cluster operates reliably, you should run at least **2** nodes in the default node pool.
 
+### Node pools
+
+- Recommended to have 2 pools - 1 system node pool and 1 user node pool.
+- System node pool for hosting critical system pods such as `CoreDNS` and `metrics-server`. `kubernetes.azure.com/mode: system` label attached to system nodes.
+- System nodes allow app pods being scheduled on them but it's not encouraged. System pools osType must be Linux.
+- System pools must contain at least one node, and user node pools may contain zero or more nodes.
+- User node pool for hosting your application pods.
+- An AKS cluster must contain at least one system node pool with at least one node.
+
 ## Storage
 
 - Ephemeral OS disks are stored only on the host machine, When you don't explicitly request Azure managed disks for the OS, AKS defaults to ephemeral OS if possible for a given node pool configuration.
-
 
 ## Cert
 
