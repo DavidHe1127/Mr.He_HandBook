@@ -17,7 +17,7 @@
 
 ### Private endpoint
 
-- A private endpoint has a private ip allocated from its hosting subnet of your vnet. This ip is used for conns to Azure services. 
+- A private endpoint has a private ip allocated from its hosting subnet of vnet. This ip is used for conns to Azure services. 
 - A private DNS zone is created when adding a private link to an Azure service e.g `privatelink.blob.core.windows.net` is created when adding a private endpoint conn in storage account.
 - The zone contains records enabling Azure service when being resolved from within the subnet to the ip of private endpoint:
 ```
@@ -28,8 +28,13 @@ StorageAccountA.privatelink.blob.core.windows.net	A	10.1.1.5
 - **important** After you create a private DNS zone in Azure, you'll need to link it to a VNET to grant VMs within that VNET access to records in the private DNS zone. In addition, make sure you associate private zone group with private endpoint by adding a new config item in private endpoint's DNS config so that private endpoint can update DNS records in the private zone automatically when there is updates.
 - By default, network policies such as NSG doesn't apply to private endpoint - comms can still happen without defining Allow rules in subnet NSG. But you can enable it at subnet level.
 
-## AZ-900 study notes
+### VNET integration
+
+- Dedicated Azure services e.g. App Service can be deployed into a dedicated subnet of vnet through vnet injections. This allows comms between resources within the vnet via private ip.
+
 ---
+
+## AZ-900 study notes
 
 ### VPN Gateway
 
