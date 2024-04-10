@@ -12,4 +12,4 @@ all requests to the connected backend.
 
 Lambda Proxy Integration means a) lambda receives the whole request without transformations from APIG and b) response message & status code is set in lambda.
 
-Lambda integration does things opposite.
+Lambda integration does things opposite - req/res transformations and status code are set in APIG

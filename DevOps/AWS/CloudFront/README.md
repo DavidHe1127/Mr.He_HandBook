@@ -2,7 +2,7 @@
 
 - [s3 static website hosting](#static-website-hosting)
 - [caching](#caching)
-- [lambda@edge](#lambda-edge)
+- [Edge functions](#edge-funcs)
 
 - [learning notes](#learning-notes)
 
@@ -10,7 +10,8 @@
 ### Static website hosting
 
 - Cloudfront supports 2 types of origins - s3 bucket and custom origin (a web server).
-- When using a Static Website endpoint with CloudFront, you still need to have the open bucket policy, as CloudFront needs access to your objects. When configuring CloudFront origin, and you use the S3 static website URL in the Origin, it will show as a Custom Origin.
+- When using a Static Website endpoint with CloudFront, you still need to have an open bucket policy, as CloudFront needs access to your objects.
+- When configuring CloudFront origin, and you use the S3 static website URL in the Origin, it will show as a Custom Origin.
 
 There are 2 strategies to restrict direct access to s3 origin
 
@@ -24,7 +25,6 @@ Key points
 - Request signing MUST BE enabled. Disabling it means no OAC!!
 
 #### Custom Header (not recommended)
-
 
 Opt for this option if you don't need the artifact bucket to be private and you don't expect anything other than CloudFront to access the bucket. Warnings, this approach will also block CI's access!
 
@@ -92,14 +92,16 @@ Referer: https://rss.news.example.net/
 - Use custom cache key with cautions. DO NOT set a cache key that has millions of different variations such as `User-Agent` or `Chookies` which results in almost zero cache hit. 
 
 
-### Lambda@edge
+### Edge Functions
+
+2 options - lambda@edge or cloufront functions (less powerful)
 
 It intercepts traffic flow into CF and does some logic before forwarding them to your origin.
 
 Use cases:
 
 - Serving Static Website Content as Gzip Compressed Content.
-
+- Deny requests coming from certain domains i.e don't allow viewers to access distribution via random domain CloudFront generated
 
 ### Learning Notes
 

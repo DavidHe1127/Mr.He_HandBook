@@ -29,12 +29,12 @@
     The output determins the partion in which the item will be stored. It's type must be scalar and can only hold one value - string, number or binary.
   - **Partition key + sort key (range attribute)** - AKA `composite primary key`. Comprised of two attributes - partition key attr + sort key attr.
     `Partition key` determines where data is stored whereas `sort key` determines sorted order.
-    For tables with composite primary key, partition key can be the same but sort key must be different.
+    For tables with composite primary key, item's partition key value can be the same but sort key value must be different.
 
 ### Secondary Index
 
 - In reality when you create global secondary key, DynamoDB creates a separate table and replicates all the table operations like insert, update and deletion asynchronously
-- Provide more querying flexibility - i.e sort table items by any attribute other than table's sort key
+- Provide more querying flexibility - i.e sort table items by any attribute other than table's primary sort key
 - Allow 1 or more SI on a table
 - Allow query data using an alternate key in addition to queries against the PK
 - GSI
@@ -62,7 +62,7 @@
 
 ### Design Pattern
 
-Defining the database architecture for microservices we need to consider below points.
+Defining the database architecture for microservices we need to consider below points:
 
 - Services must be loosely coupled. They can be developed, deployed, and scaled independently.
 - Business transactions may enforce invariants that span multiple services.
@@ -81,7 +81,7 @@ To solve the above concerns, one database per microservice must be designed; it 
 ### Multi-region Architecture
 
 - Use global table which consists of multiple replica tables
-- Global table uses global network backbone that provides lower cost and more consistent cross-region network latency when compared with the public internet
+- Global table uses global network backbone that provides lower cost and more consistent cross-region network latency when compared with the public internet connection
 - Active-active config meaning read/write to all replica tables in all regions
 - DynamoDB automatically propagates these writes to the other replica tables in the AWS Regions you choose
 
@@ -107,7 +107,7 @@ Use composite primary key. Give PK/SK generic names:
           KeyType: "RANGE"
 ```
 
-This config allows you to save different types of ids into one attribute:
+With the above config you can save different types of ids into one attribute:
 
 ```
 PK                         SK

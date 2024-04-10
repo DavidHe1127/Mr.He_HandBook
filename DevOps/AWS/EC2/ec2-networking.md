@@ -2,8 +2,7 @@
 
 #### internetwork-traffic-privacy-in-aws-vpc
 
-Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require
-opening port on http.
+Amazon security groups and network ACLs don't filter traffic to or from link-local addresses (169.254.0.0/16) or AWS reserved IPv4 addresses (these are the first four IPv4 addresses of the subnet, including the Amazon DNS server address for the VPC). So call to inquire instance metadata does not require opening port on http.
 
 #### Network Bandwith
 
@@ -25,6 +24,6 @@ i.e Private DNS hostname `ip-10-156-61-79.ap-southeast-2.compute.internal` resol
 ### EIP and Public IPv4
 
 - `EIP` is basically a public and static IPv4.
-- `EIP` will remain yours until you explicitly release it. If it's not attached to any instance, you will be charged.
+- `EIP` will remain yours until you explicitly release it. AWS will charge the usage of public IP on a hourly basis.
 - When you associate an Elastic IP address with an instance or its primary network interface, the instance's public IPv4 address (if it had one) is released back into Amazon's pool of public IPv4 addresses. You cannot reuse a public IPv4 address, and you cannot convert a public IPv4 address to an Elastic IP address.
 - You cannot auto-assign a public IP address if you specify more than one network interface in your instance. Use `EIP` in this case.

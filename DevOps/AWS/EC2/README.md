@@ -215,7 +215,7 @@ It’s automatic. All you need to do is pick a metric, set the value (target) an
 #### Cooldown
 
 - Simple Scaling Policy has 300 secs cooldown by default
-- Without cooldown, ASG will continue to add/remove ec2s as per triggering alarm even when an scaling activity is still in progress. i.e ec2 not in `InService` yet.
+- Without cooldown, ASG will continue to add/remove ec2s as per triggering alarm even when an scaling activity is still in progress. i.e newly added ec2 not in `InService` yet.
 - With cooldown, ASG will block scaling activities meaning further scaling request will be dropped until cooldown period is expired. After that, new scaling requests can be processed again.
 - When the instance enters the `InService` state, the cooldown period starts to count. IMPORTANT! User data might not finish executing at this point!!!
 - When multiple:

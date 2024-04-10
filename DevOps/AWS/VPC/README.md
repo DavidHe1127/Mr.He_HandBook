@@ -52,11 +52,13 @@ Use **Network Access Analyzer** to find out unintended network access points to 
 - [Shared VPC](https://aws.amazon.com/blogs/architecture/using-vpc-sharing-for-a-cost-effective-multi-account-microservice-architecture/)
 - VPC Peering
 - VPC Endpoint Service via private link
+- VPC lattice
 - Transit Gateway (could be costly!)
 
 ### VPC Endpoint and Endpoint Service
 
 - It Enables you to privately connect your VPC to supported AWS services and VPC endpoint services powered by AWS PrivateLink without requiring an internet gateway, NAT device, VPN connection, or AWS Direct Connect connection.
+- Service endpoint remains the same as public one.
 - VPC endpoints are virtual devices. They are horizontally scaled, redundant, and highly available Amazon VPC components that allow communication between instances in an Amazon VPC and services without imposing availability risks or bandwidth constraints on network traffic.
 
 To connect to S3 via VPCE, setup a VPC endpoint in your VPC - consumer and point it to S3 VPCES address - provider.

@@ -1,7 +1,6 @@
 ## CloudFormation
 
 - [Basics](#basics)
-  - [Tagging](#tagging)
   - [User Data Property](#user-data-property)
   - [Typical example](#typical-example)
   - [cross-stack reference](#cross-stack-reference)
@@ -21,17 +20,6 @@
 - Templates have to be uploaded to s3 before being referenced in CF.
 - To update stack, we cannot edit the earlier version directly. We have to re-upload a new version of the template and AWS will be able work out **what's needed to be changed (change set)** by comparing the two. Change set will then be executed to apply the change.
 
-#### Tagging
-
-CF automatically creates the following stack-level tags with the prefix `aws::`:
-
-```
-aws:cloudformation:logical-id
-aws:cloudformation:stack-id
-aws:cloudformation:stack-name
-```
-
-All stack-level tags, including automatically created tags, are propagated to resources that CF supports.
 
 #### User Data Property
 
@@ -69,7 +57,7 @@ Outputs:
           Fn::Sub: "${AWS::StackName}-VpcID"
 ```
 
-Reference Stack
+Reference Stack:
 
 ```yaml
 Parameters:
@@ -123,6 +111,7 @@ Cross-stack creates deps making modification/deletion to one stack harder. If ou
 If a stack is truly long-lived, and the output values static i.e networking stack, the values depended on could also be hard coded into the dependent template.
 
 #### Debug user data
+
 Heads-up! Make sure you have created a stack SUCCESSFULLY before going through debugging process. If you know your user data is faulty in some places, comment them out to unblock creation process since you cannot update a failed stack. Once creation is done, have problematic code restored and follow process below for debugging.
 
 The most practical way is edit current template in place through designer. Also ensure template is shown in `yaml` format making editing easier. Once editing is complete, hit create stack - cloud icon with a up arrow to update changed stack.

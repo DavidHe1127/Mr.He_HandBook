@@ -28,7 +28,7 @@ Cold start happens once for each concurrent execution of your function. So if al
 
 However, high volume of concurrent requests will cause more cold starts - i.e 100 requests with a concurrency of 10 would see 10 cold starts!
 
-To mitigate this, one can pre-warm up lambdas via scheduling a trigger (cloudwatch schedule) that is firing a blast of concurrent requests to cause API gateway to spawn sufficient no. of concurrent executions of your function(s). i.e pre-warm up functions at 11:58 if 12:00 is your service peak time. Alternatively, use provisioned concurrency to make environments ready to immediately handle requests.
+To mitigate this, one can pre-warm up lambdas via scheduling a trigger (cloudwatch schedule) that is firing a blast of concurrent requests to cause API gateway to spawn sufficient no. of concurrent executions of your function(s). i.e pre-warm up functions at 11:58 if 12:00 is your service peak time. Alternatively, use provisioned concurrency that allows you to pre-allocate a number of concurrent executions to your functions, ensuring that they are always ready to respond to incoming requests without the cold start latency that can occur with on-demand execution.
 
 [Package Lambdas with serverless-bundle
 ](https://serverless-stack.com/chapters/package-lambdas-with-serverless-bundle.html)

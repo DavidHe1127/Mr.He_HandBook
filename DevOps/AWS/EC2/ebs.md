@@ -22,7 +22,7 @@ An AMI image is a backup of an entire EC2 instance. Associated with an AMI image
 EC2  <-- EBS Volume (Boot) + EBS Volume
                            ^
                            |
-         EBS (only of specific volume)
+         EBS (only a specific volume)
                            ^
                            |
          AMI (Combined snapshots of all volumes, AMI snapshot must have boot volume)

@@ -29,7 +29,7 @@
 Blueprint describes how a container should launch. It contains settings like exposed port, docker image, cpu shares, memory requirement, command to run and env vars.
 
 #### Cluster
-A logic group of EC2 instances. When an instance launches the `ecs-agent` software on the server it registers the instance to an ECS Cluster. This is easily configurable by setting the ECS_CLUSTER variable.
+A logic group of EC2 instances. When an instance launches the `ecs-agent` software on the server it registers the instance to the ECS Cluster. This is easily configurable by setting the `ECS_CLUSTER` variable.
 
 #### Desired Count
 Desired count of running tasks. Say your task definition defines two containers (nginx + express) and you create and run a service with desired count 2. This will lead to 2 running tasks instantiated by the specified task definition are deployed onto each container instances respectively.
