@@ -21,29 +21,35 @@ For all identities under an account to be able to assume a role, simply specify 
 
 ### Pass role
 
-It grants the service a principal launches the permission to assume a role to perform other actions on your behalf. It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
+- It defines the role the caller wants to pass to the target resouce - see example below.
+
+- It's a permission not an API call which indicates it won't be captured by `CloudTrail`. To help find out what services need `PassRole`, take away granted `PassRole` and look into the error.
 
 One example is help users determine which role (instance profile) needs to be assigned to instance when launching a new instance.
 
-```json
+```shell
+# caller needs to have create func perm as well as pass role perm to be able to pass the test-func-role for lambda to assume
+aws lambda create-function
+    --function-name my-function
+    --runtime nodejs14.x
+    --zip-file fileb://my-function.zip
+    --handler my-function.handler
+    --role arn:aws:iam::123456789012:role/service-role/test-func-role
+
+# caller IAM needs to have this
 {
-   "Version": "2012-10-17",
-   "Statement": [{
-      "Effect":"Allow",
-      "Action":["ec2:*"],
-      "Resource":"*"
-    },
+  "Version": "2012-10-17",
+  "Statement": [
     {
-      "Effect":"Allow",
-      "Action":"iam:PassRole",
-      "Resource":"arn:aws:iam::123456789012:role/S3Access"
-    }]
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": [
+        "arn:aws:iam::123456789012:role/service-role/test-func-role"
+      ]
+    }
+  ]
 }
 ```
-
-Above example means when the user launches an EC2 instance, that user is allowed to associate only the `S3Access` role with the instance. When an application is running in the instances that are launched by this user, that application can perform only the actions that are permitted by whatever is defined in the `S3Access` role.
-
-[pass role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html)
 
 #### Service-linked Role
 

@@ -40,9 +40,9 @@ Decryption:
 - AWS KMS decrypts the key by using the same CMK and returns the plaintext data key to Amazon S3.
 - S3 decrypts the ciphertext and removes the plaintext data key from memory as soon as possible.
 
-#### Key Policy
+#### Access
 
-To allow access to a KMS CMK, you must use the key policy, either **alone** or in combination with IAM policies or grants. IAM policies by themselves are not sufficient to allow access to a CMK, though you can use them in combination with a CMK's key policy.
+To allow access to a user managed KMS CMK, you must use the key policy, either **alone** or in combination with IAM policies or grants. IAM policies by themselves are not sufficient to allow access to a CMK, though you can use them in combination with a CMK's key policy.
 
 #### Best Practice
 

@@ -59,7 +59,7 @@ Very much like `CNAME` except that `CNAME` only works on subdomain not root doma
 
 You can use it to route traffic to your subdomain i.e `acme.example.com.` See [more](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-routing-traffic-for-subdomains.html#dns-routing-traffic-for-subdomains-new-hosted-zone).
 
-One benefit with it is to use IAM permissions to restrict who can access hosted zone for subdomain. This is not possible with adding records for subdomains in domain hosted zone which is considered another option when routing traffic for subdomain.
+One benefit with it is to use IAM permissions to restrict who can access hosted zone for subdomain. This is not possible with adding records for subdomains in domain hosted zone which is considered another option when dealing with subdomain traffic routing.
 
 ### Health Check
 

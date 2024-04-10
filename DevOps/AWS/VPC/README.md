@@ -14,7 +14,7 @@
 
 ### Isolated Subnet☻
 
-A private subnet is one that is configured to use a NAT Gateway (NAT) so that it can reach the internet, but which prevents the internet from initiating connections to it. An isolated subnet is one that cannot reach the internet either through an IGW or with NAT.
+A private subnet is one that is configured to use a NAT Gateway (NAT) so that it can reach the internet, but prevents the internet from initiating connections to it. An isolated subnet is one that cannot reach the internet either through an IGW or with NAT.
 
 ### ENI
 
@@ -53,7 +53,7 @@ Use **Network Access Analyzer** to find out unintended network access points to 
 - VPC Peering
 - VPC Endpoint Service via private link
 - VPC lattice
-- Transit Gateway (could be costly!)
+- Transit Gateway (costly!)
 
 ### VPC Endpoint and Endpoint Service
 

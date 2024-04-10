@@ -58,7 +58,7 @@ Connection Draining is also integrated with Auto Scaling. When Connection Draini
 
 ### Pre-warming
 
-ELB will not try to queue up reqs to be handled when it's at its capacity which resulting in `503` errors. If traffic goes up over time, ELB will keep up with such demand and handles reqs correctly. That said, when hefty traffic is hitting ELB at a rate that is higher than ELB can scale to meet it, contact AWS to enable pre-warming.
+ELB will not try to queue up reqs to be handled when it's at its capacity resulting in `503` errors. If traffic goes up over time, ELB will keep up with such demand and handles reqs correctly. That said, when hefty traffic is hitting ELB at a rate that is higher than ELB can scale to meet it, contact AWS to enable pre-warming.
 
 With pre-warming, specify start date/time & rps so that certain level of capacity will be added preemptively.
 
@@ -84,7 +84,7 @@ Data Transfer In is free whilst Data Transfer Out is charged. So the key is to c
 
 ### ALB vs NLB
 
-- ALB is layer 7 lb while NLB is layer 4 lb. With NLB, it does not access HTTP headers
+- ALB is layer 7 lb while NLB is layer 4 lb. With NLB, it has no access to HTTP headers
 - ALB/CLB supports connection multiplexing - reqs from multiple clients uses the single one backend connection. This improves latency and reduces load on your application. Set `Connection: close` header in your app HTTP response to disable it.
 
 ### Surge Queue and Spillover count

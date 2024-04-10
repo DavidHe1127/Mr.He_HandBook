@@ -39,7 +39,7 @@ externalDNS is running a pod to help expose your services to the outside world b
 - Must use version `1.9.0` or above to have significantly larger number of ips to your nodes.
 - It allocates AWS ENI to each node and uses the secondary IPs from the node's subnet CIDR.
 - Deployed within each of your Amazon EC2 nodes in a Daemonset with the name `aws-node`.
-- When you provision a worker node, the CNI allocates a pool of secondary IP addresses (called warm pool) from the node’s subnet CIDR. As the pool gets depleted, the CNI attaches another ENI to assign more secondary IP addresses. This process continues until no more ENIs can be attached to the node.
+- When you provision a worker node, the CNI allocates a pool of secondary IP addresses (called warm pool) from the node’s subnet CIDR. As the pool gets depleted, the CNI attaches another ENI to assign more secondary IP addresses. This process continues until no more ENIs can be attached to the node. Secondary IPs is referred to as extra ips than primary one. Each ENI can ONLY have one primary ip assigned while multiple secondary ips assigned.
 - Max number of pods one node can take depending on instance type. For detail see [this](https://github.com/awslabs/amazon-eks-ami/blob/master/files/eni-max-pods.txt)
 - In the event of ips being depleted, consider adding a secondary cidr to the existing VPC. In particular, see `step 6` in `option 2` of [this](https://aws.amazon.com/blogs/containers/optimize-ip-addresses-usage-by-pods-in-your-amazon-eks-cluster/).
 - Pick instance types that support VPC trunking to increase the ip capacity for your node. See [this](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/container-instance-eni.html#eni-trunking-supported-instance-types)

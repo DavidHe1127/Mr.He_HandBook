@@ -201,7 +201,7 @@ A commonplace reason it happens
 
 > The Docker container must hold and keep the PID 1 running in it otherwise the container exit (A container exit when the main process exit). In the case of Docker, the process which is having PID 1 is the main process and since it is not running, the docker container gets stopped. When the container gets stopped, the Kubernetes will try to restart it(as we have specified the spec.restartPolicy as "Always").
 
-One workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file to keep it running forever.
+When running a container in dev that doesn't have an app running continuously, one workaround is to add a line of `CMD tail -f /dev/null` at the bottom of your docker file to keep it running forever.
 
 #### Annotation change to deployment
 

@@ -5,7 +5,7 @@
 
 ### AWS Inspector vs GuardDuty
 
-- Inspector is a service that automatically performs vulnerability diagnosis on AWS EC2 instances. Vulnerability diagnosis is a system to determine the security level of a specific website or public server by sending packets of methods commonly used in cyber-attacks.
+- Automatically discovers workloads, such as Amazon EC2 instances, containers, and Lambda functions, and scans them for software vulnerabilities and unintended network exposure.
 - GuardDuty analyzes the actual logs to see if a threat exists.
 
 ### AWS Security Hub
