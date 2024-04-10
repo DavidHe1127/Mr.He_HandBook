@@ -2,6 +2,7 @@
 
 - [Varibles](#variables)
 - [Modules](#modules)
+- [Custom Conditions](#custom-conditions)
 
 - [Terraform important notes](#terraform-notes)
 - Notes
@@ -18,6 +19,13 @@
 
 - Avoid module nesting, keep modules as small/flat as possible - module composition.
 - Avoid excess use of conditional branches in the module, try to externalise variations and have them set and passed from outside the modules - dependency inversion.
+
+### Custom Conditions
+
+- Use Preconditions for Assumptions e.g a storage account must disable public access before it can be created
+- Use Use Postconditions for Guarantees e.g a storage account 
+
+
 
 
 ### Terraform Notes
