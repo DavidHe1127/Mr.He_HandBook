@@ -223,7 +223,7 @@ credential_source = Ec2InstanceMetadata
 
 ### Tips
 
-- Use [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html) to help you refind the perms granted to a role. e.g generate policy with required perms from cloudtrail logs. This can prevent you perms overprovisioning. Based on experience, looks like it's smart at identifying over-provisioned actions but not resources?
+- Use [IAM Access Analyzer](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html) to help you refine the perms granted to a role. e.g generate policy with required perms from cloudtrail logs. This can prevent you perms overprovisioning. Based on experience, looks like it's smart at identifying over-provisioned actions but not resources?
 
 ```
 // role with permissive policy

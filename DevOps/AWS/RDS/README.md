@@ -9,6 +9,12 @@
 Create a 'jump box' instance in public subnet. Jump box AMI should include required toolings e.g pgcli
 Connect to DB from the jump box.
 
+### Parameter Group
+
+- DB always has a default param group attached. The group uses all default configs.
+- Default one not modifiable. Need to create a custom one and associate it with your DB.
+
+
 ### Authentication
 
 Use IAM db authentication.

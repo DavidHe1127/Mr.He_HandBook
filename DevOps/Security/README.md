@@ -135,20 +135,6 @@ Read more about [what is SSO and how it works](https://auth0.com/blog/what-is-an
 
 ### OAuth2
 
-- Four participants
-  - Resource Owner - User
-  - Resource Server - Google i.e Google Calendar
-  - Authorization Server - Authenticate user credentials and gain user **access_token**
-  - Client - 3rd party app i.e Lendi
-- **Resource Server** and **Authorization Server** can be the same server
-- Full workflow
-  1. **Client** sends request to **Resource Owner** for authorization. The OAuth **Client** includes its identifier, requested scope, local state, and a redirection URI.
-  2. **Resource Owner** grants the access and sends the authorization code back to **Client**
-  3. **Client** passes the authorization code to **Authorization Server**
-  4. **Authorization Server** authenticates the code and sends **access_token** back to **Client**
-  5. **Client** can then use **access_token** to get access to resources on the **Resource Server**
-- In offline mode, **Authorization Server** also sends a **refresh_token** which is used later to exchange for another fresh **access_token** after previous one is expired without needing to go through all the steps again.
-
 How GitHub App auth works
 
 - A 网站跳转到 Github 的授权页面。
@@ -159,24 +145,10 @@ How GitHub App auth works
 
 ![](./oauth_2.png)
 
-### SAML
+### SAML VS OAuth2.0
 
-Saml is a protocol for authentication. i.e Authenticating a client through IdP that's compatible with SAML so the client can access your application which it does not provide authentication but rather actual services/functionalities.
-
-One use case scenario: Github redirects you to Google for authentication and once done bring you back to Github to provide resources to you. Google supports SAML 2.0 authentication strategy. See [SSO with SAML](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on)
-
-![saml](saml.png)
-
-### SAML vs OAuth
-
-They are two different security protocols often used to implement SSO. In other words, SSO is kinda feature while SAML/OAuth are 2 different implementation strategies. The major difference is OAuth is primarily used for authorization whilst SAML is for authentication.
-
-References
-
-- [OAuth-vs-SAML](https://www.cloudflare.com/learning/access-management/what-is-oauth/)
-- [SAML-vs-OAuth-vs-OPENID](https://juejin.im/post/6844903634094784520)
-- [Use JumpCloud as IDP to authenticate users to access AWS](https://www.youtube.com/watch?v=JlX4pyQBecM)
-- [Identity Providers and Federation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html)
+SAML - This protocol uses XML for data exchange and is built on top of the SOAP protocol. It has been widely used in enterprise federations for longer than OIDC. SAML messages are generally more verbose.
+OIDC - Built on top of the OAuth 2.0 protocol, OIDC uses JSON for data exchange, which is more lightweight and web-friendly compared to XML. This makes OIDC better suited for modern web applications and mobile applications.
 
 ### DDos
 
