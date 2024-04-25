@@ -4,6 +4,10 @@
 
 - [Hooks](./hooks.md)
 
+## State
+
+- [State](./state.md)
+
 ## General
 
 - [How react works](#how-react-works)
@@ -14,7 +18,6 @@
 - [Avoid inadvertent mounting/unmounting](./avoid_inadvertent_mounting_unmounting.md)
 - [Why need keys](#why-need-keys)
 - [Controlled vs uncontrolled components](#controlled-vs-uncontrolled)
-- [Async setState](#async-setstate)
 - [Useful tools/resources](#useful-tools-resources)
 - [Render Props](#render-props)
 - [Create component dynamically](#create-component-dynamically)
@@ -32,7 +35,6 @@
 - [Pass param to event handler](#pass-param-to-event-handler)
 - [Use props.children to prevent props drilling](#prevent-props-drilling)
 - [React Context](./context.md)
-- [Reset all states in component](#reset-all-states)
 - [Lazy loading](#lazy-loading)
 
 ## [Cookbook](./cookbook.md)
@@ -79,48 +81,6 @@ Use `propTypes` on all occasions - You can use it to document your components. Y
 
 React doesn’t actually attach event handlers to the nodes themselves, instead when React starts up, it starts listening for all events at the top level using a single event listener, and when your component is mounted the event handlers are added to an internal mapping. Then when an event occurs, React knows how to dispatch it using this mapping. When your component is unmounted the event handlers are removed from the internal mapping so you don’t need to worry about memory leaks.
 
-### prevent-unnecessary-rerendering
-
-Reconciliation is the process that React uses algorithm to diff one tree with another to determine which parts need to be changed.
-The only way to prevent re-rendering happening is explicitly call `shouldComponentUpdate` and return `false`.
-
-```js
-var TextComponent = React.createClass({
-  shouldComponentUpdate: function(nextProps, nextState) {
-    // whenever parent passes down 'text' and it is equal to current 'text' no re-render
-    if (this.props.text === nextProps.text) return false;
-    return true;
-  },
-
-  render: function() {
-    return <textarea value={this.props.text} />;
-  },
-});
-```
-
-![React UI update](./react_ui_update.png)
-
-`shouldComponentUpdate` happens before React update process. Both parent and its children components will not bother computing the difference if parent's `shouldComponentUpdate` returns false.
-`React.PureComponent` does _shallow comparison_ on all `props` and `states` by default.
-React uses `shallow-comparison` to work out if `state` or `prop` is changed. `shallow-comparion` only compares the value for primitive types or reference for reference types. Hence, code below should be avoided since component B always re-renders even though `onChange` is not changed.
-
-```js
-// Component A
-...
-render () {
-  <B onChange={this.onChange.bind()} />
-}
-
-// Component B
-class B extends React.PureComponent { // NOT HELP!!! a different onChange passed to it on every render
-  render () {
-    <div>
-      <input onChange={this.props.onChange} />
-    </div>
-  }
-}
-```
-
 ### why-need-keys
 
 It is for react to determine what component in the list has changed. When a key changes, React will **create a new component instance rather than update the current one**. Keys are usually used for dynamic lists not useful for fixed lists.
@@ -141,13 +101,6 @@ For more details, read [Why need keys](https://paulgray.net/keys-in-react/?utm_s
 In a nutshell, Uncontrolled - Use `ref` to reference the component and get the value. While on the other hand, controlled means you access the component from the callback.
 
 For more details - read [Controlled vs Uncontrolled form inputs](https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/)
-
-### async-setstate
-
-Behaviour described below is outdated (React version prior to 16.0)
-`setState` is async and will batch updates. If you do something in the `setState` callback, then it will be triggered last. See flow below.
-
-**setState => render with new state => componentDidUpdate => setState callback**
 
 ### useful-tools-resources
 
@@ -275,10 +228,6 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
 }
 ```
 
-### local-state-or-prop
-
-> If a lifetime of the data is the same as the component’s lifetime, the data should belong to the component’s state. If the data lives longer than the component, it should be received as a prop and might be a member of some upper component state. Only the data living longer than any particular component should be stored globally.
-
 ### react-import-need-for-stateless-component
 
 Code below:
@@ -377,14 +326,6 @@ const Parent = ({ children }) => {
     </>
   );
 };
-```
-
-### Reset all states
-
-When key is changed, React will dump the current component and re-create a new one and all states are reset as a result.
-
-```js
-<EmailInput defaultEmail={this.props.user.email} key={this.props.user.id} />
 ```
 
 ### Prevent props drilling
