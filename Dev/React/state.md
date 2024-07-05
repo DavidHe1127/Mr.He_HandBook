@@ -53,7 +53,7 @@ Whether or not React preserves component state depends on the component position
   <Counter key="Sarah" person="Sarah" />
 )}
 
-// same component different position - see 2 {} in this example
+// same component different position - see use of 2{} in this example
 {isPlayerA &&
   <Counter person="Taylor" />
 }
