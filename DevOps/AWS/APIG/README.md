@@ -19,3 +19,15 @@ One thing to note, private integration (making APIG private and allow access fro
 Lambda Proxy Integration means a) lambda receives the whole request without transformations from APIG and b) response message & status code is set in lambda.
 
 Lambda integration does things opposite - req/res transformations and status code are set in APIG
+
+### REST Api endpoint types
+
+#### Edge-optimized
+
+- apig **remains** in the region you've deployed.
+- client reqs travel to the nearest edge location first before getting sent to your regional apig via AWS private network.
+- Suitable for geographically dispersed clients
+
+#### Regional
+
+- client requests need to traverse the public internet to reach your regional apig adding large latency if client is geographically far from your apig.

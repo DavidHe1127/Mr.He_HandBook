@@ -91,6 +91,8 @@ Referer: https://rss.news.example.net/
 
 - Use custom cache key with cautions. DO NOT set a cache key that has millions of different variations such as `User-Agent` or `Chookies` which results in almost zero cache hit. 
 
+[Caching behaviour troubleshooting](https://repost.aws/knowledge-center/cloudfront-custom-object-caching)
+
 
 ### Edge Functions
 

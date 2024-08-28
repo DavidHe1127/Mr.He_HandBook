@@ -11,6 +11,12 @@
 
 ### Concepts Explained
 
+#### Period dropdown in cloudwatch console
+
+It refers to the time interval over which the data points are aggregated for the metric being monitored. It determines how frequently data is collected and aggregated to produce a single data point on the graph.
+
+i.e 15 minutes: This means that the data is aggregated over 15-minute intervals. Every data point on the graph represents the sum of the metric (e.g., BlockedRequests) over a 15-minute period.
+
 #### DatapointsToAlarm
 
 The number of alarm data points that must breach the threshold during the evaluation period for the alarm to go off.

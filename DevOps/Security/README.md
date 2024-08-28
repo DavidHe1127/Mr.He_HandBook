@@ -4,6 +4,7 @@ It outlines different approaches of authenticating applications and their featur
 
 - [JWT](#jwt)
 - [Session(Cookie)](#session)
+- [GITHUB OIDC](./github-oidc.md)
 - [SSO](#sso)
 - [OAuth2](#oauth2)
 - [SAML](#saml)
