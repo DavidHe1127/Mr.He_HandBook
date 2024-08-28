@@ -19,7 +19,6 @@
 - [Namespace your components](#namespace-your-components)
 - [JSX Control Statement](#jsx-control-statement)
 - [local state or prop](#local-state-or-prop)
-- [Why need to import react even for stateless components](#react-import-need-for-stateless-component)
 - [Compound Components](#compound-components)
 - [Refs](./refs.md)
 - [Test](./test.md)
@@ -107,26 +106,6 @@ With [this](https://github.com/AlexGilleran/jsx-control-statements), you can do 
   test ? <span>Truth</span> : null;
 }
 ```
-
-### react-import-need-for-stateless-component
-
-Code below:
-
-```js
-import React from 'react';
-const App = () => <div>Hello World!!!</div>;
-export default App;
-```
-
-will be transpiled into:
-
-```js
-var App = function App() {
-  return React.createElement('div', null, 'Hello World!!!');
-};
-```
-
-See React? that's why we need to explicitly import react. Get bored of doing this? See [Babel-plugin-react-require](https://github.com/vslinko/babel-plugin-react-require)
 
 ### Compound Components
 
