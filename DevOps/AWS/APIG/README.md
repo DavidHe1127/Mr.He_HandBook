@@ -2,6 +2,14 @@
 
 - [Prime Book](https://www.alexdebrie.com/posts/api-gateway-elements/#roadmap-the-three-basic-parts)
 
+### Stage and Deployment
+
+- Deployment is a snapshot of your API at a point.
+- Any changes to your API needs to be re-deployed except for stage settings.
+- Deploying changes means associate your deployment with a stage.
+- You cannot create a stage without specifying a deployment. However you can create a deployment without the stage.
+- Testing feature doesn't hornor authorization/throttling settings.
+
 ### REST API vs HTTP API
 
 REST API has more features and is more powerful than HTTP API. See [detailed comparisons](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html).
