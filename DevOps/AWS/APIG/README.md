@@ -9,6 +9,7 @@
 - Deploying changes means associate your deployment with a stage.
 - You cannot create a stage without specifying a deployment. However you can create a deployment without the stage.
 - Testing feature doesn't hornor authorization/throttling settings.
+- Staged variables are bound to stage not deployments. Making changes to variables don't need a re-deployment.
 
 ### REST API vs HTTP API
 

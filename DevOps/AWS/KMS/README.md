@@ -25,6 +25,16 @@
 
 When you encrypt your data, your data is protected, but you have to protect your encryption key. One strategy is to encrypt it. Envelope encryption is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key - CMK.
 
+#### Key Grant
+
+- Alternative way to kms policy to grant an entity access to the key
+- Only `allow` no `deny`
+- Only accessible programmatically. Not accessible in ui
+- Suitable for temp access grant - grant an access without modifying kms key policy
+- Call revoke grant to remove earlier grant after use of key
+
+[Further reading](https://cloudsecuritymasterclass.com/kms-grants/)
+
 #### How data key is used?
 
 Procedure below describes how s3 uses KMS for data encryption/decryption.
