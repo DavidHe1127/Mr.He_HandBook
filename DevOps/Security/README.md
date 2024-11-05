@@ -13,7 +13,7 @@ It outlines different approaches of authenticating applications and their featur
 - [DDos](#ddos)
 - [Fingerprinting](#fingerprinting)
 - [SSL Cert](#ssl-cert)
-- [HSM](#hardware-security-module)
+- [Cryptography](./cryptography.md)
 
 - [References](#references)
 
@@ -201,11 +201,6 @@ To review SAN field of a cert - `openssl x509 -noout -ext subjectAltName -in cer
 References
 
 - [Understand ssl cert](https://www.cnblogs.com/iiiiher/p/8085698.html)
-
-### Hardware Security Module
-
-- Used to store your cryptographic keys and perform cryptographic functions (signing a cert) without requester direct access to the key. Minimising the risk of private key exposures.
-- It's like a vending machine. A vending machine stores drinks within an isolated internal environment. It’s designed to accept user inputs (i.e., your item selections) and generate outputs (i.e., pop out a tasty snack), and you can’t access the inside of the vending machine or alter its functions.
 
 ---
 
