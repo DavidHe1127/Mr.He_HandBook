@@ -6,6 +6,7 @@
   - [Health Check](#health-check)
   - [Termination Policy](#termination-policy)
   - [Cooldown period](#cooldown-period)
+  - [Use encrypted AMI](#use-ami-encrypted-with-an-external-kms-key)
 - [ELB](#elb)
   - [Load balancer with HA](#load-balancer-with-ha)
   - [Surge Queue and Spillover count](#surge-queue-and-spillover-count)
@@ -40,6 +41,22 @@ No `cooldown period` - Say we have an ASG to scale in/out on some cloudwatch ala
 Now, with help from `cooldown period` defaults to 5 mins, after the scaling activity is exercised, all subsequent scale-out requests will be blocked until `cooldown period` time is elapsed. After it's expired, scale-out activities will begin again. But, if alarm goes off after previous instance is in service, which indicates the launched instance is sufficient to bring metric back down, then the group will remain at that size. In this example, it will be 2.
 
 Automatically applies to `dynamic scaling` and optionally to manual scaling but not supported for `scheduled scaling`.
+
+### Use AMI encrypted with an external kms key
+
+You must make sure kms key grants access to:
+
+- The service linked role that's associated with the Auto Scaling group in your account.
+- The IAM identity in your account to create a grant that allows the SLR to use the key.
+
+You must run the command below to explicitely grant SLR these perms:
+
+```sh
+aws kms create-grant --key-id [X] \
+  --grantee-principal [Y] \
+  --operations Decrypt Encrypt GenerateDataKey GenerateDataKeyWithoutPlaintext \
+    ReEncryptFrom ReEncryptTo CreateGrant DescribeKey
+```
 
 ---
 
