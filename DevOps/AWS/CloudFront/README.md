@@ -108,3 +108,4 @@ Use cases:
 ### Learning Notes
 
 - Enable content compressions which not only improves page load time but also saves cost - CloudFront charges on data egress.
+- CloudFront can't distinguish between an HTTP status code 403 that is returned by your origin and one that is returned by AWS WAF when a request is blocked. As a result, it will serve custom error page when WAF blocks a request and returns 403.

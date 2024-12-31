@@ -25,8 +25,8 @@
 - [Pass props to parent children](#props-forwarding-to-children)
 - [Pass param to event handler](#pass-param-to-event-handler)
 - [Use props.children to prevent props drilling](#prevent-props-drilling)
-- [React Context](./context.md)
 - [Lazy loading](#lazy-loading)
+- [Component/Element as a prop](https://www.developerway.com/posts/react-component-as-prop-the-right-way#part2)
 
 ## [Cookbook](./cookbook.md)
 

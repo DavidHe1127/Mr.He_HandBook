@@ -42,87 +42,12 @@ const onClick = useCallback(
 
 Note, it's a perfect fit for `useCallback` in the above example as `value` referenced by arrow function is defined outside the arrow function scope.
 
+
 ### useEffect
 
-Do something only once:
+- delays the running of a piece of code until that render is reflected on the screen.
+- multiple `useEffect` in one component is ok to separate logic. React will run code in `useEffect` in the order they're defined after component finishes rendering.
 
-```js
-useEffect(() => {
-  api.fetch('/data');
-}, []); // empty array means no dependency to watch on
-```
-
-See how you can refactor lifecycle hooks based code to `useEffect` one.
-
-```js
-// old
-import React, { Component } from 'react';
-import websockets from 'websockets';
-
-class ChatChannel extends Component {
-  state = {
-    messages: [];
-  }
-
-  componentDidMount() {
-    this.startListeningToChannel(this.props.channelId);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.channelId !== prevProps.channelId) {
-      this.stopListeningToChannel(prevProps.channelId);
-      this.startListeningToChannel(this.props.channelId);
-    }
-  }
-
-  componentWillUnmount() {
-    this.stopListeningToChannel(this.props.channelId);
-  }
-
-  startListeningToChannel(channelId) {
-    websockets.listen(
-      `channels.${channelId}`,
-      message => {
-        this.setState(state => {
-          return { messages: [...state.messages, message] };
-        });
-      }
-    );
-  }
-
-  stopListeningToChannel(channelId) {
-    websockets.unlisten(`channels.${channelId}`);
-  }
-
-  render() {
-    // ...
-  }
-}
-
-
-// new
-import React, { useEffect, useState } from 'react';
-import websockets from 'websockets';
-
-function ChatChannel({ channelId }) {
-  const [messages, setMessages] = useState([]);
-
-  // cleanup callback will be triggered either when channelId changes, or when the component unmounts.
-  useEffect(() => {
-    websockets.listen(
-      `channels.${channelId}`,
-      message => setMessages(messages => [...messages, message])
-    );
-
-    return () => websockets.unlisten(`channels.${channelId}`);
-  }, [channelId]);
-
-  // ...
-}
-```
-
-> Instead of thinking about when we should apply the side effect, we declare the side effect’s dependencies. This way React knows when it needs to run, update, or clean up.
-> That’s where the power of useEffect lies. The websocket listener doesn’t care about mounting and unmounting components, it cares about the value of channelId over time.
 
 ### Custom Hook Example
 Write custom hook when you feel a need to share common logic.
