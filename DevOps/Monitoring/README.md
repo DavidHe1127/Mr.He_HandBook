@@ -3,6 +3,7 @@
 - [General](#general)
 - [EC2](#ec2)
 - [Prometheus](./prometheus)
+- [Metric](#metric)
 - [Articles](#articles)
 
 ### General
@@ -57,6 +58,26 @@ Why? help ensure that your instances are appropriately sized for your workload. 
 `T2` instances are capable of bursting meaning it can use processing power above a standard baseline level for short periods of time. This is ideal for app that are not generally CPU intensive but may benefit from higher CPU capacity for brief intervals.
 
 Tip: If CPUUtilization is at high % sometimes, it is fine. However, if it never goes above 50%, it could mean it's over-provisioned.
+
+### Metric
+
+Suppose you have one cloudfront distribution with metric xyz with dimension `env` and `path`:
+
+```
+max(last_5m):max:xyz{env:prod, path:/abc*}.as_rate()
+```
+
+The second `max` is space aggregation. So without it, we'd get:
+
+```
+path:/abc1      5
+path:/abc2      8
+path:/abc5      7
+```
+
+With `max`, we'd get:
+
+`8`.
 
 ### Articles
 
