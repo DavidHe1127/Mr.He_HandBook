@@ -19,18 +19,20 @@ SELECT useridentity.type FROM "<DB>"."<TABLE>" WHERE useridentity.type like 'A%'
 
 # resources
 # [{accountid=12777, type=AWS::IAM::Role}]
-SELECT resource_unnested FROM "<DB>"."<TABLE>" CROSS JOIN unnest(resources) AS T(resource_unnested) where resource_unnested.accountid = '12777' limit 10;
+SELECT resource_unnested FROM "<DB>"."<TABLE>" CROSS JOIN UNNEST(resources) AS T(resource_unnested) WHERE resource_unnested.accountid = '12777' LIMIT 10;
 
-SELECT DISTINCT arn FROM your_table CROSS JOIN UNNEST(abc) AS T(arn, accountid, type)
+# resources
+# [{arn=xxx, accountid=123, type=kms}]
+SELECT DISTINCT arn FROM "<DB>"."<TABLE>" CROSS JOIN UNNEST(resources) AS T(arn)
 
 # search in a particular file
 # make sure the path is within the scope of search (table) location or you'd have no result returned
-SELECT * FROM "default"."your_table"
+SELECT * FROM "<DB>"."<TABLE>"
 WHERE "$path" = 's3://particular-path/location/something.json.gz'
 limit 2
 
 # search in a particular path
-SELECT * FROM "default"."your_table"
+SELECT * FROM "<DB>"."<TABLE>"
 WHERE ("$path" LIKE 's3://particular-path/year/2023/%' OR "$path" LIKE 's3://particular-path/year/2022/%')
 limit 2
 

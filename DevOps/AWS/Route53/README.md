@@ -59,7 +59,7 @@ Very much like `CNAME` except that `CNAME` only works on subdomain not root doma
 
 Add `NS` records for subdomain i.e `xyz.example.com` to domain hosted zone `example.com`. For nested subdomains i.e `api.xyz.example.com`, adding NS records for nested subdomain to parent domain which is `xyz.example.com`. This strategy delegates authority for the subdomain to its own hosted zone.
 
-For cert issuance, validation record should be added to nested subdomain's hosted zone as it's now responsible for authority.
+For cert issuance, validation record needs to be added to nested subdomain's hosted zone as it's now responsible for authority.
 
 One benefit with it is to use IAM permissions to restrict who can access hosted zone for subdomain. This is not possible with adding records for subdomains in domain hosted zone which is considered another option when dealing with subdomain traffic routing.
 
