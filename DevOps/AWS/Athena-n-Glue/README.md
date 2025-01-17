@@ -21,10 +21,6 @@ SELECT useridentity.type FROM "<DB>"."<TABLE>" WHERE useridentity.type like 'A%'
 # [{accountid=12777, type=AWS::IAM::Role}]
 SELECT resource_unnested FROM "<DB>"."<TABLE>" CROSS JOIN UNNEST(resources) AS T(resource_unnested) WHERE resource_unnested.accountid = '12777' LIMIT 10;
 
-# resources
-# [{arn=xxx, accountid=123, type=kms}]
-SELECT DISTINCT arn FROM "<DB>"."<TABLE>" CROSS JOIN UNNEST(resources) AS T(arn)
-
 # search in a particular file
 # make sure the path is within the scope of search (table) location or you'd have no result returned
 SELECT * FROM "<DB>"."<TABLE>"
