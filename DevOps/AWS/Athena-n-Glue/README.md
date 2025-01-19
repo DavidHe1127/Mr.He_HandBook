@@ -1,4 +1,4 @@
-™## Athena
+## Athena
 
 - [Key concepts](#key-concepts)
 
@@ -30,9 +30,20 @@ limit 2
 # search in a particular path
 SELECT * FROM "<DB>"."<TABLE>"
 WHERE ("$path" LIKE 's3://particular-path/year/2023/%' OR "$path" LIKE 's3://particular-path/year/2022/%')
-limit 2
+LIMIT 2
 
+# use IN
+
+SELECT * FROM "<DB>"."<TABLE>" WHERE eventname IN ('Decrypt', 'Encrypt', 'GenerateDataKey');
 ```
+
+### How to audit logs stored centrally?
+
+- In the account containing logs, go to CloudTrail, create athena table and copy the generated SQL. Modify it if necessary. For example, if you want to narrow down searching path, then change the LOCATION to point to a drilled down path.
+- Create your work group and configure query result location (s3 - make sure you create it beforehand).
+- Now go to query editor, paste and run the athena query you copied earlier to create the table.
+
+Now you can run audit queries. See [example code](https://github.com/DavidHe1127/lab/blob/main/aws/athena.js).
 
 ---
 
