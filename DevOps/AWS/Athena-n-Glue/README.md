@@ -6,6 +6,8 @@
 
 - `Table` - defines your dataset location/schema/data format etc. See information a table holds in `Create Table From S3 bucket data` option.
 - `Database` - logical grouping of tables.
+- `AWS Glue Catalog` - centralized metadata repository including tables and databases.
+- `AWS Glue Crawler` - automatically discovers and extracts metadata from a data store, and then it updates the AWS Glue Data Catalog accordingly.
 - Use `Glue` to help automatically create table and data schema. You can also use athena if you want to manually create table columns.
 - Query result is stored in S3.
 - Json file as input must not have newline char.
