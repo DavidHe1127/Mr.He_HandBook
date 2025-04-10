@@ -227,3 +227,4 @@ Using AppConfig with lambda extension allows you to change env vars values on th
 - [All my posts on Serverless & AWS Lambda](https://medium.com/theburningmonk-com/all-my-posts-on-serverless-aws-lambda-43c17a147f91)
 - [Serverless land](https://serverlessland.com/)
 - **[Where lambda does't fit](https://theburningmonk.com/2023/05/is-serverless-overpriced-what-can-we-learn-from-the-primevideo-team/)**
+- https://aws.amazon.com/blogs/compute/handling-billions-of-invocations-best-practices-from-aws-lambda/?utm_id=FAUN_DevOpsLinks470_Link_title
