@@ -7,7 +7,7 @@
 - `Table` - defines your dataset location/schema/data format etc. See information a table holds in `Create Table From S3 bucket data` option.
 - `Database` - logical grouping of tables.
 - `AWS Glue Catalog` - centralized metadata repository including tables and databases.
-- `AWS Glue Crawler` - automatically discovers and extracts metadata from a data store, and then it updates the AWS Glue Data Catalog accordingly.
+- `AWS Glue Crawler` - automatically scan data from a data store and create a table including the discovered data schema for you.
 - Use `Glue` to help automatically create table and data schema. You can also use athena if you want to manually create table columns.
 - Query result is stored in S3.
 - Json file as input must not have newline char.
@@ -37,11 +37,18 @@ LIMIT 2
 # use IN
 
 SELECT * FROM "<DB>"."<TABLE>" WHERE eventname IN ('Decrypt', 'Encrypt', 'GenerateDataKey');
+
+# search by a single column single quote MUST BE used in where condition
+
+SELECT * FROM "default"."cloudfront-waf-logs-prod" WHERE httpsourceid='abc' limit 10;
+
 ```
 
 ### How to audit logs stored centrally?
 
-- In the account containing logs, go to CloudTrail, create athena table and copy the generated SQL. Modify it if necessary. For example, if you want to narrow down searching path, then change the LOCATION to point to a drilled down path.
+Typically, in this setup logs from various source accounts are forwarded into one centralised logging account.
+
+- In the centralised account, go to CloudTrail, create athena table and copy the generated SQL. Modify it if necessary. For example, if you want to narrow down searching path, then change the LOCATION to point to a drilled down path.
 - Create your work group and configure query result location (s3 - make sure you create it beforehand).
 - Now go to query editor, paste and run the athena query you copied earlier to create the table.
 

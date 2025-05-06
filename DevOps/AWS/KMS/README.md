@@ -1,5 +1,8 @@
 ## KMS
 
+> [!WARNING]
+> NEVER EVER set `*` in key principal as doing so will allow anyone to use your key even they don't have identity-based permissions in their role.
+
 - [Key concepts](#key-concepts)
 - [Best practice](#best-practice)
 - [References](#references)
