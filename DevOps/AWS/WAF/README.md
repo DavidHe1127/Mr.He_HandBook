@@ -2,7 +2,7 @@
 
 ## Metric Name
 
-Top-level metric is for the whole WebAcl tracking overall meetrics for all requests evaluated by the WebACL. On the other hand, rule-level metric is to track metrics for each individual rule.
+Top-level metric is for the whole WebAcl tracking overall metrics for all requests evaluated by the WebACL. On the other hand, rule-level metric is to track metrics for each individual rule.
 
 To see each metric in cloudwatch, follow the path `ALL > WAFV2 > Rule, WebACL` and look for your metric name.
 
