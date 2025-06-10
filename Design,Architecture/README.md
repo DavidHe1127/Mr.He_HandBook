@@ -8,3 +8,4 @@
 ## Patterns
 
 - [Strangler Pattern](https://dzone.com/articles/monolith-to-microservices-using-the-strangler-patt)
+- [Azure Design Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/)
