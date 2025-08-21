@@ -18,6 +18,8 @@ Biggest diff is hashing is one way operation hence irreversible. i.e salt and sh
 - Asymmetric Key is primarily used to authenticate comms between 2 parties over untrusted network.
 - Size limit on encryption data i.e 190 bytes with `RSAES_OASEP_SHA_256` cipher while symmetric key doesn't have such limit.
 - RSA is asymmetric key algorithm while AES is symmetric key algorithm.
+- RSA lets you download a public key and use it to encrypt data while leaving private key in HSM.
+- AES however never lets the key leave HSM, rather you can generate data key through api call which you then use it to encrypt your data.
 
 ### Refs
 
