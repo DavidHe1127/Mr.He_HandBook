@@ -21,6 +21,7 @@ Biggest diff is hashing is one way operation hence irreversible. i.e salt and sh
 - RSA lets you download a public key and use it to encrypt data while leaving private key in HSM.
 - AES however never lets the key leave HSM, rather you can generate data key through api call which you then use it to encrypt your data.
 - kms encrypt command has a 4kb limit on the plaintext input. To encrypt larger data, you need to call generate data key and use it encrypt your text.
+- kms encrypt is an online operation so doesn't work when offline - consider using RSA - see below
 
 ### Refs
 

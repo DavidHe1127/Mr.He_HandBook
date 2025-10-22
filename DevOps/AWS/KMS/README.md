@@ -66,7 +66,7 @@ To allow access to a user managed KMS CMK, you must use the key policy, either *
 ```
 
 - Enable automatic key rotation - only works for symmetric keys (CMK not data keys). It only changes the key material, which is the cryptographic secret (a random string) that is used in encryption operations.
-- Use encryption context to segregate key usage without having to manage multiple kms keys.
+- Use encryption context to segregate key usage without having to manage multiple kms keys - team A and team B share the same kms but they cannot cross access.
 
 ```
 {

@@ -14,3 +14,6 @@
 - Build reusable constructs or use existing ones from construct hub
 - Separate stateless and stateful resources into different stacks
 
+### Security Guide (very important)
+
+- https://github.com/aws/aws-cdk/wiki/Security-And-Safety-Dev-Guide
