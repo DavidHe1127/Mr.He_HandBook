@@ -23,6 +23,11 @@ See [example code](./examples/psp.yaml).
 
 > Note Amazon EKS clusters with Kubernetes version 1.13 or higher have a default pod security policy named `eks.privileged`. This policy has no restriction on what kind of pod can be accepted into the system, which is equivalent to running Kubernetes with the PodSecurityPolicy controller disabled.
 
+### PSA/PSS (successor to PsP)
+
+- PSS = security rules (Privileged / Baseline / Restricted)
+- PSA = the Kubernetes admission controller that enforces those rules using namespace labels
+
 ### SecurityContext
 
 - Similar to Policy in PsP but defined per pod.

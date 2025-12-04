@@ -76,7 +76,7 @@ $ aws ec2 describe-instances --region ap-southeast-2 --instance-id i-0123456789a
 $ curl -w "%{http_code}\n" http://169.254.169.254/
 ```
 
-![imds](how-imds-work.svg)
+<!-- ![imds](./how-imds-work.svg) -->
 
 Note, If you are on an EC2 that was launched with an IAM role, the AWS CLI will automatically retrieve credentials for you. You do not need to configure any credentials.
 

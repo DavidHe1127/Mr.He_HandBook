@@ -46,8 +46,6 @@ i.e bank data
 Proxy caching is a feature of proxy servers that stores content on the proxy server itself, allowing web services to share those resources to more users. The proxy server coordinates with the source server to cache
 documents such as files, images and web pages.
 
-![](./proxy-caching-server.png)
-
 For more information and best practices see [Google Web Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)
 
 
