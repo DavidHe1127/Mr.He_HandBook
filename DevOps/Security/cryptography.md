@@ -13,6 +13,33 @@
 
 Biggest diff is hashing is one way operation hence irreversible. i.e salt and sha256 (hash function) whilst encrypting is 2 ways.
 
+### Signing
+
+1. Sender side
+
+- You have a message: "Hello Bob, meet me at 5 PM."
+- Compute a hash of the message.
+- Encrypt the hash with your private key → this is the digital signature.
+
+Send both:
+
+[Original message] + [Digital signature]
+
+2. Recipient side
+
+- Receives message + signature.
+- Computes the hash of the received message themselves.
+- Decrypts the signature using the sender’s public key → retrieves the hash the sender generated.
+
+Compare the two hashes:
+
+- If they match → message is authentic and untampered.
+- If they don’t → message was altered or not from the claimed sender.
+
+The message itself is directly readable—they don’t need the signature to “decode” it because it was sent in plain text.
+
+If you want to keep the message secret, you’d encrypt the entire message (not just the hash) using the recipient’s public key. Only the recipient can decrypt it with their private key.
+
 ### Symmetric vs Asymmetric Key
 
 - Asymmetric Key is primarily used to authenticate comms between 2 parties over untrusted network.
