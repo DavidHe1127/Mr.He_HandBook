@@ -1,10 +1,6 @@
 ## DevTools
 
-- [curl](curl.md)
 - [git](git.md)
-- [lerna](lerna.md)
-- [linting](linting.md)
-- [npm](npm.md)
 - [sonarqube](#sonarqube)
 
 ## YAML templating

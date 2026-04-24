@@ -1,8 +1,6 @@
 ## Testing
 
-- [Unit Test](./unit_test.md)
 - [API fuzzing](#api-fuzzing)
-
 
 ### API fuzzing
 
