@@ -10,7 +10,7 @@
 - Build reusable constructs or use existing ones from construct hub
 - Separate stateless and stateful resources into different stacks
 
-### Recover from a failed deployment caused by manual removal of a resource from console
+### Recover from a failed deployment caused by accidental teardown of a resource from console
 
 Typically, missing resource will cause dependant resources fail to update leaving the stack in `UPDATE_ROLLBACK_FAILED`. Choose `Continue update rollback` option from `Stack actions` dropdown, skip dependant resources and confirm. Once complete, stack should be in `UPDATE_ROLLBACK_COMPLETE` state allowing further operations. Now, changing any attribute of missing resource that will force a replacement. Re-run cdk deploy should recover the broken stack.
 
