@@ -12,7 +12,7 @@
 
 ### Recover from a failed deployment caused by accidental teardown of a resource from console
 
-Typically, missing resource will cause dependant resources fail to update leaving the stack in `UPDATE_ROLLBACK_FAILED`. Choose `Continue update rollback` option from `Stack actions` dropdown, skip dependant resources and confirm. Once complete, stack should be in `UPDATE_ROLLBACK_COMPLETE` state allowing further operations. Now, changing any attribute of missing resource that will force a replacement. Re-run cdk deploy should recover the broken stack.
+Typically, missing resource will cause dependant resources fail to update leaving the stack in `UPDATE_ROLLBACK_FAILED`. Choose `Continue update rollback` option from `Stack actions` dropdown, skip dependant resources and confirm. Once complete, stack should be in `UPDATE_ROLLBACK_COMPLETE` state allowing further operations. Now, changing any attribute of missing resource that will force a replacement. Re-run cdk deploy should recover the broken stack. Alternatively (only works in some cases) is manually re-create it from console and make sure new resource mathces old one in name. This hack works for IAM role.
 
 ### Security Guide (very important)
 
