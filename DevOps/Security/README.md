@@ -80,6 +80,31 @@ A: JWT needs to be stored inside an `httpOnly cookie` - a special kind of cookie
 
 Never save it to `localStorage`. If any of the third-party scripts you include in your page gets compromised, it can access all your users’ tokens.
 
+- #### How does jwt library on API validate the token?
+
+1. Client sends JWT to your API
+             ↓
+2. JWT library reads JWT header
+             ↓
+3. Extracts:
+   kid = "abc123"
+             ↓
+4. Library checks its cached JWKS keys
+             ↓
+       key found?
+       /        \
+     yes         no
+      ↓           ↓
+ use key      call JWKS endpoint
+                  ↓
+            get public keys
+                  ↓
+            find kid=abc123
+                  ↓
+            cache the key
+                  ↓
+5. Use public key to verify JWT signature
+
 ---
 
 ### Session
