@@ -104,6 +104,7 @@ Never save it to `localStorage`. If any of the third-party scripts you include i
             cache the key
                   ↓
 5. Use public key to verify JWT signature
+5.1 Validation first recovers the hash from JWT's signature using the public key. Then it re-calculate the hash with specified algorithm in header, header and payload. Last it compares both hashes. If they match, signature check is passed. It also needs to compare iss, aud and exp as well.
 
 ---
 
