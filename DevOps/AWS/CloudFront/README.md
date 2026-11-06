@@ -68,7 +68,7 @@ References
 Accept-Language: en-US,en;q=0.5
 ```
 
-- By default, only domain name of a distribution and url path of the requested object are included in the cache key.
+- By default, ONLY domain name of a distribution and url path of the requested object are included in the cache key.
 For example, second request below will result in a cache hit. This is because they have same domain name (Host) and url path even though they have different Referers and Cookies. 
 
 ```
